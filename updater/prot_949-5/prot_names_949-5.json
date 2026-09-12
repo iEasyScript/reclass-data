@@ -1,0 +1,2310 @@
+{
+  "CLIENT": [
+    {
+      "entry": "0x014702c0",
+      "name": "IF_DROPDOWN_SELECT",
+      "opcode": 106,
+      "size": 11
+    },
+    {
+      "entry": "0x01684bc0",
+      "name": "IF_BUTTOND",
+      "opcode": 153,
+      "size": 16
+    },
+    {
+      "entry": "0x01684bd0",
+      "name": "UNKNOWN_152",
+      "opcode": 152,
+      "size": 7
+    },
+    {
+      "entry": "0x01684be0",
+      "name": "UNKNOWN_151",
+      "opcode": 151,
+      "size": 18
+    },
+    {
+      "entry": "0x01684bf0",
+      "name": "UNKNOWN_150",
+      "opcode": 150,
+      "size": -2
+    },
+    {
+      "entry": "0x01684c00",
+      "name": "UNKNOWN_149",
+      "opcode": 149,
+      "size": 9
+    },
+    {
+      "entry": "0x01684c10",
+      "name": "UNKNOWN_148",
+      "opcode": 148,
+      "size": -1
+    },
+    {
+      "entry": "0x01684c20",
+      "name": "CLIENT_CHEAT",
+      "opcode": 147,
+      "size": -1
+    },
+    {
+      "entry": "0x01684c30",
+      "name": "UNKNOWN_146",
+      "opcode": 146,
+      "size": -1
+    },
+    {
+      "entry": "0x01684c40",
+      "name": "UNKNOWN_145",
+      "opcode": 145,
+      "size": -2
+    },
+    {
+      "entry": "0x01684c50",
+      "name": "UNKNOWN_144",
+      "opcode": 144,
+      "size": 2
+    },
+    {
+      "entry": "0x01684c60",
+      "name": "OPOBJ3",
+      "opcode": 143,
+      "size": 8
+    },
+    {
+      "entry": "0x01684c70",
+      "name": "IF_BUTTON4",
+      "opcode": 142,
+      "size": 9
+    },
+    {
+      "entry": "0x01684c80",
+      "name": "UNKNOWN_141",
+      "opcode": 141,
+      "size": -2
+    },
+    {
+      "entry": "0x01684c90",
+      "name": "OPPLAYER3",
+      "opcode": 140,
+      "size": 3
+    },
+    {
+      "entry": "0x01684ca0",
+      "name": "UNKNOWN_139",
+      "opcode": 139,
+      "size": 1
+    },
+    {
+      "entry": "0x01684cb0",
+      "name": "UNKNOWN_138",
+      "opcode": 138,
+      "size": 3
+    },
+    {
+      "entry": "0x01684cc0",
+      "name": "IF_BUTTON9",
+      "opcode": 137,
+      "size": 9
+    },
+    {
+      "entry": "0x01684cd0",
+      "name": "UNKNOWN_136",
+      "opcode": 136,
+      "size": -1
+    },
+    {
+      "entry": "0x01684ce0",
+      "name": "EVENT_APPLET_FOCUS",
+      "opcode": 135,
+      "size": 1
+    },
+    {
+      "entry": "0x01684cf0",
+      "name": "UNKNOWN_134",
+      "opcode": 134,
+      "size": 9
+    },
+    {
+      "entry": "0x01684d00",
+      "name": "UNKNOWN_133",
+      "opcode": 133,
+      "size": 4
+    },
+    {
+      "entry": "0x01684d10",
+      "name": "UNKNOWN_132",
+      "opcode": 132,
+      "size": 5
+    },
+    {
+      "entry": "0x01684d20",
+      "name": "RESUME_P_COUNTDIALOG",
+      "opcode": 131,
+      "size": 4
+    },
+    {
+      "entry": "0x01684d30",
+      "name": "OPPLAYER1",
+      "opcode": 130,
+      "size": 3
+    },
+    {
+      "entry": "0x01684d40",
+      "name": "UNKNOWN_129",
+      "opcode": 129,
+      "size": 8
+    },
+    {
+      "entry": "0x01684d50",
+      "name": "UNKNOWN_128",
+      "opcode": 128,
+      "size": 7
+    },
+    {
+      "entry": "0x01684d60",
+      "name": "UNKNOWN_127",
+      "opcode": 127,
+      "size": 6
+    },
+    {
+      "entry": "0x01684d70",
+      "name": "UNKNOWN_126",
+      "opcode": 126,
+      "size": 4
+    },
+    {
+      "entry": "0x01684d80",
+      "name": "WORLDLIST_FETCH",
+      "opcode": 125,
+      "size": 4
+    },
+    {
+      "entry": "0x01684d90",
+      "name": "UNKNOWN_124",
+      "opcode": 124,
+      "size": 2
+    },
+    {
+      "entry": "0x01684da0",
+      "name": "UNKNOWN_123",
+      "opcode": 123,
+      "size": 8
+    },
+    {
+      "entry": "0x01684db0",
+      "name": "OPPLAYER8",
+      "opcode": 122,
+      "size": 3
+    },
+    {
+      "entry": "0x01684dc0",
+      "name": "UNKNOWN_121",
+      "opcode": 121,
+      "size": -1
+    },
+    {
+      "entry": "0x01684dd0",
+      "name": "UNKNOWN_120",
+      "opcode": 120,
+      "size": 1
+    },
+    {
+      "entry": "0x01684de0",
+      "name": "UNKNOWN_119",
+      "opcode": 119,
+      "size": 0
+    },
+    {
+      "entry": "0x01684df0",
+      "name": "UNKNOWN_118",
+      "opcode": 118,
+      "size": 8
+    },
+    {
+      "entry": "0x01684e00",
+      "name": "UNKNOWN_117",
+      "opcode": 117,
+      "size": -2
+    },
+    {
+      "entry": "0x01684e10",
+      "name": "OPLOCT",
+      "opcode": 116,
+      "size": 18
+    },
+    {
+      "entry": "0x01684e20",
+      "name": "UNKNOWN_115",
+      "opcode": 115,
+      "size": 1
+    },
+    {
+      "entry": "0x01684e30",
+      "name": "CHAT_SETFILTER",
+      "opcode": 114,
+      "size": 3
+    },
+    {
+      "entry": "0x01684e40",
+      "name": "UNKNOWN_113",
+      "opcode": 113,
+      "size": 4
+    },
+    {
+      "entry": "0x01684e50",
+      "name": "UNKNOWN_112",
+      "opcode": 112,
+      "size": 4
+    },
+    {
+      "entry": "0x01684e60",
+      "name": "UNKNOWN_111",
+      "opcode": 111,
+      "size": 5
+    },
+    {
+      "entry": "0x01684e70",
+      "name": "IF_BUTTON10",
+      "opcode": 110,
+      "size": 9
+    },
+    {
+      "entry": "0x01684e80",
+      "name": "UNKNOWN_109",
+      "opcode": 109,
+      "size": 1
+    },
+    {
+      "entry": "0x01684e90",
+      "name": "CLANCHANNEL_KICKUSER",
+      "opcode": 108,
+      "size": -1
+    },
+    {
+      "entry": "0x01684ea0",
+      "name": "MOVE_GAMECLICK",
+      "opcode": 107,
+      "size": 5
+    },
+    {
+      "entry": "0x01684eb0",
+      "name": "STORE_SERVERPERM_VARCS",
+      "opcode": 105,
+      "size": -2
+    },
+    {
+      "entry": "0x01684ec0",
+      "name": "UNKNOWN_104",
+      "opcode": 104,
+      "size": -2
+    },
+    {
+      "entry": "0x01684ed0",
+      "name": "OPPLAYER4",
+      "opcode": 103,
+      "size": 3
+    },
+    {
+      "entry": "0x01684ee0",
+      "name": "UNKNOWN_102",
+      "opcode": 102,
+      "size": -1
+    },
+    {
+      "entry": "0x01684ef0",
+      "name": "MESSAGE_QUICKCHAT",
+      "opcode": 101,
+      "size": -1
+    },
+    {
+      "entry": "0x01684f00",
+      "name": "RESUME_PAUSEBUTTON",
+      "opcode": 100,
+      "size": -2
+    },
+    {
+      "entry": "0x01684f10",
+      "name": "IF_BUTTON3",
+      "opcode": 99,
+      "size": 9
+    },
+    {
+      "entry": "0x01684f20",
+      "name": "UNKNOWN_98",
+      "opcode": 98,
+      "size": -1
+    },
+    {
+      "entry": "0x01684f30",
+      "name": "UNKNOWN_97",
+      "opcode": 97,
+      "size": 9
+    },
+    {
+      "entry": "0x01684f40",
+      "name": "OPPLAYER6",
+      "opcode": 96,
+      "size": 3
+    },
+    {
+      "entry": "0x01684f50",
+      "name": "UNKNOWN_95",
+      "opcode": 95,
+      "size": 7
+    },
+    {
+      "entry": "0x01684f60",
+      "name": "UNKNOWN_94",
+      "opcode": 94,
+      "size": -1
+    },
+    {
+      "entry": "0x01684f70",
+      "name": "UNKNOWN_93",
+      "opcode": 93,
+      "size": -1
+    },
+    {
+      "entry": "0x01684f80",
+      "name": "UNKNOWN_92",
+      "opcode": 92,
+      "size": 2
+    },
+    {
+      "entry": "0x01684f90",
+      "name": "OPLOC4",
+      "opcode": 91,
+      "size": 9
+    },
+    {
+      "entry": "0x01684fa0",
+      "name": "IF_BUTTON6",
+      "opcode": 90,
+      "size": 9
+    },
+    {
+      "entry": "0x01684fb0",
+      "name": "UNKNOWN_89",
+      "opcode": 89,
+      "size": 4
+    },
+    {
+      "entry": "0x01684fc0",
+      "name": "OPLOC6",
+      "opcode": 88,
+      "size": 9
+    },
+    {
+      "entry": "0x01684fd0",
+      "name": "UNKNOWN_87",
+      "opcode": 87,
+      "size": 8
+    },
+    {
+      "entry": "0x01684fe0",
+      "name": "RESUME_P_NAMEDIALOG",
+      "opcode": 86,
+      "size": -1
+    },
+    {
+      "entry": "0x01684ff0",
+      "name": "UNKNOWN_85",
+      "opcode": 85,
+      "size": -1
+    },
+    {
+      "entry": "0x01685000",
+      "name": "UNKNOWN_84",
+      "opcode": 84,
+      "size": 8
+    },
+    {
+      "entry": "0x01685010",
+      "name": "UNKNOWN_83",
+      "opcode": 83,
+      "size": 15
+    },
+    {
+      "entry": "0x01685020",
+      "name": "MESSAGE_PRIVATE_ENCRYPTED",
+      "opcode": 82,
+      "size": -2
+    },
+    {
+      "entry": "0x01685030",
+      "name": "UNKNOWN_81",
+      "opcode": 81,
+      "size": 8
+    },
+    {
+      "entry": "0x01685040",
+      "name": "OPPLAYER9",
+      "opcode": 80,
+      "size": 3
+    },
+    {
+      "entry": "0x01685050",
+      "name": "OPPLAYER2",
+      "opcode": 79,
+      "size": 3
+    },
+    {
+      "entry": "0x01685060",
+      "name": "OPNPC2",
+      "opcode": 78,
+      "size": 3
+    },
+    {
+      "entry": "0x01685070",
+      "name": "EVENT_KEYBOARD",
+      "opcode": 77,
+      "size": -2
+    },
+    {
+      "entry": "0x01685080",
+      "name": "UNKNOWN_76",
+      "opcode": 76,
+      "size": 8
+    },
+    {
+      "entry": "0x01685090",
+      "name": "OPNPC5",
+      "opcode": 75,
+      "size": 3
+    },
+    {
+      "entry": "0x016850a0",
+      "name": "CLOSE_MODAL",
+      "opcode": 74,
+      "size": 0
+    },
+    {
+      "entry": "0x016850b0",
+      "name": "UNKNOWN_73",
+      "opcode": 73,
+      "size": 15
+    },
+    {
+      "entry": "0x016850c0",
+      "name": "UNKNOWN_72",
+      "opcode": 72,
+      "size": 0
+    },
+    {
+      "entry": "0x016850d0",
+      "name": "MESSAGE_PRIVATE",
+      "opcode": 71,
+      "size": -2
+    },
+    {
+      "entry": "0x016850e0",
+      "name": "OPLOC2",
+      "opcode": 70,
+      "size": 9
+    },
+    {
+      "entry": "0x016850f0",
+      "name": "UNKNOWN_69",
+      "opcode": 69,
+      "size": 16
+    },
+    {
+      "entry": "0x01685100",
+      "name": "OPOBJ6",
+      "opcode": 68,
+      "size": 8
+    },
+    {
+      "entry": "0x01685110",
+      "name": "MAP_BUILD_COMPLETE",
+      "opcode": 67,
+      "size": 0
+    },
+    {
+      "entry": "0x01685120",
+      "name": "MOVE_MINIMAPCLICK",
+      "opcode": 66,
+      "size": 18
+    },
+    {
+      "entry": "0x01685130",
+      "name": "OPNPC6",
+      "opcode": 65,
+      "size": 3
+    },
+    {
+      "entry": "0x01685140",
+      "name": "OPOBJ2",
+      "opcode": 64,
+      "size": 8
+    },
+    {
+      "entry": "0x01685150",
+      "name": "FRIENDLIST_DEL",
+      "opcode": 63,
+      "size": -1
+    },
+    {
+      "entry": "0x01685160",
+      "name": "UNKNOWN_62",
+      "opcode": 62,
+      "size": -1
+    },
+    {
+      "entry": "0x01685170",
+      "name": "UNKNOWN_61",
+      "opcode": 61,
+      "size": 4
+    },
+    {
+      "entry": "0x01685180",
+      "name": "OPNPC1",
+      "opcode": 60,
+      "size": 3
+    },
+    {
+      "entry": "0x01685190",
+      "name": "OPPLAYER5",
+      "opcode": 59,
+      "size": 3
+    },
+    {
+      "entry": "0x016851a0",
+      "name": "UNKNOWN_58",
+      "opcode": 58,
+      "size": 4
+    },
+    {
+      "entry": "0x016851b0",
+      "name": "OPNPCT",
+      "opcode": 57,
+      "size": 12
+    },
+    {
+      "entry": "0x016851c0",
+      "name": "UNKNOWN_56",
+      "opcode": 56,
+      "size": 11
+    },
+    {
+      "entry": "0x016851d0",
+      "name": "IF_BUTTON1",
+      "opcode": 55,
+      "size": 9
+    },
+    {
+      "entry": "0x016851e0",
+      "name": "OPPLAYER10",
+      "opcode": 54,
+      "size": 3
+    },
+    {
+      "entry": "0x016851f0",
+      "name": "OPNPC4",
+      "opcode": 53,
+      "size": 3
+    },
+    {
+      "entry": "0x01685200",
+      "name": "IF_BUTTON8",
+      "opcode": 52,
+      "size": 9
+    },
+    {
+      "entry": "0x01685210",
+      "name": "UNKNOWN_51",
+      "opcode": 51,
+      "size": -2
+    },
+    {
+      "entry": "0x01685220",
+      "name": "UNKNOWN_50",
+      "opcode": 50,
+      "size": -1
+    },
+    {
+      "entry": "0x01685230",
+      "name": "OPOBJT",
+      "opcode": 49,
+      "size": 17
+    },
+    {
+      "entry": "0x01685240",
+      "name": "WINDOW_STATUS",
+      "opcode": 48,
+      "size": 6
+    },
+    {
+      "entry": "0x01685250",
+      "name": "OPTILET",
+      "opcode": 47,
+      "size": 13
+    },
+    {
+      "entry": "0x01685260",
+      "name": "UNKNOWN_46",
+      "opcode": 46,
+      "size": 7
+    },
+    {
+      "entry": "0x01685270",
+      "name": "OPOBJ5",
+      "opcode": 45,
+      "size": 8
+    },
+    {
+      "entry": "0x01685280",
+      "name": "UNKNOWN_44",
+      "opcode": 44,
+      "size": -1
+    },
+    {
+      "entry": "0x01685290",
+      "name": "OPOBJ4",
+      "opcode": 43,
+      "size": 8
+    },
+    {
+      "entry": "0x016852a0",
+      "name": "UNKNOWN_42",
+      "opcode": 42,
+      "size": 7
+    },
+    {
+      "entry": "0x016852b0",
+      "name": "OPLOC1",
+      "opcode": 41,
+      "size": 9
+    },
+    {
+      "entry": "0x016852c0",
+      "name": "UNKNOWN_40",
+      "opcode": 40,
+      "size": 7
+    },
+    {
+      "entry": "0x016852d0",
+      "name": "OPNPC3",
+      "opcode": 39,
+      "size": 3
+    },
+    {
+      "entry": "0x016852e0",
+      "name": "FRIENDLIST_ADD",
+      "opcode": 38,
+      "size": -1
+    },
+    {
+      "entry": "0x016852f0",
+      "name": "UNKNOWN_37",
+      "opcode": 37,
+      "size": 11
+    },
+    {
+      "entry": "0x01685300",
+      "name": "UNKNOWN_36",
+      "opcode": 36,
+      "size": -1
+    },
+    {
+      "entry": "0x01685310",
+      "name": "MESSAGE_PUBLIC",
+      "opcode": 35,
+      "size": -1
+    },
+    {
+      "entry": "0x01685320",
+      "name": "UNKNOWN_34",
+      "opcode": 34,
+      "size": 8
+    },
+    {
+      "entry": "0x01685330",
+      "name": "OPLOC3",
+      "opcode": 33,
+      "size": 9
+    },
+    {
+      "entry": "0x01685340",
+      "name": "IGNORELIST_ADD",
+      "opcode": 32,
+      "size": -1
+    },
+    {
+      "entry": "0x01685350",
+      "name": "UNKNOWN_31",
+      "opcode": 31,
+      "size": -2
+    },
+    {
+      "entry": "0x01685360",
+      "name": "UNKNOWN_30",
+      "opcode": 30,
+      "size": 4
+    },
+    {
+      "entry": "0x01685370",
+      "name": "UNKNOWN_29",
+      "opcode": 29,
+      "size": 12
+    },
+    {
+      "entry": "0x01685380",
+      "name": "OPOBJ1",
+      "opcode": 28,
+      "size": 8
+    },
+    {
+      "entry": "0x01685390",
+      "name": "UNKNOWN_27",
+      "opcode": 27,
+      "size": -1
+    },
+    {
+      "entry": "0x016853a0",
+      "name": "OPPLAYER7",
+      "opcode": 26,
+      "size": 3
+    },
+    {
+      "entry": "0x016853b0",
+      "name": "IF_DRAG",
+      "opcode": 25,
+      "size": 18
+    },
+    {
+      "entry": "0x016853c0",
+      "name": "UNKNOWN_24",
+      "opcode": 24,
+      "size": 8
+    },
+    {
+      "entry": "0x016853d0",
+      "name": "UNKNOWN_23",
+      "opcode": 23,
+      "size": -1
+    },
+    {
+      "entry": "0x016853e0",
+      "name": "UNKNOWN_22",
+      "opcode": 22,
+      "size": -1
+    },
+    {
+      "entry": "0x016853f0",
+      "name": "MESSAGE_FILTER",
+      "opcode": 21,
+      "size": 2
+    },
+    {
+      "entry": "0x01685400",
+      "name": "UNKNOWN_20",
+      "opcode": 20,
+      "size": 8
+    },
+    {
+      "entry": "0x01685410",
+      "name": "UNKNOWN_19",
+      "opcode": 19,
+      "size": 12
+    },
+    {
+      "entry": "0x01685420",
+      "name": "IF_BUTTON2",
+      "opcode": 18,
+      "size": 9
+    },
+    {
+      "entry": "0x01685430",
+      "name": "IF_BUTTON7",
+      "opcode": 17,
+      "size": 9
+    },
+    {
+      "entry": "0x01685440",
+      "name": "SEND_NATIVE_MOUSE_CLICK",
+      "opcode": 16,
+      "size": 7
+    },
+    {
+      "entry": "0x01685450",
+      "name": "IF_BUTTONT",
+      "opcode": 15,
+      "size": 18
+    },
+    {
+      "entry": "0x01685460",
+      "name": "UNKNOWN_14",
+      "opcode": 14,
+      "size": -1
+    },
+    {
+      "entry": "0x01685470",
+      "name": "IF_BUTTON5",
+      "opcode": 13,
+      "size": 9
+    },
+    {
+      "entry": "0x01685480",
+      "name": "EVENT_CAMERA_POSITION",
+      "opcode": 12,
+      "size": 4
+    },
+    {
+      "entry": "0x01685490",
+      "name": "UNKNOWN_11",
+      "opcode": 11,
+      "size": -1
+    },
+    {
+      "entry": "0x016854a0",
+      "name": "UNKNOWN_10",
+      "opcode": 10,
+      "size": 8
+    },
+    {
+      "entry": "0x016854b0",
+      "name": "UNKNOWN_9",
+      "opcode": 9,
+      "size": 17
+    },
+    {
+      "entry": "0x016854c0",
+      "name": "UNKNOWN_8",
+      "opcode": 8,
+      "size": 22
+    },
+    {
+      "entry": "0x016854d0",
+      "name": "BUG_REPORT",
+      "opcode": 7,
+      "size": 1
+    },
+    {
+      "entry": "0x016854e0",
+      "name": "UNKNOWN_6",
+      "opcode": 6,
+      "size": -1
+    },
+    {
+      "entry": "0x016854f0",
+      "name": "UNKNOWN_5",
+      "opcode": 5,
+      "size": -2
+    },
+    {
+      "entry": "0x01685500",
+      "name": "EVENT_MOUSE_MOVE",
+      "opcode": 4,
+      "size": -1
+    },
+    {
+      "entry": "0x01685510",
+      "name": "ABORT_P_DIALOG",
+      "opcode": 3,
+      "size": 0
+    },
+    {
+      "entry": "0x01685520",
+      "name": "EVENT_MOUSE_CLICK",
+      "opcode": 2,
+      "size": 6
+    },
+    {
+      "entry": "0x01685530",
+      "name": "OPLOC5",
+      "opcode": 1,
+      "size": 9
+    },
+    {
+      "entry": "0x01685540",
+      "name": "NO_TIMEOUT",
+      "opcode": 0,
+      "size": 0
+    }
+  ],
+  "SERVER": [
+    {
+      "entry": "0x01454540",
+      "name": "JCOINS_UPDATE",
+      "opcode": 229,
+      "size": 4
+    },
+    {
+      "entry": "0x01454580",
+      "name": "UNKNOWN_228",
+      "opcode": 228,
+      "size": 0
+    },
+    {
+      "entry": "0x014545c0",
+      "name": "MISC_NEW_945",
+      "opcode": 227,
+      "size": 0
+    },
+    {
+      "entry": "0x01454600",
+      "name": "UNKNOWN_226",
+      "opcode": 226,
+      "size": -2
+    },
+    {
+      "entry": "0x01454640",
+      "name": "DBFILTER_DEBUG",
+      "opcode": 222,
+      "size": -2
+    },
+    {
+      "entry": "0x01454680",
+      "name": "VORBIS_PRELOAD_SOUND_GROUP",
+      "opcode": 219,
+      "size": 2
+    },
+    {
+      "entry": "0x014546c0",
+      "name": "POINTLIGHT_EXTEND_BELOW",
+      "opcode": 218,
+      "size": 3
+    },
+    {
+      "entry": "0x01454700",
+      "name": "SOUND_MIXBUSS_SETLEVEL",
+      "opcode": 217,
+      "size": 6
+    },
+    {
+      "entry": "0x01454740",
+      "name": "MESSAGE_QUICKCHAT_PLAYER_GROUP",
+      "opcode": 214,
+      "size": -1
+    },
+    {
+      "entry": "0x01454780",
+      "name": "UNKNOWN_213",
+      "opcode": 213,
+      "size": 9
+    },
+    {
+      "entry": "0x014547c0",
+      "name": "POINTLIGHT_SHADOW",
+      "opcode": 212,
+      "size": 3
+    },
+    {
+      "entry": "0x01454800",
+      "name": "NEW_AUDIO945",
+      "opcode": 210,
+      "size": 4
+    },
+    {
+      "entry": "0x01454840",
+      "name": "JS5_RELOAD",
+      "opcode": 208,
+      "size": 0
+    },
+    {
+      "entry": "0x01454880",
+      "name": "POINTLIGHT_EXTEND_ABOVE",
+      "opcode": 207,
+      "size": 3
+    },
+    {
+      "entry": "0x014548c0",
+      "name": "SOUND_MIXBUSS_ADD",
+      "opcode": 206,
+      "size": 6
+    },
+    {
+      "entry": "0x01454900",
+      "name": "PLAYER_ANIM_SPECIFIC",
+      "opcode": 203,
+      "size": 17
+    },
+    {
+      "entry": "0x01454940",
+      "name": "MESSAGE_PLAYER_GROUP",
+      "opcode": 196,
+      "size": -1
+    },
+    {
+      "entry": "0x01454980",
+      "name": "VORBIS_SOUND_GROUP_STOP",
+      "opcode": 195,
+      "size": 2
+    },
+    {
+      "entry": "0x014549c0",
+      "name": "VORBIS_PRELOAD_SOUNDS",
+      "opcode": 194,
+      "size": 4
+    },
+    {
+      "entry": "0x01454a00",
+      "name": "PLAYER_GROUP_VARPS",
+      "opcode": 193,
+      "size": -2
+    },
+    {
+      "entry": "0x01454a40",
+      "name": "POINTLIGHT_INTENSITYSCALE",
+      "opcode": 191,
+      "size": 5
+    },
+    {
+      "entry": "0x01454a80",
+      "name": "UNKNOWN_187",
+      "opcode": 187,
+      "size": 1
+    },
+    {
+      "entry": "0x01454ac0",
+      "name": "NPC_SAY_SPECIFIC",
+      "opcode": 181,
+      "size": -2
+    },
+    {
+      "entry": "0x01454b00",
+      "name": "SERVER_TICK_END",
+      "opcode": 180,
+      "size": 0
+    },
+    {
+      "entry": "0x01454b40",
+      "name": "CREATE_ACCOUNT_REPLY",
+      "opcode": 178,
+      "size": 1
+    },
+    {
+      "entry": "0x01454b80",
+      "name": "UNKNOWN_177",
+      "opcode": 177,
+      "size": -2
+    },
+    {
+      "entry": "0x01454bc0",
+      "name": "UNNAMED_1",
+      "opcode": 176,
+      "size": -1
+    },
+    {
+      "entry": "0x01454c00",
+      "name": "UNKNOWN_175",
+      "opcode": 175,
+      "size": -2
+    },
+    {
+      "entry": "0x01454c40",
+      "name": "UNKNOWN_174",
+      "opcode": 174,
+      "size": -2
+    },
+    {
+      "entry": "0x01454c80",
+      "name": "WORLDLIST_FETCH_REPLY",
+      "opcode": 172,
+      "size": -2
+    },
+    {
+      "entry": "0x01454cc0",
+      "name": "POINTLIGHT_ATTENUATION_FALLOFF",
+      "opcode": 170,
+      "size": 4
+    },
+    {
+      "entry": "0x01454d00",
+      "name": "VORBIS_SOUND_GROUP",
+      "opcode": 166,
+      "size": 12
+    },
+    {
+      "entry": "0x01454d40",
+      "name": "UNKNOWN_165",
+      "opcode": 165,
+      "size": 1
+    },
+    {
+      "entry": "0x01454d80",
+      "name": "POINTLIGHT_ENABLED",
+      "opcode": 162,
+      "size": 3
+    },
+    {
+      "entry": "0x01454dc0",
+      "name": "UNKNOWN_156",
+      "opcode": 156,
+      "size": 8
+    },
+    {
+      "entry": "0x01454e00",
+      "name": "PLAYER_GROUP_FULL",
+      "opcode": 154,
+      "size": -2
+    },
+    {
+      "entry": "0x01454e40",
+      "name": "UNKNOWN_153",
+      "opcode": 153,
+      "size": 1
+    },
+    {
+      "entry": "0x01454e80",
+      "name": "UNKNOWN_152",
+      "opcode": 152,
+      "size": -1
+    },
+    {
+      "entry": "0x01454ec0",
+      "name": "SETDRAWORDER",
+      "opcode": 151,
+      "size": 1
+    },
+    {
+      "entry": "0x01454f00",
+      "name": "UNKNOWN_148",
+      "opcode": 148,
+      "size": -2
+    },
+    {
+      "entry": "0x01454f40",
+      "name": "CREATE_SUGGEST_NAME_REPLY",
+      "opcode": 146,
+      "size": -1
+    },
+    {
+      "entry": "0x01454f80",
+      "name": "CREATE_SUGGEST_NAME_ERROR",
+      "opcode": 145,
+      "size": 1
+    },
+    {
+      "entry": "0x01454fc0",
+      "name": "UNKNOWN_144",
+      "opcode": 144,
+      "size": -2
+    },
+    {
+      "entry": "0x01455000",
+      "name": "LOGOUT_TRANSFER",
+      "opcode": 143,
+      "size": -1
+    },
+    {
+      "entry": "0x01455040",
+      "name": "DO_CHEAT",
+      "opcode": 142,
+      "size": -1
+    },
+    {
+      "entry": "0x01455080",
+      "name": "SEND_PING",
+      "opcode": 141,
+      "size": 8
+    },
+    {
+      "entry": "0x014550c0",
+      "name": "LOBBY_TICK_END",
+      "opcode": 140,
+      "size": 0
+    },
+    {
+      "entry": "0x01455100",
+      "name": "LOYALTY_UPDATE",
+      "opcode": 139,
+      "size": 4
+    },
+    {
+      "entry": "0x01455140",
+      "name": "MISC_NEW_946",
+      "opcode": 138,
+      "size": 8
+    },
+    {
+      "entry": "0x01455180",
+      "name": "UNKNOWN_137",
+      "opcode": 137,
+      "size": 2
+    },
+    {
+      "entry": "0x014551c0",
+      "name": "CHANGE_LOBBY",
+      "opcode": 136,
+      "size": -1
+    },
+    {
+      "entry": "0x01455200",
+      "name": "SPOTANIM_SPECIFIC_ALT",
+      "opcode": 133,
+      "size": 15
+    },
+    {
+      "entry": "0x01455240",
+      "name": "PROJANIM_SPECIFIC_ALT",
+      "opcode": 131,
+      "size": 33
+    },
+    {
+      "entry": "0x01455280",
+      "name": "VORBIS_SOUND_GROUP_START",
+      "opcode": 130,
+      "size": 2
+    },
+    {
+      "entry": "0x014552c0",
+      "name": "PLAYER_GROUP_DELTA",
+      "opcode": 129,
+      "size": -2
+    },
+    {
+      "entry": "0x01455300",
+      "name": "MIDI_SONG",
+      "opcode": 128,
+      "size": 4
+    },
+    {
+      "entry": "0x01455340",
+      "name": "UNKNOWN_127",
+      "opcode": 127,
+      "size": 0
+    },
+    {
+      "entry": "0x01455380",
+      "name": "CAMERA_UPDATE",
+      "opcode": 123,
+      "size": -2
+    },
+    {
+      "entry": "0x014553c0",
+      "name": "CAM_MOVETO",
+      "opcode": 119,
+      "size": 6
+    },
+    {
+      "entry": "0x01455400",
+      "name": "VORBIS_SPEECH_SOUND",
+      "opcode": 114,
+      "size": 8
+    },
+    {
+      "entry": "0x01455440",
+      "name": "UPDATE_REBOOT_TIMER",
+      "opcode": 110,
+      "size": 2
+    },
+    {
+      "entry": "0x01455480",
+      "name": "CAM_RESET",
+      "opcode": 106,
+      "size": 0
+    },
+    {
+      "entry": "0x014554c0",
+      "name": "UNKNOWN_105",
+      "opcode": 105,
+      "size": 11
+    },
+    {
+      "entry": "0x01455500",
+      "name": "LOGOUT_FULL",
+      "opcode": 102,
+      "size": 1
+    },
+    {
+      "entry": "0x01455540",
+      "name": "CAM_SMOOTHRESET",
+      "opcode": 99,
+      "size": 0
+    },
+    {
+      "entry": "0x01455580",
+      "name": "CLANSETTINGS_FULL",
+      "opcode": 97,
+      "size": -2
+    },
+    {
+      "entry": "0x014555c0",
+      "name": "SET_MOVEACTION",
+      "opcode": 94,
+      "size": -1
+    },
+    {
+      "entry": "0x01455600",
+      "name": "REBUILD_REGION",
+      "opcode": 93,
+      "size": -2
+    },
+    {
+      "entry": "0x01455640",
+      "name": "NPC_INFO",
+      "opcode": 90,
+      "size": -2
+    },
+    {
+      "entry": "0x01455680",
+      "name": "CAM_REMOVEROOF",
+      "opcode": 89,
+      "size": 4
+    },
+    {
+      "entry": "0x014556c0",
+      "name": "CLANSETTINGS_DELTA",
+      "opcode": 86,
+      "size": -2
+    },
+    {
+      "entry": "0x01455700",
+      "name": "CLANCHANNEL_FULL",
+      "opcode": 85,
+      "size": -2
+    },
+    {
+      "entry": "0x01455740",
+      "name": "MESSAGE_CLANCHANNEL",
+      "opcode": 84,
+      "size": -1
+    },
+    {
+      "entry": "0x01455780",
+      "name": "HINT_ARROW",
+      "opcode": 83,
+      "size": 14
+    },
+    {
+      "entry": "0x014557c0",
+      "name": "RUNCLIENTSCRIPT",
+      "opcode": 82,
+      "size": -2
+    },
+    {
+      "entry": "0x01455800",
+      "name": "UNKNOWN_81",
+      "opcode": 81,
+      "size": 36
+    },
+    {
+      "entry": "0x01455840",
+      "name": "CAM_FORCEANGLE",
+      "opcode": 79,
+      "size": 4
+    },
+    {
+      "entry": "0x01455880",
+      "name": "UNKNOWN_76",
+      "opcode": 76,
+      "size": -2
+    },
+    {
+      "entry": "0x014558c0",
+      "name": "MESSAGE_PRIVATE",
+      "opcode": 75,
+      "size": -2
+    },
+    {
+      "entry": "0x01455900",
+      "name": "CHAT_FILTER_SETTINGS_PRIVATECHAT",
+      "opcode": 74,
+      "size": 1
+    },
+    {
+      "entry": "0x01455940",
+      "name": "UPDATE_FRIENDCHAT_CHANNEL_SINGLEUSER",
+      "opcode": 72,
+      "size": -1
+    },
+    {
+      "entry": "0x01455980",
+      "name": "UNKNOWN_69",
+      "opcode": 69,
+      "size": 25
+    },
+    {
+      "entry": "0x014559c0",
+      "name": "UNKNOWN_68",
+      "opcode": 68,
+      "size": 2
+    },
+    {
+      "entry": "0x01455a00",
+      "name": "SPOTANIM_SPECIFIC",
+      "opcode": 67,
+      "size": 12
+    },
+    {
+      "entry": "0x01455a40",
+      "name": "UPDATE_IGNORELIST",
+      "opcode": 66,
+      "size": -2
+    },
+    {
+      "entry": "0x01455a80",
+      "name": "MINIMAP_TOGGLE",
+      "opcode": 65,
+      "size": 1
+    },
+    {
+      "entry": "0x01455ac0",
+      "name": "REBUILD_NORMAL",
+      "opcode": 64,
+      "size": -2
+    },
+    {
+      "entry": "0x01455b00",
+      "name": "UPDATE_FRIENDCHAT_CHANNEL_FULL",
+      "opcode": 63,
+      "size": -2
+    },
+    {
+      "entry": "0x01455b40",
+      "name": "MESSAGE_QUICKCHAT_PRIVATE",
+      "opcode": 59,
+      "size": -1
+    },
+    {
+      "entry": "0x01455b80",
+      "name": "LOGOUT",
+      "opcode": 58,
+      "size": 1
+    },
+    {
+      "entry": "0x01455bc0",
+      "name": "UNKNOWN_57",
+      "opcode": 57,
+      "size": 10
+    },
+    {
+      "entry": "0x01455c00",
+      "name": "CAM_SHAKE",
+      "opcode": 55,
+      "size": 6
+    },
+    {
+      "entry": "0x01455c40",
+      "name": "MESSAGE_CLANCHANNEL_SYSTEM",
+      "opcode": 53,
+      "size": -1
+    },
+    {
+      "entry": "0x01455c80",
+      "name": "MESSAGE_PRIVATE_ECHO",
+      "opcode": 49,
+      "size": -2
+    },
+    {
+      "entry": "0x01455cc0",
+      "name": "RESET_ANIMS",
+      "opcode": 46,
+      "size": 0
+    },
+    {
+      "entry": "0x01455d00",
+      "name": "CLANCHANNEL_DELTA",
+      "opcode": 44,
+      "size": -2
+    },
+    {
+      "entry": "0x01455d40",
+      "name": "UPDATE_INV_PARTIAL",
+      "opcode": 43,
+      "size": -2
+    },
+    {
+      "entry": "0x01455d80",
+      "name": "CAM_LOOKAT",
+      "opcode": 42,
+      "size": 6
+    },
+    {
+      "entry": "0x01455dc0",
+      "name": "MESSAGE_QUICKCHAT_PRIVATE_ECHO",
+      "opcode": 38,
+      "size": -1
+    },
+    {
+      "entry": "0x01455e00",
+      "name": "UNKNOWN_37",
+      "opcode": 37,
+      "size": 5
+    },
+    {
+      "entry": "0x01455e40",
+      "name": "NPC_ANIM_SPECIFIC",
+      "opcode": 35,
+      "size": 19
+    },
+    {
+      "entry": "0x01455e80",
+      "name": "UNKNOWN_33",
+      "opcode": 33,
+      "size": -1
+    },
+    {
+      "entry": "0x01455ec0",
+      "name": "MESSAGE_QUICKCHAT_FRIENDCHAT",
+      "opcode": 32,
+      "size": -1
+    },
+    {
+      "entry": "0x01455f00",
+      "name": "UNKNOWN_31",
+      "opcode": 31,
+      "size": 10
+    },
+    {
+      "entry": "0x01455f40",
+      "name": "HINT_TRAIL",
+      "opcode": 29,
+      "size": -2
+    },
+    {
+      "entry": "0x01455f80",
+      "name": "CAM2_ENABLE",
+      "opcode": 27,
+      "size": 1
+    },
+    {
+      "entry": "0x01455fc0",
+      "name": "MESSAGE_FRIENDCHANNEL",
+      "opcode": 26,
+      "size": -1
+    },
+    {
+      "entry": "0x01456000",
+      "name": "MESSAGE_GAME",
+      "opcode": 21,
+      "size": -1
+    },
+    {
+      "entry": "0x01456040",
+      "name": "DEBUG_SERVER_TRIGGERS",
+      "opcode": 19,
+      "size": -1
+    },
+    {
+      "entry": "0x01456080",
+      "name": "FRIENDLIST_LOADED",
+      "opcode": 18,
+      "size": 0
+    },
+    {
+      "entry": "0x014560c0",
+      "name": "UNKNOWN_16",
+      "opcode": 16,
+      "size": 5
+    },
+    {
+      "entry": "0x01456100",
+      "name": "UNKNOWN_15",
+      "opcode": 15,
+      "size": 10
+    },
+    {
+      "entry": "0x01456140",
+      "name": "SERVER_REPLY",
+      "opcode": 13,
+      "size": -1
+    },
+    {
+      "entry": "0x01456180",
+      "name": "UNKNOWN_11",
+      "opcode": 11,
+      "size": -2
+    },
+    {
+      "entry": "0x014561c0",
+      "name": "UPDATE_INV_STOP_TRANSMIT",
+      "opcode": 10,
+      "size": 3
+    },
+    {
+      "entry": "0x01456200",
+      "name": "UNKNOWN_9",
+      "opcode": 9,
+      "size": -1
+    },
+    {
+      "entry": "0x01456240",
+      "name": "UPDATE_INV_FULL",
+      "opcode": 8,
+      "size": -2
+    },
+    {
+      "entry": "0x01456280",
+      "name": "UPDATE_STOCKMARKET_SLOT",
+      "opcode": 5,
+      "size": 35
+    },
+    {
+      "entry": "0x014562c0",
+      "name": "UPDATE_FRIENDLIST",
+      "opcode": 3,
+      "size": -2
+    },
+    {
+      "entry": "0x01456300",
+      "name": "SET_INTERACTION_TARGET",
+      "opcode": 2,
+      "size": 10
+    },
+    {
+      "entry": "0x01470aa0",
+      "name": "CUTSCENE2D_PLAY",
+      "opcode": 221,
+      "size": 2
+    },
+    {
+      "entry": "0x01470ae0",
+      "name": "UNKNOWN_125",
+      "opcode": 125,
+      "size": 10
+    },
+    {
+      "entry": "0x01470b20",
+      "name": "TRIGGER_ONDIALOGABORT",
+      "opcode": 87,
+      "size": 0
+    },
+    {
+      "entry": "0x01470b60",
+      "name": "UNKNOWN_100",
+      "opcode": 100,
+      "size": 5
+    },
+    {
+      "entry": "0x01470ba0",
+      "name": "UNKNOWN_167",
+      "opcode": 167,
+      "size": 5
+    },
+    {
+      "entry": "0x01470be0",
+      "name": "UNKNOWN_205",
+      "opcode": 205,
+      "size": 9
+    },
+    {
+      "entry": "0x01470c20",
+      "name": "UNKNOWN_164",
+      "opcode": 164,
+      "size": 9
+    },
+    {
+      "entry": "0x01470c60",
+      "name": "IF_SETCOLOUR",
+      "opcode": 108,
+      "size": 6
+    },
+    {
+      "entry": "0x01470ca0",
+      "name": "UNKNOWN_30",
+      "opcode": 30,
+      "size": 8
+    },
+    {
+      "entry": "0x01470ce0",
+      "name": "UNKNOWN_134",
+      "opcode": 134,
+      "size": 15
+    },
+    {
+      "entry": "0x01470d20",
+      "name": "IF_SETOBJECT_LONG",
+      "opcode": 185,
+      "size": 14
+    },
+    {
+      "entry": "0x01470d60",
+      "name": "UNKNOWN_111",
+      "opcode": 111,
+      "size": 11
+    },
+    {
+      "entry": "0x01470da0",
+      "name": "IF_SETOBJECT",
+      "opcode": 36,
+      "size": 10
+    },
+    {
+      "entry": "0x01470de0",
+      "name": "IF_SETPLAYERHEAD_SNAPSHOT",
+      "opcode": 150,
+      "size": 5
+    },
+    {
+      "entry": "0x01470e20",
+      "name": "UNKNOWN_115",
+      "opcode": 115,
+      "size": 10
+    },
+    {
+      "entry": "0x01470e60",
+      "name": "UNKNOWN_70",
+      "opcode": 70,
+      "size": 10
+    },
+    {
+      "entry": "0x01470ea0",
+      "name": "IF_SETPLAYERHEAD",
+      "opcode": 24,
+      "size": 4
+    },
+    {
+      "entry": "0x01470ee0",
+      "name": "IF_SETNPCHEAD",
+      "opcode": 17,
+      "size": 8
+    },
+    {
+      "entry": "0x01470f20",
+      "name": "UNKNOWN_104",
+      "opcode": 104,
+      "size": 8
+    },
+    {
+      "entry": "0x01470f60",
+      "name": "IF_SETMODEL",
+      "opcode": 101,
+      "size": 8
+    },
+    {
+      "entry": "0x01470fa0",
+      "name": "IF_SETPLAYERMODEL_SNAPSHOT",
+      "opcode": 147,
+      "size": 5
+    },
+    {
+      "entry": "0x01470fe0",
+      "name": "IF_SETPLAYERMODEL_SELF",
+      "opcode": 117,
+      "size": 4
+    },
+    {
+      "entry": "0x01471020",
+      "name": "UNKNOWN_91",
+      "opcode": 91,
+      "size": 10
+    },
+    {
+      "entry": "0x01471060",
+      "name": "UNKNOWN_52",
+      "opcode": 52,
+      "size": 8
+    },
+    {
+      "entry": "0x014710a0",
+      "name": "UNKNOWN_7",
+      "opcode": 7,
+      "size": 8
+    },
+    {
+      "entry": "0x014710e0",
+      "name": "IF_SETHIDE",
+      "opcode": 124,
+      "size": 5
+    },
+    {
+      "entry": "0x01471120",
+      "name": "IF_SETTEXT",
+      "opcode": 34,
+      "size": -2
+    },
+    {
+      "entry": "0x01471160",
+      "name": "IF_SETTARGETPARAM",
+      "opcode": 118,
+      "size": 10
+    },
+    {
+      "entry": "0x014711a0",
+      "name": "IF_SETEVENTS",
+      "opcode": 122,
+      "size": 12
+    },
+    {
+      "entry": "0x014711e0",
+      "name": "UNKNOWN_88",
+      "opcode": 88,
+      "size": 8
+    },
+    {
+      "entry": "0x01471220",
+      "name": "IF_CLOSESUB",
+      "opcode": 107,
+      "size": 4
+    },
+    {
+      "entry": "0x01471260",
+      "name": "UNKNOWN_121",
+      "opcode": 121,
+      "size": 30
+    },
+    {
+      "entry": "0x014712a0",
+      "name": "IF_OPENSUB_ACTIVE_OBJ",
+      "opcode": 60,
+      "size": 29
+    },
+    {
+      "entry": "0x014712e0",
+      "name": "IF_OPENSUB_ACTIVE_LOC",
+      "opcode": 98,
+      "size": 32
+    },
+    {
+      "entry": "0x01471320",
+      "name": "UNKNOWN_71",
+      "opcode": 71,
+      "size": 25
+    },
+    {
+      "entry": "0x01471360",
+      "name": "UNKNOWN_48",
+      "opcode": 48,
+      "size": 25
+    },
+    {
+      "entry": "0x014713a0",
+      "name": "IF_OPENSUB",
+      "opcode": 25,
+      "size": 23
+    },
+    {
+      "entry": "0x014713e0",
+      "name": "IF_OPENTOP",
+      "opcode": 73,
+      "size": 19
+    },
+    {
+      "entry": "0x01471420",
+      "name": "IF_SETSCROLLPOS",
+      "opcode": 113,
+      "size": 6
+    },
+    {
+      "entry": "0x01471460",
+      "name": "IF_SETPOSITION",
+      "opcode": 103,
+      "size": 8
+    },
+    {
+      "entry": "0x014714a0",
+      "name": "UNKNOWN_225",
+      "opcode": 225,
+      "size": 0
+    },
+    {
+      "entry": "0x014714e0",
+      "name": "UNKNOWN_149",
+      "opcode": 149,
+      "size": -1
+    },
+    {
+      "entry": "0x01471520",
+      "name": "UNKNOWN_161",
+      "opcode": 161,
+      "size": 14
+    },
+    {
+      "entry": "0x01471560",
+      "name": "UPDATE_DOB",
+      "opcode": 135,
+      "size": 4
+    },
+    {
+      "entry": "0x014715a0",
+      "name": "CLEAR_PLAYER_SNAPSHOT",
+      "opcode": 201,
+      "size": 1
+    },
+    {
+      "entry": "0x014715e0",
+      "name": "UNKNOWN_198",
+      "opcode": 198,
+      "size": -2
+    },
+    {
+      "entry": "0x01471620",
+      "name": "REDUCE_NPC_ATTACK_PRIORITY",
+      "opcode": 204,
+      "size": 1
+    },
+    {
+      "entry": "0x01471660",
+      "name": "UNKNOWN_216",
+      "opcode": 216,
+      "size": 1
+    },
+    {
+      "entry": "0x014716a0",
+      "name": "SET_TARGET",
+      "opcode": 155,
+      "size": 3
+    },
+    {
+      "entry": "0x014716e0",
+      "name": "UPDATE_UID192",
+      "opcode": 39,
+      "size": 28
+    },
+    {
+      "entry": "0x01471720",
+      "name": "UPDATE_RUNWEIGHT",
+      "opcode": 0,
+      "size": 2
+    },
+    {
+      "entry": "0x01471760",
+      "name": "UPDATE_RUNENERGY",
+      "opcode": 92,
+      "size": 1
+    },
+    {
+      "entry": "0x014717a0",
+      "name": "UNKNOWN_188",
+      "opcode": 188,
+      "size": -1
+    },
+    {
+      "entry": "0x014717e0",
+      "name": "SET_PLAYER_OP",
+      "opcode": 61,
+      "size": -1
+    },
+    {
+      "entry": "0x01471820",
+      "name": "PLAYER_INFO",
+      "opcode": 45,
+      "size": -2
+    },
+    {
+      "entry": "0x01471860",
+      "name": "LAST_LOGIN_INFO",
+      "opcode": 77,
+      "size": 4
+    },
+    {
+      "entry": "0x014718a0",
+      "name": "TELEMETRY_CLEAR_GRID_VALUE",
+      "opcode": 159,
+      "size": 3
+    },
+    {
+      "entry": "0x014718e0",
+      "name": "TELEMETRY_GRID_MOVE_COLUMN",
+      "opcode": 199,
+      "size": 3
+    },
+    {
+      "entry": "0x01471920",
+      "name": "UNKNOWN_171",
+      "opcode": 171,
+      "size": 2
+    },
+    {
+      "entry": "0x01471960",
+      "name": "TELEMETRY_GRID_ADD_COLUMN",
+      "opcode": 220,
+      "size": 6
+    },
+    {
+      "entry": "0x014719a0",
+      "name": "TELEMETRY_GRID_MOVE_ROW",
+      "opcode": 223,
+      "size": 3
+    },
+    {
+      "entry": "0x014719e0",
+      "name": "TELEMETRY_GRID_SET_ROW_PINNED",
+      "opcode": 224,
+      "size": 3
+    },
+    {
+      "entry": "0x01471a20",
+      "name": "UNKNOWN_209",
+      "opcode": 209,
+      "size": 2
+    },
+    {
+      "entry": "0x01471a60",
+      "name": "TELEMETRY_GRID_ADD_ROW",
+      "opcode": 184,
+      "size": 6
+    },
+    {
+      "entry": "0x01471aa0",
+      "name": "UNKNOWN_192",
+      "opcode": 192,
+      "size": 1
+    },
+    {
+      "entry": "0x01471ae0",
+      "name": "TELEMETRY_GRID_ADD_GROUP",
+      "opcode": 179,
+      "size": 5
+    },
+    {
+      "entry": "0x01471b20",
+      "name": "TELEMETRY_GRID_VALUES_DELTA",
+      "opcode": 190,
+      "size": -2
+    },
+    {
+      "entry": "0x01471b60",
+      "name": "TELEMETRY_GRID_FULL",
+      "opcode": 189,
+      "size": -2
+    },
+    {
+      "entry": "0x01471ba0",
+      "name": "UPDATE_STAT",
+      "opcode": 4,
+      "size": 6
+    },
+    {
+      "entry": "0x01471be0",
+      "name": "VARCLAN",
+      "opcode": 80,
+      "size": -1
+    },
+    {
+      "entry": "0x01471c20",
+      "name": "VARCLAN_ENABLE",
+      "opcode": 116,
+      "size": 0
+    },
+    {
+      "entry": "0x01471c60",
+      "name": "VARCLAN_DISABLE",
+      "opcode": 120,
+      "size": 0
+    },
+    {
+      "entry": "0x01471ca0",
+      "name": "STORE_SERVERPERM_VARCS_ACK",
+      "opcode": 200,
+      "size": 0
+    },
+    {
+      "entry": "0x01471ce0",
+      "name": "CLIENT_SETVARCSTR_LARGE",
+      "opcode": 96,
+      "size": -2
+    },
+    {
+      "entry": "0x01471d20",
+      "name": "CLIENT_SETVARCSTR_SMALL",
+      "opcode": 56,
+      "size": -1
+    },
+    {
+      "entry": "0x01471d60",
+      "name": "CLIENT_SETVARCBIT_LARGE",
+      "opcode": 50,
+      "size": 6
+    },
+    {
+      "entry": "0x01471da0",
+      "name": "CLIENT_SETVARCBIT_SMALL",
+      "opcode": 54,
+      "size": 3
+    },
+    {
+      "entry": "0x01471de0",
+      "name": "UNKNOWN_197",
+      "opcode": 197,
+      "size": 10
+    },
+    {
+      "entry": "0x01471e20",
+      "name": "CLIENT_SETVARC_LARGE",
+      "opcode": 40,
+      "size": 6
+    },
+    {
+      "entry": "0x01471e60",
+      "name": "CLIENT_SETVARC_SMALL",
+      "opcode": 6,
+      "size": 3
+    },
+    {
+      "entry": "0x01471ea0",
+      "name": "VARBIT_LARGE",
+      "opcode": 51,
+      "size": 6
+    },
+    {
+      "entry": "0x01471ee0",
+      "name": "VARBIT_SMALL",
+      "opcode": 22,
+      "size": 3
+    },
+    {
+      "entry": "0x01471f20",
+      "name": "UNKNOWN_158",
+      "opcode": 158,
+      "size": 10
+    },
+    {
+      "entry": "0x01471f60",
+      "name": "VARP_LARGE",
+      "opcode": 78,
+      "size": 6
+    },
+    {
+      "entry": "0x01471fa0",
+      "name": "VARP_SMALL",
+      "opcode": 95,
+      "size": 3
+    },
+    {
+      "entry": "0x01471fe0",
+      "name": "RESET_CLIENT_VARCACHE",
+      "opcode": 20,
+      "size": 0
+    },
+    {
+      "entry": "0x01472060",
+      "name": "MAP_ANIM_ALT",
+      "opcode": 183,
+      "size": 14
+    },
+    {
+      "entry": "0x014720e0",
+      "name": "MAP_PROJANIM_HALFSQ_ALT",
+      "opcode": 163,
+      "size": 29
+    },
+    {
+      "entry": "0x01472160",
+      "name": "MAP_PROJANIM_ALT",
+      "opcode": 215,
+      "size": 28
+    },
+    {
+      "entry": "0x014721e0",
+      "name": "TEXT_COORD",
+      "opcode": 182,
+      "size": -1
+    },
+    {
+      "entry": "0x01472260",
+      "name": "LOC_PREFETCH",
+      "opcode": 169,
+      "size": 5
+    },
+    {
+      "entry": "0x01472320",
+      "name": "SOUND_AREA",
+      "opcode": 160,
+      "size": 10
+    },
+    {
+      "entry": "0x014723a0",
+      "name": "OBJ_COUNT_BIG",
+      "opcode": 186,
+      "size": 8
+    },
+    {
+      "entry": "0x01472420",
+      "name": "OBJ_COUNT",
+      "opcode": 202,
+      "size": 7
+    },
+    {
+      "entry": "0x014724a0",
+      "name": "OBJ_REVEAL_BIG",
+      "opcode": 211,
+      "size": 8
+    },
+    {
+      "entry": "0x01472520",
+      "name": "OBJ_REVEAL",
+      "opcode": 157,
+      "size": 7
+    },
+    {
+      "entry": "0x014725a0",
+      "name": "OBJ_DEL_BIG",
+      "opcode": 12,
+      "size": 4
+    },
+    {
+      "entry": "0x01472620",
+      "name": "OBJ_DEL",
+      "opcode": 14,
+      "size": 3
+    },
+    {
+      "entry": "0x014726a0",
+      "name": "OBJ_ADD_BIG",
+      "opcode": 112,
+      "size": 6
+    },
+    {
+      "entry": "0x01472720",
+      "name": "OBJ_ADD",
+      "opcode": 41,
+      "size": 5
+    },
+    {
+      "entry": "0x014727a0",
+      "name": "MAP_ANIM",
+      "opcode": 173,
+      "size": 11
+    },
+    {
+      "entry": "0x01472820",
+      "name": "MAP_PROJANIM_HALFSQ",
+      "opcode": 168,
+      "size": 21
+    },
+    {
+      "entry": "0x014728a0",
+      "name": "MAP_PROJANIM",
+      "opcode": 132,
+      "size": 20
+    },
+    {
+      "entry": "0x01472920",
+      "name": "LOC_ADD_CHANGE",
+      "opcode": 47,
+      "size": 7
+    },
+    {
+      "entry": "0x014729a0",
+      "name": "LOC_DEL",
+      "opcode": 1,
+      "size": 2
+    },
+    {
+      "entry": "0x01472a20",
+      "name": "UNKNOWN_23",
+      "opcode": 23,
+      "size": -1
+    },
+    {
+      "entry": "0x01472aa0",
+      "name": "UNKNOWN_62",
+      "opcode": 62,
+      "size": -1
+    },
+    {
+      "entry": "0x01472ae0",
+      "name": "UPDATE_ZONE_PARTIAL_ENCLOSED",
+      "opcode": 109,
+      "size": -2
+    },
+    {
+      "entry": "0x01472b20",
+      "name": "UPDATE_ZONE_FULL_FOLLOWS",
+      "opcode": 28,
+      "size": 3
+    },
+    {
+      "entry": "0x01472b60",
+      "name": "UPDATE_ZONE_PARTIAL_FOLLOWS",
+      "opcode": 126,
+      "size": 3
+    }
+  ]
+}

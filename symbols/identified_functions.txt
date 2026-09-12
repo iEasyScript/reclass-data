@@ -1,0 +1,18 @@
+# Functions identified for renaming
+# Format: ADDRESS | PROPOSED_NAME | SOURCE/REASON
+
+# Worker Thread Functions
+0032ac60 | Js5WorkerThread::Js5WorkerThread | References "Js5WorkerThread" string
+0096a130 | MixerWorker::MixerWorker | References "MixerWorker" string
+007cab70 | VorbisWorker::VorbisWorker | References "VorbisWorker" string
+00155c80 | RegisterWorkerThreads | References all worker thread strings
+
+# Client/Pipe Functions
+003b9ce0 | jag::ClientPipe::ClientPipe | References ClientPipe.cpp path
+
+# PathingEntity Functions
+00163a60 | jag::PathingEntity::PathingEntity | References "PathingEntity" string
+
+# Already renamed by opcode agent (34 functions):
+# See jag::opcode namespace functions
+

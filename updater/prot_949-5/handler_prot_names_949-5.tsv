@@ -1,0 +1,6 @@
+handler_addr	prot_name	direction	opcode	size	current_symbol	name_source
+0x000f0e20	PROJANIM_SPECIFIC_ALT	SERVER	131	33	jag::PacketHandlers::ProjanimSpecificAlt	ASSIGNED
+0x000f1560	MAP_PROJANIM_HALFSQ_ALT	SERVER	163	29	jag::PacketHandlers::MapProjanimHalfsqAlt	ASSIGNED
+0x000f18e0	MAP_PROJANIM_ALT	SERVER	215	28	jag::PacketHandlers::MapProjanimAlt	ASSIGNED
+0x0016ad00	SPOTANIM_SPECIFIC_ALT	SERVER	133	15	jag::PacketHandlers::SpotanimSpecificAlt	ASSIGNED
+0x0016b810	MAP_ANIM_ALT	SERVER	183	14	jag::PacketHandlers::MapAnimAlt	ASSIGNED

@@ -1,0 +1,7 @@
+# Compressed client-binary archives: tens of MB each, Jagex's own binaries, and
+# reproducible from a client install. Kept out of git deliberately.
+*.gzf
+
+# Local tooling output
+__pycache__/
+*.pyc

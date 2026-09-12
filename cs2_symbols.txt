@@ -1,0 +1,30 @@
+# CS2 (ClientScript) Engine Symbols from Old Build
+# Format: OLD_ADDRESS FUNCTION_NAME
+
+# === ScriptRunner Functions ===
+0x000AD660 jag::ScriptRunner::ChangeMainState
+0x002BBAE0 jag::ScriptRunner::ScriptRunner
+0x00305590 jag::ScriptRunner::GetClientScriptState
+0x0030D4F0 jag::ScriptRunner::~ScriptRunner
+0x003BF220 jag::ScriptRunner::OutputScriptError
+0x003BF3A0 jag::ScriptRunner::ContinueScript
+0x003BFC60 jag::ScriptRunner::ExecuteScript
+0x00464EC0 jag::ScriptRunner::ExecuteHookInner
+0x004B8650 jag::ScriptRunner::ExecuteOnLoad
+0x004FE100 jag::ScriptRunner::ExecuteTriggeredScriptMapElement
+0x004FE5E0 jag::ScriptRunner::ExecuteTrigger
+
+# === ClientScriptState Functions ===
+0x00352080 jag::ClientScriptState::Reset
+0x00468680 jag::ClientScriptState::~ClientScriptState
+
+# === ClientScriptHelpers Functions ===
+0x000AD930 jag::ClientScriptHelpers::ChangeMainState
+0x00462C90 jag::ClientScriptHelpers::PreloadByID
+0x00464610 jag::ClientScriptHelpers::MainLogic
+0x004649B0 jag::ClientScriptHelpers::GetByID
+0x004E22F0 jag::ClientScriptHelpers::GetByTriggerMatch
+0x004E2400 jag::ClientScriptHelpers::GetByTrigger
+
+# === ClientScript (game) Functions ===
+0x004618B0 jag::game::ClientScript::Load

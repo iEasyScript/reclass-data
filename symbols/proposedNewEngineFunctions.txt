@@ -1,0 +1,169 @@
+# Proposed New Engine Functions
+# These functions were identified through reverse engineering analysis
+# but may not exist in the original functions.txt dump
+
+## New Packet Handler Namespace (jag::packethandlers::)
+# These packet handler functions were identified through analysis of the handler
+# registration function at 0x0014ce1e
+
+### Variables Handlers
+0x001b9c70 jag::packethandlers::Variables::SET_VARP_SMALL
+0x001b9bc0 jag::packethandlers::Variables::SET_VARP_INT
+0x001b9ac0 jag::packethandlers::Variables::SET_VARP_LONG
+0x001b9a30 jag::packethandlers::Variables::SET_VARBIT_SMALL
+0x001b9980 jag::packethandlers::Variables::SET_VARBIT_INT
+0x001b98c0 jag::packethandlers::Variables::SET_VARC_SMALL
+0x001b97d0 jag::packethandlers::Variables::SET_VARC_INT
+0x001b9730 jag::packethandlers::Variables::RESET_VARC_SMALL
+0x001b9670 jag::packethandlers::Variables::RESET_VARC_INT
+0x001f8e40 jag::packethandlers::Variables::SET_VARC_STR
+0x001f8d20 jag::packethandlers::Variables::SET_VARC_STR_SMALL
+0x001c2220 jag::packethandlers::Variables::SET_VARC_COORD
+
+### ClientState Handlers (from Variables constructor)
+0x001c17f0 jag::packethandlers::ClientState::UPDATE_ZONE_PARTIAL
+0x00191560 jag::packethandlers::ClientState::RESET_CLIENT_STATE
+0x00190e50 jag::packethandlers::ClientState::CLEAR_PENDING_UPDATES
+
+### ClientState Handlers (constructor at 0x0014d50c, 12 handlers)
+0x001bfd00 jag::packethandlers::ClientState::REBUILD_NORMAL (opcode 0xBA, var_short)
+0x00190120 jag::packethandlers::ClientState::REBUILD_WORLDENTITY (opcode 0xB2, var_short)
+0x001bfbe0 jag::packethandlers::ClientState::REBUILD_REGION (opcode 0xD3, 5B)
+0x0018fe20 jag::packethandlers::ClientState::WORLDENTITY_INFO_V4 (opcode 0x8E, 1B)
+0x001ba0e0 jag::packethandlers::ClientState::WORLDENTITY_INFO_V1 (opcode 0x9C, 6B)
+0x001b9ef0 jag::packethandlers::ClientState::WORLDENTITY_INFO_V2 (opcode 0x99, 2B)
+0x0018fd20 jag::packethandlers::ClientState::WORLDENTITY_INFO_V3 (opcode 0x9D, 3B)
+0x001b9e40 jag::packethandlers::ClientState::WORLDENTITY_INFO_V5 (opcode 0xD0, 3B)
+0x0019a840 jag::packethandlers::ClientState::SET_MAP_FLAG (opcode 0x81, 6B)
+0x0019a710 jag::packethandlers::ClientState::CLEAR_MAP_FLAG (opcode 0xBF, 2B)
+0x0019a420 jag::packethandlers::ClientState::REORDER_MAP_FLAG (opcode 0xD7, 3B)
+0x0018fbb0 jag::packethandlers::ClientState::MINIMAP_TOGGLE (opcode 0x97, 3B)
+
+### ZoneUpdates Handlers (constructor at 0x0014c4c8, 21 handlers)
+0x0018f500 jag::packethandlers::ZoneUpdates::UPDATE_ZONE_PARTIAL_FOLLOWS (opcode 0x78, 3B)
+0x001989b0 jag::packethandlers::ZoneUpdates::UPDATE_ZONE_FULL_FOLLOWS (opcode 0x5A, 3B)
+0x0018f370 jag::packethandlers::ZoneUpdates::UPDATE_ZONE_PARTIAL (opcode 0x2B, var_short)
+0x001e46b0 jag::packethandlers::ZoneUpdates::LOC_ADD (opcode 0x1E/0x10, var_byte)
+0x001dd650 jag::packethandlers::ZoneUpdates::LOC_CUSTOMISE (opcode 0x52/0x01, var_byte)
+0x001dc500 jag::packethandlers::ZoneUpdates::LOC_DEL (opcode 0x40/0x09, 2B)
+0x001e4520 jag::packethandlers::ZoneUpdates::LOC_PREFETCH (opcode 0x4E/0x05, 7B)
+0x001928b0 jag::packethandlers::ZoneUpdates::LOC_ANIM (opcode 0x00, 11B, standalone only)
+0x00192ac0 jag::packethandlers::ZoneUpdates::LOC_ANIM_SPECIFIC (opcode 0x06/0x0A, 10B)
+0x0018ef50 jag::packethandlers::ZoneUpdates::LOC_MERGE (opcode 0x84/0x0D, 5B)
+0x001b9550 jag::packethandlers::ZoneUpdates::OBJ_ADD (opcode 0x57/0x02, 5B)
+0x001fa050 jag::packethandlers::ZoneUpdates::OBJ_DEL (opcode 0x62/0x03, 3B)
+0x001b9410 jag::packethandlers::ZoneUpdates::OBJ_COUNT (opcode 0x03/0x07, 7B)
+0x00194cd0 jag::packethandlers::ZoneUpdates::OBJ_REVEAL (opcode 0x7F/0x11, 7B)
+0x00206a70 jag::packethandlers::ZoneUpdates::MAP_ANIM (opcode 0x7A/0x08, 11B)
+0x002065e0 jag::packethandlers::ZoneUpdates::MAP_ANIM_SPECIFIC (opcode 0xC2/0x04, 14B)
+0x00193e10 jag::packethandlers::ZoneUpdates::MAP_PROJANIM (opcode 0x18/0x06, 20B)
+0x00193770 jag::packethandlers::ZoneUpdates::MAP_PROJANIM_HALT (opcode 0x9F/0x0B, 28B)
+0x00193ae0 jag::packethandlers::ZoneUpdates::PROJANIM_SPECIFIC (opcode 0xD6/0x0F, 21B)
+0x001933f0 jag::packethandlers::ZoneUpdates::PROJANIM_SPECIFIC_HALT (opcode 0x93/0x0C, 29B)
+0x001cc090 jag::packethandlers::ZoneUpdates::SOUND_AREA (opcode 0xC6/0x0E, var_byte)
+
+### Handler Registration
+0x0014ce1e jag::packethandlers::Variables::Variables (constructor)
+0x0014d50c jag::packethandlers::ClientState::ClientState (constructor)
+0x0014c4c8 jag::packethandlers::ZoneUpdates::ZoneUpdates (constructor)
+
+## New jag::game:: Functions
+# These were identified through jag::game:: namespace analysis
+
+0x0034fd50 jag::game::Client::MainLogic
+0x00539ed0 jag::game::World::GetPositionGrid
+0x005b9c20 jag::game::HeightMap::GetLevel
+0x0030d480 jag::game::ClientScript::CleanupStates
+0x0030d880 jag::game::ClientScript::CleanupReferences
+0x003b67c0 jag::game::ClientScript::HandleException
+0x003b5cb0 jag::game::ClientScript::OutputError
+0x00c20680 jag::game::ClientScript::CreateError
+0x003fb2b0 jag::game::InterfaceManager::GetParentLayer
+0x003fdb90 jag::game::InterfaceManager::GetServerActiveProperties
+0x003ff300 jag::game::InterfaceManager::GetServerDragLayer
+0x0029eaa0 jag::game::MiniMenu::EnterTargetMode
+0x0029e930 jag::game::MiniMenu::GetComponentTargetVerb
+0x001c6820 jag::game::ConfigProvider::GetAvailable
+0x001c73f0 jag::game::ConfigProvider::GetTypeDescriptor
+0x0070a2c0 jag::game::ClientVarDomain::GetVarType
+0x001cbe80 jag::game::Memory::PoolAllocatorGetSlot
+0x007db520 jag::game::AnimatedModel::UpdateAnimationsGetState
+0x00163a60 jag::game::Init::RegisterTypes
+
+## Opcode Constructor Functions (jag::opcode::)
+# These initialize opcode handler tables for different subsystems
+
+0x001f6170 jag::opcode::Camera::Camera
+0x0024cca0 jag::opcode::Core::Core
+0x002519c0 jag::opcode::Chat::Chat
+0x001fa250 jag::opcode::Entities::Entities
+0x001f2900 jag::opcode::InterfaceComponents::InterfaceComponents
+0x0020e350 jag::opcode::InterfaceComponents2::InterfaceComponents2
+0x0021f1f0 jag::opcode::InterfaceComponents3::InterfaceComponents3
+0x00251f30 jag::opcode::MiniMenuActions::MiniMenuActions
+0x0024dc00 jag::opcode::Player::Player
+0x00250f90 jag::opcode::ObjectDefinitions::ObjectDefinitions
+0x00248bd0 jag::opcode::LandscapeComponents::LandscapeComponents
+0x00249bc0 jag::opcode::MapArea::MapArea
+0x00247830 jag::opcode::ClientState::ClientState
+0x0024b590 jag::opcode::Mouse::Mouse
+0x00250040 jag::opcode::NPCs::NPCs
+0x00258660 jag::opcode::WorldMap::WorldMap
+
+## Worker Thread Functions
+0x0032ac60 Js5WorkerThread::Js5WorkerThread
+0x0096a130 MixerWorker::MixerWorker
+0x007cab70 VorbisWorker::VorbisWorker
+0x00155c80 RegisterWorkerThreads
+
+## Js5 / Cache Related
+0x003b9ce0 jag::ClientPipe::ClientPipe
+0x002f7020 js5connect_handler
+0x0041bc70 jag::Js5DiskCache::DeleteCache
+
+## Chat System
+0x001e63a0 jag::ChatHistory::AddChat
+0x0023ee20 jag::ChatHistory::AddChat_hookable
+
+## Stat System
+0x0018f650 jag::StatTable::UpdateStat
+
+## Inventory System
+0x005b3a30 jag::game::InventoryManager::CreateInventory
+0x005b3970 jag::game::InventoryManager::GetInventory
+
+## Key Data Structures
+
+### Opcode Table
+Address: 0x014c1ac0
+Entry Size: 16 bytes
+Format: [handler_ptr (8 bytes)] [metadata (8 bytes)]
+
+### ClientScriptState Structure (approx 0xC420 bytes)
+Offset +0x100: Integer stack
+Offset +0x10a8: String stack
+Offset +0x8db0: Long stack
+
+### Return Value Constants
+Success (0): 0x01702e80
+Yield (1): 0x01702f80
+Error: 0x01701dc0
+
+### Packet Handler Global Addresses
+Handlers are registered at DAT_016f4xxx addresses:
+- DAT_016f4940: Copy helper at 0x0018fb50
+- DAT_016f4908: SET_VARP_SMALL at 0x001b9c70
+- DAT_016f48c8: SET_VARP_INT at 0x001b9bc0
+- DAT_016f4888: SET_VARP_LONG at 0x001b9ac0
+- (etc - see packet handler agent report)
+
+## Notes
+
+1. The jag::packethandlers:: namespace is a proposed convention for organizing
+   packet handler functions. The original source may use different naming.
+
+2. Many functions have multiple clone variants in functions.txt - we have
+   identified the primary versions.
+
+3. Run FixNamespaces.java in Ghidra to convert :: in function names to proper
+   namespace hierarchies.

@@ -1,0 +1,14 @@
+{
+  "tool": "RS3ProjectXUpdater",
+  "schema_version": 1,
+  "source_version": "949-1",
+  "source_program": "rs2client",
+  "image_base": "0x0",
+  "parts": {
+    "functions": "functions.ndjson",
+    "datalabels": "datalabels.ndjson",
+    "comments": "comments.ndjson",
+    "anchors": "anchors.json",
+    "datatypes": "../../sigs-results/datatypes_949-1.json (via RS3DataTypeExporter)"
+  }
+}

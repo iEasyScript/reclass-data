@@ -1,0 +1,858 @@
+name=_DYNAMIC	namespace=	orig_addr=0x0138f8e8	segment=.dynamic	kind=label
+name=_end	namespace=	orig_addr=0x015f00c0	segment=	kind=label
+name=_edata	namespace=	orig_addr=0x01393ec0	segment=.bss	kind=label
+name=__bss_start	namespace=	orig_addr=0x01393ec0	segment=.bss	kind=label
+name=ElfComment[0]	namespace=	orig_addr=0x.comment::00000000	segment=.comment	kind=label
+name=lsda_exception_table_01260dd0	namespace=	orig_addr=0x01160dd0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260de4	namespace=	orig_addr=0x01160de4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260dfc	namespace=	orig_addr=0x01160dfc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260e1c	namespace=	orig_addr=0x01160e1c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260e2c	namespace=	orig_addr=0x01160e2c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260e30	namespace=	orig_addr=0x01160e30	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260e34	namespace=	orig_addr=0x01160e34	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260e48	namespace=	orig_addr=0x01160e48	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260e78	namespace=	orig_addr=0x01160e78	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260ee0	namespace=	orig_addr=0x01160ee0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260f04	namespace=	orig_addr=0x01160f04	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260f28	namespace=	orig_addr=0x01160f28	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260f44	namespace=	orig_addr=0x01160f44	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260f69	namespace=	orig_addr=0x01160f69	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260fc8	namespace=	orig_addr=0x01160fc8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01260fe0	namespace=	orig_addr=0x01160fe0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261030	namespace=	orig_addr=0x01161030	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012610ac	namespace=	orig_addr=0x011610ac	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012610cd	namespace=	orig_addr=0x011610cd	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012610d9	namespace=	orig_addr=0x011610d9	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012610e5	namespace=	orig_addr=0x011610e5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012610f1	namespace=	orig_addr=0x011610f1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261100	namespace=	orig_addr=0x01161100	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261140	namespace=	orig_addr=0x01161140	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261180	namespace=	orig_addr=0x01161180	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261194	namespace=	orig_addr=0x01161194	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012611a0	namespace=	orig_addr=0x011611a0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012611b4	namespace=	orig_addr=0x011611b4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012611c0	namespace=	orig_addr=0x011611c0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261200	namespace=	orig_addr=0x01161200	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261240	namespace=	orig_addr=0x01161240	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261254	namespace=	orig_addr=0x01161254	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261260	namespace=	orig_addr=0x01161260	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261274	namespace=	orig_addr=0x01161274	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261280	namespace=	orig_addr=0x01161280	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261290	namespace=	orig_addr=0x01161290	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126129c	namespace=	orig_addr=0x0116129c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012612ac	namespace=	orig_addr=0x011612ac	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012612b8	namespace=	orig_addr=0x011612b8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012612c4	namespace=	orig_addr=0x011612c4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012612d0	namespace=	orig_addr=0x011612d0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012612df	namespace=	orig_addr=0x011612df	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012612f4	namespace=	orig_addr=0x011612f4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261308	namespace=	orig_addr=0x01161308	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261323	namespace=	orig_addr=0x01161323	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126134c	namespace=	orig_addr=0x0116134c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126138c	namespace=	orig_addr=0x0116138c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012613d0	namespace=	orig_addr=0x011613d0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012613d4	namespace=	orig_addr=0x011613d4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012613d8	namespace=	orig_addr=0x011613d8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012613dc	namespace=	orig_addr=0x011613dc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012613e0	namespace=	orig_addr=0x011613e0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012613f4	namespace=	orig_addr=0x011613f4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261430	namespace=	orig_addr=0x01161430	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126143c	namespace=	orig_addr=0x0116143c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261448	namespace=	orig_addr=0x01161448	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012614bc	namespace=	orig_addr=0x011614bc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261558	namespace=	orig_addr=0x01161558	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012615f4	namespace=	orig_addr=0x011615f4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126161c	namespace=	orig_addr=0x0116161c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261658	namespace=	orig_addr=0x01161658	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261680	namespace=	orig_addr=0x01161680	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012616b9	namespace=	orig_addr=0x011616b9	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012616d0	namespace=	orig_addr=0x011616d0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012616f8	namespace=	orig_addr=0x011616f8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261719	namespace=	orig_addr=0x01161719	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261733	namespace=	orig_addr=0x01161733	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126174d	namespace=	orig_addr=0x0116174d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126175c	namespace=	orig_addr=0x0116175c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261770	namespace=	orig_addr=0x01161770	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126177e	namespace=	orig_addr=0x0116177e	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126178d	namespace=	orig_addr=0x0116178d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126179b	namespace=	orig_addr=0x0116179b	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012617c6	namespace=	orig_addr=0x011617c6	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012617f1	namespace=	orig_addr=0x011617f1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126181c	namespace=	orig_addr=0x0116181c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261847	namespace=	orig_addr=0x01161847	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261872	namespace=	orig_addr=0x01161872	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126189d	namespace=	orig_addr=0x0116189d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012618a1	namespace=	orig_addr=0x011618a1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012618a5	namespace=	orig_addr=0x011618a5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012618a9	namespace=	orig_addr=0x011618a9	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012618bc	namespace=	orig_addr=0x011618bc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012618ec	namespace=	orig_addr=0x011618ec	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261960	namespace=	orig_addr=0x01161960	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012619d4	namespace=	orig_addr=0x011619d4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012619ea	namespace=	orig_addr=0x011619ea	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012619f8	namespace=	orig_addr=0x011619f8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261a3c	namespace=	orig_addr=0x01161a3c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261a80	namespace=	orig_addr=0x01161a80	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261a8f	namespace=	orig_addr=0x01161a8f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261aa4	namespace=	orig_addr=0x01161aa4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261ac4	namespace=	orig_addr=0x01161ac4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261b02	namespace=	orig_addr=0x01161b02	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261b06	namespace=	orig_addr=0x01161b06	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261b0a	namespace=	orig_addr=0x01161b0a	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261b0e	namespace=	orig_addr=0x01161b0e	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261b20	namespace=	orig_addr=0x01161b20	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261b5c	namespace=	orig_addr=0x01161b5c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261bd8	namespace=	orig_addr=0x01161bd8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261c54	namespace=	orig_addr=0x01161c54	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261c6a	namespace=	orig_addr=0x01161c6a	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261c78	namespace=	orig_addr=0x01161c78	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261cbc	namespace=	orig_addr=0x01161cbc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d00	namespace=	orig_addr=0x01161d00	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d0f	namespace=	orig_addr=0x01161d0f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d23	namespace=	orig_addr=0x01161d23	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d32	namespace=	orig_addr=0x01161d32	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d3e	namespace=	orig_addr=0x01161d3e	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d4e	namespace=	orig_addr=0x01161d4e	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d61	namespace=	orig_addr=0x01161d61	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d6d	namespace=	orig_addr=0x01161d6d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d79	namespace=	orig_addr=0x01161d79	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d8d	namespace=	orig_addr=0x01161d8d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261d9c	namespace=	orig_addr=0x01161d9c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261dd0	namespace=	orig_addr=0x01161dd0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261dd4	namespace=	orig_addr=0x01161dd4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261e10	namespace=	orig_addr=0x01161e10	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261e48	namespace=	orig_addr=0x01161e48	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261e84	namespace=	orig_addr=0x01161e84	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261ed0	namespace=	orig_addr=0x01161ed0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261f1c	namespace=	orig_addr=0x01161f1c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261f68	namespace=	orig_addr=0x01161f68	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261f9c	namespace=	orig_addr=0x01161f9c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261fa8	namespace=	orig_addr=0x01161fa8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261fb4	namespace=	orig_addr=0x01161fb4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261fb8	namespace=	orig_addr=0x01161fb8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261fbc	namespace=	orig_addr=0x01161fbc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261fc8	namespace=	orig_addr=0x01161fc8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01261fee	namespace=	orig_addr=0x01161fee	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262001	namespace=	orig_addr=0x01162001	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262016	namespace=	orig_addr=0x01162016	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262024	namespace=	orig_addr=0x01162024	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262038	namespace=	orig_addr=0x01162038	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126204c	namespace=	orig_addr=0x0116204c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126205a	namespace=	orig_addr=0x0116205a	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126206e	namespace=	orig_addr=0x0116206e	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262082	namespace=	orig_addr=0x01162082	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262097	namespace=	orig_addr=0x01162097	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126209b	namespace=	orig_addr=0x0116209b	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126209f	namespace=	orig_addr=0x0116209f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012620a3	namespace=	orig_addr=0x011620a3	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012620a7	namespace=	orig_addr=0x011620a7	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012620cf	namespace=	orig_addr=0x011620cf	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262103	namespace=	orig_addr=0x01162103	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262115	namespace=	orig_addr=0x01162115	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262127	namespace=	orig_addr=0x01162127	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126215b	namespace=	orig_addr=0x0116215b	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126218f	namespace=	orig_addr=0x0116218f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012621da	namespace=	orig_addr=0x011621da	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262225	namespace=	orig_addr=0x01162225	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262237	namespace=	orig_addr=0x01162237	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262249	namespace=	orig_addr=0x01162249	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262260	namespace=	orig_addr=0x01162260	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262278	namespace=	orig_addr=0x01162278	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126228c	namespace=	orig_addr=0x0116228c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012622a0	namespace=	orig_addr=0x011622a0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012622b3	namespace=	orig_addr=0x011622b3	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012622c6	namespace=	orig_addr=0x011622c6	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262368	namespace=	orig_addr=0x01162368	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262385	namespace=	orig_addr=0x01162385	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262389	namespace=	orig_addr=0x01162389	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126238d	namespace=	orig_addr=0x0116238d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262399	namespace=	orig_addr=0x01162399	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012623a7	namespace=	orig_addr=0x011623a7	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012623b5	namespace=	orig_addr=0x011623b5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012623c9	namespace=	orig_addr=0x011623c9	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012623dd	namespace=	orig_addr=0x011623dd	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012623f1	namespace=	orig_addr=0x011623f1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262405	namespace=	orig_addr=0x01162405	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262409	namespace=	orig_addr=0x01162409	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126240d	namespace=	orig_addr=0x0116240d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262411	namespace=	orig_addr=0x01162411	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262415	namespace=	orig_addr=0x01162415	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262435	namespace=	orig_addr=0x01162435	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262455	namespace=	orig_addr=0x01162455	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126247d	namespace=	orig_addr=0x0116247d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012624b1	namespace=	orig_addr=0x011624b1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012624c3	namespace=	orig_addr=0x011624c3	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012624d5	namespace=	orig_addr=0x011624d5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126250a	namespace=	orig_addr=0x0116250a	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126253f	namespace=	orig_addr=0x0116253f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126258a	namespace=	orig_addr=0x0116258a	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012625d5	namespace=	orig_addr=0x011625d5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012625e7	namespace=	orig_addr=0x011625e7	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012625f9	namespace=	orig_addr=0x011625f9	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262610	namespace=	orig_addr=0x01162610	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262627	namespace=	orig_addr=0x01162627	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126263b	namespace=	orig_addr=0x0116263b	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126264f	namespace=	orig_addr=0x0116264f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262663	namespace=	orig_addr=0x01162663	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262677	namespace=	orig_addr=0x01162677	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262718	namespace=	orig_addr=0x01162718	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126271c	namespace=	orig_addr=0x0116271c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262720	namespace=	orig_addr=0x01162720	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262724	namespace=	orig_addr=0x01162724	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262728	namespace=	orig_addr=0x01162728	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126272c	namespace=	orig_addr=0x0116272c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262730	namespace=	orig_addr=0x01162730	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262734	namespace=	orig_addr=0x01162734	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262748	namespace=	orig_addr=0x01162748	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262774	namespace=	orig_addr=0x01162774	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262780	namespace=	orig_addr=0x01162780	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126278c	namespace=	orig_addr=0x0116278c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012627f8	namespace=	orig_addr=0x011627f8	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262888	namespace=	orig_addr=0x01162888	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262918	namespace=	orig_addr=0x01162918	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262940	namespace=	orig_addr=0x01162940	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_0126297c	namespace=	orig_addr=0x0116297c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012629a4	namespace=	orig_addr=0x011629a4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012629dd	namespace=	orig_addr=0x011629dd	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_012629f4	namespace=	orig_addr=0x011629f4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a1c	namespace=	orig_addr=0x01162a1c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a3d	namespace=	orig_addr=0x01162a3d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a4c	namespace=	orig_addr=0x01162a4c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a5b	namespace=	orig_addr=0x01162a5b	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a75	namespace=	orig_addr=0x01162a75	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a8f	namespace=	orig_addr=0x01162a8f	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262a9e	namespace=	orig_addr=0x01162a9e	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ab2	namespace=	orig_addr=0x01162ab2	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ac1	namespace=	orig_addr=0x01162ac1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262b02	namespace=	orig_addr=0x01162b02	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262b43	namespace=	orig_addr=0x01162b43	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262b84	namespace=	orig_addr=0x01162b84	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262bc5	namespace=	orig_addr=0x01162bc5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c07	namespace=	orig_addr=0x01162c07	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c49	namespace=	orig_addr=0x01162c49	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c57	namespace=	orig_addr=0x01162c57	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c64	namespace=	orig_addr=0x01162c64	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c80	namespace=	orig_addr=0x01162c80	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c99	namespace=	orig_addr=0x01162c99	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262c9d	namespace=	orig_addr=0x01162c9d	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ca1	namespace=	orig_addr=0x01162ca1	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ca5	namespace=	orig_addr=0x01162ca5	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262cac	namespace=	orig_addr=0x01162cac	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262cc0	namespace=	orig_addr=0x01162cc0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ce4	namespace=	orig_addr=0x01162ce4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262cf4	namespace=	orig_addr=0x01162cf4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d00	namespace=	orig_addr=0x01162d00	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d24	namespace=	orig_addr=0x01162d24	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d34	namespace=	orig_addr=0x01162d34	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d40	namespace=	orig_addr=0x01162d40	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d55	namespace=	orig_addr=0x01162d55	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d67	namespace=	orig_addr=0x01162d67	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d7c	namespace=	orig_addr=0x01162d7c	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262d90	namespace=	orig_addr=0x01162d90	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262dd0	namespace=	orig_addr=0x01162dd0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262e10	namespace=	orig_addr=0x01162e10	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262e24	namespace=	orig_addr=0x01162e24	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262e30	namespace=	orig_addr=0x01162e30	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262e44	namespace=	orig_addr=0x01162e44	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262e50	namespace=	orig_addr=0x01162e50	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262e90	namespace=	orig_addr=0x01162e90	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ed0	namespace=	orig_addr=0x01162ed0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ee4	namespace=	orig_addr=0x01162ee4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ef0	namespace=	orig_addr=0x01162ef0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f04	namespace=	orig_addr=0x01162f04	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f10	namespace=	orig_addr=0x01162f10	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f34	namespace=	orig_addr=0x01162f34	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f44	namespace=	orig_addr=0x01162f44	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f50	namespace=	orig_addr=0x01162f50	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f74	namespace=	orig_addr=0x01162f74	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f84	namespace=	orig_addr=0x01162f84	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262f90	namespace=	orig_addr=0x01162f90	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262fa2	namespace=	orig_addr=0x01162fa2	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262fb4	namespace=	orig_addr=0x01162fb4	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262fc0	namespace=	orig_addr=0x01162fc0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262fcc	namespace=	orig_addr=0x01162fcc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262fe0	namespace=	orig_addr=0x01162fe0	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01262ffc	namespace=	orig_addr=0x01162ffc	segment=.gcc_except_table	kind=label
+name=lsda_exception_table_01263018	namespace=	orig_addr=0x01163018	segment=.gcc_except_table	kind=label
+name=switchD	namespace=switchD_00bf5119	orig_addr=0x00af5119	segment=.text	kind=label
+name=switchD	namespace=switchD_0027081c	orig_addr=0x0017081c	segment=.text	kind=label
+name=switchD	namespace=switchD_00bce7b9	orig_addr=0x00ace7b9	segment=.text	kind=label
+name=default	namespace=switchD_00bce7b9	orig_addr=0x00ace940	segment=.text	kind=label
+name=default	namespace=switchD_00bf5119	orig_addr=0x00af58cd	segment=.text	kind=label
+name=switchdataD_0146cce0	namespace=switchD_0027081c	orig_addr=0x0136cce0	segment=.data.rel.ro	kind=label
+name=switchdataD_0111e378	namespace=switchD_00bce7b9	orig_addr=0x0101e378	segment=.rodata	kind=label	ref_func=FUN_00ace7a0	ref_func_addr=0x00ace7a0	ref_insn_index=3
+name=switchdataD_01127e18	namespace=switchD_00bf5119	orig_addr=0x01027e18	segment=.rodata	kind=label	ref_func=FUN_00af5020	ref_func_addr=0x00af5020	ref_insn_index=56
+name=switchD	namespace=switchD_00c71b4f	orig_addr=0x00b71b4f	segment=.text	kind=label
+name=switchdataD_0114ae58	namespace=switchD_00c71b4f	orig_addr=0x0104ae58	segment=.rodata	kind=label	ref_func=FUN_00b71aa0	ref_func_addr=0x00b71aa0	ref_insn_index=41
+name=switchD	namespace=switchD_00db36d0	orig_addr=0x00cb36d0	segment=.text	kind=label
+name=switchdataD_0115538c	namespace=switchD_00db36d0	orig_addr=0x0105538c	segment=.rodata	kind=label	ref_func=FUN_00cb3520	ref_func_addr=0x00cb3520	ref_insn_index=75
+name=switchD	namespace=switchD_00d5f9f0	orig_addr=0x00c5f9f0	segment=.text	kind=label
+name=switchdataD_01151518	namespace=switchD_00d5f9f0	orig_addr=0x01051518	segment=.rodata	kind=label	ref_func=FUN_00c5f7c0	ref_func_addr=0x00c5f7c0	ref_insn_index=151
+name=switchD	namespace=switchD_00d5fa30	orig_addr=0x00c5fa30	segment=.text	kind=label
+name=switchdataD_01151530	namespace=switchD_00d5fa30	orig_addr=0x01051530	segment=.rodata	kind=label	ref_func=FUN_00c5f7c0	ref_func_addr=0x00c5f7c0	ref_insn_index=165
+name=switchD	namespace=switchD_00d5fc17	orig_addr=0x00c5fc17	segment=.text	kind=label
+name=switchdataD_01151544	namespace=switchD_00d5fc17	orig_addr=0x01051544	segment=.rodata	kind=label	ref_func=FUN_00c5f7c0	ref_func_addr=0x00c5f7c0	ref_insn_index=285
+name=switchD	namespace=switchD_002b24bf	orig_addr=0x001b24bf	segment=.text	kind=label
+name=switchdataD_00db6f08	namespace=switchD_002b24bf	orig_addr=0x00cb6f08	segment=.rodata	kind=label	ref_func=jag::LoginManager::RunLoginStateMachine	ref_func_addr=0x001b2480	ref_insn_index=12
+name=switchD	namespace=switchD_00287a65	orig_addr=0x00187a65	segment=.text	kind=label
+name=switchdataD_00db6cf8	namespace=switchD_00287a65	orig_addr=0x00cb6cf8	segment=.rodata	kind=label	ref_func=jag::PacketHandlers::ExecuteClientCheat	ref_func_addr=0x00187a10	ref_insn_index=18
+name=switchD	namespace=switchD_00db4b78	orig_addr=0x00cb4b78	segment=.text	kind=label
+name=switchdataD_011553a4	namespace=switchD_00db4b78	orig_addr=0x010553a4	segment=.rodata	kind=label	ref_func=FUN_00cb4b50	ref_func_addr=0x00cb4b50	ref_insn_index=7
+name=switchD	namespace=switchD_007d6117	orig_addr=0x006d6117	segment=.text	kind=label
+name=switchdataD_010d55d8	namespace=switchD_007d6117	orig_addr=0x00fd55d8	segment=.rodata	kind=label	ref_func=FUN_006d5c00	ref_func_addr=0x006d5c00	ref_insn_index=239
+name=switchD	namespace=switchD_00910a10	orig_addr=0x00810a10	segment=.text	kind=label
+name=switchdataD_010dfa8c	namespace=switchD_00910a10	orig_addr=0x00fdfa8c	segment=.rodata	kind=label	ref_func=FUN_008109f0	ref_func_addr=0x008109f0	ref_insn_index=4
+name=switchD	namespace=switchD_00d5c612	orig_addr=0x00c5c612	segment=.text	kind=label
+name=switchdataD_011510b8	namespace=switchD_00d5c612	orig_addr=0x010510b8	segment=.rodata	kind=label	ref_func=FUN_00c5c5e0	ref_func_addr=0x00c5c5e0	ref_insn_index=7
+name=switchD	namespace=switchD_00bd8abc	orig_addr=0x00ad8abc	segment=.text	kind=label
+name=default	namespace=switchD_00bd8abc	orig_addr=0x00ad9c08	segment=.text	kind=label
+name=switchdataD_011279b8	namespace=switchD_00bd8abc	orig_addr=0x010279b8	segment=.rodata	kind=label	ref_func=FUN_00ad89c0	ref_func_addr=0x00ad89c0	ref_insn_index=56
+name=switchD	namespace=switchD_00bfa7ed	orig_addr=0x00afa7ed	segment=.text	kind=label
+name=default	namespace=switchD_00bfa7ed	orig_addr=0x00afaacf	segment=.text	kind=label
+name=switchdataD_01127e88	namespace=switchD_00bfa7ed	orig_addr=0x01027e88	segment=.rodata	kind=label	ref_func=FUN_00afa740	ref_func_addr=0x00afa740	ref_insn_index=40
+name=switchD	namespace=switchD_009f63a3	orig_addr=0x008f63a3	segment=.text	kind=label
+name=switchdataD_010fc878	namespace=switchD_009f63a3	orig_addr=0x00ffc878	segment=.rodata	kind=label	ref_func=jag::Js5WorkerThread::OnMessage	ref_func_addr=0x008f6360	ref_insn_index=19
+name=switchD	namespace=switchD_00967e39	orig_addr=0x00867e39	segment=.text	kind=label
+name=switchdataD_010e6318	namespace=switchD_00967e39	orig_addr=0x00fe6318	segment=.rodata	kind=label	ref_func=FUN_00867a20	ref_func_addr=0x00867a20	ref_insn_index=224
+name=switchD	namespace=switchD_00967fe9	orig_addr=0x00867fe9	segment=.text	kind=label
+name=default	namespace=switchD_00967fe9	orig_addr=0x0086805a	segment=.text	kind=label
+name=switchdataD_010e6338	namespace=switchD_00967fe9	orig_addr=0x00fe6338	segment=.rodata	kind=label	ref_func=FUN_00867a20	ref_func_addr=0x00867a20	ref_insn_index=317
+name=switchD	namespace=switchD_00d6b0a5	orig_addr=0x00c6b0a5	segment=.text	kind=label
+name=default	namespace=switchD_00d6b0a5	orig_addr=0x00c6b238	segment=.text	kind=label
+name=switchdataD_011521d8	namespace=switchD_00d6b0a5	orig_addr=0x010521d8	segment=.rodata	kind=label	ref_func=FUN_00c6b070	ref_func_addr=0x00c6b070	ref_insn_index=7
+name=switchD	namespace=switchD_00b1ed66	orig_addr=0x00a1ed66	segment=.text	kind=label
+name=switchdataD_0110cc60	namespace=switchD_00b1ed66	orig_addr=0x0100cc60	segment=.rodata	kind=label	ref_func=FUN_00a1ed10	ref_func_addr=0x00a1ed10	ref_insn_index=22
+name=switchD	namespace=switchD_00abcaa1	orig_addr=0x009bcaa1	segment=.text	kind=label
+name=switchdataD_0110767c	namespace=switchD_00abcaa1	orig_addr=0x0100767c	segment=.rodata	kind=label	ref_func=FUN_009bc6a0	ref_func_addr=0x009bc6a0	ref_insn_index=75
+name=switchD	namespace=switchD_00d723af	orig_addr=0x00c723af	segment=.text	kind=label
+name=switchdataD_011524f0	namespace=switchD_00d723af	orig_addr=0x010524f0	segment=.rodata	kind=label	ref_func=FUN_00c72110	ref_func_addr=0x00c72110	ref_insn_index=149
+name=switchD	namespace=switchD_00a77f05	orig_addr=0x00977f05	segment=.text	kind=label
+name=switchdataD_01105e98	namespace=switchD_00a77f05	orig_addr=0x01005e98	segment=.rodata	kind=label
+name=switchD	namespace=switchD_00a780d9	orig_addr=0x009780d9	segment=.text	kind=label
+name=switchdataD_01105ec0	namespace=switchD_00a780d9	orig_addr=0x01005ec0	segment=.rodata	kind=label	ref_func=FUN_00977af0	ref_func_addr=0x00977af0	ref_insn_index=177
+name=switchD	namespace=switchD_00c10b9b	orig_addr=0x00b10b9b	segment=.text	kind=label
+name=switchdataD_011289b8	namespace=switchD_00c10b9b	orig_addr=0x010289b8	segment=.rodata	kind=label	ref_func=FUN_00b10a40	ref_func_addr=0x00b10a40	ref_insn_index=75
+name=switchD	namespace=switchD_0093a401	orig_addr=0x0083a401	segment=.text	kind=label
+name=switchdataD_010e5ea0	namespace=switchD_0093a401	orig_addr=0x00fe5ea0	segment=.rodata	kind=label	ref_func=FUN_0083a3a0	ref_func_addr=0x0083a3a0	ref_insn_index=5
+name=switchD	namespace=switchD_00a1bb97	orig_addr=0x0091bb97	segment=.text	kind=label
+name=switchdataD_010ff20c	namespace=switchD_00a1bb97	orig_addr=0x00fff20c	segment=.rodata	kind=label	ref_func=FUN_0091b8c0	ref_func_addr=0x0091b8c0	ref_insn_index=154
+name=switchD	namespace=switchD_00a3186c	orig_addr=0x0093186c	segment=.text	kind=label
+name=default	namespace=switchD_00a3186c	orig_addr=0x00931849	segment=.text	kind=label
+name=switchdataD_011010f4	namespace=switchD_00a3186c	orig_addr=0x010010f4	segment=.rodata	kind=label	ref_func=FUN_00931840	ref_func_addr=0x00931840	ref_insn_index=8
+name=switchD	namespace=switchD_00a8df2b	orig_addr=0x0098df2b	segment=.text	kind=label
+name=default	namespace=switchD_00a8df2b	orig_addr=0x0098e820	segment=.text	kind=label
+name=switchdataD_01106074	namespace=switchD_00a8df2b	orig_addr=0x01006074	segment=.rodata	kind=label	ref_func=jag::Js5ResourceProvider::WorkerOnMessage	ref_func_addr=0x0098dee0	ref_insn_index=12
+name=switchD	namespace=switchD_00bcd9a9	orig_addr=0x00acd9a9	segment=.text	kind=label
+name=default	namespace=switchD_00bcd9a9	orig_addr=0x00acdac0	segment=.text	kind=label
+name=switchdataD_0111e358	namespace=switchD_00bcd9a9	orig_addr=0x0101e358	segment=.rodata	kind=label	ref_func=FUN_00acd990	ref_func_addr=0x00acd990	ref_insn_index=2
+name=switchD	namespace=switchD_005ced60	orig_addr=0x004ced60	segment=.text	kind=label
+name=switchdataD_010d3604	namespace=switchD_005ced60	orig_addr=0x00fd3604	segment=.rodata	kind=label	ref_func=FUN_004ced40	ref_func_addr=0x004ced40	ref_insn_index=7
+name=switchD	namespace=switchD_005cf2df	orig_addr=0x004cf2df	segment=.text	kind=label
+name=default	namespace=switchD_005cf2df	orig_addr=0x004cf614	segment=.text	kind=label
+name=switchdataD_010d3678	namespace=switchD_005cf2df	orig_addr=0x00fd3678	segment=.rodata	kind=label	ref_func=FUN_004ced40	ref_func_addr=0x004ced40	ref_insn_index=258
+name=switchD	namespace=switchD_005cf62e	orig_addr=0x004cf62e	segment=.text	kind=label
+name=switchdataD_010d3738	namespace=switchD_005cf62e	orig_addr=0x00fd3738	segment=.rodata	kind=label	ref_func=FUN_004ced40	ref_func_addr=0x004ced40	ref_insn_index=420
+name=switchD	namespace=switchD_005cf7dc	orig_addr=0x004cf7dc	segment=.text	kind=label
+name=default	namespace=switchD_005cf7dc	orig_addr=0x004cf900	segment=.text	kind=label
+name=switchdataD_010d3794	namespace=switchD_005cf7dc	orig_addr=0x00fd3794	segment=.rodata	kind=label	ref_func=FUN_004ced40	ref_func_addr=0x004ced40	ref_insn_index=506
+name=switchD	namespace=switchD_0079fd9b	orig_addr=0x0069fd9b	segment=.text	kind=label
+name=switchdataD_010d4b0c	namespace=switchD_0079fd9b	orig_addr=0x00fd4b0c	segment=.rodata	kind=label	ref_func=FUN_0069fd80	ref_func_addr=0x0069fd80	ref_insn_index=5
+name=switchD	namespace=switchD_007e8b32	orig_addr=0x006e8b32	segment=.text	kind=label
+name=default	namespace=switchD_007e8b32	orig_addr=0x006e8c30	segment=.text	kind=label
+name=switchdataD_010d5634	namespace=switchD_007e8b32	orig_addr=0x00fd5634	segment=.rodata	kind=label	ref_func=FUN_006e8b00	ref_func_addr=0x006e8b00	ref_insn_index=11
+name=switchD	namespace=switchD_00c13a76	orig_addr=0x00b13a76	segment=.text	kind=label
+name=default	namespace=switchD_00c13a76	orig_addr=0x00b13d70	segment=.text	kind=label
+name=switchdataD_01128c3c	namespace=switchD_00c13a76	orig_addr=0x01028c3c	segment=.rodata	kind=label	ref_func=FUN_00b13a00	ref_func_addr=0x00b13a00	ref_insn_index=25
+name=switchD	namespace=switchD_00a31578	orig_addr=0x00931578	segment=.text	kind=label
+name=switchdataD_0110104c	namespace=switchD_00a31578	orig_addr=0x0100104c	segment=.rodata	kind=label	ref_func=FUN_00931550	ref_func_addr=0x00931550	ref_insn_index=6
+name=switchD	namespace=switchD_006cf7a0	orig_addr=0x005cf7a0	segment=.text	kind=label
+name=default	namespace=switchD_006cf7a0	orig_addr=0x005d2e62	segment=.text	kind=label
+name=switchdataD_010d4220	namespace=switchD_006cf7a0	orig_addr=0x00fd4220	segment=.rodata	kind=label	ref_func=jag::game::AchievementType::DecodeType	ref_func_addr=0x005cf770	ref_insn_index=3
+name=switchD	namespace=switchD_00a416bb	orig_addr=0x009416bb	segment=.text	kind=label
+name=default	namespace=switchD_00a416bb	orig_addr=0x00941809	segment=.text	kind=label
+name=switchdataD_01101d24	namespace=switchD_00a416bb	orig_addr=0x01001d24	segment=.rodata	kind=label	ref_func=FUN_00941690	ref_func_addr=0x00941690	ref_insn_index=6
+name=switchD	namespace=switchD_00b43155	orig_addr=0x00a43155	segment=.text	kind=label
+name=switchdataD_0110d824	namespace=switchD_00b43155	orig_addr=0x0100d824	segment=.rodata	kind=label	ref_func=FUN_00a43040	ref_func_addr=0x00a43040	ref_insn_index=29
+name=switchD	namespace=switchD_00b4335f	orig_addr=0x00a4335f	segment=.text	kind=label
+name=default	namespace=switchD_00b4335f	orig_addr=0x00a43276	segment=.text	kind=label
+name=switchdataD_0110d868	namespace=switchD_00b4335f	orig_addr=0x0100d868	segment=.rodata	kind=label	ref_func=FUN_00a43040	ref_func_addr=0x00a43040	ref_insn_index=181
+name=switchD	namespace=switchD_00a014d9	orig_addr=0x009014d9	segment=.text	kind=label
+name=default	namespace=switchD_00a014d9	orig_addr=0x00901590	segment=.text	kind=label
+name=switchdataD_010fe540	namespace=switchD_00a014d9	orig_addr=0x00ffe540	segment=.rodata	kind=label	ref_func=FUN_009014c0	ref_func_addr=0x009014c0	ref_insn_index=2
+name=switchD	namespace=switchD_00d8c14c	orig_addr=0x00c8c14c	segment=.text	kind=label
+name=switchdataD_01152db0	namespace=switchD_00d8c14c	orig_addr=0x01052db0	segment=.rodata	kind=label	ref_func=FUN_00c8bf90	ref_func_addr=0x00c8bf90	ref_insn_index=81
+name=switchD	namespace=switchD_004904fd	orig_addr=0x003904fd	segment=.text	kind=label
+name=default	namespace=switchD_004904fd	orig_addr=0x00390d5f	segment=.text	kind=label
+name=switchdataD_010b5060	namespace=switchD_004904fd	orig_addr=0x00fb5060	segment=.rodata	kind=label	ref_func=FUN_003904d0	ref_func_addr=0x003904d0	ref_insn_index=5
+name=switchD	namespace=switchD_00c49b70	orig_addr=0x00b49b70	segment=.text	kind=label
+name=switchdataD_01149e48	namespace=switchD_00c49b70	orig_addr=0x01049e48	segment=.rodata	kind=label	ref_func=FUN_00b49b50	ref_func_addr=0x00b49b50	ref_insn_index=7
+name=switchD	namespace=switchD_00c49da5	orig_addr=0x00b49da5	segment=.text	kind=label
+name=switchdataD_01149e6c	namespace=switchD_00c49da5	orig_addr=0x01049e6c	segment=.rodata	kind=label	ref_func=FUN_00b49b50	ref_func_addr=0x00b49b50	ref_insn_index=117
+name=switchD	namespace=switchD_003730da	orig_addr=0x002730da	segment=.text	kind=label
+name=default	namespace=switchD_003730da	orig_addr=0x0027312b	segment=.text	kind=label
+name=switchdataD_010adf18	namespace=switchD_003730da	orig_addr=0x00fadf18	segment=.rodata	kind=label	ref_func=jag::opcode::_cutscene2d_getplaybackparam	ref_func_addr=0x00273080	ref_insn_index=18
+name=switchD	namespace=switchD_0056cfa1	orig_addr=0x0046cfa1	segment=.text	kind=label
+name=switchdataD_010ba8b4	namespace=switchD_0056cfa1	orig_addr=0x00fba8b4	segment=.rodata	kind=label	ref_func=jag::MiniMenu::AddEntries3DView	ref_func_addr=0x0046ce90	ref_insn_index=57
+name=switchD	namespace=switchD_00d667c8	orig_addr=0x00c667c8	segment=.text	kind=label
+name=switchdataD_01151fb8	namespace=switchD_00d667c8	orig_addr=0x01051fb8	segment=.rodata	kind=label	ref_func=FUN_00c667a0	ref_func_addr=0x00c667a0	ref_insn_index=7
+name=switchD	namespace=switchD_00992769	orig_addr=0x00892769	segment=.text	kind=label
+name=switchdataD_010e6890	namespace=switchD_00992769	orig_addr=0x00fe6890	segment=.rodata	kind=label	ref_func=FUN_008926b0	ref_func_addr=0x008926b0	ref_insn_index=31
+name=switchD	namespace=switchD_00992934	orig_addr=0x00892934	segment=.text	kind=label
+name=switchdataD_010e6958	namespace=switchD_00992934	orig_addr=0x00fe6958	segment=.rodata	kind=label	ref_func=FUN_008926b0	ref_func_addr=0x008926b0	ref_insn_index=126
+name=switchD	namespace=switchD_00972c45	orig_addr=0x00872c45	segment=.text	kind=label
+name=default	namespace=switchD_00972c45	orig_addr=0x008737e0	segment=.text	kind=label
+name=switchdataD_010e63cc	namespace=switchD_00972c45	orig_addr=0x00fe63cc	segment=.rodata	kind=label	ref_func=FUN_008723e0	ref_func_addr=0x008723e0	ref_insn_index=516
+name=switchD	namespace=switchD_00972c8d	orig_addr=0x00872c8d	segment=.text	kind=label
+name=default	namespace=switchD_00972c8d	orig_addr=0x008732f1	segment=.text	kind=label
+name=switchdataD_010e63ec	namespace=switchD_00972c8d	orig_addr=0x00fe63ec	segment=.rodata	kind=label	ref_func=FUN_008723e0	ref_func_addr=0x008723e0	ref_insn_index=547
+name=switchD	namespace=switchD_00d771bb	orig_addr=0x00c771bb	segment=.text	kind=label
+name=switchdataD_0115260c	namespace=switchD_00d771bb	orig_addr=0x0105260c	segment=.rodata	kind=label	ref_func=FUN_00c77040	ref_func_addr=0x00c77040	ref_insn_index=73
+name=switchD	namespace=switchD_008490d7	orig_addr=0x007490d7	segment=.text	kind=label
+name=default	namespace=switchD_008490d7	orig_addr=0x0074a18e	segment=.text	kind=label
+name=switchdataD_010d5a34	namespace=switchD_008490d7	orig_addr=0x00fd5a34	segment=.rodata	kind=label	ref_func=FUN_00748e30	ref_func_addr=0x00748e30	ref_insn_index=131
+name=switchD	namespace=switchD_00849997	orig_addr=0x00749997	segment=.text	kind=label
+name=default	namespace=switchD_00849997	orig_addr=0x0074999a	segment=.text	kind=label
+name=switchdataD_010d5a64	namespace=switchD_00849997	orig_addr=0x00fd5a64	segment=.rodata	kind=label	ref_func=FUN_00748e30	ref_func_addr=0x00748e30	ref_insn_index=569
+name=switchD	namespace=switchD_00849735	orig_addr=0x00749735	segment=.text	kind=label
+name=default	namespace=switchD_00849735	orig_addr=0x0074aad0	segment=.text	kind=label
+name=switchdataD_010d5a4c	namespace=switchD_00849735	orig_addr=0x00fd5a4c	segment=.rodata	kind=label	ref_func=FUN_00748e30	ref_func_addr=0x00748e30	ref_insn_index=449
+name=switchD	namespace=switchD_00aa999d	orig_addr=0x009a999d	segment=.text	kind=label
+name=default	namespace=switchD_00aa999d	orig_addr=0x009a9a40	segment=.text	kind=label
+name=switchdataD_01107024	namespace=switchD_00aa999d	orig_addr=0x01007024	segment=.rodata	kind=label	ref_func=FUN_009a98a0	ref_func_addr=0x009a98a0	ref_insn_index=60
+name=switchD	namespace=switchD_00da4ccb	orig_addr=0x00ca4ccb	segment=.text	kind=label
+name=switchdataD_01154218	namespace=switchD_00da4ccb	orig_addr=0x01054218	segment=.rodata	kind=label	ref_func=FUN_00ca4b50	ref_func_addr=0x00ca4b50	ref_insn_index=73
+name=switchD	namespace=switchD_00c886fa	orig_addr=0x00b886fa	segment=.text	kind=label
+name=switchdataD_0114b388	namespace=switchD_00c886fa	orig_addr=0x0104b388	segment=.rodata	kind=label	ref_func=FUN_00b886e0	ref_func_addr=0x00b886e0	ref_insn_index=3
+name=switchD	namespace=switchD_008fe8b6	orig_addr=0x007fe8b6	segment=.text	kind=label
+name=switchdataD_010df450	namespace=switchD_008fe8b6	orig_addr=0x00fdf450	segment=.rodata	kind=label	ref_func=FUN_007fe890	ref_func_addr=0x007fe890	ref_insn_index=6
+name=switchD	namespace=switchD_00383bc0	orig_addr=0x00283bc0	segment=.text	kind=label
+name=default	namespace=switchD_00383bc0	orig_addr=0x00284350	segment=.text	kind=label
+name=switchdataD_010ae2d8	namespace=switchD_00383bc0	orig_addr=0x00fae2d8	segment=.rodata	kind=label	ref_func=FUN_00283ba0	ref_func_addr=0x00283ba0	ref_insn_index=2
+name=switchD	namespace=switchD_00b16533	orig_addr=0x00a16533	segment=.text	kind=label
+name=switchdataD_0110cc2c	namespace=switchD_00b16533	orig_addr=0x0100cc2c	segment=.rodata	kind=label	ref_func=FUN_00a164f0	ref_func_addr=0x00a164f0	ref_insn_index=15
+name=switchD	namespace=switchD_00a0a7bc	orig_addr=0x0090a7bc	segment=.text	kind=label
+name=switchdataD_010fe704	namespace=switchD_00a0a7bc	orig_addr=0x00ffe704	segment=.rodata	kind=label	ref_func=FUN_0090a7a0	ref_func_addr=0x0090a7a0	ref_insn_index=3
+name=switchD	namespace=switchD_00bcfc25	orig_addr=0x00acfc25	segment=.text	kind=label
+name=switchD	namespace=switchD_009e5471	orig_addr=0x008e5471	segment=.text	kind=label
+name=default	namespace=switchD_009e5471	orig_addr=0x008e58f7	segment=.text	kind=label
+name=switchdataD_010fc648	namespace=switchD_009e5471	orig_addr=0x00ffc648	segment=.rodata	kind=label	ref_func=FUN_008e5430	ref_func_addr=0x008e5430	ref_insn_index=15
+name=switchdataD_0111e444	namespace=switchD_00bcfc25	orig_addr=0x0101e444	segment=.rodata	kind=label	ref_func=jag::signal_handling::FatalSignalHandler	ref_func_addr=0x00acfab0	ref_insn_index=68
+name=switchD	namespace=switchD_005c6155	orig_addr=0x004c6155	segment=.text	kind=label
+name=switchdataD_010d35d0	namespace=switchD_005c6155	orig_addr=0x00fd35d0	segment=.rodata	kind=label	ref_func=jag::game::MSIType::DecodeType	ref_func_addr=0x004c6140	ref_insn_index=2
+name=switchD	namespace=switchD_00a13cc5	orig_addr=0x00913cc5	segment=.text	kind=label
+name=switchdataD_010fe93c	namespace=switchD_00a13cc5	orig_addr=0x00ffe93c	segment=.rodata	kind=label	ref_func=FUN_009139d0	ref_func_addr=0x009139d0	ref_insn_index=20
+name=switchD	namespace=switchD_00a13d3c	orig_addr=0x00913d3c	segment=.text	kind=label
+name=switchdataD_010fec14	namespace=switchD_00a13d3c	orig_addr=0x00ffec14	segment=.rodata	kind=label	ref_func=FUN_009139d0	ref_func_addr=0x009139d0	ref_insn_index=212
+name=switchD	namespace=switchD_00a13b0c	orig_addr=0x00913b0c	segment=.text	kind=label
+name=switchdataD_010fe914	namespace=switchD_00a13b0c	orig_addr=0x00ffe914	segment=.rodata	kind=label	ref_func=FUN_009139d0	ref_func_addr=0x009139d0	ref_insn_index=39
+name=switchD	namespace=switchD_00a13cf3	orig_addr=0x00913cf3	segment=.text	kind=label
+name=switchdataD_010feaa8	namespace=switchD_00a13cf3	orig_addr=0x00ffeaa8	segment=.rodata	kind=label	ref_func=FUN_009139d0	ref_func_addr=0x009139d0	ref_insn_index=8
+name=switchD	namespace=switchD_00c7526b	orig_addr=0x00b7526b	segment=.text	kind=label
+name=switchdataD_0114b230	namespace=switchD_00c7526b	orig_addr=0x0104b230	segment=.rodata	kind=label	ref_func=FUN_00b74cd0	ref_func_addr=0x00b74cd0	ref_insn_index=342
+name=switchD	namespace=switchD_004ab65c	orig_addr=0x003ab65c	segment=.text	kind=label
+name=default	namespace=switchD_004ab65c	orig_addr=0x003ab6e0	segment=.text	kind=label
+name=switchdataD_010b50e4	namespace=switchD_004ab65c	orig_addr=0x00fb50e4	segment=.rodata	kind=label	ref_func=FUN_003ab640	ref_func_addr=0x003ab640	ref_insn_index=3
+name=switchD	namespace=switchD_003926e5	orig_addr=0x002926e5	segment=.text	kind=label
+name=default	namespace=switchD_003926e5	orig_addr=0x002926f0	segment=.text	kind=label
+name=switchdataD_014744e0	namespace=switchD_003926e5	orig_addr=0x013744e0	segment=.data.rel.ro	kind=label
+name=switchD	namespace=switchD_005c6219	orig_addr=0x004c6219	segment=.text	kind=label
+name=default	namespace=switchD_005c6219	orig_addr=0x004c6450	segment=.text	kind=label
+name=switchdataD_010d35e8	namespace=switchD_005c6219	orig_addr=0x00fd35e8	segment=.rodata	kind=label	ref_func=jag::game::SeqGroupType::DecodeType	ref_func_addr=0x004c61f0	ref_insn_index=3
+name=switchD	namespace=switchD_00d89697	orig_addr=0x00c89697	segment=.text	kind=label
+name=switchdataD_01152cb8	namespace=switchD_00d89697	orig_addr=0x01052cb8	segment=.rodata	kind=label	ref_func=FUN_00c893c0	ref_func_addr=0x00c893c0	ref_insn_index=146
+name=switchD	namespace=switchD_00d643f3	orig_addr=0x00c643f3	segment=.text	kind=label
+name=switchdataD_01151844	namespace=switchD_00d643f3	orig_addr=0x01051844	segment=.rodata	kind=label	ref_func=FUN_00c643c0	ref_func_addr=0x00c643c0	ref_insn_index=5
+name=switchD	namespace=switchD_0075558d	orig_addr=0x0065558d	segment=.text	kind=label
+name=default	namespace=switchD_0075558d	orig_addr=0x00656110	segment=.text	kind=label
+name=switchdataD_010d4860	namespace=switchD_0075558d	orig_addr=0x00fd4860	segment=.rodata	kind=label	ref_func=FUN_006554c0	ref_func_addr=0x006554c0	ref_insn_index=41
+name=switchD	namespace=switchD_00755880	orig_addr=0x00655880	segment=.text	kind=label
+name=switchdataD_010d4878	namespace=switchD_00755880	orig_addr=0x00fd4878	segment=.rodata	kind=label	ref_func=FUN_006554c0	ref_func_addr=0x006554c0	ref_insn_index=199
+name=switchD	namespace=switchD_00a43f27	orig_addr=0x00943f27	segment=.text	kind=label
+name=switchdataD_01101e4c	namespace=switchD_00a43f27	orig_addr=0x01001e4c	segment=.rodata	kind=label	ref_func=FUN_00943d70	ref_func_addr=0x00943d70	ref_insn_index=112
+name=switchD	namespace=switchD_0053f403	orig_addr=0x0043f403	segment=.text	kind=label
+name=default	namespace=switchD_0053f403	orig_addr=0x0043f410	segment=.text	kind=label
+name=switchD	namespace=switchD_00b47806	orig_addr=0x00a47806	segment=.text	kind=label
+name=default	namespace=switchD_00b47806	orig_addr=0x00a47bd0	segment=.text	kind=label
+name=switchdataD_0110d9f0	namespace=switchD_00b47806	orig_addr=0x0100d9f0	segment=.rodata	kind=label	ref_func=FUN_00a47710	ref_func_addr=0x00a47710	ref_insn_index=58
+name=switchD	namespace=switchD_0026ce28	orig_addr=0x0016ce28	segment=.text	kind=label
+name=default	namespace=switchD_0026ce28	orig_addr=0x0016f567	segment=.text	kind=label
+name=switchdataD_00db69b8	namespace=switchD_0026ce28	orig_addr=0x00cb69b8	segment=.rodata	kind=label	ref_func=FUN_0016b680	ref_func_addr=0x0016b680	ref_insn_index=1239
+name=switchD	namespace=switchD_00694ff9	orig_addr=0x00594ff9	segment=.text	kind=label
+name=default	namespace=switchD_00694ff9	orig_addr=0x005954c0	segment=.text	kind=label
+name=switchdataD_010d3f7c	namespace=switchD_00694ff9	orig_addr=0x00fd3f7c	segment=.rodata	kind=label	ref_func=jag::game::MapElementType::DecodeType	ref_func_addr=0x00594fd0	ref_insn_index=3
+name=switchD	namespace=switchD_006c4181	orig_addr=0x005c4181	segment=.text	kind=label
+name=switchdataD_010d41ec	namespace=switchD_006c4181	orig_addr=0x00fd41ec	segment=.rodata	kind=label	ref_func=FUN_005c3fe0	ref_func_addr=0x005c3fe0	ref_insn_index=97
+name=switchD	namespace=switchD_00d3ef2b	orig_addr=0x00c3ef2b	segment=.text	kind=label
+name=switchdataD_0114fa54	namespace=switchD_00d3ef2b	orig_addr=0x0104fa54	segment=.rodata	kind=label	ref_func=FUN_00c3ee90	ref_func_addr=0x00c3ee90	ref_insn_index=40
+name=switchD	namespace=switchD_006954f9	orig_addr=0x005954f9	segment=.text	kind=label
+name=default	namespace=switchD_006954f9	orig_addr=0x00595ee0	segment=.text	kind=label
+name=switchdataD_010d4038	namespace=switchD_006954f9	orig_addr=0x00fd4038	segment=.rodata	kind=label	ref_func=jag::game::IDKType::DecodeType	ref_func_addr=0x005954d0	ref_insn_index=3
+name=switchD	namespace=switchD_00db1d7e	orig_addr=0x00cb1d7e	segment=.text	kind=label
+name=switchdataD_01154ebc	namespace=switchD_00db1d7e	orig_addr=0x01054ebc	segment=.rodata	kind=label	ref_func=FUN_00cb1ce0	ref_func_addr=0x00cb1ce0	ref_insn_index=20
+name=switchD	namespace=switchD_006442e0	orig_addr=0x005442e0	segment=.text	kind=label
+name=switchdataD_010d3d3c	namespace=switchD_006442e0	orig_addr=0x00fd3d3c	segment=.rodata	kind=label	ref_func=FUN_005434b0	ref_func_addr=0x005434b0	ref_insn_index=489
+name=switchD	namespace=switchD_00a316d8	orig_addr=0x009316d8	segment=.text	kind=label
+name=switchdataD_011010dc	namespace=switchD_00a316d8	orig_addr=0x010010dc	segment=.rodata	kind=label	ref_func=FUN_009316b0	ref_func_addr=0x009316b0	ref_insn_index=6
+name=switchD	namespace=switchD_003512b3	orig_addr=0x002512b3	segment=.text	kind=label
+name=default	namespace=switchD_003512b3	orig_addr=0x00252fd0	segment=.text	kind=label
+name=switchdataD_00db7c64	namespace=switchD_003512b3	orig_addr=0x00cb7c64	segment=.rodata	kind=label	ref_func=jag::ConnectionManager::LoginProtocolHandler	ref_func_addr=0x0024e8c0	ref_insn_index=2382
+name=switchD	namespace=switchD_00b709d4	orig_addr=0x00a709d4	segment=.text	kind=label
+name=switchdataD_0110ebd4	namespace=switchD_00b709d4	orig_addr=0x0100ebd4	segment=.rodata	kind=label	ref_func=FUN_00a70970	ref_func_addr=0x00a70970	ref_insn_index=17
+name=switchD	namespace=switchD_00c38e3e	orig_addr=0x00b38e3e	segment=.text	kind=label
+name=default	namespace=switchD_00c38e3e	orig_addr=0x00b390f8	segment=.text	kind=label
+name=switchdataD_01149e30	namespace=switchD_00c38e3e	orig_addr=0x01049e30	segment=.rodata	kind=label	ref_func=FUN_00b38d80	ref_func_addr=0x00b38d80	ref_insn_index=42
+name=switchD	namespace=switchD_0084b68e	orig_addr=0x0074b68e	segment=.text	kind=label
+name=default	namespace=switchD_0084b68e	orig_addr=0x0074c0cd	segment=.text	kind=label
+name=switchdataD_010d7150	namespace=switchD_0084b68e	orig_addr=0x00fd7150	segment=.rodata	kind=label	ref_func=FUN_0074b180	ref_func_addr=0x0074b180	ref_insn_index=271
+name=switchD	namespace=switchD_009cfe77	orig_addr=0x008cfe77	segment=.text	kind=label
+name=switchdataD_010fc3b8	namespace=switchD_009cfe77	orig_addr=0x00ffc3b8	segment=.rodata	kind=label	ref_func=FUN_008cfd20	ref_func_addr=0x008cfd20	ref_insn_index=90
+name=switchD	namespace=switchD_009e82d1	orig_addr=0x008e82d1	segment=.text	kind=label
+name=default	namespace=switchD_009e82d1	orig_addr=0x008e83f0	segment=.text	kind=label
+name=switchdataD_010fc674	namespace=switchD_009e82d1	orig_addr=0x00ffc674	segment=.rodata	kind=label	ref_func=FUN_008e82b0	ref_func_addr=0x008e82b0	ref_insn_index=3
+name=switchD	namespace=switchD_00a31305	orig_addr=0x00931305	segment=.text	kind=label
+name=switchdataD_01100f40	namespace=switchD_00a31305	orig_addr=0x01000f40	segment=.rodata	kind=label	ref_func=FUN_009312e0	ref_func_addr=0x009312e0	ref_insn_index=6
+name=switchD	namespace=switchD_00b7edf2	orig_addr=0x00a7edf2	segment=.text	kind=label
+name=default	namespace=switchD_00b7edf2	orig_addr=0x00a7ef50	segment=.text	kind=label
+name=switchdataD_0110f370	namespace=switchD_00b7edf2	orig_addr=0x0100f370	segment=.rodata	kind=label	ref_func=FUN_00a7edd0	ref_func_addr=0x00a7edd0	ref_insn_index=4
+name=switchD	namespace=switchD_009ca02e	orig_addr=0x008ca02e	segment=.text	kind=label
+name=default	namespace=switchD_009ca02e	orig_addr=0x008ca040	segment=.text	kind=label
+name=switchdataD_010fc2e0	namespace=switchD_009ca02e	orig_addr=0x00ffc2e0	segment=.rodata	kind=label	ref_func=FUN_008ca000	ref_func_addr=0x008ca000	ref_insn_index=11
+name=switchD	namespace=switchD_00984e4e	orig_addr=0x00884e4e	segment=.text	kind=label
+name=switchdataD_010e6738	namespace=switchD_00984e4e	orig_addr=0x00fe6738	segment=.rodata	kind=label	ref_func=FUN_00884710	ref_func_addr=0x00884710	ref_insn_index=469
+name=switchD	namespace=switchD_008752fa	orig_addr=0x007752fa	segment=.text	kind=label
+name=default	namespace=switchD_008752fa	orig_addr=0x007753c4	segment=.text	kind=label
+name=switchdataD_010d7688	namespace=switchD_008752fa	orig_addr=0x00fd7688	segment=.rodata	kind=label	ref_func=FUN_00774b40	ref_func_addr=0x00774b40	ref_insn_index=258
+name=switchD	namespace=switchD_00d5e780	orig_addr=0x00c5e780	segment=.text	kind=label
+name=switchdataD_01151328	namespace=switchD_00d5e780	orig_addr=0x01051328	segment=.rodata	kind=label	ref_func=FUN_00c5e730	ref_func_addr=0x00c5e730	ref_insn_index=20
+name=switchD	namespace=switchD_00d5e9b2	orig_addr=0x00c5e9b2	segment=.text	kind=label
+name=switchdataD_01151454	namespace=switchD_00d5e9b2	orig_addr=0x01051454	segment=.rodata	kind=label	ref_func=FUN_00c5e730	ref_func_addr=0x00c5e730	ref_insn_index=158
+name=switchD	namespace=switchD_0075fe59	orig_addr=0x0065fe59	segment=.text	kind=label
+name=default	namespace=switchD_0075fe59	orig_addr=0x006601a0	segment=.text	kind=label
+name=switchdataD_010d4a00	namespace=switchD_0075fe59	orig_addr=0x00fd4a00	segment=.rodata	kind=label	ref_func=FUN_0065fe40	ref_func_addr=0x0065fe40	ref_insn_index=3
+name=switchD	namespace=switchD_00b48411	orig_addr=0x00a48411	segment=.text	kind=label
+name=switchdataD_0110da0c	namespace=switchD_00b48411	orig_addr=0x0100da0c	segment=.rodata	kind=label	ref_func=FUN_00a483f0	ref_func_addr=0x00a483f0	ref_insn_index=6
+name=switchD	namespace=switchD_004dd379	orig_addr=0x003dd379	segment=.text	kind=label
+name=default	namespace=switchD_004dd379	orig_addr=0x003dd450	segment=.text	kind=label
+name=switchdataD_010b9f9c	namespace=switchD_004dd379	orig_addr=0x00fb9f9c	segment=.rodata	kind=label	ref_func=FUN_003dce60	ref_func_addr=0x003dce60	ref_insn_index=316
+name=switchD	namespace=switchD_004dd3fe	orig_addr=0x003dd3fe	segment=.text	kind=label
+name=default	namespace=switchD_004dd3fe	orig_addr=0x003dd450	segment=.text	kind=label
+name=switchdataD_010b9fc4	namespace=switchD_004dd3fe	orig_addr=0x00fb9fc4	segment=.rodata	kind=label	ref_func=FUN_003dce60	ref_func_addr=0x003dce60	ref_insn_index=345
+name=switchD	namespace=switchD_004dd4fa	orig_addr=0x003dd4fa	segment=.text	kind=label
+name=default	namespace=switchD_004dd4fa	orig_addr=0x003dd450	segment=.text	kind=label
+name=switchdataD_010b9fec	namespace=switchD_004dd4fa	orig_addr=0x00fb9fec	segment=.rodata	kind=label	ref_func=FUN_003dce60	ref_func_addr=0x003dce60	ref_insn_index=393
+name=switchD	namespace=switchD_00d93c8c	orig_addr=0x00c93c8c	segment=.text	kind=label
+name=switchdataD_0115369c	namespace=switchD_00d93c8c	orig_addr=0x0105369c	segment=.rodata	kind=label	ref_func=FUN_00c93c60	ref_func_addr=0x00c93c60	ref_insn_index=7
+name=switchD	namespace=switchD_00d838a0	orig_addr=0x00c838a0	segment=.text	kind=label
+name=switchdataD_01152a98	namespace=switchD_00d838a0	orig_addr=0x01052a98	segment=.rodata	kind=label	ref_func=FUN_00c83700	ref_func_addr=0x00c83700	ref_insn_index=78
+name=switchD	namespace=switchD_009bc9f6	orig_addr=0x008bc9f6	segment=.text	kind=label
+name=switchdataD_010fc218	namespace=switchD_009bc9f6	orig_addr=0x00ffc218	segment=.rodata	kind=label	ref_func=FUN_008bc9b0	ref_func_addr=0x008bc9b0	ref_insn_index=11
+name=switchD	namespace=switchD_003387eb	orig_addr=0x002387eb	segment=.text	kind=label
+name=default	namespace=switchD_003387eb	orig_addr=0x00238f70	segment=.text	kind=label
+name=switchdataD_00db7814	namespace=switchD_003387eb	orig_addr=0x00cb7814	segment=.rodata	kind=label	ref_func=FUN_002385a0	ref_func_addr=0x002385a0	ref_insn_index=122
+name=switchD	namespace=switchD_00d72acf	orig_addr=0x00c72acf	segment=.text	kind=label
+name=switchdataD_01152504	namespace=switchD_00d72acf	orig_addr=0x01052504	segment=.rodata	kind=label	ref_func=FUN_00c72830	ref_func_addr=0x00c72830	ref_insn_index=149
+name=switchD	namespace=switchD_00a2e990	orig_addr=0x0092e990	segment=.text	kind=label
+name=default	namespace=switchD_00a2e990	orig_addr=0x0092e983	segment=.text	kind=label
+name=switchdataD_01100c3c	namespace=switchD_00a2e990	orig_addr=0x01000c3c	segment=.rodata	kind=label	ref_func=FUN_0092e910	ref_func_addr=0x0092e910	ref_insn_index=22
+name=switchD	namespace=switchD_009214dc	orig_addr=0x008214dc	segment=.text	kind=label
+name=switchdataD_010dff84	namespace=switchD_009214dc	orig_addr=0x00fdff84	segment=.rodata	kind=label	ref_func=FUN_00821070	ref_func_addr=0x00821070	ref_insn_index=238
+name=switchD	namespace=switchD_0092368c	orig_addr=0x0082368c	segment=.text	kind=label
+name=switchdataD_010e001c	namespace=switchD_0092368c	orig_addr=0x00fe001c	segment=.rodata	kind=label	ref_func=FUN_00821070	ref_func_addr=0x00821070	ref_insn_index=2283
+name=switchD	namespace=switchD_00a55293	orig_addr=0x00955293	segment=.text	kind=label
+name=switchdataD_01102c14	namespace=switchD_00a55293	orig_addr=0x01002c14	segment=.rodata	kind=label	ref_func=FUN_00955250	ref_func_addr=0x00955250	ref_insn_index=14
+name=switchD	namespace=switchD_00a475e5	orig_addr=0x009475e5	segment=.text	kind=label
+name=switchdataD_011024a4	namespace=switchD_00a475e5	orig_addr=0x010024a4	segment=.rodata	kind=label	ref_func=FUN_00947530	ref_func_addr=0x00947530	ref_insn_index=41
+name=switchD	namespace=switchD_00b9fc54	orig_addr=0x00a9fc54	segment=.text	kind=label
+name=default	namespace=switchD_00b9fc54	orig_addr=0x00a9fdf2	segment=.text	kind=label
+name=switchdataD_01119dcc	namespace=switchD_00b9fc54	orig_addr=0x01019dcc	segment=.rodata	kind=label	ref_func=FUN_00a9fc00	ref_func_addr=0x00a9fc00	ref_insn_index=22
+name=switchD	namespace=switchD_00d03152	orig_addr=0x00c03152	segment=.text	kind=label
+name=switchdataD_0114ee48	namespace=switchD_00d03152	orig_addr=0x0104ee48	segment=.rodata	kind=label	ref_func=FUN_00c02810	ref_func_addr=0x00c02810	ref_insn_index=434
+name=switchD	namespace=switchD_00d0417d	orig_addr=0x00c0417d	segment=.text	kind=label
+name=switchdataD_0114ee74	namespace=switchD_00d0417d	orig_addr=0x0104ee74	segment=.rodata	kind=label	ref_func=FUN_00c02810	ref_func_addr=0x00c02810	ref_insn_index=1256
+name=switchD	namespace=switchD_00d04d13	orig_addr=0x00c04d13	segment=.text	kind=label
+name=default	namespace=switchD_00d04d13	orig_addr=0x00c074e1	segment=.text	kind=label
+name=switchdataD_0114eeb8	namespace=switchD_00d04d13	orig_addr=0x0104eeb8	segment=.rodata	kind=label	ref_func=FUN_00c02810	ref_func_addr=0x00c02810	ref_insn_index=1816
+name=switchD	namespace=switchD_00d04fb2	orig_addr=0x00c04fb2	segment=.text	kind=label
+name=default	namespace=switchD_00d04fb2	orig_addr=0x00c074e8	segment=.text	kind=label
+name=switchdataD_0114eee8	namespace=switchD_00d04fb2	orig_addr=0x0104eee8	segment=.rodata	kind=label	ref_func=FUN_00c02810	ref_func_addr=0x00c02810	ref_insn_index=1955
+name=switchD	namespace=switchD_00d04e21	orig_addr=0x00c04e21	segment=.text	kind=label
+name=default	namespace=switchD_00d04e21	orig_addr=0x00c074da	segment=.text	kind=label
+name=switchdataD_0114eed0	namespace=switchD_00d04e21	orig_addr=0x0104eed0	segment=.rodata	kind=label	ref_func=FUN_00c02810	ref_func_addr=0x00c02810	ref_insn_index=1873
+name=switchD	namespace=switchD_00d329a0	orig_addr=0x00c329a0	segment=.text	kind=label
+name=switchD	namespace=switchD_00d048e3	orig_addr=0x00c048e3	segment=.text	kind=label
+name=default	namespace=switchD_00d048e3	orig_addr=0x00c074e8	segment=.text	kind=label
+name=switchdataD_0114eea0	namespace=switchD_00d048e3	orig_addr=0x0104eea0	segment=.rodata	kind=label	ref_func=FUN_00c02810	ref_func_addr=0x00c02810	ref_insn_index=1631
+name=switchdataD_0114f328	namespace=switchD_00d329a0	orig_addr=0x0104f328	segment=.rodata	kind=label	ref_func=FUN_00c32870	ref_func_addr=0x00c32870	ref_insn_index=55
+name=switchD	namespace=switchD_00d93bdc	orig_addr=0x00c93bdc	segment=.text	kind=label
+name=switchdataD_01153644	namespace=switchD_00d93bdc	orig_addr=0x01053644	segment=.rodata	kind=label	ref_func=FUN_00c93bb0	ref_func_addr=0x00c93bb0	ref_insn_index=7
+name=switchD	namespace=switchD_003d9c97	orig_addr=0x002d9c97	segment=.text	kind=label
+name=switchdataD_010afbf8	namespace=switchD_003d9c97	orig_addr=0x00fafbf8	segment=.rodata	kind=label	ref_func=jag::ClientProt::SendIfButtonN_CS2	ref_func_addr=0x002d9b40	ref_insn_index=77
+name=switchD	namespace=switchD_00991642	orig_addr=0x00891642	segment=.text	kind=label
+name=switchdataD_010e6840	namespace=switchD_00991642	orig_addr=0x00fe6840	segment=.rodata	kind=label	ref_func=FUN_00891570	ref_func_addr=0x00891570	ref_insn_index=48
+name=switchD	namespace=switchD_002af3ca	orig_addr=0x001af3ca	segment=.text	kind=label
+name=default	namespace=switchD_002af3ca	orig_addr=0x001af44c	segment=.text	kind=label
+name=switchdataD_00db6e40	namespace=switchD_002af3ca	orig_addr=0x00cb6e40	segment=.rodata	kind=label
+name=switchD	namespace=switchD_00b54c70	orig_addr=0x00a54c70	segment=.text	kind=label
+name=switchdataD_0110dccc	namespace=switchD_00b54c70	orig_addr=0x0100dccc	segment=.rodata	kind=label	ref_func=FUN_00a54c40	ref_func_addr=0x00a54c40	ref_insn_index=9
+name=switchD	namespace=switchD_001a3550	orig_addr=0x000a3550	segment=.text	kind=label
+name=default	namespace=switchD_001a3550	orig_addr=0x000a3553	segment=.text	kind=label
+name=switchdataD_010dfdb0	namespace=switchD_001a3550	orig_addr=0x00fdfdb0	segment=.rodata	kind=label	ref_func=FUN_000a3110	ref_func_addr=0x000a3110	ref_insn_index=249
+name=switchD	namespace=switchD_006ddcb3	orig_addr=0x005ddcb3	segment=.text	kind=label
+name=default	namespace=switchD_006ddcb3	orig_addr=0x005dec97	segment=.text	kind=label
+name=switchdataD_010d42a4	namespace=switchD_006ddcb3	orig_addr=0x00fd42a4	segment=.rodata	kind=label	ref_func=jag::game::HitmarkType::DecodeType	ref_func_addr=0x005ddc80	ref_insn_index=3
+name=switchD	namespace=switchD_0069831d	orig_addr=0x0059831d	segment=.text	kind=label
+name=default	namespace=switchD_0069831d	orig_addr=0x00598560	segment=.text	kind=label
+name=switchdataD_010d4190	namespace=switchD_0069831d	orig_addr=0x00fd4190	segment=.rodata	kind=label	ref_func=jag::game::FloorOverlayType::DecodeType	ref_func_addr=0x00598300	ref_insn_index=2
+name=switchD	namespace=switchD_00d99e5c	orig_addr=0x00c99e5c	segment=.text	kind=label
+name=switchdataD_01153ca8	namespace=switchD_00d99e5c	orig_addr=0x01053ca8	segment=.rodata	kind=label	ref_func=FUN_00c99e30	ref_func_addr=0x00c99e30	ref_insn_index=7
+name=switchD	namespace=switchD_009ae85f	orig_addr=0x008ae85f	segment=.text	kind=label
+name=default	namespace=switchD_009ae85f	orig_addr=0x008ae8f5	segment=.text	kind=label
+name=switchdataD_010fc0e8	namespace=switchD_009ae85f	orig_addr=0x00ffc0e8	segment=.rodata	kind=label	ref_func=FUN_008ae410	ref_func_addr=0x008ae410	ref_insn_index=263
+name=switchD	namespace=switchD_007cbf56	orig_addr=0x006cbf56	segment=.text	kind=label
+name=default	namespace=switchD_007cbf56	orig_addr=0x006cc2e0	segment=.text	kind=label
+name=switchdataD_010d50a0	namespace=switchD_007cbf56	orig_addr=0x00fd50a0	segment=.rodata	kind=label	ref_func=FUN_006cbf30	ref_func_addr=0x006cbf30	ref_insn_index=3
+name=switchD	namespace=switchD_00db2dcf	orig_addr=0x00cb2dcf	segment=.text	kind=label
+name=switchdataD_01154f7c	namespace=switchD_00db2dcf	orig_addr=0x01054f7c	segment=.rodata	kind=label	ref_func=FUN_00cb2d60	ref_func_addr=0x00cb2d60	ref_insn_index=10
+name=switchD	namespace=switchD_00db3308	orig_addr=0x00cb3308	segment=.text	kind=label
+name=switchdataD_01155338	namespace=switchD_00db3308	orig_addr=0x01055338	segment=.rodata	kind=label	ref_func=FUN_00cb2d60	ref_func_addr=0x00cb2d60	ref_insn_index=11
+name=switchD	namespace=switchD_00d87388	orig_addr=0x00c87388	segment=.text	kind=label
+name=switchdataD_01152ca4	namespace=switchD_00d87388	orig_addr=0x01052ca4	segment=.rodata	kind=label	ref_func=FUN_00c870e0	ref_func_addr=0x00c870e0	ref_insn_index=148
+name=switchD	namespace=switchD_00d86ad8	orig_addr=0x00c86ad8	segment=.text	kind=label
+name=switchdataD_01152c90	namespace=switchD_00d86ad8	orig_addr=0x01052c90	segment=.rodata	kind=label	ref_func=FUN_00c86830	ref_func_addr=0x00c86830	ref_insn_index=148
+name=switchD	namespace=switchD_0095e591	orig_addr=0x0085e591	segment=.text	kind=label
+name=default	namespace=switchD_0095e591	orig_addr=0x0085fb30	segment=.text	kind=label
+name=switchdataD_010e60a8	namespace=switchD_0095e591	orig_addr=0x00fe60a8	segment=.rodata	kind=label	ref_func=FUN_0085dee0	ref_func_addr=0x0085dee0	ref_insn_index=299
+name=switchD	namespace=switchD_00d5c516	orig_addr=0x00c5c516	segment=.text	kind=label
+name=switchdataD_01150f78	namespace=switchD_00d5c516	orig_addr=0x01050f78	segment=.rodata	kind=label	ref_func=FUN_00c5c500	ref_func_addr=0x00c5c500	ref_insn_index=2
+name=switchD	namespace=switchD_00a404e3	orig_addr=0x009404e3	segment=.text	kind=label
+name=default	namespace=switchD_00a404e3	orig_addr=0x00940610	segment=.text	kind=label
+name=switchdataD_01101cdc	namespace=switchD_00a404e3	orig_addr=0x01001cdc	segment=.rodata	kind=label	ref_func=FUN_009404b0	ref_func_addr=0x009404b0	ref_insn_index=4
+name=switchD	namespace=switchD_008d11c7	orig_addr=0x007d11c7	segment=.text	kind=label
+name=default	namespace=switchD_008d11c7	orig_addr=0x007d12a0	segment=.text	kind=label
+name=switchdataD_010d8430	namespace=switchD_008d11c7	orig_addr=0x00fd8430	segment=.rodata	kind=label	ref_func=FUN_007d1180	ref_func_addr=0x007d1180	ref_insn_index=19
+name=switchD	namespace=switchD_0095f379	orig_addr=0x0085f379	segment=.text	kind=label
+name=switchdataD_010e6128	namespace=switchD_0095f379	orig_addr=0x00fe6128	segment=.rodata	kind=label	ref_func=FUN_0085dee0	ref_func_addr=0x0085dee0	ref_insn_index=1043
+name=switchD	namespace=switchD_00960dab	orig_addr=0x00860dab	segment=.text	kind=label
+name=switchdataD_010e621c	namespace=switchD_00960dab	orig_addr=0x00fe621c	segment=.rodata	kind=label	ref_func=FUN_0085dee0	ref_func_addr=0x0085dee0	ref_insn_index=2491
+name=switchD	namespace=switchD_00960d3c	orig_addr=0x00860d3c	segment=.text	kind=label
+name=switchD	namespace=switchD_00d31b33	orig_addr=0x00c31b33	segment=.text	kind=label
+name=switchdataD_0114f264	namespace=switchD_00d31b33	orig_addr=0x0104f264	segment=.rodata	kind=label	ref_func=FUN_00c31b00	ref_func_addr=0x00c31b00	ref_insn_index=14
+name=switchdataD_010e61a0	namespace=switchD_00960d3c	orig_addr=0x00fe61a0	segment=.rodata	kind=label	ref_func=FUN_0085dee0	ref_func_addr=0x0085dee0	ref_insn_index=2467
+name=switchD	namespace=switchD_00b388a9	orig_addr=0x00a388a9	segment=.text	kind=label
+name=default	namespace=switchD_00b388a9	orig_addr=0x00a389e0	segment=.text	kind=label
+name=switchdataD_0110d6e4	namespace=switchD_00b388a9	orig_addr=0x0100d6e4	segment=.rodata	kind=label	ref_func=FUN_00a38890	ref_func_addr=0x00a38890	ref_insn_index=2
+name=switchD	namespace=switchD_0096114e	orig_addr=0x0086114e	segment=.text	kind=label
+name=switchdataD_010e62a4	namespace=switchD_0096114e	orig_addr=0x00fe62a4	segment=.rodata	kind=label	ref_func=FUN_0085dee0	ref_func_addr=0x0085dee0	ref_insn_index=2743
+name=switchD	namespace=switchD_007f13d5	orig_addr=0x006f13d5	segment=.text	kind=label
+name=default	namespace=switchD_007f13d5	orig_addr=0x006f0ff0	segment=.text	kind=label
+name=switchdataD_010d56b8	namespace=switchD_007f13d5	orig_addr=0x00fd56b8	segment=.rodata	kind=label	ref_func=FUN_006effb0	ref_func_addr=0x006effb0	ref_insn_index=1064
+name=switchD	namespace=switchD_008963c3	orig_addr=0x007963c3	segment=.text	kind=label
+name=default	namespace=switchD_008963c3	orig_addr=0x007963e0	segment=.text	kind=label
+name=switchD	namespace=switchD_00625443	orig_addr=0x00525443	segment=.text	kind=label
+name=switchdataD_010d3cf0	namespace=switchD_00625443	orig_addr=0x00fd3cf0	segment=.rodata	kind=label	ref_func=FUN_00525420	ref_func_addr=0x00525420	ref_insn_index=3
+name=switchdataD_010d7ce4	namespace=switchD_008963c3	orig_addr=0x00fd7ce4	segment=.rodata	kind=label	ref_func=FUN_00796350	ref_func_addr=0x00796350	ref_insn_index=24
+name=switchD	namespace=switchD_00896474	orig_addr=0x00796474	segment=.text	kind=label
+name=default	namespace=switchD_00896474	orig_addr=0x007963e0	segment=.text	kind=label
+name=switchdataD_010d7cf8	namespace=switchD_00896474	orig_addr=0x00fd7cf8	segment=.rodata	kind=label	ref_func=FUN_00796350	ref_func_addr=0x00796350	ref_insn_index=64
+name=switchD	namespace=switchD_00d9f83b	orig_addr=0x00c9f83b	segment=.text	kind=label
+name=switchdataD_0115410c	namespace=switchD_00d9f83b	orig_addr=0x0105410c	segment=.rodata	kind=label	ref_func=FUN_00c9f5e0	ref_func_addr=0x00c9f5e0	ref_insn_index=140
+name=switchD	namespace=switchD_00a31288	orig_addr=0x00931288	segment=.text	kind=label
+name=switchdataD_01100ec4	namespace=switchD_00a31288	orig_addr=0x01000ec4	segment=.rodata	kind=label	ref_func=FUN_00931270	ref_func_addr=0x00931270	ref_insn_index=3
+name=switchD	namespace=switchD_00bcc43e	orig_addr=0x00acc43e	segment=.text	kind=label
+name=switchdataD_0111e338	namespace=switchD_00bcc43e	orig_addr=0x0101e338	segment=.rodata	kind=label	ref_func=FUN_00acc420	ref_func_addr=0x00acc420	ref_insn_index=2
+name=switchD	namespace=switchD_00a31445	orig_addr=0x00931445	segment=.text	kind=label
+name=switchdataD_01100fb8	namespace=switchD_00a31445	orig_addr=0x01000fb8	segment=.rodata	kind=label	ref_func=FUN_00931420	ref_func_addr=0x00931420	ref_insn_index=6
+name=switchD	namespace=switchD_003552f5	orig_addr=0x002552f5	segment=.text	kind=label
+name=switchdataD_00db7c78	namespace=switchD_003552f5	orig_addr=0x00cb7c78	segment=.rodata	kind=label	ref_func=FUN_00254eb0	ref_func_addr=0x00254eb0	ref_insn_index=260
+name=switchD	namespace=switchD_00694e6d	orig_addr=0x00594e6d	segment=.text	kind=label
+name=default	namespace=switchD_00694e6d	orig_addr=0x00594fc0	segment=.text	kind=label
+name=switchdataD_010d3f34	namespace=switchD_00694e6d	orig_addr=0x00fd3f34	segment=.rodata	kind=label	ref_func=jag::game::SkyBoxType::DecodeType	ref_func_addr=0x00594e50	ref_insn_index=2
+name=switchD	namespace=switchD_00d755e8	orig_addr=0x00c755e8	segment=.text	kind=label
+name=switchdataD_01152528	namespace=switchD_00d755e8	orig_addr=0x01052528	segment=.rodata	kind=label	ref_func=FUN_00c75440	ref_func_addr=0x00c75440	ref_insn_index=84
+name=switchD	namespace=switchD_00d77ccb	orig_addr=0x00c77ccb	segment=.text	kind=label
+name=switchdataD_01152620	namespace=switchD_00d77ccb	orig_addr=0x01052620	segment=.rodata	kind=label	ref_func=FUN_00c77b50	ref_func_addr=0x00c77b50	ref_insn_index=73
+name=switchD	namespace=switchD_005d8ad3	orig_addr=0x004d8ad3	segment=.text	kind=label
+name=default	namespace=switchD_005d8ad3	orig_addr=0x004d9f63	segment=.text	kind=label
+name=switchdataD_010d37b4	namespace=switchD_005d8ad3	orig_addr=0x00fd37b4	segment=.rodata	kind=label	ref_func=jag::game::ObjType::DecodeType	ref_func_addr=0x004d8aa0	ref_insn_index=5
+name=switchD	namespace=switchD_007936e6	orig_addr=0x006936e6	segment=.text	kind=label
+name=switchdataD_010d4a2c	namespace=switchD_007936e6	orig_addr=0x00fd4a2c	segment=.rodata	kind=label	ref_func=FUN_006933e0	ref_func_addr=0x006933e0	ref_insn_index=117
+name=switchD	namespace=switchD_007938a8	orig_addr=0x006938a8	segment=.text	kind=label
+name=default	namespace=switchD_007938a8	orig_addr=0x00694af3	segment=.text	kind=label
+name=switchdataD_010d4a58	namespace=switchD_007938a8	orig_addr=0x00fd4a58	segment=.rodata	kind=label	ref_func=FUN_006933e0	ref_func_addr=0x006933e0	ref_insn_index=230
+name=switchD	namespace=switchD_00793ad4	orig_addr=0x00693ad4	segment=.text	kind=label
+name=default	namespace=switchD_00793ad4	orig_addr=0x00694afa	segment=.text	kind=label
+name=switchdataD_010d4a70	namespace=switchD_00793ad4	orig_addr=0x00fd4a70	segment=.rodata	kind=label	ref_func=FUN_006933e0	ref_func_addr=0x006933e0	ref_insn_index=351
+name=switchD	namespace=switchD_00793c8c	orig_addr=0x00693c8c	segment=.text	kind=label
+name=default	namespace=switchD_00793c8c	orig_addr=0x00694aec	segment=.text	kind=label
+name=switchdataD_010d4aa0	namespace=switchD_00793c8c	orig_addr=0x00fd4aa0	segment=.rodata	kind=label	ref_func=FUN_006933e0	ref_func_addr=0x006933e0	ref_insn_index=447
+name=switchD	namespace=switchD_00793b7d	orig_addr=0x00693b7d	segment=.text	kind=label
+name=default	namespace=switchD_00793b7d	orig_addr=0x00694ae5	segment=.text	kind=label
+name=switchdataD_010d4a88	namespace=switchD_00793b7d	orig_addr=0x00fd4a88	segment=.rodata	kind=label	ref_func=FUN_006933e0	ref_func_addr=0x006933e0	ref_insn_index=387
+name=switchD	namespace=switchD_00d5fd51	orig_addr=0x00c5fd51	segment=.text	kind=label
+name=switchdataD_01151558	namespace=switchD_00d5fd51	orig_addr=0x01051558	segment=.rodata	kind=label	ref_func=FUN_00c5fc60	ref_func_addr=0x00c5fc60	ref_insn_index=68
+name=switchD	namespace=switchD_00d5fe1a	orig_addr=0x00c5fe1a	segment=.text	kind=label
+name=switchdataD_01151620	namespace=switchD_00d5fe1a	orig_addr=0x01051620	segment=.rodata	kind=label	ref_func=FUN_00c5fc60	ref_func_addr=0x00c5fc60	ref_insn_index=127
+name=switchD	namespace=switchD_008e94ec	orig_addr=0x007e94ec	segment=.text	kind=label
+name=default	namespace=switchD_008e94ec	orig_addr=0x007e9b16	segment=.text	kind=label
+name=switchD	namespace=switchD_0083e656	orig_addr=0x0073e656	segment=.text	kind=label
+name=default	namespace=switchD_0083e656	orig_addr=0x0073e97f	segment=.text	kind=label
+name=switchdataD_010d5a04	namespace=switchD_0083e656	orig_addr=0x00fd5a04	segment=.rodata	kind=label	ref_func=FUN_0073e4e0	ref_func_addr=0x0073e4e0	ref_insn_index=90
+name=switchdataD_010defe8	namespace=switchD_008e94ec	orig_addr=0x00fdefe8	segment=.rodata	kind=label	ref_func=FUN_007e94d0	ref_func_addr=0x007e94d0	ref_insn_index=2
+name=switchD	namespace=switchD_00d7dc3a	orig_addr=0x00c7dc3a	segment=.text	kind=label
+name=switchdataD_01152978	namespace=switchD_00d7dc3a	orig_addr=0x01052978	segment=.rodata	kind=label	ref_func=FUN_00c7d9d0	ref_func_addr=0x00c7d9d0	ref_insn_index=142
+name=switchD	namespace=switchD_00794d05	orig_addr=0x00694d05	segment=.text	kind=label
+name=switchdataD_010d4ab8	namespace=switchD_00794d05	orig_addr=0x00fd4ab8	segment=.rodata	kind=label	ref_func=FUN_00694bd0	ref_func_addr=0x00694bd0	ref_insn_index=64
+name=switchD	namespace=switchD_00794eae	orig_addr=0x00694eae	segment=.text	kind=label
+name=default	namespace=switchD_00794eae	orig_addr=0x006954cf	segment=.text	kind=label
+name=switchdataD_010d4adc	namespace=switchD_00794eae	orig_addr=0x00fd4adc	segment=.rodata	kind=label	ref_func=FUN_00694bd0	ref_func_addr=0x00694bd0	ref_insn_index=155
+name=switchD	namespace=switchD_00795082	orig_addr=0x00695082	segment=.text	kind=label
+name=default	namespace=switchD_00795082	orig_addr=0x006954d6	segment=.text	kind=label
+name=switchdataD_010d4af4	namespace=switchD_00795082	orig_addr=0x00fd4af4	segment=.rodata	kind=label	ref_func=FUN_00694bd0	ref_func_addr=0x00694bd0	ref_insn_index=254
+name=switchD	namespace=switchD_00db1b58	orig_addr=0x00cb1b58	segment=.text	kind=label
+name=switchdataD_01154e88	namespace=switchD_00db1b58	orig_addr=0x01054e88	segment=.rodata	kind=label	ref_func=FUN_00cb1b30	ref_func_addr=0x00cb1b30	ref_insn_index=7
+name=switchD	namespace=switchD_003daf42	orig_addr=0x002daf42	segment=.text	kind=label
+name=default	namespace=switchD_003daf42	orig_addr=0x002db030	segment=.text	kind=label
+name=switchdataD_010afc24	namespace=switchD_003daf42	orig_addr=0x00fafc24	segment=.rodata	kind=label	ref_func=FUN_002daf00	ref_func_addr=0x002daf00	ref_insn_index=15
+name=switchD	namespace=switchD_0036bbd4	orig_addr=0x0026bbd4	segment=.text	kind=label
+name=switchdataD_010adecc	namespace=switchD_0036bbd4	orig_addr=0x00fadecc	segment=.rodata	kind=label	ref_func=jag::ClientProt::SendOpTargetOption_CS2	ref_func_addr=0x0026baa0	ref_insn_index=72
+name=switchD	namespace=switchD_00c741a3	orig_addr=0x00b741a3	segment=.text	kind=label
+name=switchdataD_0114ae94	namespace=switchD_00c741a3	orig_addr=0x0104ae94	segment=.rodata	kind=label	ref_func=FUN_00b74160	ref_func_addr=0x00b74160	ref_insn_index=14
+name=switchD	namespace=switchD_002ae37c	orig_addr=0x001ae37c	segment=.text	kind=label
+name=default	namespace=switchD_002ae37c	orig_addr=0x001ae3e8	segment=.text	kind=label
+name=switchdataD_00db6e04	namespace=switchD_002ae37c	orig_addr=0x00cb6e04	segment=.rodata	kind=label
+name=switchD	namespace=switchD_00aa90b2	orig_addr=0x009a90b2	segment=.text	kind=label
+name=default	namespace=switchD_00aa90b2	orig_addr=0x009a9170	segment=.text	kind=label
+name=switchdataD_0110700c	namespace=switchD_00aa90b2	orig_addr=0x0100700c	segment=.rodata	kind=label	ref_func=FUN_009a9070	ref_func_addr=0x009a9070	ref_insn_index=14
+name=switchD	namespace=switchD_00ad1eac	orig_addr=0x009d1eac	segment=.text	kind=label
+name=switchdataD_01109624	namespace=switchD_00ad1eac	orig_addr=0x01009624	segment=.rodata	kind=label	ref_func=FUN_009d1e90	ref_func_addr=0x009d1e90	ref_insn_index=3
+name=switchD	namespace=switchD_0099251a	orig_addr=0x0089251a	segment=.text	kind=label
+name=default	namespace=switchD_0099251a	orig_addr=0x00892561	segment=.text	kind=label
+name=switchdataD_010e6864	namespace=switchD_0099251a	orig_addr=0x00fe6864	segment=.rodata	kind=label	ref_func=FUN_008924b0	ref_func_addr=0x008924b0	ref_insn_index=5
+name=switchD	namespace=switchD_0090366a	orig_addr=0x0080366a	segment=.text	kind=label
+name=switchdataD_010df654	namespace=switchD_0090366a	orig_addr=0x00fdf654	segment=.rodata	kind=label	ref_func=FUN_008035c0	ref_func_addr=0x008035c0	ref_insn_index=29
+name=switchD	namespace=switchD_00a110b8	orig_addr=0x009110b8	segment=.text	kind=label
+name=switchdataD_010fe8c8	namespace=switchD_00a110b8	orig_addr=0x00ffe8c8	segment=.rodata	kind=label	ref_func=FUN_00911070	ref_func_addr=0x00911070	ref_insn_index=10
+name=switchD	namespace=switchD_00847200	orig_addr=0x00747200	segment=.text	kind=label
+name=default	namespace=switchD_00847200	orig_addr=0x00748621	segment=.text	kind=label
+name=switchdataD_010d5a1c	namespace=switchD_00847200	orig_addr=0x00fd5a1c	segment=.rodata	kind=label	ref_func=FUN_00746660	ref_func_addr=0x00746660	ref_insn_index=496
+name=switchD	namespace=switchD_007d49d2	orig_addr=0x006d49d2	segment=.text	kind=label
+name=switchdataD_010d50d0	namespace=switchD_007d49d2	orig_addr=0x00fd50d0	segment=.rodata	kind=label	ref_func=FUN_006d4360	ref_func_addr=0x006d4360	ref_insn_index=404
+name=switchD	namespace=switchD_00b3e735	orig_addr=0x00a3e735	segment=.text	kind=label
+name=switchdataD_0110d76c	namespace=switchD_00b3e735	orig_addr=0x0100d76c	segment=.rodata	kind=label	ref_func=FUN_00a3e690	ref_func_addr=0x00a3e690	ref_insn_index=26
+name=switchD	namespace=switchD_00a30a8d	orig_addr=0x00930a8d	segment=.text	kind=label
+name=switchdataD_01100ea8	namespace=switchD_00a30a8d	orig_addr=0x01000ea8	segment=.rodata	kind=label	ref_func=FUN_0092ede0	ref_func_addr=0x0092ede0	ref_insn_index=1322
+name=switchD	namespace=switchD_00a10951	orig_addr=0x00910951	segment=.text	kind=label
+name=switchdataD_010fe898	namespace=switchD_00a10951	orig_addr=0x00ffe898	segment=.rodata	kind=label	ref_func=FUN_00910900	ref_func_addr=0x00910900	ref_insn_index=5
+name=switchD	namespace=switchD_00d5ce05	orig_addr=0x00c5ce05	segment=.text	kind=label
+name=switchdataD_011511f8	namespace=switchD_00d5ce05	orig_addr=0x010511f8	segment=.rodata	kind=label	ref_func=FUN_00c5cde0	ref_func_addr=0x00c5cde0	ref_insn_index=4
+name=switchD	namespace=switchD_00946b59	orig_addr=0x00846b59	segment=.text	kind=label
+name=default	namespace=switchD_00946b59	orig_addr=0x00846c00	segment=.text	kind=label
+name=switchdataD_010e5fd4	namespace=switchD_00946b59	orig_addr=0x00fe5fd4	segment=.rodata	kind=label	ref_func=FUN_00846b40	ref_func_addr=0x00846b40	ref_insn_index=2
+name=switchD	namespace=switchD_00b0fea9	orig_addr=0x00a0fea9	segment=.text	kind=label
+name=default	namespace=switchD_00b0fea9	orig_addr=0x00a10010	segment=.text	kind=label
+name=switchdataD_0110cbd4	namespace=switchD_00b0fea9	orig_addr=0x0100cbd4	segment=.rodata	kind=label	ref_func=FUN_00a0fe90	ref_func_addr=0x00a0fe90	ref_insn_index=2
+name=switchD	namespace=switchD_00a1b609	orig_addr=0x0091b609	segment=.text	kind=label
+name=switchdataD_010fef48	namespace=switchD_00a1b609	orig_addr=0x00ffef48	segment=.rodata	kind=label	ref_func=FUN_0091b550	ref_func_addr=0x0091b550	ref_insn_index=38
+name=switchD	namespace=switchD_00a1b659	orig_addr=0x0091b659	segment=.text	kind=label
+name=switchdataD_010fef9c	namespace=switchD_00a1b659	orig_addr=0x00ffef9c	segment=.rodata	kind=label	ref_func=FUN_0091b550	ref_func_addr=0x0091b550	ref_insn_index=58
+name=switchD	namespace=switchD_00767e9d	orig_addr=0x00667e9d	segment=.text	kind=label
+name=default	namespace=switchD_00767e9d	orig_addr=0x0066816f	segment=.text	kind=label
+name=switchdataD_010d4a14	namespace=switchD_00767e9d	orig_addr=0x00fd4a14	segment=.rodata	kind=label	ref_func=FUN_00667d40	ref_func_addr=0x00667d40	ref_insn_index=79
+name=switchD	namespace=switchD_00d8e599	orig_addr=0x00c8e599	segment=.text	kind=label
+name=switchdataD_011531e0	namespace=switchD_00d8e599	orig_addr=0x010531e0	segment=.rodata	kind=label	ref_func=FUN_00c8e580	ref_func_addr=0x00c8e580	ref_insn_index=4
+name=switchD	namespace=switchD_00a2c339	orig_addr=0x0092c339	segment=.text	kind=label
+name=switchdataD_01100c1c	namespace=switchD_00a2c339	orig_addr=0x01000c1c	segment=.rodata	kind=label	ref_func=FUN_0092bc40	ref_func_addr=0x0092bc40	ref_insn_index=350
+name=switchD	namespace=switchD_00d99dac	orig_addr=0x00c99dac	segment=.text	kind=label
+name=switchdataD_01153c50	namespace=switchD_00d99dac	orig_addr=0x01053c50	segment=.rodata	kind=label	ref_func=FUN_00c99d80	ref_func_addr=0x00c99d80	ref_insn_index=7
+name=switchD	namespace=switchD_00d9f196	orig_addr=0x00c9f196	segment=.text	kind=label
+name=switchdataD_011540f8	namespace=switchD_00d9f196	orig_addr=0x010540f8	segment=.rodata	kind=label	ref_func=FUN_00c9ef30	ref_func_addr=0x00c9ef30	ref_insn_index=144
+name=switchD	namespace=switchD_00d3b35a	orig_addr=0x00c3b35a	segment=.text	kind=label
+name=switchdataD_0114fa20	namespace=switchD_00d3b35a	orig_addr=0x0104fa20	segment=.rodata	kind=label	ref_func=FUN_00c3b210	ref_func_addr=0x00c3b210	ref_insn_index=21
+name=switchD	namespace=switchD_0025550f	orig_addr=0x0015550f	segment=.text	kind=label
+name=default	namespace=switchD_0025550f	orig_addr=0x0015560e	segment=.text	kind=label
+name=switchdataD_00db6978	namespace=switchD_0025550f	orig_addr=0x00cb6978	segment=.rodata	kind=label	ref_func=jag::PlayerList::GetHighResolutionPlayerPosition	ref_func_addr=0x00154d30	ref_insn_index=482
+name=switchD	namespace=switchD_00d80af8	orig_addr=0x00c80af8	segment=.text	kind=label
+name=switchdataD_011529a0	namespace=switchD_00d80af8	orig_addr=0x010529a0	segment=.rodata	kind=label	ref_func=FUN_00c80900	ref_func_addr=0x00c80900	ref_insn_index=105
+name=switchD	namespace=switchD_00c68883	orig_addr=0x00b68883	segment=.text	kind=label
+name=switchdataD_0114a4b8	namespace=switchD_00c68883	orig_addr=0x0104a4b8	segment=.rodata	kind=label	ref_func=FUN_00b68850	ref_func_addr=0x00b68850	ref_insn_index=12
+name=switchD	namespace=switchD_00c688b7	orig_addr=0x00b688b7	segment=.text	kind=label
+name=switchdataD_0114a5dc	namespace=switchD_00c688b7	orig_addr=0x0104a5dc	segment=.rodata	kind=label	ref_func=FUN_00b68850	ref_func_addr=0x00b68850	ref_insn_index=22
+name=switchD	namespace=switchD_0069610d	orig_addr=0x0059610d	segment=.text	kind=label
+name=default	namespace=switchD_0069610d	orig_addr=0x00596430	segment=.text	kind=label
+name=switchdataD_010d413c	namespace=switchD_0069610d	orig_addr=0x00fd413c	segment=.rodata	kind=label	ref_func=jag::game::HeadbarType::DecodeType	ref_func_addr=0x005960e0	ref_insn_index=3
+name=switchD	namespace=switchD_00d8ad3c	orig_addr=0x00c8ad3c	segment=.text	kind=label
+name=switchdataD_01152d9c	namespace=switchD_00d8ad3c	orig_addr=0x01052d9c	segment=.rodata	kind=label	ref_func=FUN_00c8ab80	ref_func_addr=0x00c8ab80	ref_insn_index=81
+name=switchD	namespace=switchD_00b3f1c6	orig_addr=0x00a3f1c6	segment=.text	kind=label
+name=switchdataD_0110d7f0	namespace=switchD_00b3f1c6	orig_addr=0x0100d7f0	segment=.rodata	kind=label	ref_func=FUN_00a3f1b0	ref_func_addr=0x00a3f1b0	ref_insn_index=3
+name=switchD	namespace=switchD_00da422b	orig_addr=0x00ca422b	segment=.text	kind=label
+name=switchdataD_01154204	namespace=switchD_00da422b	orig_addr=0x01054204	segment=.rodata	kind=label	ref_func=FUN_00ca40b0	ref_func_addr=0x00ca40b0	ref_insn_index=73
+name=switchD	namespace=switchD_00da2112	orig_addr=0x00ca2112	segment=.text	kind=label
+name=switchdataD_01154120	namespace=switchD_00da2112	orig_addr=0x01054120	segment=.rodata	kind=label	ref_func=FUN_00ca1f90	ref_func_addr=0x00ca1f90	ref_insn_index=74
+name=switchD	namespace=switchD_0074812d	orig_addr=0x0064812d	segment=.text	kind=label
+name=switchdataD_010d47e4	namespace=switchD_0074812d	orig_addr=0x00fd47e4	segment=.rodata	kind=label	ref_func=FUN_00647fc0	ref_func_addr=0x00647fc0	ref_insn_index=71
+name=switchD	namespace=switchD_00a47031	orig_addr=0x00947031	segment=.text	kind=label
+name=switchdataD_011021f0	namespace=switchD_00a47031	orig_addr=0x010021f0	segment=.rodata	kind=label	ref_func=FUN_00946f80	ref_func_addr=0x00946f80	ref_insn_index=28
+name=switchD	namespace=switchD_00992e8e	orig_addr=0x00892e8e	segment=.text	kind=label
+name=default	namespace=switchD_00992e8e	orig_addr=0x00892f6b	segment=.text	kind=label
+name=switchdataD_010e6c3c	namespace=switchD_00992e8e	orig_addr=0x00fe6c3c	segment=.rodata	kind=label	ref_func=FUN_00892e30	ref_func_addr=0x00892e30	ref_insn_index=23
+name=switchD	namespace=switchD_009932ac	orig_addr=0x008932ac	segment=.text	kind=label
+name=default	namespace=switchD_009932ac	orig_addr=0x008949d0	segment=.text	kind=label
+name=switchdataD_010e6c74	namespace=switchD_009932ac	orig_addr=0x00fe6c74	segment=.rodata	kind=label	ref_func=FUN_00892e30	ref_func_addr=0x00892e30	ref_insn_index=275
+name=switchD	namespace=switchD_00993ad1	orig_addr=0x00893ad1	segment=.text	kind=label
+name=default	namespace=switchD_00993ad1	orig_addr=0x00894ece	segment=.text	kind=label
+name=switchdataD_010e6c9c	namespace=switchD_00993ad1	orig_addr=0x00fe6c9c	segment=.rodata	kind=label	ref_func=FUN_00892e30	ref_func_addr=0x00892e30	ref_insn_index=772
+name=switchD	namespace=switchD_00d2ea8a	orig_addr=0x00c2ea8a	segment=.text	kind=label
+name=switchdataD_0114f060	namespace=switchD_00d2ea8a	orig_addr=0x0104f060	segment=.rodata	kind=label	ref_func=FUN_00c2ea40	ref_func_addr=0x00c2ea40	ref_insn_index=5
+name=switchD	namespace=switchD_00d2eab8	orig_addr=0x00c2eab8	segment=.text	kind=label
+name=switchdataD_0114f14c	namespace=switchD_00d2eab8	orig_addr=0x0104f14c	segment=.rodata	kind=label	ref_func=FUN_00c2ea40	ref_func_addr=0x00c2ea40	ref_insn_index=6
+name=switchdataD_0114f15c	namespace=switchD_00d2eab8	orig_addr=0x0104f15c	segment=.rodata	kind=label
+name=switchdataD_0114f16c	namespace=switchD_00d2eab8	orig_addr=0x0104f16c	segment=.rodata	kind=label
+name=switchdataD_0114f17c	namespace=switchD_00d2eab8	orig_addr=0x0104f17c	segment=.rodata	kind=label
+name=switchdataD_0114f18c	namespace=switchD_00d2eab8	orig_addr=0x0104f18c	segment=.rodata	kind=label
+name=switchdataD_0114f19c	namespace=switchD_00d2eab8	orig_addr=0x0104f19c	segment=.rodata	kind=label
+name=switchdataD_0114f1ac	namespace=switchD_00d2eab8	orig_addr=0x0104f1ac	segment=.rodata	kind=label
+name=switchdataD_0114f1bc	namespace=switchD_00d2eab8	orig_addr=0x0104f1bc	segment=.rodata	kind=label
+name=switchD	namespace=switchD_00d47f1d	orig_addr=0x00c47f1d	segment=.text	kind=label
+name=default	namespace=switchD_00d47f1d	orig_addr=0x00c4e237	segment=.text	kind=label
+name=switchdataD_0114fa74	namespace=switchD_00d47f1d	orig_addr=0x0104fa74	segment=.rodata	kind=label	ref_func=jag::Js5Compression::Decompress	ref_func_addr=0x00c47a40	ref_insn_index=226
+name=switchD	namespace=switchD_00d60481	orig_addr=0x00c60481	segment=.text	kind=label
+name=switchdataD_011516f0	namespace=switchD_00d60481	orig_addr=0x010516f0	segment=.rodata	kind=label	ref_func=FUN_00c60420	ref_func_addr=0x00c60420	ref_insn_index=21
+name=switchD	namespace=switchD_00a386b5	orig_addr=0x009386b5	segment=.text	kind=label
+name=switchdataD_01101b68	namespace=switchD_00a386b5	orig_addr=0x01001b68	segment=.rodata	kind=label	ref_func=FUN_009385f0	ref_func_addr=0x009385f0	ref_insn_index=20
+name=switchD	namespace=switchD_00d63e26	orig_addr=0x00c63e26	segment=.text	kind=label
+name=default	namespace=switchD_00d63e26	orig_addr=0x00c60640	segment=.text	kind=label
+name=switchdataD_01151830	namespace=switchD_00d63e26	orig_addr=0x01051830	segment=.rodata	kind=label	ref_func=FUN_00c60420	ref_func_addr=0x00c60420	ref_insn_index=3123
+name=switchD	namespace=switchD_00d82460	orig_addr=0x00c82460	segment=.text	kind=label
+name=switchdataD_01152a84	namespace=switchD_00d82460	orig_addr=0x01052a84	segment=.rodata	kind=label	ref_func=FUN_00c822c0	ref_func_addr=0x00c822c0	ref_insn_index=78
+name=switchD	namespace=switchD_009d807e	orig_addr=0x008d807e	segment=.text	kind=label
+name=default	namespace=switchD_009d807e	orig_addr=0x008d8090	segment=.text	kind=label
+name=switchdataD_010fc3dc	namespace=switchD_009d807e	orig_addr=0x00ffc3dc	segment=.rodata	kind=label	ref_func=FUN_008d7f00	ref_func_addr=0x008d7f00	ref_insn_index=72
+name=switchD	namespace=switchD_009d816a	orig_addr=0x008d816a	segment=.text	kind=label
+name=switchdataD_010fc3fc	namespace=switchD_009d816a	orig_addr=0x00ffc3fc	segment=.rodata	kind=label	ref_func=FUN_008d7f00	ref_func_addr=0x008d7f00	ref_insn_index=83
+name=switchD	namespace=switchD_00924491	orig_addr=0x00824491	segment=.text	kind=label
+name=switchdataD_010e0c78	namespace=switchD_00924491	orig_addr=0x00fe0c78	segment=.rodata	kind=label	ref_func=FUN_008242b0	ref_func_addr=0x008242b0	ref_insn_index=85
+name=switchD	namespace=switchD_00d7e4da	orig_addr=0x00c7e4da	segment=.text	kind=label
+name=switchdataD_0115298c	namespace=switchD_00d7e4da	orig_addr=0x0105298c	segment=.rodata	kind=label	ref_func=FUN_00c7e270	ref_func_addr=0x00c7e270	ref_insn_index=142
+name=switchD	namespace=switchD_00c94575	orig_addr=0x00b94575	segment=.text	kind=label
+name=default	namespace=switchD_00c94575	orig_addr=0x00b98ca0	segment=.text	kind=label
+name=switchdataD_0114bfec	namespace=switchD_00c94575	orig_addr=0x0104bfec	segment=.rodata	kind=label	ref_func=FUN_00b94410	ref_func_addr=0x00b94410	ref_insn_index=61
+name=switchD	namespace=switchD_00b63570	orig_addr=0x00a63570	segment=.text	kind=label
+name=switchdataD_0110e860	namespace=switchD_00b63570	orig_addr=0x0100e860	segment=.rodata	kind=label	ref_func=FUN_00a633d0	ref_func_addr=0x00a633d0	ref_insn_index=72
+name=Client	namespace=jag::Client	orig_addr=0x015bf1f8	segment=.bss	kind=label
+name=Client_secondary	namespace=jag::Client	orig_addr=0x0139faf0	segment=.bss	kind=label
+name=g_highlightCategoryTable	namespace=jag	orig_addr=0x013a3de0	segment=.bss	kind=label
+name=g_highlightLocalplayerSilhouetteMode	namespace=jag	orig_addr=0x0139124c	segment=.data	kind=label
+name=g_highlightBaseAlpha0	namespace=jag	orig_addr=0x0139163c	segment=.data	kind=label
+name=g_highlightBaseAlpha1	namespace=jag	orig_addr=0x01391640	segment=.data	kind=label
+name=vftable	namespace=jag::HintArrow	orig_addr=0x01363170	segment=.data.rel.ro	kind=label
+name=vftable	namespace=jag::HintArrowPointer	orig_addr=0x013632a8	segment=.data.rel.ro	kind=label
+name=g_mouseY	namespace=jag::input::Input	orig_addr=0x015b9734	segment=.bss	kind=label
+name=g_mouseX	namespace=jag::input::Input	orig_addr=0x015b9738	segment=.bss	kind=label
+name=g_leftButtonState	namespace=jag::input::Input	orig_addr=0x015b973c	segment=.bss	kind=label
+name=RSA_LOGIN_MODULUS_HEX	namespace=jag::LoginManager	orig_addr=0x0104a740	segment=.rodata	kind=label	ref_func=jag::GlobalRSAKeys_Init	ref_func_addr=0x000e8f90	ref_insn_index=39
+name=g_clientErrorReporterRoot	namespace=jag	orig_addr=0x015beb98	segment=.bss	kind=label
+name=g_dladdrBaseAnchor	namespace=jag	orig_addr=0x015bec68	segment=.bss	kind=label
+name=g_fatalSignalSigaction	namespace=jag	orig_addr=0x015beb00	segment=.bss	kind=label
+name=g_baseLevel	namespace=jag::ZoneUpdate	orig_addr=0x013942a8	segment=.bss	kind=label
+name=g_baseTileX	namespace=jag::ZoneUpdate	orig_addr=0x013942ac	segment=.bss	kind=label
+name=g_baseTileY	namespace=jag::ZoneUpdate	orig_addr=0x013942b0	segment=.bss	kind=label

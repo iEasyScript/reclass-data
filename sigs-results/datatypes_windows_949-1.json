@@ -1,0 +1,2853 @@
+{
+  "version": "949-1",
+  "exported_from": "rs2client.exe",
+  "export_date": "2026-07-27T15:44:03",
+  "structs": [
+    {
+      "name": "_s__RTTIBaseClassDescriptor",
+      "category": "/",
+      "size": 28,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "pTypeDescriptor",
+          "length": 4,
+          "comment": "ref to TypeDescriptor (RTTI 0) for class"
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "numContainedBases",
+          "length": 4,
+          "comment": "count of extended classes in BaseClassArray (RTTI 2)"
+        },
+        {
+          "offset": 8,
+          "type": "PMD",
+          "name": "where",
+          "length": 12,
+          "comment": "member displacement structure"
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "attributes",
+          "length": 4,
+          "comment": "bit flags"
+        },
+        {
+          "offset": 24,
+          "type": "ImageBaseOffset32",
+          "name": "pClassHierarchyDescriptor",
+          "length": 4,
+          "comment": "ref to ClassHierarchyDescriptor (RTTI 3) for class"
+        }
+      ]
+    },
+    {
+      "name": "_s_UnwindMapEntry",
+      "category": "/",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "__ehstate_t",
+          "name": "toState",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "ImageBaseOffset32",
+          "name": "action",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "CLIENT_ID",
+      "category": "/",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "void *",
+          "name": "UniqueProcess",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "void *",
+          "name": "UniqueThread",
+          "length": 8,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "_s_FuncInfo",
+      "category": "/",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "uint",
+          "name": "magicNumber_and_bbtFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "__ehstate_t",
+          "name": "maxState",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "ImageBaseOffset32",
+          "name": "dispUnwindMap",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "uint",
+          "name": "nTryBlocks",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "dispTryBlockMap",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "uint",
+          "name": "nIPMapEntries",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "ImageBaseOffset32",
+          "name": "dispIPToStateMap",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "int",
+          "name": "dispUnwindHelp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "ImageBaseOffset32",
+          "name": "dispESTypeList",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "int",
+          "name": "EHFlags",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "_s__RTTIClassHierarchyDescriptor",
+      "category": "/",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "attributes",
+          "length": 4,
+          "comment": "bit flags"
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "numBaseClasses",
+          "length": 4,
+          "comment": "number of base classes (i.e. rtti1Count)"
+        },
+        {
+          "offset": 12,
+          "type": "RTTIBaseClassDescriptor *32 __((image-base-relative)) *32 __((image-base-relative))",
+          "name": "pBaseClassArray",
+          "length": 4,
+          "comment": "ref to BaseClassArray (RTTI 2)"
+        }
+      ]
+    },
+    {
+      "name": "_s__RTTICompleteObjectLocator",
+      "category": "/",
+      "size": 20,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "offset",
+          "length": 4,
+          "comment": "offset of vbtable within class"
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "cdOffset",
+          "length": 4,
+          "comment": "constructor displacement offset"
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "pTypeDescriptor",
+          "length": 4,
+          "comment": "ref to TypeDescriptor (RTTI 0) for class"
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "pClassDescriptor",
+          "length": 4,
+          "comment": "ref to ClassHierarchyDescriptor (RTTI 3)"
+        }
+      ]
+    },
+    {
+      "name": "_IMAGE_RUNTIME_FUNCTION_ENTRY",
+      "category": "/",
+      "size": 12,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "BeginAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "EndAddress",
+          "length": 4,
+          "comment": "Apply ImageBaseOffset32 to see reference"
+        },
+        {
+          "offset": 8,
+          "type": "ImageBaseOffset32",
+          "name": "UnwindInfoAddressOrData",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "_s_IPToStateMapEntry",
+      "category": "/",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "Ip",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "__ehstate_t",
+          "name": "state",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct",
+      "category": "/",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword:31",
+          "name": "OffsetToDirectory",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 3,
+          "type": "dword:1",
+          "name": "DataIsDirectory",
+          "length": 1,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "TcpConnectionMessage",
+      "category": "/jag/net",
+      "size": 64,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "UINT",
+          "name": "protOpcode",
+          "length": 4,
+          "comment": "Init @0x8c120 writes prot->opcode; low byte becomes the first payload byte"
+        },
+        {
+          "offset": 4,
+          "type": "INT",
+          "name": "protSize",
+          "length": 4,
+          "comment": "-1 = g1 var, -2 = g2 var, else fixed; read back by FUN_000e9540 as the handler size arg"
+        },
+        {
+          "offset": 16,
+          "type": "void *",
+          "name": "bufAllocBase",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "BYTE *",
+          "name": "bufData",
+          "length": 8,
+          "comment": "src arg of ClientStream::Write in FlushClientMessages @0x2edb30"
+        },
+        {
+          "offset": 32,
+          "type": "ULONGLONG",
+          "name": "bufWritePos",
+          "length": 8,
+          "comment": "incremented per byte written; copied into payloadLength at enqueue time then zeroed"
+        },
+        {
+          "offset": 40,
+          "type": "INT",
+          "name": "payloadLength",
+          "length": 4,
+          "comment": "len arg of ClientStream::Write"
+        },
+        {
+          "offset": 56,
+          "type": "void *",
+          "name": "prot",
+          "length": 8,
+          "comment": "ProtEntry back-ptr; prot+0x48 is the eastl::function storage the dispatcher invokes"
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DOS_HEADER",
+      "category": "/DOS",
+      "size": 128,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "char[2]",
+          "name": "e_magic",
+          "length": 2,
+          "comment": "Magic number"
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "e_cblp",
+          "length": 2,
+          "comment": "Bytes of last page"
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "e_cp",
+          "length": 2,
+          "comment": "Pages in file"
+        },
+        {
+          "offset": 6,
+          "type": "word",
+          "name": "e_crlc",
+          "length": 2,
+          "comment": "Relocations"
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "e_cparhdr",
+          "length": 2,
+          "comment": "Size of header in paragraphs"
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "e_minalloc",
+          "length": 2,
+          "comment": "Minimum extra paragraphs needed"
+        },
+        {
+          "offset": 12,
+          "type": "word",
+          "name": "e_maxalloc",
+          "length": 2,
+          "comment": "Maximum extra paragraphs needed"
+        },
+        {
+          "offset": 14,
+          "type": "word",
+          "name": "e_ss",
+          "length": 2,
+          "comment": "Initial (relative) SS value"
+        },
+        {
+          "offset": 16,
+          "type": "word",
+          "name": "e_sp",
+          "length": 2,
+          "comment": "Initial SP value"
+        },
+        {
+          "offset": 18,
+          "type": "word",
+          "name": "e_csum",
+          "length": 2,
+          "comment": "Checksum"
+        },
+        {
+          "offset": 20,
+          "type": "word",
+          "name": "e_ip",
+          "length": 2,
+          "comment": "Initial IP value"
+        },
+        {
+          "offset": 22,
+          "type": "word",
+          "name": "e_cs",
+          "length": 2,
+          "comment": "Initial (relative) CS value"
+        },
+        {
+          "offset": 24,
+          "type": "word",
+          "name": "e_lfarlc",
+          "length": 2,
+          "comment": "File address of relocation table"
+        },
+        {
+          "offset": 26,
+          "type": "word",
+          "name": "e_ovno",
+          "length": 2,
+          "comment": "Overlay number"
+        },
+        {
+          "offset": 28,
+          "type": "word[4]",
+          "name": "e_res[4]",
+          "length": 8,
+          "comment": "Reserved words"
+        },
+        {
+          "offset": 36,
+          "type": "word",
+          "name": "e_oemid",
+          "length": 2,
+          "comment": "OEM identifier (for e_oeminfo)"
+        },
+        {
+          "offset": 38,
+          "type": "word",
+          "name": "e_oeminfo",
+          "length": 2,
+          "comment": "OEM information; e_oemid specific"
+        },
+        {
+          "offset": 40,
+          "type": "word[10]",
+          "name": "e_res2[10]",
+          "length": 20,
+          "comment": "Reserved words"
+        },
+        {
+          "offset": 60,
+          "type": "dword",
+          "name": "e_lfanew",
+          "length": 4,
+          "comment": "File address of new exe header"
+        },
+        {
+          "offset": 64,
+          "type": "byte[64]",
+          "name": "e_program",
+          "length": 64,
+          "comment": "Actual DOS program"
+        }
+      ]
+    },
+    {
+      "name": "<lambda_3e16ef9562a7dcce91392c22ab16ea36>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_stat64",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "EHExceptionRecord",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_7f2adfce497ff2baa965cd4f576ecfd1>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_TryBlockMapEntry",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_locale_data",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_HandlerType",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_lc_time_data",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_ESTypeList",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Mtx_internal_imp_t",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_seh_guarded_call<void>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_xDISPATCHER_CONTEXT",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Cnd_internal_imp_t",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Init_atexit",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "MRECmpImpl",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_2a444430fde8c29194d880d93eed5e8f>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_01a7098693036236037e7cdb9bca3d73>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_stdio_stream",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_multibyte_data",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "xtime",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__acrt_stdio_stream_mode",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_ffc046909424fd52df0ac47e64813305>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_410d79af7f07d98d83a3f525b3859a53>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_CatchableType",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_deferred_errno_cache",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_8dff2cf36a5417162780cd64fa2883ef>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_1d892b297fdedeee07ed8124eeb2f2fa>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_LocaleUpdate",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_38119f0e861e05405d8a144b9b982f0a>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__acrt_ptd",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_locale_pointers",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "basic_stringbuf<char,struct_std::char_traits<char>,class_std::allocator<char>_>",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Fac_tidy_reg_t",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "exception_ptr",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "shared_ptr<struct__EXCEPTION_RECORD_const_>",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "ios_base",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Init_locks",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Yarn<char>",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Locinfo",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Facet_base",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Lockit",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "string_input_adapter<char>",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "input_processor<char,class___crt_stdio_input::string_input_adapter<char>_>",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "format_string_parser<char>",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "write_result",
+      "category": "/Demangler/_anon_17268360",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "string_output_adapter<char>",
+      "category": "/Demangler/__crt_stdio_output",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "TryBlockMapEntry4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "HandlerType4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "TryBlockMap4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "FuncInfo4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "UMSFreeThreadProxyFactory",
+      "category": "/Demangler/Concurrency/details",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "floating_point_string",
+      "category": "/Demangler/__crt_strtox",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "floating_point_value",
+      "category": "/Demangler/__crt_strtox",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "DotNetPdbInfo",
+      "category": "/PDB",
+      "size": 94,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "string",
+          "name": "signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "GUID",
+          "name": "guid",
+          "length": 16,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "age",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "string",
+          "name": "pdbpath",
+          "length": 70,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "Var",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword:31",
+          "name": "NameOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 3,
+          "type": "dword:1",
+          "name": "NameIsString",
+          "length": 1,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_LOAD_CONFIG_CODE_INTEGRITY",
+      "category": "/PE",
+      "size": 12,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Flags",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "Catalog",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "CatalogOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "Reserved",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_14",
+      "category": "/PE",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 14,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DEBUG_DIRECTORY",
+      "category": "/PE",
+      "size": 28,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "Type",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "SizeOfData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "AddressOfRawData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "dword",
+          "name": "PointerToRawData",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_15",
+      "category": "/PE",
+      "size": 17,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 15,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_18",
+      "category": "/PE",
+      "size": 20,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 18,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "StringTable",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_SECTION_HEADER",
+      "category": "/PE",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "char[8]",
+          "name": "Name",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "Misc",
+          "name": "Misc",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "VirtualAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "SizeOfRawData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "PointerToRawData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "dword",
+          "name": "PointerToRelocations",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "dword",
+          "name": "PointerToLinenumbers",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "word",
+          "name": "NumberOfRelocations",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 34,
+          "type": "word",
+          "name": "NumberOfLinenumbers",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "SectionFlags",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_NT_HEADERS64",
+      "category": "/PE",
+      "size": 264,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "char[4]",
+          "name": "Signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "IMAGE_FILE_HEADER",
+          "name": "FileHeader",
+          "length": 20,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "IMAGE_OPTIONAL_HEADER64",
+          "name": "OptionalHeader",
+          "length": 240,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DATA_ENTRY",
+      "category": "/PE",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "OffsetToData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "Size",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "CodePage",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "Reserved",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DATA_DIRECTORY",
+      "category": "/PE",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "VirtualAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "Size",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY",
+      "category": "/PE",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "word",
+          "name": "NumberOfNamedEntries",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 14,
+          "type": "word",
+          "name": "NumberOfIdEntries",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_23",
+      "category": "/PE",
+      "size": 25,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 23,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DIRECTORY_ENTRY_EXPORT",
+      "category": "/PE",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "Name",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "Base",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "NumberOfFunctions",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "dword",
+          "name": "NumberOfNames",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfFunctions",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfNames",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfNameOrdinals",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_22",
+      "category": "/PE",
+      "size": 24,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 22,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_26",
+      "category": "/PE",
+      "size": 28,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 26,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_28",
+      "category": "/PE",
+      "size": 30,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 28,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_40",
+      "category": "/PE",
+      "size": 42,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 40,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_31",
+      "category": "/PE",
+      "size": 33,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 31,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_FILE_HEADER",
+      "category": "/PE",
+      "size": 20,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Machine",
+          "length": 2,
+          "comment": "34404"
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "NumberOfSections",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "PointerToSymbolTable",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "NumberOfSymbols",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "word",
+          "name": "SizeOfOptionalHeader",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 18,
+          "type": "word",
+          "name": "Characteristics",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_LOAD_CONFIG_DIRECTORY64",
+      "category": "/PE",
+      "size": 256,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Size",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "GlobalFlagsClear",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "GlobalFlagsSet",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "CriticalSectionDefaultTimeout",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "qword",
+          "name": "DeCommitFreeBlockThreshold",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "qword",
+          "name": "DeCommitTotalFreeThreshold",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "pointer64",
+          "name": "LockPrefixTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "qword",
+          "name": "MaximumAllocationSize",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 56,
+          "type": "qword",
+          "name": "VirtualMemoryThreshold",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 64,
+          "type": "qword",
+          "name": "ProcessAffinityMask",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 72,
+          "type": "dword",
+          "name": "ProcessHeapFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 76,
+          "type": "word",
+          "name": "CsdVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 78,
+          "type": "word",
+          "name": "DependentLoadFlags",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 80,
+          "type": "pointer64",
+          "name": "EditList",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 88,
+          "type": "pointer64",
+          "name": "SecurityCookie",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 96,
+          "type": "pointer64",
+          "name": "SEHandlerTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 104,
+          "type": "qword",
+          "name": "SEHandlerCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 112,
+          "type": "pointer64",
+          "name": "GuardCFCCheckFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 120,
+          "type": "pointer64",
+          "name": "GuardCFDispatchFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 128,
+          "type": "pointer64",
+          "name": "GuardCFFunctionTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 136,
+          "type": "qword",
+          "name": "GuardCFFunctionCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 144,
+          "type": "IMAGE_GUARD_FLAGS",
+          "name": "GuardFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 148,
+          "type": "IMAGE_LOAD_CONFIG_CODE_INTEGRITY",
+          "name": "CodeIntegrity",
+          "length": 12,
+          "comment": ""
+        },
+        {
+          "offset": 160,
+          "type": "pointer64",
+          "name": "GuardAddressTakenIatEntryTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 168,
+          "type": "qword",
+          "name": "GuardAddressTakenIatEntryCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 176,
+          "type": "pointer64",
+          "name": "GuardLongJumpTargetTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 184,
+          "type": "qword",
+          "name": "GuardLongJumpTargetCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 192,
+          "type": "pointer64",
+          "name": "DynamicValueRelocTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 200,
+          "type": "pointer64",
+          "name": "CHPEMetadataPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 208,
+          "type": "pointer64",
+          "name": "GuardRFFailureRoutine",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 216,
+          "type": "pointer64",
+          "name": "GuardRFFailureRoutineFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 224,
+          "type": "dword",
+          "name": "DynamicValueRelocTableOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 228,
+          "type": "word",
+          "name": "DynamicValueRelocTableSection",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 230,
+          "type": "word",
+          "name": "Reserved1",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 232,
+          "type": "pointer64",
+          "name": "GuardRFVerifyStackPointerFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 240,
+          "type": "dword",
+          "name": "HotPatchTableOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 244,
+          "type": "dword",
+          "name": "Reserved2",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 248,
+          "type": "qword",
+          "name": "Reserved3",
+          "length": 8,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "StringFileInfo",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY",
+      "category": "/PE",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameUnion",
+          "name": "NameUnion",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryUnion",
+          "name": "DirectoryUnion",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_OPTIONAL_HEADER64",
+      "category": "/PE",
+      "size": 240,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Magic",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "byte",
+          "name": "MajorLinkerVersion",
+          "length": 1,
+          "comment": ""
+        },
+        {
+          "offset": 3,
+          "type": "byte",
+          "name": "MinorLinkerVersion",
+          "length": 1,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "SizeOfCode",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "SizeOfInitializedData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "SizeOfUninitializedData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfEntryPoint",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "ImageBaseOffset32",
+          "name": "BaseOfCode",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "pointer64",
+          "name": "ImageBase",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "dword",
+          "name": "SectionAlignment",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "dword",
+          "name": "FileAlignment",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "word",
+          "name": "MajorOperatingSystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 42,
+          "type": "word",
+          "name": "MinorOperatingSystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 44,
+          "type": "word",
+          "name": "MajorImageVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 46,
+          "type": "word",
+          "name": "MinorImageVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "word",
+          "name": "MajorSubsystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 50,
+          "type": "word",
+          "name": "MinorSubsystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 52,
+          "type": "dword",
+          "name": "Win32VersionValue",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 56,
+          "type": "dword",
+          "name": "SizeOfImage",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 60,
+          "type": "dword",
+          "name": "SizeOfHeaders",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 64,
+          "type": "dword",
+          "name": "CheckSum",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 68,
+          "type": "word",
+          "name": "Subsystem",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 70,
+          "type": "word",
+          "name": "DllCharacteristics",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 72,
+          "type": "qword",
+          "name": "SizeOfStackReserve",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 80,
+          "type": "qword",
+          "name": "SizeOfStackCommit",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 88,
+          "type": "qword",
+          "name": "SizeOfHeapReserve",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 96,
+          "type": "qword",
+          "name": "SizeOfHeapCommit",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 104,
+          "type": "dword",
+          "name": "LoaderFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 108,
+          "type": "dword",
+          "name": "NumberOfRvaAndSizes",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 112,
+          "type": "IMAGE_DATA_DIRECTORY[16]",
+          "name": "DataDirectory",
+          "length": 128,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "ImgDelayDescr",
+      "category": "/PE",
+      "size": 32,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "grAttrs",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "ImageBaseOffset32",
+          "name": "szName",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "ImageBaseOffset32",
+          "name": "phmod",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "pIAT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "pINT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "ImageBaseOffset32",
+          "name": "pBoundIAT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "ImageBaseOffset32",
+          "name": "pUnloadIAT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "dword",
+          "name": "dwTimeStamp",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "VS_VERSION_INFO",
+      "category": "/PE",
+      "size": 92,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "StructLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "ValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "StructType",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 6,
+          "type": "unicode",
+          "name": "Info",
+          "length": 32,
+          "comment": ""
+        },
+        {
+          "offset": 38,
+          "type": "byte[2]",
+          "name": "Padding",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "dword",
+          "name": "Signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 44,
+          "type": "word[2]",
+          "name": "StructVersion",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "word[4]",
+          "name": "FileVersion",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 56,
+          "type": "word[4]",
+          "name": "ProductVersion",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 64,
+          "type": "dword[2]",
+          "name": "FileFlagsMask",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 72,
+          "type": "dword",
+          "name": "FileFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 76,
+          "type": "dword",
+          "name": "FileOS",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 80,
+          "type": "dword",
+          "name": "FileType",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 84,
+          "type": "dword",
+          "name": "FileSubtype",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 88,
+          "type": "dword",
+          "name": "FileTimestamp",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_THUNK_DATA64",
+      "category": "/PE",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "qword",
+          "name": "StartAddressOfRawData",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "qword",
+          "name": "EndAddressOfRawData",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "qword",
+          "name": "AddressOfIndex",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "qword",
+          "name": "AddressOfCallBacks",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "dword",
+          "name": "SizeOfZeroFill",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "VarFileInfo",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "StringInfo",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "SLD_STATUS",
+      "category": "/Demangler",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "__acrt_rounding_mode",
+      "category": "/Demangler",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "error_type",
+      "category": "/Demangler/std/regex_constants",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "conversion_mode",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "floating_point_parse_result",
+      "category": "/Demangler/__crt_strtox",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "SectionFlags",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "values": [
+        {
+          "name": "IMAGE_SCN_TYPE_NO_PAD",
+          "value": 8
+        },
+        {
+          "name": "IMAGE_SCN_RESERVED_0001",
+          "value": 16
+        },
+        {
+          "name": "IMAGE_SCN_CNT_CODE",
+          "value": 32
+        },
+        {
+          "name": "IMAGE_SCN_CNT_INITIALIZED_DATA",
+          "value": 64
+        },
+        {
+          "name": "IMAGE_SCN_CNT_UNINITIALIZED_DATA",
+          "value": 128
+        },
+        {
+          "name": "IMAGE_SCN_LNK_OTHER",
+          "value": 256
+        },
+        {
+          "name": "IMAGE_SCN_LNK_INFO",
+          "value": 512
+        },
+        {
+          "name": "IMAGE_SCN_RESERVED_0040",
+          "value": 1024
+        },
+        {
+          "name": "IMAGE_SCN_LNK_REMOVE",
+          "value": 2048
+        },
+        {
+          "name": "IMAGE_SCN_LNK_COMDAT",
+          "value": 4096
+        },
+        {
+          "name": "IMAGE_SCN_GPREL",
+          "value": 32768
+        },
+        {
+          "name": "IMAGE_SCN_MEM_16BIT",
+          "value": 131072
+        },
+        {
+          "name": "IMAGE_SCN_MEM_PURGEABLE",
+          "value": 131072
+        },
+        {
+          "name": "IMAGE_SCN_MEM_LOCKED",
+          "value": 262144
+        },
+        {
+          "name": "IMAGE_SCN_MEM_PRELOAD",
+          "value": 524288
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_1BYTES",
+          "value": 1048576
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_2BYTES",
+          "value": 2097152
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_4BYTES",
+          "value": 3145728
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_8BYTES",
+          "value": 4194304
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_16BYTES",
+          "value": 5242880
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_32BYTES",
+          "value": 6291456
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_64BYTES",
+          "value": 7340032
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_128BYTES",
+          "value": 8388608
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_256BYTES",
+          "value": 9437184
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_512BYTES",
+          "value": 10485760
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_1024BYTES",
+          "value": 11534336
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_2048BYTES",
+          "value": 12582912
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_4096BYTES",
+          "value": 13631488
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_8192BYTES",
+          "value": 14680064
+        },
+        {
+          "name": "IMAGE_SCN_LNK_NRELOC_OVFL",
+          "value": 16777216
+        },
+        {
+          "name": "IMAGE_SCN_MEM_DISCARDABLE",
+          "value": 33554432
+        },
+        {
+          "name": "IMAGE_SCN_MEM_NOT_CACHED",
+          "value": 67108864
+        },
+        {
+          "name": "IMAGE_SCN_MEM_NOT_PAGED",
+          "value": 134217728
+        },
+        {
+          "name": "IMAGE_SCN_MEM_SHARED",
+          "value": 268435456
+        },
+        {
+          "name": "IMAGE_SCN_MEM_EXECUTE",
+          "value": 536870912
+        },
+        {
+          "name": "IMAGE_SCN_MEM_READ",
+          "value": 1073741824
+        },
+        {
+          "name": "IMAGE_SCN_MEM_WRITE",
+          "value": 2147483648
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_GUARD_FLAGS",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "values": [
+        {
+          "name": "IMAGE_GUARD_CF_INSTRUMENTED",
+          "value": 256
+        },
+        {
+          "name": "IMAGE_GUARD_CFW_INSTRUMENTED",
+          "value": 512
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT",
+          "value": 1024
+        },
+        {
+          "name": "IMAGE_GUARD_SECURITY_COOKIE_UNUSED",
+          "value": 2048
+        },
+        {
+          "name": "IMAGE_GUARD_PROTECT_DELAYLOAD_IAT",
+          "value": 4096
+        },
+        {
+          "name": "IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION",
+          "value": 8192
+        },
+        {
+          "name": "IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT",
+          "value": 16384
+        },
+        {
+          "name": "IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION",
+          "value": 32768
+        },
+        {
+          "name": "IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT",
+          "value": 65536
+        },
+        {
+          "name": "IMAGE_GUARD_RF_INSTRUMENTED",
+          "value": 131072
+        },
+        {
+          "name": "IMAGE_GUARD_RF_ENABLE",
+          "value": 262144
+        },
+        {
+          "name": "IMAGE_GUARD_RF_STRICT",
+          "value": 524288
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_1",
+          "value": 268435456
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_2",
+          "value": 536870912
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_4",
+          "value": 1073741824
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_8",
+          "value": 2147483648
+        }
+      ]
+    }
+  ],
+  "unions": [
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryUnion",
+      "category": "/",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "type": "dword",
+          "name": "OffsetToData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct",
+          "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "Misc",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "type": "dword",
+          "name": "PhysicalAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "dword",
+          "name": "VirtualSize",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameUnion",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "type": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct",
+          "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "dword",
+          "name": "Name",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "word",
+          "name": "Id",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    }
+  ]
+}

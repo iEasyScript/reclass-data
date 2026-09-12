@@ -1,0 +1,882 @@
+{
+  "schema_version": 2,
+  "description": "Declarative registry of binary-anchored offset detectors for RS3ProjectXUpdater. Each anchor maps one or more engine offsets (Offsets.kt) to a RELIABLE in-binary code location whose disassembly directly encodes the offset, plus a structural extraction recipe (the `extract` DSL). EXPORT fills sig_blob/sig_mask/feat_hash and resolves old_value against the OLD binary; IMPORT re-resolves against the NEW binary and flags drift (new_value != old_value). `old_value` is hand-seeded from the verified Offsets.kt and acts as a sanity bound. `validated:true` means the recipe was confirmed by hand against a live binary this session; `false` means seed/best-effort, to be confirmed by the export self-test (IMPORT against the source build must reproduce old_value).",
+  "dsl": {
+    "steps": [
+      "find       {match, dst?, src?, mem?:{base,index,scale,disp}, imm?, occurrence?} \u2014 scan forward from entry for the Nth matching instruction; sets the cursor",
+      "find_after {same as find} \u2014 scan forward from the current cursor (after the previous step)",
+      "capture    {from:'mem.disp'|'imm', as:VAR} \u2014 record a displacement or immediate into VAR (attached to the matched instruction of the preceding find)",
+      "rip_target {match, as:VAR} \u2014 capture the absolute resolved target of a RIP-relative MOV/LEA",
+      "back_scan  {from_call:FUNC, match, mem:{base,...}, capture, occurrence?} \u2014 from a CALL to FUNC, scan backwards for a [base+disp] load",
+      "call_arg   {call:FUNC, arg:N, capture} \u2014 capture disp of `LEA argRegN,[base+disp]` immediately before a CALL to FUNC"
+    ],
+    "operands": "register placeholders: '@name' binds a register on first use and refers to it after; '*' is wildcard. mem match fields are optional; scale/disp matched only when present.",
+    "emit": "value is an integer expression over captured vars and hex/dec consts using + - * << (). One anchor may emit multiple offsets via emit[].",
+    "manager_class": "ALTERNATIVE to anchor/extract: an anchor with {\"manager_class\":\"jag::SomeManager\",\"min_sites\":N,\"disp_min\":\"0x400\",\"disp_max\":\"0x20000\"} resolves by CONSENSUS \u2014 the tool scans every CALL to a method of that C++ class and reads the preceding `MOV/LEA RDI,[client+OFF]` this-load; the most common OFF (in [disp_min,disp_max], default 0x400-0x20000) wins. This is the most reliable OClient-pointer anchor (many independent callsites agree) and needs no anchor function. CRITICAL: keep disp_min high enough to exclude nested-object this-loads (this=[parent+0x20]) which can otherwise out-count the real client offset. min_sites guards weak consensus. Discover the class->offset map for a new build with `dump managers[:lo-hi]`; find where field-read managers are stored with `dump ctorstores:*@lo-hi`."
+  },
+  "ofunctions_note": "OFunctions consts -> qualified function name. IMPORT resolves each via the function sig-match (functions.ndjson) and emits the full OFunctions block into offsets_<ver>.kt. These are absolute function addresses (they move every build), so no drift flag.",
+  "ofunctions": [
+    {
+      "const": "CONNECTIONMANAGER_TCPIN",
+      "name": "jag::ConnectionManager::TcpIn"
+    },
+    {
+      "const": "CLIENT_SETMAINSTATE",
+      "name": "jag::Client::SetMainState"
+    },
+    {
+      "const": "STATTABLE_UPDATESTAT",
+      "name": "jag::game::StatTable::UpdateStat"
+    },
+    {
+      "const": "CLIENT_MAINLOGIC",
+      "name": "jag::Client::MainLogic"
+    },
+    {
+      "const": "SERVERPROT_DECODE_UPDATE_INV_PARTIAL",
+      "name": "jag::PacketHandlers::UpdateInvPartial"
+    },
+    {
+      "const": "SERVERPROT_DECODE_UPDATE_INV_FULL",
+      "name": "jag::PacketHandlers::UpdateInvFull"
+    },
+    {
+      "const": "CHATHISTORY_ADDCHAT_HOOKABLE",
+      "name": "jag::ChatHistory::AddChat_hookable"
+    },
+    {
+      "const": "PLAYERVARDOMAIN_SETVARVALUEFROMSERVER",
+      "name": "jag::game::PlayerVarDomain::SetVarValueFromServer"
+    },
+    {
+      "const": "PLAYERVARDOMAIN_SETVARVALUE",
+      "name": "jag::game::PlayerVarDomain::SetVarValue"
+    },
+    {
+      "const": "CLIENTVARDOMAIN_SETVARVALUE",
+      "name": "jag::ClientVarDomain::SetVarValue"
+    },
+    {
+      "const": "MINIMENU_DOACTION",
+      "name": "jag::MiniMenu::DoAction"
+    },
+    {
+      "const": "INTERFACEMANAGER_IFBUTTONXINNER",
+      "name": "jag::InterfaceManager::IfButtonXInner"
+    },
+    {
+      "const": "PROJECTILELIST_ADD",
+      "name": "jag::ProjectileList::Add"
+    },
+    {
+      "const": "ENTITY_ENTITY",
+      "name": "jag::game::Entity::Entity"
+    },
+    {
+      "const": "ENTITY_ENTITY_DESTRUCT",
+      "name": "jag::game::Entity::~Entity"
+    },
+    {
+      "const": "INVENTORYMANAGER_GETINVENTORY",
+      "name": "jag::game::InventoryManager::GetInventory"
+    },
+    {
+      "const": "HITMARKSANDHEADBARS_ADDHEADBAR",
+      "name": "jag::HitmarksAndHeadbars::AddHeadbar"
+    },
+    {
+      "const": "HITMARKSANDHEADBARS_ADDHITMARK",
+      "name": "jag::HitmarksAndHeadbars::AddHitmark"
+    },
+    {
+      "const": "INPUT_INPUT_ONKEYDOWNINNER",
+      "name": "jag::input::Input::OnKeyDownInner"
+    },
+    {
+      "const": "INPUT_INPUT_ONKEYUPINNER",
+      "name": "jag::input::Input::OnKeyUpInner"
+    },
+    {
+      "const": "SCRIPTRUNNER_EXECUTEHOOKINNER",
+      "name": "jag::ScriptRunner::ExecuteHookInner"
+    },
+    {
+      "const": "SCRIPTRUNNER_EXECUTESCRIPT",
+      "name": "jag::ScriptRunner::ExecuteScript"
+    },
+    {
+      "const": "SCRIPTRUNNER_GETCLIENTSCRIPTSTATE",
+      "name": "jag::ScriptRunner::GetClientScriptState"
+    },
+    {
+      "const": "SCRIPTRUNNER_CONTINUESCRIPT",
+      "name": "jag::ScriptRunner::ContinueScript"
+    },
+    {
+      "const": "SCRIPTRUNNER_GET_BY_ID",
+      "name": "jag::ClientScriptHelpers::GetByID"
+    },
+    {
+      "const": "INPUT_INPUT_ONMOUSEMOTION",
+      "name": "jag::input::Input::OnMouseMotion"
+    },
+    {
+      "const": "INPUT_INPUT_ONLEFTBUTTONDOWN",
+      "name": "jag::input::Input::OnLeftButtonDown"
+    },
+    {
+      "const": "INPUT_INPUT_ONLEFTBUTTONUP",
+      "name": "jag::input::Input::OnLeftButtonUp"
+    },
+    {
+      "const": "INPUT_INPUT_ONSCROLLWHEEL",
+      "name": "jag::input::Input::OnScrollWheel"
+    },
+    {
+      "const": "TCPCONNECTIONMESSAGE_INIT",
+      "name": "jag::game::TcpConnectionMessage::Init"
+    },
+    {
+      "const": "TCPCONNECTIONMESSAGE_INIT_INCOMING",
+      "name": "jag::game::TcpConnectionMessage::InitIncoming"
+    },
+    {
+      "const": "SENDCLIENTMESSAGE",
+      "name": "jag::Packet::SendClientMessage"
+    },
+    {
+      "const": "REBUILD_NORMAL_HANDLER",
+      "name": "jag::PacketHandlers::RebuildNormal"
+    },
+    {
+      "const": "BUILD_AREA_INIT",
+      "name": "jag::game::RebuildSceneEntry::Reset"
+    },
+    {
+      "const": "INTERFACEMANAGER_DRAWCOMPONENTLIST",
+      "name": "jag::InterfaceManager::DrawComponentList"
+    },
+    {
+      "const": "CLIENTPROT_SENDEVENTMOUSECLICK",
+      "name": "jag::ClientProt::SendEventMouseClick"
+    },
+    {
+      "const": "APPLY_LOC_CHANGE",
+      "name": "jag::game::ApplyLocChange"
+    },
+    {
+      "const": "CLIENTERROR_REPORTERROR",
+      "name": "jag::game::ClientError::ReportError"
+    },
+    {
+      "const": "CLIENTSTREAM_READ",
+      "name": "jag::ClientStream::Read"
+    },
+    {
+      "const": "CLIENTSTREAM_WRITE",
+      "name": "jag::ClientStream::Write"
+    },
+    {
+      "const": "EVENTLISTENERS_CALLLISTENERS_FF",
+      "name": "jag::EventListeners::CallListeners_ff"
+    },
+    {
+      "const": "INPUTSTATE_ISKEYDOWN",
+      "name": "jag::input::InputState::IsKeyDown"
+    },
+    {
+      "const": "INPUT_INPUT_ONKEYCHARINNER",
+      "name": "jag::input::Input::OnKeyCharInner"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "OGlobal.CLIENT",
+      "target_object": "OGlobal",
+      "field": "CLIENT",
+      "value_kind": "global_addr",
+      "anchor": {
+        "name": "MINIMAP_FLAG_SET",
+        "namespace": "jag::packethandlers::ClientState",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::packethandlers::ClientState::MINIMAP_FLAG_SET",
+        "sig_blob": "41574156415541544989cd55534889fb89d54989f44883ec18488b7f08e85e3f3400488dbb680100004889c6e82f165900396b640f96c080bb90010000008883a9010000740484c075164883c4185b5d415c415d415e415fc3488b93300100004885d2743748837a18007430488b0d8efc47014c8db3ac0100004c89f7448bb908050000",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffff",
+        "feat_hash": "82a8a216dc0b3ba130abbe251144939a1102ad9c9e993b24be9aeea64e8859cf"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "rip_target",
+            "match": {
+              "mnemonic": "MOV",
+              "src": {
+                "rip_rel": true
+              }
+            },
+            "as": "g",
+            "occurrence": 1
+          }
+        ],
+        "emit": [
+          {
+            "id": "OGlobal.CLIENT",
+            "value": "g"
+          }
+        ]
+      },
+      "old_value": "0x015bf1f8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MINIMAP_FLAG_SET reads `MOV RCX,[g_client]` (RIP-relative). Confirmed identical address in 948-2-2 and 948-5; .data is segment-stable. Alt anchors: jag::Client::SetMainState, MainLogic."
+    },
+    {
+      "id": "ONPC.CURRENT_HP",
+      "target_object": "ONPC",
+      "field": "CURRENT_HP",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "get_npc_stat",
+        "namespace": "jag::opcode",
+        "identify_by": [
+          "string_xref",
+          "func_name",
+          "sig"
+        ],
+        "string": "get_npc_stat",
+        "official_name": "jag::opcode::get_npc_stat",
+        "sig_blob": "488b8eb8c300008b96a0100000807910018d42ff8986a01000007414488d3d7481ce0031c0e9266789004c8d04864963b8000100004c8d0cb9458b9120110000458b993c1100008996a0100000458990000100008b86a01000008d50018996a010000044899c8600010000488d0578383101c3",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ff",
+        "feat_hash": "c583b568fab060bf1e69f7fb246947d94fc1a74bb4ba7963c0f443f256c083e5"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "LEA"
+            },
+            "dst": "@base",
+            "mem": {
+              "index": "*",
+              "scale": 4
+            },
+            "occurrence": 2
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV",
+              "operand_size": 32
+            },
+            "mem": {
+              "base": "@base"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "currentStats"
+            }
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV",
+              "operand_size": 32
+            },
+            "mem": {
+              "base": "@base"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "maxStats"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "ONPC.CURRENT_HP",
+            "value": "currentStats + 0xC"
+          },
+          {
+            "id": "ONPC.MAX_HP",
+            "value": "maxStats + 0xC"
+          }
+        ]
+      },
+      "old_value": "0x112C",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED 948-2-2(@0x2c77e0) and 948-5(@0x2c79b0): `LEA R9,[npc+idx*4]; MOV r32,[R9+0x1120]; MOV r32,[R9+0x113c]`. currentStats=0x1120, maxStats=0x113c; HP is stat slot 3 => +0xC. This single anchor yields BOTH CURRENT_HP(0x112C) and MAX_HP(0x1148). The motivating drift check."
+    },
+    {
+      "id": "ONPC.MAX_HP",
+      "target_object": "ONPC",
+      "field": "MAX_HP",
+      "value_kind": "struct_field",
+      "shared_anchor": "ONPC.CURRENT_HP",
+      "old_value": "0x1148",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the get_npc_stat anchor (see ONPC.CURRENT_HP). Listed for completeness; no separate extraction."
+    },
+    {
+      "id": "ONPC.SHOW_AS_IMPORTANT",
+      "target_object": "ONPC",
+      "field": "SHOW_AS_IMPORTANT",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "highlight_set_npc_show_as_important",
+        "namespace": "jag::opcode",
+        "identify_by": [
+          "string_xref",
+          "func_name",
+          "sig"
+        ],
+        "string": "highlight_set_npc_show_as_important",
+        "official_name": "jag::opcode::highlight_set_npc_show_as_important",
+        "sig_blob": "8b86a0100000488b96b8c3000083e801807a10018986a010000075548b8c8600010000488bbeb0c3000085c9410f9fc04885ff742b4883ec08f08347080144888200110000e8c6692100488d050f1e37014883c408c344888200110000488d05f21d3701c3488d3df149d40031c0e9424c8f00",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffff0000000000ffffffffffffffffffffffffffff0000000000ffffff0000000000ffffffff000000",
+        "feat_hash": "e5ba8f980cec7b3a92b4c01ae768288a72a2d4613ad918aa62653a423c210d9d"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "CMP"
+            },
+            "dst": "@npc",
+            "mem": {
+              "disp_min": "0x10",
+              "disp_max": "0x10"
+            },
+            "occurrence": 1
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "@npc"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "flag"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "ONPC.SHOW_AS_IMPORTANT",
+            "value": "flag"
+          }
+        ]
+      },
+      "old_value": "0x1100",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "Anchor present in 948-5 @0x269440 (string-xref reliable). Recipe: the `MOV byte [this+0x1100], r8b` write after the `this[0x10]==1` entityType check. The first byte store to [this+disp] in the function. Confirm against entityType-guard; the sibling highlight_set_loc_show_as_important (@0x2693c0) writes Location+0x32c."
+    },
+    {
+      "id": "OWorld.VIEW_MATRIX",
+      "target_object": "OWorld",
+      "field": "VIEW_MATRIX",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "Mat4x4Multiply",
+        "namespace": "jag::math",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::math::Mat4x4Multiply",
+        "sig_blob": "f30f104e084889f8f30f10460c0fc6c9000f286a300fc6c0000f2862200f59c5f3440f104e1c0f59ccf3440f10662cf3440f104618450fc6c900f3440f106e28450fc6e400450fc6c000f30f10360f58c8f30f10463c440f59cdf3440f1056100fc6c000f3440f107620440f59e50f281a0f59c5f30f106e380fc6ed00f30f107e04450fc6ed00440f59c4f3440f105e14f3440f107e24440f59ec0f2852100f59e5450f58c10fc6f600450fc6d200450f58e5",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "46de7a5b95946aed99899342259b98b8d78fa6b17756602c57c882f54c5d4cf8",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "call_arg",
+            "call": "jag::math::Mat4x4Multiply",
+            "arg": 2,
+            "mem": {
+              "disp_min": "0x10000",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "viewMat"
+            }
+          },
+          {
+            "op": "call_arg",
+            "call": "jag::math::Mat4x4Multiply",
+            "arg": 3,
+            "mem": {
+              "disp_min": "0x10000",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "projMat"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.VIEW_MATRIX",
+            "value": "viewMat"
+          },
+          {
+            "id": "OWorld.PROJECTION_MATRIX",
+            "value": "projMat"
+          }
+        ]
+      },
+      "old_value": "0x130e0",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "Picking funcs call `Mat4x4Multiply(out, World+0x130e0, World+0x131e0)`. The two `LEA argN,[World+disp]` before the call give VIEW & PROJECTION matrix offsets. Anchor must be located via a CALLER of Mat4x4Multiply (the picking fn, e.g. ScenePicker::BuildEntityMenuEntries / DispatchPicking). Caller selected by which call site has the two World+disp LEAs. NB: 948-2 note observed projection at 0x13160 in code vs Offsets.kt 0x131e0 \u2014 the live extraction is authoritative; flag if they differ."
+    },
+    {
+      "id": "OWorld.PROJECTION_MATRIX",
+      "target_object": "OWorld",
+      "field": "PROJECTION_MATRIX",
+      "value_kind": "struct_field",
+      "shared_anchor": "OWorld.VIEW_MATRIX",
+      "old_value": "0x131e0",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "Emitted by the Mat4x4Multiply caller anchor (see OWorld.VIEW_MATRIX)."
+    },
+    {
+      "id": "OWorld.HEIGHT_MAP",
+      "target_object": "OWorld",
+      "field": "HEIGHT_MAP",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "GetFineHeight",
+        "namespace": "jag::game::HeightMap",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::game::HeightMap::GetFineHeight",
+        "sig_blob": "41554589c24989fd89cf41c1fa1f4154c1ff1f41c1ea1155c1ef11534589cc448d1c39478d0c10418d80ff7f00004883ec1889d58d91ff7f00004181e1ff7f00004181e3ff7f00004585c0410f49c0660fefc0c1f80f85c94889f30f49d14129fb4529d1c1fa0f4889e64589d889c14c89ef0f290424e87562600084c00f84cd0100004d8b6d088b1424",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffff",
+        "feat_hash": "38c4f8b444136d0eb09afe36a8140942136c181af48231d97cd19531dbcd43cb",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "call_arg",
+            "call": "jag::game::HeightMap::GetFineHeight",
+            "arg": 1,
+            "capture": {
+              "as": "heightMap"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.HEIGHT_MAP",
+            "value": "heightMap"
+          }
+        ]
+      },
+      "old_value": "0x14038",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "TerrainRaycast calls GetFineHeight(&World[HEIGHT_MAP]); capture the `LEA arg1,[World+disp]` before the call. Embedded HeightMap is a sub-struct of World."
+    },
+    {
+      "id": "OWorld.LINK_MAP",
+      "target_object": "OWorld",
+      "field": "LINK_MAP",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "HasBridgeFlag",
+        "namespace": "jag::game::LinkMap",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::game::LinkMap::HasBridgeFlag",
+        "sig_blob": "4883ec0889d189f2be01000000e83efeffff89c231c083faff7407d1ea89d083e0014883c408c3",
+        "sig_mask": "ffffffffffffffffffffffffffffff000000ffffffffffff00ffffffffffffffffffffffffffff",
+        "feat_hash": "5cea1914350957daf4605e1e53d53e2c6371d9adf091945209e85495bb9598a1",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "call_arg",
+            "call": "jag::game::LinkMap::HasBridgeFlag",
+            "arg": 1,
+            "capture": {
+              "as": "linkMap"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.LINK_MAP",
+            "value": "linkMap"
+          }
+        ]
+      },
+      "old_value": "0x14048",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "TerrainRaycast calls HasBridgeFlag(&World[LINK_MAP])."
+    },
+    {
+      "id": "OMapSquare.CHUNK_SIZE_FLAG",
+      "target_object": "OMapSquare",
+      "field": "CHUNK_SIZE_FLAG",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "GetLocationContainerAt",
+        "namespace": "jag::game::MapSquare",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::game::MapSquare::GetLocationContainerAt",
+        "sig_blob": "4c8b8768eb0000488b8f70eb00004189d24c8d0dd040f8004939c8744e48837f700189f019ff994c29c183e70848c1f90383c708f7ff4469d9abaaaaaa4863f04139f37e264489d04c8d1476994f8d04d0f7ff498b08498b78084829cf48c1ff0339f87d0648984c8d0cc14c89c8c3",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "429c3aed9d4f049123c355bad69f989de905d3336a7cc8b8703ca4cb872e87df"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "CMP"
+            },
+            "mem": {
+              "base": "*"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "chunkFlag"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OMapSquare.CHUNK_SIZE_FLAG",
+            "value": "chunkFlag"
+          }
+        ]
+      },
+      "old_value": "0x70",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "GetLocationContainerAt reads `CMP qword [ms+0x70],0` to select chunkSize 16 vs 8. First such compare in the function."
+    },
+    {
+      "id": "OEntity.ANIMATION_ID",
+      "target_object": "OEntity",
+      "field": "ANIMATION_ID",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "ProcessNpcInfo",
+        "namespace": "jag::NPCList",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::NPCList::ProcessNpcInfo",
+        "sig_blob": null,
+        "sig_mask": null,
+        "feat_hash": null
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "CMP"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0xa00",
+              "disp_max": "0xb00"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "animId"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OEntity.ANIMATION_ID",
+            "value": "animId"
+          }
+        ]
+      },
+      "old_value": "0xa88",
+      "confidence": "MEDIUM",
+      "validated": true,
+      "notes": "VALIDATED (windowed): animationId is a plain int32 at entity+0xa88 (-1 = none), accessed polymorphically across the binary (NOT set in the small base Entity::Entity @0x13f310). jag::NPCList::ProcessNpcInfo has a single `CMP reg,dword[npc+0xa88]` (the per-tick animation check). The disp window 0xa00-0xb00 isolates it from other field reads. This anchor CONFIRMS the value and DETECTS drift within the window; if animationId moves outside 0xa00-0xb00 the recipe reports UNRESOLVED (still a drift signal). The -1 writer is FUN_00464850 `MOV dword[entity+0xa88],0xffffffff`."
+    },
+    {
+      "id": "OPathingEntity.HITMARKS_AND_HEADBARS",
+      "target_object": "OPathingEntity",
+      "field": "HITMARKS_AND_HEADBARS",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "AddHeadbar",
+        "namespace": "jag::HitmarksAndHeadbars",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::HitmarksAndHeadbars::AddHeadbar",
+        "sig_blob": "415741564989f6415541544c8d256e28fa00555389d34881ec48020000837e3c0448897c2408448944242044894c24240f847a050000498b7c24084885ff48897c24180f84fb02000085c90f880f03000041837e3c04488d052328fa000f84bd0a000048837808000f84d6020000498b4c240848894c24184d8b1c244d85db4c895c24307406f041834308014c8b384c8b70084d85ff4c897c24284c897424587406f04183470801",
+        "sig_mask": "ffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffff00000000ffffffffffffff0000000000ffff00000000ffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "86775c9c9309b55a005fee3e41630e7ccda9e301c3d84be20bdf746b952f20b0",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "back_scan",
+            "from_call": "jag::HitmarksAndHeadbars::AddHeadbar",
+            "dst_reg": "RDI",
+            "capture": {
+              "as": "hmh"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OPathingEntity.HITMARKS_AND_HEADBARS",
+            "value": "hmh"
+          }
+        ]
+      },
+      "old_value": "0xef8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED: HitmarksAndHeadbars is a POINTER at entity+0xef8. jag::NPCEntity::ProcessExtendedInfoNPC does `MOV RDI,[RDX+0xef8]; CALL AddHeadbar` (the this-arg). back_scan dst_reg RDI over AddHeadbar callers captures 0xef8. (The call is deep in the big ProcessExtendedInfo functions \u2014 needs RECIPE_MAX_INSNS >= ~4000.)"
+    },
+    {
+      "id": "OClient.NPC_MANAGER",
+      "target_object": "OClient",
+      "field": "NPC_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::NPCList",
+      "min_sites": 5,
+      "old_value": "0x194b8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 consensus over every callsite of a jag::NPCList method: each loads `MOV/LEA RDI,[client+0x194b8]` (the this-arg) before the CALL. 17/17 sites agree. This is the most reliable manager-offset anchor available."
+    },
+    {
+      "id": "OClient.CONNECTION_MANAGER",
+      "target_object": "OClient",
+      "field": "CONNECTION_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::ConnectionManager",
+      "min_sites": 10,
+      "old_value": "0x19440",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 56/57 callsites of jag::ConnectionManager methods load `RDI,[client+0x19440]`."
+    },
+    {
+      "id": "OClient.SCENE_MANAGER",
+      "target_object": "OClient",
+      "field": "SCENE_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::SceneManager",
+      "min_sites": 10,
+      "old_value": "0x19558",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 37/37 callsites of jag::game::SceneManager methods load `RDI,[client+0x19558]`."
+    },
+    {
+      "id": "OClient.INTERFACE_LIST",
+      "target_object": "OClient",
+      "field": "INTERFACE_LIST",
+      "value_kind": "client_field",
+      "manager_class": "jag::InterfaceManager",
+      "min_sites": 5,
+      "old_value": "0x19488",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 18/26 callsites of jag::InterfaceManager methods load `RDI,[client+0x19488]`. (Field is named INTERFACE_LIST in Offsets.kt; the C++ class is InterfaceManager.)"
+    },
+    {
+      "id": "OClient.CAMERA",
+      "target_object": "OClient",
+      "field": "CAMERA",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::Camera",
+      "min_sites": 3,
+      "old_value": "0x19420",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 5-7 callsites of jag::game::Camera methods load `RDI,[client+0x19420]`. Renamed from the old mislabeled OBJECT_MANAGER \u2192 CAMERA in Offsets.kt (2026-06-05) after the consensus proved it holds a jag::game::Camera pointer. There is NO separate object-manager field; world objects/locs are managed via SceneManager (0x19558)."
+    },
+    {
+      "id": "OClient.BUILD_AREA_VECTOR",
+      "target_object": "OClient",
+      "field": "BUILD_AREA_VECTOR",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::WorldList",
+      "min_sites": 2,
+      "old_value": "0x193d8",
+      "confidence": "MEDIUM",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 2/2 callsites of jag::game::WorldList methods load `RDI,[client+0x193d8]`. Low site count (only 2) \u2014 MEDIUM confidence. Field named BUILD_AREA_VECTOR in Offsets.kt; consensus shows a WorldList this-load at the same offset."
+    },
+    {
+      "id": "OMainLogicManager.STAT_TABLE",
+      "target_object": "OMainLogicManager",
+      "field": "STAT_TABLE",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "LoginProtocolHandler",
+        "namespace": "jag::ConnectionManager",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::ConnectionManager::LoginProtocolHandler",
+        "sig_blob": "415741564155415455534889fb4881ecd8000000897424288954242c894c2420e84b006c00488da8a80000004989c74889efe839ff2200498b87e8000000493b8708010000747a4c8b60084c8b284c8b70104d85e40f8425070000f04183442408014d8b8fe8000000498b79084983c1184d3b8ff80000000f84620700004885ff4d898fe80000007405e80115230049c7461800000000498b4d004c89f64c89efff51304d85e4",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "9cceb26830128a798d10163b6188ef26794dadd19698298e4b22c7a0533ec606"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "LEA"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x73a4",
+              "disp_max": "0x7480"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "cvd"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OMainLogicManager.CLIENT_VAR_DOMAIN",
+            "value": "cvd"
+          },
+          {
+            "id": "OMainLogicManager.STAT_TABLE",
+            "value": "cvd - 8"
+          }
+        ]
+      },
+      "old_value": "0x73a0",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED (windowed): StatTable (0x73a0) and ClientVarDomain (0x73a8) are ADJACENT member pointers in MainLogicManager. StatTable::UpdateStat and ClientVarDomain::SetVarValue have NO direct xrefs (vtable/inlined) so caller back_scan fails. Instead anchor the ClientVarDomain via jag::ConnectionManager::LoginProtocolHandler `LEA RDI,[mlm+0x73a8]` (single 0x73xx access; window 0x7300-0x7500 isolates it), then derive STAT_TABLE = CLIENT_VAR_DOMAIN - 8. One anchor emits both."
+    },
+    {
+      "id": "OMainLogicManager.CLIENT_VAR_DOMAIN",
+      "target_object": "OMainLogicManager",
+      "field": "CLIENT_VAR_DOMAIN",
+      "value_kind": "struct_field",
+      "shared_anchor": "OMainLogicManager.STAT_TABLE",
+      "old_value": "0x73a8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the LoginProtocolHandler anchor (see OMainLogicManager.STAT_TABLE). ClientVarDomain = StatTable + 8."
+    },
+    {
+      "id": "OClient.INVENTORY_MANAGER",
+      "target_object": "OClient",
+      "field": "INVENTORY_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::InventoryManager",
+      "min_sites": 5,
+      "old_value": "0x19550",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 14/14 callsites of jag::game::InventoryManager methods load `RDI,[client+0x19550]`."
+    },
+    {
+      "id": "OClient.PLAYER_VAR_DOMAIN",
+      "target_object": "OClient",
+      "field": "PLAYER_VAR_DOMAIN",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::PlayerVarDomain",
+      "min_sites": 3,
+      "old_value": "0x19b40",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor \u2014 5/5 callsites of jag::game::PlayerVarDomain methods load `RDI,[client+0x19b40]` (PlayerVarDomain is embedded; callers MOV RDI,[client] then ADD RDI,0x19b40)."
+    },
+    {
+      "id": "OClient.MAIN_STATE",
+      "target_object": "OClient",
+      "field": "MAIN_STATE",
+      "value_kind": "client_field",
+      "anchor": {
+        "name": "SetMainState",
+        "namespace": "jag::Client",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::Client::SetMainState",
+        "sig_blob": "415541544189f455534883ec088bb7289b01004439e67451488b9fe8930100483b9fe09301004889fd74374883eb08eb158bb5289b0100488b3b4989dd4489e24883eb08488b07ff50104c39ade093010075de4489a5289b01004883c4085b5d415c415dc3",
+        "sig_mask": "ffffffffffffffffffffffffffffff00000000ffffffffffffff0000000000ffff0000000000ffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffff0000000000ffffffff0000000000ffffffffffffffffffffff",
+        "feat_hash": "db72f29d0633617781d33097c7fe624d5766be968eb7fe1a04a08a3f64d1b182"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "RDI"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "st"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OClient.MAIN_STATE",
+            "value": "st"
+          }
+        ]
+      },
+      "old_value": "0x19b28",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED: SetMainState(this=client,newState) first reads `MOV ESI,[RDI+0x19b28]` (current mainState) then stores newState there. First [RDI+disp] in the function."
+    }
+  ]
+}

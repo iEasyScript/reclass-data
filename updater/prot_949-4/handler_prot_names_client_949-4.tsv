@@ -1,0 +1,8 @@
+handler_addr	prot_name	direction	opcode	size	current_symbol	name_source
+0x001825f0	EVENT_MOUSE_CLICK	CLIENT	2	6	jag::ClientProt::SendEventMouseClick	OFFICIAL
+0x0031f710	IGNORELIST_ADD	CLIENT	32	-1	jag::ClientProt::SendIgnorelistAdd	OFFICIAL
+0x00313e00	MESSAGE_PUBLIC	CLIENT	35	-1	jag::ClientProt::SendMessagePublicWithEffects	OFFICIAL
+0x003c78b0	FRIENDLIST_ADD	CLIENT	38	-1	jag::ClientProt::SendFriendlistAdd	OFFICIAL
+0x002480d0	MAP_BUILD_COMPLETE	CLIENT	67	0	jag::ClientProt::SendMapBuildComplete	OFFICIAL
+0x002db6b0	MESSAGE_PRIVATE	CLIENT	71	-2	jag::opcode::ChatSendPrivate	OFFICIAL
+0x00197840	WORLDLIST_FETCH	CLIENT	125	4	jag::ClientProt::SendWorldlistFetch	OFFICIAL

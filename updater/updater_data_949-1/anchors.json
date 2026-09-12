@@ -1,0 +1,2795 @@
+{
+  "schema_version": 2,
+  "description": "Declarative registry of binary-anchored offset detectors for RS3ProjectXUpdater. Each anchor maps one or more engine offsets (Offsets.kt) to a RELIABLE in-binary code location whose disassembly directly encodes the offset, plus a structural extraction recipe (the `extract` DSL). EXPORT fills sig_blob/sig_mask/feat_hash and resolves old_value against the OLD binary; IMPORT re-resolves against the NEW binary and flags drift (new_value != old_value). `old_value` is hand-seeded from the verified Offsets.kt and acts as a sanity bound. `validated:true` means the recipe was confirmed by hand against a live binary this session; `false` means seed/best-effort, to be confirmed by the export self-test (IMPORT against the source build must reproduce old_value).",
+  "dsl": {
+    "steps": [
+      "find       {match, dst?, src?, mem?:{base,index,scale,disp}, imm?, occurrence?} — scan forward from entry for the Nth matching instruction; sets the cursor",
+      "find_after {same as find} — scan forward from the current cursor (after the previous step)",
+      "capture    {from:'mem.disp'|'imm', as:VAR} — record a displacement or immediate into VAR (attached to the matched instruction of the preceding find)",
+      "rip_target {match, as:VAR} — capture the absolute resolved target of a RIP-relative MOV/LEA",
+      "back_scan  {from_call:FUNC, match, mem:{base,...}, capture, occurrence?} — from a CALL to FUNC, scan backwards for a [base+disp] load",
+      "call_arg   {call:FUNC, arg:N, capture} — capture disp of `LEA argRegN,[base+disp]` immediately before a CALL to FUNC",
+      "dst_reg accepts the ABI-neutral token '@this', resolved to RDI on SysV/ELF and RCX on Win64/PE. NEVER hardcode a register name in a recipe: it silently matches an unrelated instruction on the other platform (a literal \"RDI\" made OPathingEntity.HITMARKS_AND_HEADBARS resolve to garbage on the PE)."
+    ],
+    "operands": "register placeholders: '@name' binds a register on first use and refers to it after; '*' is wildcard. mem match fields are optional; scale/disp matched only when present.",
+    "emit": "value is an integer expression over captured vars and hex/dec consts using + - * << (). One anchor may emit multiple offsets via emit[]. min(a,b) and max(a,b) are also available. Use them when the two platforms emit the same pair of accesses in a different ORDER, so an occurrence-indexed capture cannot be relied on to mean the same field on both.",
+    "manager_class": "ALTERNATIVE to anchor/extract: an anchor with {\"manager_class\":\"jag::SomeManager\",\"min_sites\":N,\"disp_min\":\"0x400\",\"disp_max\":\"0x20000\"} resolves by CONSENSUS — the tool scans every CALL to a method of that C++ class and reads the preceding `MOV/LEA RDI,[client+OFF]` this-load; the most common OFF (in [disp_min,disp_max], default 0x400-0x20000) wins. This is the most reliable OClient-pointer anchor (many independent callsites agree) and needs no anchor function. CRITICAL: keep disp_min high enough to exclude nested-object this-loads (this=[parent+0x20]) which can otherwise out-count the real client offset. min_sites guards weak consensus. Discover the class->offset map for a new build with `dump managers[:lo-hi]`; find where field-read managers are stored with `dump ctorstores:*@lo-hi`.",
+    "portability": "A recipe must resolve on BOTH the ELF and the PE build of the same client. The three things that break portability: (1) hardcoded registers - use '@this'; (2) absolute disp_min/disp_max windows tuned to one build's struct layout - the same struct can sit at a different offset on the other ABI, and a window that is correct for one can select the WRONG field on the other; (3) occurrence-indexed captures where the compilers order the accesses differently - disambiguate with min()/max() or a semantic delta instead."
+  },
+  "ofunctions_note": "OFunctions consts -> qualified function name. IMPORT resolves each via the function sig-match (functions.ndjson) and emits the full OFunctions block into offsets_<ver>.kt. These are absolute function addresses (they move every build), so no drift flag.",
+  "ofunctions": [
+    {
+      "const": "CONNECTIONMANAGER_TCPIN",
+      "name": "jag::ConnectionManager::TcpIn",
+      "old_addr": "0x0012abd0",
+      "sig_blob": "415741564155415455534883ec48488b4708488b9008950100488b9a200a190048399a280a190074174883c4485b5d415c415d415e415fc3488b8a580a190048398a500a190075d9488baa880a19004839aa800a190075c94c8b82b80a19004c3982b00a190075b94889f341bc640000004989fe0f1f40004c8b7b08498b7f084885ff749c833f02759741807f3500",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffff0000000000ffff0000000000ffff0000000000ffffffffffffffffffffffffffffffffffffff0000000000ffff0000000000ffffffff0000000000ffff0000000000ffffffff0000000000ffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(REGIMM,REG);JZ(ADDR);ADD(REG,IMM);POP(REG);POP(REG);POP(REG);POP(REG);POP(REG);POP(REG);RET();MOV(REG,REGIMM);CMP(REGIMM,REG);JNZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,REG);JNZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,REG);JNZ(ADDR);MOV(REG,REG);MOV(REG,IMM);MOV(REG,REG);NOP(REG);MOV(REG,REGIMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);CMP(REG,IMM);JNZ(ADDR);CMP(REGIMM,IMM);"
+    },
+    {
+      "const": "CLIENT_SETMAINSTATE",
+      "name": "jag::Client::SetMainState",
+      "old_addr": "0x0028fdc0",
+      "sig_blob": "415541544189f455534883ec088bb7289b01004439e67451488b9fe8930100483b9fe09301004889fd74374883eb08eb158bb5289b0100488b3b4989dd4489e24883eb08488b07ff50104c39ade093010075de4489a5289b01004883c4085b5d415c415dc3",
+      "sig_mask": "ffffffffffffffffffffffffffffff00000000ffffffffffffff0000000000ffff0000000000ffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffff0000000000ffffffff0000000000ffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);MOV(REG,REGIMM);CMP(REG,REG);JZ(ADDR);MOV(REG,REGIMM);CMP(REG,REGIMM);MOV(REG,REG);JZ(ADDR);SUB(REG,IMM);JMP(ADDR);MOV(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REG);CALL(REGIMM);CMP(REGIMM,REG);JNZ(ADDR);MOV(REGIMM,REG);ADD(REG,IMM);POP(REG);POP(REG);POP(REG);POP(REG);RET();"
+    },
+    {
+      "const": "STATTABLE_UPDATESTAT",
+      "name": "jag::game::StatTable::UpdateStat",
+      "old_addr": "0x000ed200",
+      "sig_blob": "53488b46184c8b4e10488d50044c8d580548895618410fb64c0103410fb65c0102450fb60401450fb65401014c895e18410fb6540104c1e118c1e31001d9488d580641c1e2084101ca8d4a8048895e18488b374501c2410fb6440105488bbea8940100f7d84c8b8fa0730000440fb6d8440fb6c04b8d145b498b59104c8d0cd341807908004589510c0f85a10000004181fa00c2eb0b4489d7760d41c7410c00c2eb0bbf00c2eb0b498b19",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffff0000000000ffffffffffffff000000000000ffff000000ffffff",
+      "sig_norm": "PUSH(REG);MOV(REG,REGIMM);MOV(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOVZX(REG,REGIMM);MOVZX(REG,REGIMM);MOVZX(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);SHL(REG,IMM);SHL(REG,IMM);ADD(REG,REG);LEA(REG,REGIMM);SHL(REG,IMM);ADD(REG,REG);LEA(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REG);ADD(REG,REG);MOVZX(REG,REGIMM);MOV(REG,REGIMM);NEG(REG);MOV(REG,REGIMM);MOVZX(REG,REG);MOVZX(REG,REG);LEA(REG,REGIMM);MOV(REG,REGIMM);LEA(REG,REGIMM);CMP(REGIMM,IMM);MOV(REGIMM,REG);JNZ(ADDR);CMP(REG,IMM);MOV(REG,REG);JBE(ADDR);MOV(REGIMM,IMM);MOV(REG,IMM);MOV(REG,REG);"
+    },
+    {
+      "const": "CLIENT_MAINLOGIC",
+      "name": "jag::Client::MainLogic",
+      "old_addr": "0x002bc600",
+      "sig_blob": "4157415641554154555389f54889fb4881ecf805000080bf58320500007408488b0731f6ff50500fb61542c9180184d20f84da030000e81595a70049b8db34b6d782de1b434889c74c8b0d19c9180149f7e848c1ff3f4981c18813000048c1fa124829fa4939d10f82830300004c8dabe83205004c89efe8f40cfcff48833d3c77180100440fb6a34d33050074084c89efe84a7adbff4584e40f85210300004c8b93e09401004d85d2",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffff0000000000ffffffff00000000ffff000000ffff0000000000000000ffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffff0000000000ffffffffff000000ffff000000000000ffff000000000000ffffffffffffff000000ffffffffff00000000ffff0000000000ffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REG);XOR(REG,REG);CALL(REGIMM);MOVZX(REG,ADDR);TEST(REG,REG);JZ(ADDR);CALL(ADDR);MOV(REG,IMM);MOV(REG,REG);MOV(REG,ADDR);IMUL(REG);SAR(REG,IMM);ADD(REG,IMM);SAR(REG,IMM);SUB(REG,REG);CMP(REG,REG);JC(ADDR);LEA(REG,REGIMM);MOV(REG,REG);CALL(ADDR);CMP(ADDR,IMM);MOVZX(REG,REGIMM);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);TEST(REG,REG);"
+    },
+    {
+      "const": "SERVERPROT_DECODE_UPDATE_INV_PARTIAL",
+      "name": "jag::PacketHandlers::UpdateInvPartial",
+      "old_addr": "0x00185a20",
+      "sig_blob": "415741564155415455534881ecf8000000813d65b7f700000102038b024889bc2490000000488b7e18488b5610488974241889442478488d4f0248894e180fb71c3a750466c1c3084c8b4424184c8b942490000000488d6f030fb7f389b4249c000000498968184d8b1a440fb6643a02498bbb509501004589e14183e4014183e1024489e244888c249b000000e8be533a004885c048894424080f84e8100000448b3545eb2b014c8d3d2230b100448974247c",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffff0000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffff00000000ffff0000000000ffff0000000000ffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);CMP(ADDR,IMM);MOV(REG,REG);MOV(REGIMM,REG);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REGIMM,REG);LEA(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);JNZ(ADDR);ROL(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);LEA(REG,REGIMM);MOVZX(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REG,REG);MOVZX(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);AND(REG,IMM);AND(REG,IMM);MOV(REG,REG);MOV(REGIMM,REG);CALL(ADDR);TEST(REG,REG);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,ADDR);LEA(REG,IMM);MOV(REGIMM,REG);"
+    },
+    {
+      "const": "SERVERPROT_DECODE_UPDATE_INV_FULL",
+      "name": "jag::PacketHandlers::UpdateInvFull",
+      "old_addr": "0x001aaed0",
+      "sig_blob": "415741564989f74155415455534881ecf8000000488b4618488b4e108b1dae62f5004889bc2490000000488b3f488d50024c8d4003488956180fb734014d8947180fb6540102488bbf5095010089f566c1c50881fb000102034189d10f45ee4183e10283e2010fb7f544884c247789b4248c000000e8e6ff37004d8b5718498b7710448b2db39629014889442418498d52024489ac248800000049895718460fb71c164589dc",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,ADDR);MOV(REGIMM,REG);MOV(REG,REG);LEA(REG,REGIMM);LEA(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);ROL(REG,IMM);CMP(REG,IMM);MOV(REG,REG);CMOVNZ(REG,REG);AND(REG,IMM);AND(REG,IMM);MOVZX(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,ADDR);MOV(REGIMM,REG);LEA(REG,REGIMM);MOV(REGIMM,REG);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOV(REG,REG);"
+    },
+    {
+      "const": "CHATHISTORY_ADDCHAT_HOOKABLE",
+      "name": "jag::ChatHistory::AddChat_hookable",
+      "old_addr": "0x001a03c0",
+      "sig_blob": "415741564189ce415541544189d555534189f74c89c34889fd4d89cc4881ece80000008b4718488b4f0848c7442430ffffffffc644245000c644246717c6442468008d50018944240cc644247f17c684248000000000c6842497000000178957188bb10005000031ffc684249800000000c68424af00000017c68424b800000000c68424cf000000178974243c89442438e8ba43edff807b1700410fbefd488944244044897c244889bc24d80000004889de",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);LEA(REG,REGIMM);MOV(REGIMM,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,REG);MOV(REG,REGIMM);XOR(REG,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,REG);MOV(REGIMM,REG);CALL(ADDR);CMP(REGIMM,IMM);MOVSX(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REG,REG);"
+    },
+    {
+      "const": "PLAYERVARDOMAIN_SETVARVALUEFROMSERVER",
+      "name": "jag::game::PlayerVarDomain::SetVarValueFromServer",
+      "old_addr": "0x00526c00",
+      "sig_blob": "415541544989d555534889fb4883ec38488b4608488d7720488d6c24104c8d64240c486348084c89e24889ef894c240ce81bf15a00488b5424104c89ee488d7a08e8fa85d6ff48634c240c4c8b8b8081030031d24c8b83788103004489ce4889c848f7f64d8b14d04d85d27421413b0a4889cf4f8b1cc8750ceb45413b3a743b4d8b52184d85d275f2",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffff000000ffffffffffffff0000000000ffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);MOVSXD(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);MOV(REGIMM,REG);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REG);LEA(REG,REGIMM);CALL(ADDR);MOVSXD(REG,REGIMM);MOV(REG,REGIMM);XOR(REG,REG);MOV(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);DIV(REG);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);CMP(REG,REG);MOV(REG,REG);MOV(REG,REGIMM);JNZ(ADDR);JMP(ADDR);CMP(REG,REG);JZ(ADDR);MOV(REG,REGIMM);TEST(REG,REG);JNZ(ADDR);"
+    },
+    {
+      "const": "PLAYERVARDOMAIN_SETVARVALUE",
+      "name": "jag::game::PlayerVarDomain::SetVarValue",
+      "old_addr": "0x004fc9e0",
+      "sig_blob": "415541544989d555534889fb4883ec38488b4608488db7c8c00100488d6c24104c8d64240c486348084c89e24889ef894c240ce838935d00488b5424104c89ee488d7a08e81728d9ff48634c240c4c8b8b8081030031d24c8b8378810300c78308960300ffffffff4489ce4889c848f7f64d8b1cd04d85db7424413b0b4889cf4f8b14c8750feb58413b3b744b4d8b5b184d85db",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffff000000ffffffffffffff0000000000ffffffff0000000000ffff0000000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);MOVSXD(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);MOV(REGIMM,REG);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REG);LEA(REG,REGIMM);CALL(ADDR);MOVSXD(REG,REGIMM);MOV(REG,REGIMM);XOR(REG,REG);MOV(REG,REGIMM);MOV(REGIMM,IMM);MOV(REG,REG);MOV(REG,REG);DIV(REG);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);CMP(REG,REG);MOV(REG,REG);MOV(REG,REGIMM);JNZ(ADDR);JMP(ADDR);CMP(REG,REG);JZ(ADDR);MOV(REG,REGIMM);TEST(REG,REG);"
+    },
+    {
+      "const": "CLIENTVARDOMAIN_SETVARVALUE",
+      "name": "jag::ClientVarDomain::SetVarValue",
+      "old_addr": "0x001b0cf0",
+      "sig_blob": "41574156415541544989fd55534889f34881ec88000000488b4608807848027511488b7040488b0d546e2a0148394e08741e4889de4c89efe833fbffff4881c4880000005b5d415c415d415e415fc3807a18020f852e0300004889d74989d648891424e86754feff4883f850488b142476bf41807e1802c644242000c6442437170f8500030000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);CMP(REGIMM,IMM);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,ADDR);CMP(REGIMM,REG);JZ(ADDR);MOV(REG,REG);MOV(REG,REG);CALL(ADDR);ADD(REG,IMM);POP(REG);POP(REG);POP(REG);POP(REG);POP(REG);POP(REG);RET();CMP(REGIMM,IMM);JNZ(ADDR);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);CALL(ADDR);CMP(REG,IMM);MOV(REG,REG);JBE(ADDR);CMP(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);JNZ(ADDR);"
+    },
+    {
+      "const": "MINIMENU_DOACTION",
+      "name": "jag::MiniMenu::DoAction",
+      "old_addr": "0x0018f950",
+      "sig_blob": "415541544989f455534889fd4883ec18488b7608488b5e3848837b10000f84ad0000004889e74881c6200100004989d5e81b3bf9ff488b7c24084885ff7413488b4508488b178bb000050000ff9200010000488b3c244885ff7405e820fe0e00498b4d0048898db017000048837b10000f840d0100004c89e64889dfff5318488d358a8d2b014839f374754c8d053e8d2b014c39c374744c8d0d528e2b01",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffff0000000000ffffffffffffff0000000000ffffffffffffff0000000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REG);ADD(REG,IMM);MOV(REG,REG);CALL(ADDR);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REGIMM);MOV(REG,REG);MOV(REG,REGIMM);CALL(REGIMM);MOV(REG,REG);TEST(REG,REG);JZ(ADDR);CALL(ADDR);MOV(REG,REG);MOV(REGIMM,REG);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REG);MOV(REG,REG);CALL(REGIMM);LEA(REG,IMM);CMP(REG,REG);JZ(ADDR);LEA(REG,IMM);CMP(REG,REG);JZ(ADDR);LEA(REG,IMM);"
+    },
+    {
+      "const": "INTERFACEMANAGER_IFBUTTONXINNER",
+      "name": "jag::InterfaceManager::IfButtonXInner",
+      "old_addr": "0x003e9a10",
+      "sig_blob": "415741564189ce415541544d89cd55534989fc4889f34489c54881ecb8010000488b7e0880bc24f0010000008914240f85db010000488b7f684885ff0f84a00100004883c708be27000000e810711a004885c00f8489010000488b7b08498b54240841b80000ffff41bbffffffff0fb77708440fb7570a488b8a089501004189f148894c240841c1e1106683feff450f44c8664183faff7407450fb7da4509cb",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffff00000000ffffffffffffffffffffff000000ffffffffff00000000ffffffffffffffffffffff00000000ffff00000000ffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);CMP(REGIMM,IMM);MOV(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);ADD(REG,IMM);MOV(REG,IMM);CALL(ADDR);TEST(REG,REG);JZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,IMM);MOV(REG,IMM);MOVZX(REG,REGIMM);MOVZX(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);MOV(REGIMM,REG);SHL(REG,IMM);CMP(REG,IMM);CMOVZ(REG,REG);CMP(REG,IMM);JZ(ADDR);MOVZX(REG,REG);OR(REG,REG);"
+    },
+    {
+      "const": "PROJECTILELIST_ADD",
+      "name": "jag::ProjectileList::Add",
+      "old_addr": "0x00b05790",
+      "sig_blob": "415741564155415455534889fb4881ec8800000048837f50648b8424c000000089342489542404894c2408448944240c44894c2410894424140f84010600004c8b4b08498bb958950100e8a18998ff48837808004889c50f84d0050000488b3594e596004c8d6c24604c89efe8df531b004c8b7c246831f64c89ffe8703ec9ff4c8b5508498bba700101004885ff0f84990500004c89fe4c8d3512929600e8bd46c8ff4c8b63084c8d5b10",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffff0000000000ffff000000ffffffffffffffffffff00000000ffff0000000000ffffffffffffffffffff000000ffffffffffffffffffffffff000000ffffffffffff0000000000ffffffffff00000000ffffffffff0000000000ffff000000ffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);CMP(REGIMM,IMM);MOV(REG,REGIMM);MOV(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);CALL(ADDR);CMP(REGIMM,IMM);MOV(REG,REG);JZ(ADDR);MOV(REG,ADDR);LEA(REG,REGIMM);MOV(REG,REG);CALL(ADDR);MOV(REG,REGIMM);XOR(REG,REG);MOV(REG,REG);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);LEA(REG,IMM);CALL(ADDR);MOV(REG,REGIMM);LEA(REG,REGIMM);"
+    },
+    {
+      "const": "ENTITY_ENTITY",
+      "name": "jag::game::Entity::Entity",
+      "old_addr": "0x00141290",
+      "sig_blob": "488d0511ed2e01c6471106c6471206884f1048897708488907488b0a488b5208c6471300c747140000000048c74718000000004885c948c7472000000000c7472800000000c6472c0048c7473000000000c7473800000000c6473c0044894740c74744ffffffff48894f48488957507405f083410801f3c3",
+      "sig_mask": "ffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffff",
+      "sig_norm": "LEA(REG,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REG,REG);MOV(REG,REG);MOV(REG,REGIMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);TEST(REG,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,REG);MOV(REGIMM,IMM);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);ADD.LOCK(REGIMM,IMM);RET();"
+    },
+    {
+      "const": "ENTITY_ENTITY_DESTRUCT",
+      "name": "jag::game::Entity::~Entity",
+      "old_addr": "0x004d8660",
+      "sig_blob": "41574156488d059d52f6004155415455534889fb4883ec284c8ba730100000488baf281000004889074939ec742d6690488d7d10e8d759fbff488b7d084885ff0f844a0500004883c520e8e1b9ffff4939ec75dc488bab281000004885ed74084889efe868bb7d004c8bab101000004c8bb3081000004d39f574270f1f440000498b7e084885ff0f84e30400004983c610e89ab9ffff4d39f5",
+      "sig_mask": "ffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffff00000000ffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffff000000ffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);LEA(REG,IMM);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);CMP(REG,REG);JZ(ADDR);NOP();LEA(REG,REGIMM);CALL(ADDR);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);ADD(REG,IMM);CALL(ADDR);CMP(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(REG,REG);JZ(ADDR);NOP(REGIMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);ADD(REG,IMM);CALL(ADDR);CMP(REG,REG);"
+    },
+    {
+      "const": "INVENTORYMANAGER_GETINVENTORY",
+      "name": "jag::game::InventoryManager::GetInventory",
+      "old_addr": "0x0052ae70",
+      "sig_blob": "01f64c8b47100fb6d209f2488b770848bf398ee3388ee3388e4c89c04829f04889c148c1f903480fafcf4885c07e4b4889c848d1f84c8d14c04989c14a8d3cd63b177f5c4885c0743148c1f9024c8d1cc94a8d3cde3b177e1ceb354889c848d1f84c8d0cc04a8d3cce3b177f2e4889c14885c975e631c04939f0740a",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "ADD(REG,REG);MOV(REG,REGIMM);MOVZX(REG,REG);OR(REG,REG);MOV(REG,REGIMM);MOV(REG,IMM);MOV(REG,REG);SUB(REG,REG);MOV(REG,REG);SAR(REG,IMM);IMUL(REG,REG);TEST(REG,REG);JLE(ADDR);MOV(REG,REG);SAR(REG,IMM);LEA(REG,REGIMM);MOV(REG,REG);LEA(REG,REGIMM);CMP(REG,REG);JG(ADDR);TEST(REG,REG);JZ(ADDR);SAR(REG,IMM);LEA(REG,REGIMM);LEA(REG,REGIMM);CMP(REG,REG);JLE(ADDR);JMP(ADDR);MOV(REG,REG);SAR(REG,IMM);LEA(REG,REGIMM);LEA(REG,REGIMM);CMP(REG,REG);JG(ADDR);MOV(REG,REG);TEST(REG,REG);JNZ(ADDR);XOR(REG,REG);CMP(REG,REG);JZ(ADDR);"
+    },
+    {
+      "const": "HITMARKSANDHEADBARS_ADDHEADBAR",
+      "name": "jag::HitmarksAndHeadbars::AddHeadbar",
+      "old_addr": "0x004916f0",
+      "sig_blob": "415741564989f6415541544c8d252e731e01555389d34881ec48020000837e3c0448897c2408448944242044894c24240f847a050000498b7c24084885ff48897c24180f84fb02000085c90f880f03000041837e3c04488d05e3721e010f84bd0a000048837808000f84d6020000498b4c240848894c24184d8b1c244d85db4c895c24307406f041834308014c8b384c8b70084d85ff4c897c24284c897424587406f04183470801",
+      "sig_mask": "ffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffff00000000ffffffffffffff0000000000ffff00000000ffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);LEA(REG,IMM);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);CMP(REGIMM,IMM);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REGIMM);TEST(REG,REG);MOV(REGIMM,REG);JZ(ADDR);TEST(REG,REG);JS(ADDR);CMP(REGIMM,IMM);LEA(REG,IMM);JZ(ADDR);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REG);TEST(REG,REG);MOV(REGIMM,REG);JZ(ADDR);ADD.LOCK(REGIMM,IMM);MOV(REG,REG);MOV(REG,REGIMM);TEST(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);ADD.LOCK(REGIMM,IMM);"
+    },
+    {
+      "const": "HITMARKSANDHEADBARS_ADDHITMARK",
+      "name": "jag::HitmarksAndHeadbars::AddHitmark",
+      "old_addr": "0x004924f0",
+      "sig_blob": "415741564189d6415541544989fd55534883ec188b7f048b5c245085ff0f8ebd0600008d57ff4d8b5520bd0100000041bc010000004c8d1c5231d24c89d04f8d7cda184c893c2449bfabaaaaaaaaaaaa0a4d0fafdf4983c3014183e3070f84d80000004983fb010f84ad0000004983fb020f848c0000004983fb03746f4983fb0474524983fb0574354983fb06741831ed",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000ffffffffffffffffffffffffffff00000000ffffffffffff00000000ffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);TEST(REG,REG);JLE(ADDR);LEA(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,IMM);MOV(REG,IMM);LEA(REG,REGIMM);XOR(REG,REG);MOV(REG,REG);LEA(REG,REGIMM);MOV(REG,REG);MOV(REG,IMM);IMUL(REG,REG);ADD(REG,IMM);AND(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);XOR(REG,REG);"
+    },
+    {
+      "const": "INPUT_INPUT_ONKEYDOWNINNER",
+      "name": "jag::input::Input::OnKeyDownInner",
+      "old_addr": "0x00cb3320",
+      "sig_blob": "415741564889f8415541544883c018555389f34883ec5848833d810a79000048897c2420488944241874104889c7e88d0e3cff85c00f85b3040000488b5424204c8b6a484883c24048895424104c39ea0f84ee0100004c8d6424400f1f440000498b6d3848833d340a790000488d8d2002000048894c240874104889cfe83e0e3cff85c00f8564040000488bbd08020000488bad100200004839ef0f84790100004889ee",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffff00000000ffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);ADD(REG,IMM);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);CMP(ADDR,IMM);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);ADD(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);LEA(REG,REGIMM);NOP(REGIMM);MOV(REG,REGIMM);CMP(ADDR,IMM);LEA(REG,REGIMM);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(REG,REG);JZ(ADDR);MOV(REG,REG);"
+    },
+    {
+      "const": "INPUT_INPUT_ONKEYUPINNER",
+      "name": "jag::input::Input::OnKeyUpInner",
+      "old_addr": "0x00cb2dc0",
+      "sig_blob": "4157415641554154555389f34883ec4889742430488b3555299d0048897c2418488d3d39299d004885f60f84e60400004889f9eb164885c0742b4889f14889c63b5e20488b16488b46087ee94885d24889ce74114889d0ebe14839fe74053b5e207d14488d7c2438488d542430e8973ff5ff488b742438c6462400488b7424184883c618",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffff0000000000ffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REGIMM,REG);MOV(REG,ADDR);MOV(REGIMM,REG);LEA(REG,IMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);JMP(ADDR);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);MOV(REG,REG);CMP(REG,REGIMM);MOV(REG,REG);MOV(REG,REGIMM);JLE(ADDR);TEST(REG,REG);MOV(REG,REG);JZ(ADDR);MOV(REG,REG);JMP(ADDR);CMP(REG,REG);JZ(ADDR);CMP(REG,REGIMM);JGE(ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);CALL(ADDR);MOV(REG,REGIMM);MOV(REGIMM,IMM);MOV(REG,REGIMM);ADD(REG,IMM);"
+    },
+    {
+      "const": "SCRIPTRUNNER_EXECUTEHOOKINNER",
+      "name": "jag::ScriptRunner::ExecuteHookInner",
+      "old_addr": "0x00328380",
+      "sig_blob": "415741564989f7415541544989fd55534189d44881ecd8010000488b4708418b17488d742448488bb828940100e89ef0ffff488b4c2448488d15b2a6360148894424084839d10f84590600004883c2044839d17414498b9d280a190049399d200a19000f84b7060000488d6c2450458b37498b7708498b57104c8d45304c8d8df0000000488d7d0844897424504c894424784c894424604c894424584c894c2468e8fa467a004d8b9ff8000000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffff000000ffffffffffffff0000000000ffffffffffffffffffff00000000ffffffffffffffffffffff0000000000ffff0000000000ffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REG);LEA(REG,REGIMM);MOV(REG,REGIMM);CALL(ADDR);MOV(REG,REGIMM);LEA(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);ADD(REG,IMM);CMP(REG,REG);JZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,REG);JZ(ADDR);LEA(REG,REGIMM);MOV(REG,REG);MOV(REG,REGIMM);MOV(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);CALL(ADDR);MOV(REG,REGIMM);"
+    },
+    {
+      "const": "SCRIPTRUNNER_EXECUTESCRIPT",
+      "name": "jag::ScriptRunner::ExecuteScript",
+      "old_addr": "0x00325e20",
+      "sig_blob": "415741564189d6415541544989fd55534889cb4883ec28488b06c781a010000000000000c781a88d000000000000c74124ffffffff488b56084885c07405f083400801488b7b0848895310488943084885ff7405e85799f5ff488b8b18c00000c783f8ac0000000000004c8bbb10c000004885c9747a4d8d24cf660f1f440000498b3f4885ff7515eb56e87be398004885ed4889ef74434839bb68c00000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);ADD.LOCK(REGIMM,IMM);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REGIMM,REG);TEST(REG,REG);JZ(ADDR);CALL(ADDR);MOV(REG,REGIMM);MOV(REGIMM,IMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);LEA(REG,REGIMM);NOP(REGIMM);MOV(REG,REG);TEST(REG,REG);JNZ(ADDR);JMP(ADDR);CALL(ADDR);TEST(REG,REG);MOV(REG,REG);JZ(ADDR);CMP(REGIMM,REG);"
+    },
+    {
+      "const": "SCRIPTRUNNER_GETCLIENTSCRIPTSTATE",
+      "name": "jag::ScriptRunner::GetClientScriptState",
+      "old_addr": "0x00316130",
+      "sig_blob": "41574156415541545553488d5f204883ec08807f20000f84d4000000488d9f70c80000803b00488d97200a19000f84bd000000488d8350c800004839d04889c30f84aa0200008038000f84a10000004881c350c80000803b000f849100000080b8a090010000488d98a09001000f847d00000080b8f058020000488d98f0580200746d80b84021030000488d9840210300745d80b890e9030000488d9890e90300744d80b8e0b1040000488d98e0b10400743d80b8307a050000488d98307a0500",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffff0000000000ffff00000000ffffffffffffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffff00000000ffff0000000000ffff0000000000ffff00000000ffff0000000000ffff0000000000ffffffff0000000000ffff0000000000ffffffff0000000000ffff0000000000ffffffff0000000000ffff0000000000ffffffff0000000000ffff0000000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);LEA(REG,REGIMM);SUB(REG,IMM);CMP(REGIMM,IMM);JZ(ADDR);LEA(REG,REGIMM);CMP(REG,IMM);LEA(REG,REGIMM);JZ(ADDR);LEA(REG,REGIMM);CMP(REG,REG);MOV(REG,REG);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);ADD(REG,IMM);CMP(REG,IMM);JZ(ADDR);CMP(REGIMM,IMM);LEA(REG,REGIMM);JZ(ADDR);CMP(REGIMM,IMM);LEA(REG,REGIMM);JZ(ADDR);CMP(REGIMM,IMM);LEA(REG,REGIMM);JZ(ADDR);CMP(REGIMM,IMM);LEA(REG,REGIMM);JZ(ADDR);CMP(REGIMM,IMM);LEA(REG,REGIMM);JZ(ADDR);CMP(REGIMM,IMM);LEA(REG,REGIMM);"
+    },
+    {
+      "const": "SCRIPTRUNNER_CONTINUESCRIPT",
+      "name": "jag::ScriptRunner::ContinueScript",
+      "old_addr": "0x00325a10",
+      "sig_blob": "534889fbb919000000660fefc04881ec4001000064488b0425381fffff48897c2408488d7c2458488934248954241848899c2428010000488d1552060000488944245031c04889b42430010000f348ab488d5c2450488d74243031ff488994242001000048c7442440000000006448891c25381fffff0f29442430e860dcd4ff488d7b08e8e7e4d4ff85c00f844f010000488b1c24488b4c2450488b134889df6448890c25381fffffff52104c8b442408498d5020498db8200a19004983c0284c39c30f8407010000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffff00000000",
+      "sig_norm": "PUSH(REG);MOV(REG,REG);MOV(REG,IMM);PXOR(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REGIMM,REG);LEA(REG,REGIMM);MOV(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);LEA(REG,IMM);MOV(REGIMM,REG);XOR(REG,REG);MOV(REGIMM,REG);STOSQ.REP(REG);LEA(REG,REGIMM);LEA(REG,REGIMM);XOR(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,IMM);MOV(REGIMM,REG);MOVAPS(REGIMM,REG);CALL(ADDR);LEA(REG,REGIMM);CALL(ADDR);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);MOV(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);MOV(REGIMM,REG);CALL(REGIMM);MOV(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);ADD(REG,IMM);CMP(REG,REG);JZ(ADDR);"
+    },
+    {
+      "const": "SCRIPTRUNNER_GET_BY_ID",
+      "name": "jag::ClientScriptHelpers::GetByID",
+      "old_addr": "0x00327450",
+      "sig_blob": "41574156415541544189d4555331d24c89e04c89e54881ec080100004c8b57284c8b4f204489d148f7f1498b1cd14885db751ae998000000488b5b404885db0f84830000004c3b2375ee4b391cd174784c8b43304c8b5b38488d430848837808004c8bb7004101004d8958304c8b6b384d8945284c8bbff04001004c8973284d8b4f30498941284c894b3849894730",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);XOR(REG,REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);DIV(REG);MOV(REG,REGIMM);TEST(REG,REG);JNZ(ADDR);JMP(ADDR);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);CMP(REG,REG);JNZ(ADDR);CMP(REGIMM,REG);JZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);LEA(REG,REGIMM);CMP(REGIMM,IMM);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);"
+    },
+    {
+      "const": "INPUT_INPUT_ONMOUSEMOTION",
+      "name": "jag::input::Input::OnMouseMotion",
+      "old_addr": "0x00cc1e30",
+      "sig_blob": "415741564889f8415541544883c01855534883ec4848833d731f780000f30f11878800000048897c2420f30f1104244889442418f30f114c2404f30f118f8c00000074104889c7e864233bff85c00f8511040000488b5424204c8b6a484883c24048895424104c39ea0f84cf0300004c8d642438488d6c243c0f1f8000000000498b5d3848833d041f780000488db3a0010000488974240874104889f7e80e233bff85c00f85bb0300004c8b8388010000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);ADD(REG,IMM);PUSH(REG);PUSH(REG);SUB(REG,IMM);CMP(ADDR,IMM);MOVSS(REGIMM,REG);MOV(REGIMM,REG);MOVSS(REG,REG);MOV(REGIMM,REG);MOVSS(REGIMM,REG);MOVSS(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);ADD(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);NOP(REG);MOV(REG,REGIMM);CMP(ADDR,IMM);LEA(REG,REGIMM);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);"
+    },
+    {
+      "const": "INPUT_INPUT_ONLEFTBUTTONDOWN",
+      "name": "jag::input::Input::OnLeftButtonDown",
+      "old_addr": "0x00cc2e40",
+      "sig_blob": "41574156488d47184155415455534883ec5848833d660f780000c6057b9d9c000148897c2430f30f114424084889442428f30f114c2414f30f1105599d9c00f30f110d4d9d9c0074104889c7e84f133bff85c00f859c030000488b5424304c8b6a484883c24048895424204c39ea0f845d0300004c8d642448488d6c244c6690498b5d3848833df40e780000488d7320488974241874104889f7e801133bff85c00f854e0300004c8b4308",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffff000000000000ffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffff000000000000ffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);LEA(REG,REGIMM);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);CMP(ADDR,IMM);MOV(ADDR,IMM);MOV(REGIMM,REG);MOVSS(REGIMM,REG);MOV(REGIMM,REG);MOVSS(REGIMM,REG);MOVSS(ADDR,REG);MOVSS(ADDR,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);ADD(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);NOP();MOV(REG,REGIMM);CMP(ADDR,IMM);LEA(REG,REGIMM);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);"
+    },
+    {
+      "const": "INPUT_INPUT_ONLEFTBUTTONUP",
+      "name": "jag::input::Input::OnLeftButtonUp",
+      "old_addr": "0x00cc2a40",
+      "sig_blob": "41574156488d47184155415455534883ec5848833d6613780000c6057ba19c000048897c2430f30f114424084889442428f30f114c2414f30f110559a19c00f30f110d4da19c0074104889c7e84f173bff85c00f859c030000488b5424304c8b6a484883c24048895424204c39ea0f845d0300004c8d642448488d6c244c6690498b5d3848833df412780000488d7360488974241874104889f7e801173bff85c00f854e0300004c8b4348",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffff000000000000ffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffff000000000000ffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);LEA(REG,REGIMM);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);CMP(ADDR,IMM);MOV(ADDR,IMM);MOV(REGIMM,REG);MOVSS(REGIMM,REG);MOV(REGIMM,REG);MOVSS(REGIMM,REG);MOVSS(ADDR,REG);MOVSS(ADDR,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);ADD(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);NOP();MOV(REG,REGIMM);CMP(ADDR,IMM);LEA(REG,REGIMM);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);"
+    },
+    {
+      "const": "INPUT_INPUT_ONSCROLLWHEEL",
+      "name": "jag::input::Input::OnScrollWheel",
+      "old_addr": "0x00cc15b0",
+      "sig_blob": "415741564889f8415541544883c01855534883ec7848833df32778000048897c2430f30f114424104889442448f30f114c241474104889c7e8f32b3bff85c00f8530080000488b5424304c8b7a484883c24048895424384c39fa0f84e3070000488d4c24584c8d7424504c8d6c245448894c24206690662e0f1f840000000000498b5f38488b74243048833d7f27780000488dbbe0010000f30f10968c000000f30f109e88000000f30f1154240848897c2428f30f115c240c",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);ADD(REG,IMM);PUSH(REG);PUSH(REG);SUB(REG,IMM);CMP(ADDR,IMM);MOV(REGIMM,REG);MOVSS(REGIMM,REG);MOV(REGIMM,REG);MOVSS(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);ADD(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);MOV(REGIMM,REG);NOP();NOP(REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(ADDR,IMM);LEA(REG,REGIMM);MOVSS(REG,REGIMM);MOVSS(REG,REGIMM);MOVSS(REGIMM,REG);MOV(REGIMM,REG);MOVSS(REGIMM,REG);"
+    },
+    {
+      "const": "INPUT_INPUT_ONKEYCHARINNER",
+      "name": "jag::input::Input::OnKeyCharInner",
+      "old_addr": "0x00cb28e0",
+      "sig_blob": "415741564889f8415541544883c018555389f54883ec4848833dc11479000048897c2420488944241874104889c7e8cd183cff85c00f858a040000488b5424204c8b6a484883c24048895424104c39ea0f8440040000488b1d831479004c8d64243848895c2408660f1f8400000000004d8b753848837c240800498dbea002000048893c24740de874183cff85c00f85310400004d8b8e88020000498b9e900200004939d90f847a010000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffff00000000ffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffffffffffffffffffffffffffff00000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);ADD(REG,IMM);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);CMP(ADDR,IMM);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);ADD(REG,IMM);MOV(REGIMM,REG);CMP(REG,REG);JZ(ADDR);MOV(REG,ADDR);LEA(REG,REGIMM);MOV(REGIMM,REG);NOP(REGIMM);MOV(REG,REGIMM);CMP(REGIMM,IMM);LEA(REG,REGIMM);MOV(REG,REG);JZ(ADDR);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(REG,REG);JZ(ADDR);"
+    },
+    {
+      "const": "EVENTLISTENERS_CALLLISTENERS_FF",
+      "name": "jag::EventListeners::CallListeners_ff",
+      "old_addr": "0x00cc10f0",
+      "sig_blob": "4156415566490f7ec54154554c8d6718534889fb4883ec2048833db02c78000074104c89e7e8c6303bff85c00f85870200004c8b33488b6b084939ee0f844d0200004889ea4c89e84c89f34c29f248c1e82044896c240c4883ea084889042448c1ea034883c20183e2030f84f60000004883fa010f84990000004883fa027449498b1e4885db743d48837b1000f30f100424",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffff000000ffffffff00000000ffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOVQ(REG,REG);PUSH(REG);PUSH(REG);LEA(REG,REGIMM);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);CMP(ADDR,IMM);JZ(ADDR);MOV(REG,REG);CALL(ADDR);TEST(REG,REG);JNZ(ADDR);MOV(REG,REG);MOV(REG,REGIMM);CMP(REG,REG);JZ(ADDR);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,REG);SHR(REG,IMM);MOV(REGIMM,REG);SUB(REG,IMM);MOV(REG,REG);SHR(REG,IMM);ADD(REG,IMM);AND(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);CMP(REG,IMM);JZ(ADDR);MOV(REG,REG);TEST(REG,REG);JZ(ADDR);CMP(REGIMM,IMM);MOVSS(REG,REG);"
+    },
+    {
+      "const": "INPUTSTATE_ISKEYDOWN",
+      "name": "jag::input::InputState::IsKeyDown",
+      "old_addr": "0x00cc1540",
+      "sig_blob": "488b05e9419c004c8d05d2419c004885c0744d4c89c6eb134885d2742b4889c64889d0397820488b08488b50087de94885c94889f074114889caebe14c39c0740b3978207f060fb64024c331c0c3",
+      "sig_mask": "ffff0000000000ffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "MOV(REG,ADDR);LEA(REG,IMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);JMP(ADDR);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);MOV(REG,REG);CMP(REGIMM,REG);MOV(REG,REG);MOV(REG,REGIMM);JGE(ADDR);TEST(REG,REG);MOV(REG,REG);JZ(ADDR);MOV(REG,REG);JMP(ADDR);CMP(REG,REG);JZ(ADDR);CMP(REGIMM,REG);JG(ADDR);MOVZX(REG,REGIMM);RET();XOR(REG,REG);RET();"
+    },
+    {
+      "const": "TCPCONNECTIONMESSAGE_INIT",
+      "name": "jag::game::TcpConnectionMessage::Init",
+      "old_addr": "0x0012a570",
+      "sig_blob": "4154554989cc534889f54889fb4883ec208b0683faff89570448c7471000000000be0401000048c747180000000048c74720000000008907c7472800000000742583fafebe10270000741b83fa12be140000007e1183fa62be04010000ba62000000480f4ef24889e748c74424080000000048c74424100000000048c744241800000000e887b9bc00488b7c24084c8b4310488b4b20488b7424184c8b4c241048897b10488b7b184d85c0",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REG);CMP(REG,IMM);MOV(REGIMM,REG);MOV(REGIMM,IMM);MOV(REG,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REG,REG);MOV(REGIMM,IMM);JZ(ADDR);CMP(REG,IMM);MOV(REG,IMM);JZ(ADDR);CMP(REG,IMM);MOV(REG,IMM);JLE(ADDR);CMP(REG,IMM);MOV(REG,IMM);MOV(REG,IMM);CMOVLE(REG,REG);MOV(REG,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REGIMM);TEST(REG,REG);"
+    },
+    {
+      "const": "TCPCONNECTIONMESSAGE_INIT_INCOMING",
+      "name": "jag::game::TcpConnectionMessage::InitIncoming",
+      "old_addr": "0x001a6770",
+      "sig_blob": "4154554989cc534889f54889fb4883ec208b0683faff89570448c7471000000000be0401000048c747180000000048c74720000000008907c7472800000000742583fafebe10270000741b83fa12be140000007e1183fa62be04010000ba62000000480f4ef24889e748c74424080000000048c74424100000000048c744241800000000e887f7b400488b7c24084c8b4310488b4b20488b7424184c8b4c241048897b10488b7b184d85c0",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REG);CMP(REG,IMM);MOV(REGIMM,REG);MOV(REGIMM,IMM);MOV(REG,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REG,REG);MOV(REGIMM,IMM);JZ(ADDR);CMP(REG,IMM);MOV(REG,IMM);JZ(ADDR);CMP(REG,IMM);MOV(REG,IMM);JLE(ADDR);CMP(REG,IMM);MOV(REG,IMM);MOV(REG,IMM);CMOVLE(REG,REG);MOV(REG,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REGIMM);TEST(REG,REG);"
+    },
+    {
+      "const": "SENDCLIENTMESSAGE",
+      "name": "jag::Packet::SendClientMessage",
+      "old_addr": "0x00cda720",
+      "sig_blob": "5553488d6f484889fb4883ec18488b47584885c0746a488b1048895758488b3e488b4e084885ff48897810488948187405f0834708014c8b43504889284c8940084c8b4b5049890148894350488b46084883838800000001488b702048c740200000000089702801b3b00200004883c4185b5dc3488b4760483b4368488b7f7074124801c748897b60eb86",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);LEA(REG,REGIMM);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);MOV(REGIMM,REG);MOV(REG,REG);MOV(REG,REGIMM);TEST(REG,REG);MOV(REGIMM,REG);MOV(REGIMM,REG);JZ(ADDR);ADD.LOCK(REGIMM,IMM);MOV(REG,REGIMM);MOV(REG,REG);MOV(REGIMM,REG);MOV(REG,REGIMM);MOV(REG,REG);MOV(REGIMM,REG);MOV(REG,REGIMM);ADD(REGIMM,IMM);MOV(REG,REGIMM);MOV(REGIMM,IMM);MOV(REGIMM,REG);ADD(REGIMM,REG);ADD(REG,IMM);POP(REG);POP(REG);RET();MOV(REG,REGIMM);CMP(REG,REGIMM);MOV(REG,REGIMM);JZ(ADDR);ADD(REG,REG);MOV(REGIMM,REG);JMP(ADDR);"
+    },
+    {
+      "const": "REBUILD_NORMAL_HANDLER",
+      "name": "jag::PacketHandlers::RebuildNormal",
+      "old_addr": "0x001e1210",
+      "sig_blob": "41574156415541544989fd55534989f44883ec58488b07488b8840940100807949000f85180100004d8b4c24184d8b442410448b1557fff100498d7102498d51044d8d7107498d490a498d41084989742418430fb73c084989542418430fb66c0802470fb65c08034d89742418470fb67c0806498944241889fb470fb674080749894c241866c1c3084181fa0001020340882c240f45df430fb76c08084901c84983c10e4181fa00010203",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffff00000000ffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffff0000000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REG);MOV(REG,REGIMM);CMP(REGIMM,IMM);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);LEA(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOVZX(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REG);MOVZX(REG,REGIMM);MOV(REGIMM,REG);ROL(REG,IMM);CMP(REG,IMM);MOV(REG,REG);CMOVNZ(REG,REG);MOVZX(REG,REGIMM);ADD(REG,REG);ADD(REG,IMM);CMP(REG,IMM);"
+    },
+    {
+      "const": "BUILD_AREA_INIT",
+      "name": "jag::game::RebuildSceneEntry::Reset",
+      "old_addr": "0x006c1ab0",
+      "sig_blob": "41564155415455534889fb893748c747080000000048c747100000000048c747180000000048c747200000000048c747280000000048c747300000000048c747380000000048c747400000000048c747480000000048c747500000000048c747580000000048c7476000000000bf10000000e819666100488b5310488b73084989c44839f20f84d50300004829f24889c74889d5e8b7149bff488b73084c01e54885f674084889f7e8d3265f00488b4330482b43204c8963084983c410",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REGIMM,IMM);MOV(REG,IMM);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);CMP(REG,REG);JZ(ADDR);SUB(REG,REG);MOV(REG,REG);MOV(REG,REG);CALL(ADDR);MOV(REG,REGIMM);ADD(REG,REG);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);CALL(ADDR);MOV(REG,REGIMM);SUB(REG,REGIMM);MOV(REGIMM,REG);ADD(REG,IMM);"
+    },
+    {
+      "const": "INTERFACEMANAGER_DRAWCOMPONENTLIST",
+      "name": "jag::InterfaceManager::DrawComponentList",
+      "old_addr": "0x0040b7e0",
+      "sig_blob": "415741564989ff415541544189cc55534889f34489c689d54489ca4883ec58488b47088b8c2490000000448b842498000000f30f11442418488bb8d08c0100f30f6f477448897c24300f11442438e85d198e00498b5708488b8ad08c01008b717c2b717485f60f8e030100008b81800000002b417885c00f8ef2000000488d7c2420498db79802000048897c2410e8edabd8ff4c8b034c8b4b084d39c80f84bd000000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffff000000ffffffffffff0000000000ffffffffffffffffffff00000000ffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffff00000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOVSS(REGIMM,REG);MOV(REG,REGIMM);MOVDQU(REG,REGIMM);MOV(REGIMM,REG);MOVUPS(REGIMM,REG);CALL(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);SUB(REG,REGIMM);TEST(REG,REG);JLE(ADDR);MOV(REG,REGIMM);SUB(REG,REGIMM);TEST(REG,REG);JLE(ADDR);LEA(REG,REGIMM);LEA(REG,REGIMM);MOV(REGIMM,REG);CALL(ADDR);MOV(REG,REG);MOV(REG,REGIMM);CMP(REG,REG);JZ(ADDR);"
+    },
+    {
+      "const": "CLIENTPROT_SENDEVENTMOUSECLICK",
+      "name": "jag::ClientProt::SendEventMouseClick",
+      "old_addr": "0x001825f0",
+      "sig_blob": "488b4f084c8b81a8940100418b80644d0000413980604d00000f848101000041574156488d14804155415441beff7f0000555348c1e203498db410904500004883ec484c8b4f20498b9c10a84500004d85c974164989debdff7f00004d29ce4981feff7f00004c0f47f548895f20f30f2c5e0831ff85db4c8d1c8041bcffff00000f48dff3440f2c5604488d159f1e500181fbffff0000478bacd890450000488d742418410f4fdc4585d24889542418",
+      "sig_mask": "ffffffffffff0000000000ffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);CMP(REGIMM,REG);JZ(ADDR);PUSH(REG);PUSH(REG);LEA(REG,REGIMM);PUSH(REG);PUSH(REG);MOV(REG,IMM);PUSH(REG);PUSH(REG);SHL(REG,IMM);LEA(REG,REGIMM);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);MOV(REG,REG);MOV(REG,IMM);SUB(REG,REG);CMP(REG,IMM);CMOVA(REG,REG);MOV(REGIMM,REG);CVTTSS2SI(REG,REGIMM);XOR(REG,REG);TEST(REG,REG);LEA(REG,REGIMM);MOV(REG,IMM);CMOVS(REG,REG);CVTTSS2SI(REG,REGIMM);LEA(REG,IMM);CMP(REG,IMM);MOV(REG,REGIMM);LEA(REG,REGIMM);CMOVG(REG,REG);TEST(REG,REG);MOV(REGIMM,REG);"
+    },
+    {
+      "const": "APPLY_LOC_CHANGE",
+      "name": "jag::game::ApplyLocChange",
+      "old_addr": "0x00136600",
+      "sig_blob": "415741564989ff4155415455534883ec184c8b6f68488b5f604c89e84829d84889c548c1f80648c1fd044885c00f8eb7070000488b6e0848c1e00641ba000000c04801d841b900000080448b4568eb0d4883c3404839c30f84830700004183f80475ed488b7b08837f68020f846f010000488b4b18837968020f845f020000488b4b28837968020f8453030000488b4b3883796802",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffffffffffffff00000000ffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);SUB(REG,REG);MOV(REG,REG);SAR(REG,IMM);SAR(REG,IMM);TEST(REG,REG);JLE(ADDR);MOV(REG,REGIMM);SHL(REG,IMM);MOV(REG,IMM);ADD(REG,REG);MOV(REG,IMM);MOV(REG,REGIMM);JMP(ADDR);ADD(REG,IMM);CMP(REG,REG);JZ(ADDR);CMP(REG,IMM);JNZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,IMM);JZ(ADDR);MOV(REG,REGIMM);CMP(REGIMM,IMM);"
+    },
+    {
+      "const": "CLIENTERROR_REPORTERROR",
+      "name": "jag::game::ClientError::ReportError",
+      "old_addr": "0x007c31b0",
+      "sig_blob": "415741564989d6415541544989fc55534889f589cb4881ecc8070000488b374c8d7c2430894c240c488b064c89ffff1089d8a8040f85d60500000fb65c244784db0f889905000080fb170f84ab050000498b34244c8d156526b5ff488b164c8b4a204d39d10f85d50900004c8b5e08498bbb309b01004885ff0f8461080000e8fc6a9dff488dbc24900300004889c648893c24e898a9acff",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffff00000000ffffffffff00000000ffffffffffff0000000000ffffffffffffffffffffffff00000000ffffffffffff0000000000ffffffffff00000000ffff000000ffffffffffffffffffffffffffffffffff000000",
+      "sig_norm": "PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REG);LEA(REG,REGIMM);MOV(REGIMM,REG);MOV(REG,REG);MOV(REG,REG);CALL(REG);MOV(REG,REG);TEST(REG,IMM);JNZ(ADDR);MOVZX(REG,REGIMM);TEST(REG,REG);JS(ADDR);CMP(REG,IMM);JZ(ADDR);MOV(REG,REG);LEA(REG,IMM);MOV(REG,REG);MOV(REG,REGIMM);CMP(REG,REG);JNZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);TEST(REG,REG);JZ(ADDR);CALL(ADDR);LEA(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);CALL(ADDR);"
+    },
+    {
+      "const": "CLIENTSTREAM_READ",
+      "name": "jag::ClientStream::Read",
+      "old_addr": "0x00b73690",
+      "sig_blob": "4c8b87800000004c2b47784883050d44b000014983f8010f8443010000415541544989d455534889f54889fb4883ec18488b8fa00000004839d10f82900000004983e80148bacdcccccccccccccc4c89c04929c848f7e248c1ea034c39c272704c89e04885c0744a488bb3900000004c8d4405006690662e0f1f8400000000000fb60e884d00488bbb90000000488d7701483bb3800000004889b390000000745f4883c5014883aba000000001",
+      "sig_mask": "ffffffffffffffffffffffffff000000000000ffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "MOV(REG,REGIMM);SUB(REG,REGIMM);ADD(ADDR,IMM);CMP(REG,IMM);JZ(ADDR);PUSH(REG);PUSH(REG);MOV(REG,REG);PUSH(REG);PUSH(REG);MOV(REG,REG);MOV(REG,REG);SUB(REG,IMM);MOV(REG,REGIMM);CMP(REG,REG);JC(ADDR);SUB(REG,IMM);MOV(REG,IMM);MOV(REG,REG);SUB(REG,REG);MUL(REG);SHR(REG,IMM);CMP(REG,REG);JC(ADDR);MOV(REG,REG);TEST(REG,REG);JZ(ADDR);MOV(REG,REGIMM);LEA(REG,REGIMM);NOP();NOP(REGIMM);MOVZX(REG,REG);MOV(REG,REG);MOV(REG,REGIMM);LEA(REG,REGIMM);CMP(REG,REGIMM);MOV(REGIMM,REG);JZ(ADDR);ADD(REG,IMM);SUB(REGIMM,IMM);"
+    },
+    {
+      "const": "CLIENTSTREAM_WRITE",
+      "name": "jag::ClientStream::Write",
+      "old_addr": "0x00b72ea0",
+      "sig_blob": "41574156415541544531e455534883ec188b0785c00f847101000080bfe0000000004889fb4889f54989d50f84ef0000004c8b97d8000000488b97d0000000488bb7c80000004c89d74989d64829d74929f64c39ef0f82310100004d85ed0f8e8c0200004e8d642d004989ef49f7d74d01e74183e7030f84ca0100004939d20f865b040000488d4201488983d00000000fb64d00880a488b93d0000000",
+      "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "sig_norm": "PUSH(REG);PUSH(REG);PUSH(REG);PUSH(REG);XOR(REG,REG);PUSH(REG);PUSH(REG);SUB(REG,IMM);MOV(REG,REG);TEST(REG,REG);JZ(ADDR);CMP(REGIMM,IMM);MOV(REG,REG);MOV(REG,REG);MOV(REG,REG);JZ(ADDR);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REGIMM);MOV(REG,REG);MOV(REG,REG);SUB(REG,REG);SUB(REG,REG);CMP(REG,REG);JC(ADDR);TEST(REG,REG);JLE(ADDR);LEA(REG,REGIMM);MOV(REG,REG);NOT(REG);ADD(REG,REG);AND(REG,IMM);JZ(ADDR);CMP(REG,REG);JBE(ADDR);LEA(REG,REGIMM);MOV(REGIMM,REG);MOVZX(REG,REG);MOV(REG,REG);MOV(REG,REGIMM);"
+    },
+    {
+      "const": "SERVERCONNECTION_FLUSHCLIENTMESSAGES",
+      "name": "jag::game::ServerConnection::FlushClientMessages"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "OGlobal.CLIENT",
+      "target_object": "OGlobal",
+      "field": "CLIENT",
+      "value_kind": "global_addr",
+      "anchor": {
+        "name": "MINIMAP_FLAG_SET",
+        "namespace": "jag::packethandlers::ClientState",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::packethandlers::ClientState::MINIMAP_FLAG_SET",
+        "sig_blob": "41574156415541544989cd55534889fb89d54989f44883ec18488b7f08e82e241400488dbb680100004889c6e84fe16600396b640f96c080bb90010000008883a9010000740484c075164883c4185b5d415c415d415e415fc3488b93300100004885d2743748837a18007430488b0d367253014c8db3ac0100004c89f7448bb908050000",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffff",
+        "feat_hash": "82a8a216dc0b3ba130abbe251144939a1102ad9c9e993b24be9aeea64e8859cf"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "rip_target",
+            "match": {
+              "mnemonic": "MOV",
+              "src": {
+                "rip_rel": true
+              }
+            },
+            "as": "g",
+            "occurrence": 1
+          }
+        ],
+        "emit": [
+          {
+            "id": "OGlobal.CLIENT",
+            "value": "g"
+          }
+        ]
+      },
+      "old_value": "0x1678620",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MINIMAP_FLAG_SET reads `MOV RCX,[g_client]` (RIP-relative). old_value re-seeded to the 949-1 .bss label (was 0x015bf1f8 in 948-5); the label moved with the .bss layout on the major bump. Alt anchors: jag::Client::SetMainState, MainLogic."
+    },
+    {
+      "id": "ONPC.CURRENT_HP",
+      "target_object": "ONPC",
+      "field": "CURRENT_HP",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "get_npc_stat",
+        "namespace": "jag::opcode",
+        "identify_by": [
+          "string_xref",
+          "func_name",
+          "sig"
+        ],
+        "string": "get_npc_stat",
+        "official_name": "jag::opcode::get_npc_stat",
+        "sig_blob": "488b8eb8c300008b96a0100000807910018d42ff8986a01000007414488d3dc178da0031c0e9d63596004c8d04864963b8000100004c8d0cb9458b9120110000458b993c1100008996a0100000458990000100008b86a01000008d50018996a010000044899c8600010000488d05e8e43b01c3",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ff",
+        "feat_hash": "c583b568fab060bf1e69f7fb246947d94fc1a74bb4ba7963c0f443f256c083e5"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "LEA"
+            },
+            "dst": "@base",
+            "mem": {
+              "index": "*",
+              "scale": 4
+            },
+            "occurrence": 2
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV",
+              "operand_size": 32
+            },
+            "mem": {
+              "base": "@base"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "currentStats"
+            }
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV",
+              "operand_size": 32
+            },
+            "mem": {
+              "base": "@base"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "maxStats"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "ONPC.CURRENT_HP",
+            "value": "currentStats + 0xC"
+          },
+          {
+            "id": "ONPC.MAX_HP",
+            "value": "maxStats + 0xC"
+          }
+        ]
+      },
+      "old_value": "0x112c",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED 948-2-2(@0x2c77e0) and 948-5(@0x2c79b0): `LEA R9,[npc+idx*4]; MOV r32,[R9+0x1120]; MOV r32,[R9+0x113c]`. currentStats=0x1120, maxStats=0x113c; HP is stat slot 3 => +0xC. This single anchor yields BOTH CURRENT_HP(0x112C) and MAX_HP(0x1148). The motivating drift check."
+    },
+    {
+      "id": "ONPC.MAX_HP",
+      "target_object": "ONPC",
+      "field": "MAX_HP",
+      "value_kind": "struct_field",
+      "shared_anchor": "ONPC.CURRENT_HP",
+      "old_value": "0x1148",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the get_npc_stat anchor (see ONPC.CURRENT_HP). Listed for completeness; no separate extraction."
+    },
+    {
+      "id": "ONPC.SHOW_AS_IMPORTANT",
+      "target_object": "ONPC",
+      "field": "SHOW_AS_IMPORTANT",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "highlight_set_npc_show_as_important",
+        "namespace": "jag::opcode",
+        "identify_by": [
+          "string_xref",
+          "func_name",
+          "sig"
+        ],
+        "string": "highlight_set_npc_show_as_important",
+        "official_name": "jag::opcode::highlight_set_npc_show_as_important",
+        "sig_blob": "8b86a0100000488b96b8c3000083e801807a10018986a010000075548b8c8600010000488bbeb0c3000085c9410f9fc04885ff742b4883ec08f08347080144888200110000e8565eecff488d059f202d014883c408c344888200110000488d0582202d01c3488d3dc1f9cb0031c0e912718700",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffff0000000000ffffffffffffffffffffffffffff0000000000ffffff0000000000ffffffff000000",
+        "feat_hash": "e5ba8f980cec7b3a92b4c01ae768288a72a2d4613ad918aa62653a423c210d9d"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "CMP"
+            },
+            "dst": "@npc",
+            "mem": {
+              "disp_min": "0x10",
+              "disp_max": "0x10"
+            },
+            "occurrence": 1
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "@npc"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "flag"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "ONPC.SHOW_AS_IMPORTANT",
+            "value": "flag"
+          }
+        ]
+      },
+      "old_value": "0x1100",
+      "confidence": "MEDIUM",
+      "validated": false,
+      "notes": "Anchor present in 948-5 @0x269440 (string-xref reliable). Recipe: the `MOV byte [this+0x1100], r8b` write after the `this[0x10]==1` entityType check. The first byte store to [this+disp] in the function. Confirm against entityType-guard; the sibling highlight_set_loc_show_as_important (@0x2693c0) writes Location+0x32c."
+    },
+    {
+      "id": "OWorld.VIEW_MATRIX",
+      "target_object": "OWorld",
+      "field": "VIEW_MATRIX",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "WorldToScreen",
+        "namespace": "jag::graphics",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::graphics::WorldToScreen",
+        "sig_blob": "488b442408c6470c00f30f104010f30f10080f2ec17221f30f105014f30f1058040f2ed37212f3440f104818f3440f105008450f2eca730831c0c3f3440f10681c410f28f20f28fb0f28e1440f2e2dc08a2f00f3410f58f1f30f102da38a2f00f30f58faf30f58e0f30f59f5f30f59fdf30f59e57a397537f30f5cd3f30f5cc1f3450f5ccaf30f59d2f30f59c0f3450f59c9f30f58c2f3410f58c1f3440f51c0f3440f59c5",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000ffffffffffffff000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "4d4b7a3874099104342e71c87f4aa15b83eafcdb66bff688b794766b124c0d7b",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "call_arg",
+            "call": "jag::graphics::WorldToScreen",
+            "arg": 2,
+            "mem": {
+              "disp_min": "0x10000",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "viewMat"
+            }
+          },
+          {
+            "op": "call_arg",
+            "call": "jag::graphics::WorldToScreen",
+            "arg": 4,
+            "mem": {
+              "disp_min": "0x10000",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "projMat"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.VIEW_MATRIX",
+            "value": "viewMat"
+          },
+          {
+            "id": "OWorld.PROJECTION_MATRIX",
+            "value": "projMat"
+          }
+        ]
+      },
+      "old_value": "0x13100",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "jag::graphics::WorldToScreen (949-1 @0xa6e2b0) projects a world-space AABB to screen; its matrix args are (out, arg2=viewMatrix, arg3=scaleMatrix, arg4=projectionMatrix). Callers (e.g. the entity-projection helper @0x3ca1a0) issue `LEA RSI,[World+VIEW]; LEA RDX,[World+SCALE]; LEA RCX,[World+PROJECTION]` directly before the CALL, so call_arg arg2 => VIEW_MATRIX and call_arg arg4 => PROJECTION_MATRIX. CRITICAL: PROJECTION is arg4 (the combined view*proj @0x13200 that WorldToScreen actually samples for screen x/y), NOT arg3 (the middle SCALE matrix @0x13180 that the old Mat4x4Multiply-caller recipe wrongly emitted as projection). via_caller picks the first caller whose args are BOTH direct LEAs; callers that pass projection via a register alias (MOV RCX,R14) fail call_arg and are skipped automatically."
+    },
+    {
+      "id": "OWorld.PROJECTION_MATRIX",
+      "target_object": "OWorld",
+      "field": "PROJECTION_MATRIX",
+      "value_kind": "struct_field",
+      "shared_anchor": "OWorld.VIEW_MATRIX",
+      "old_value": "0x13200",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the WorldToScreen anchor as call_arg arg4 (the combined view*proj matrix WorldToScreen samples). 949-1 = 0x13200 (VIEW 0x13100 + 0x100). Re-seeded from the stale 948-5 0x131e0; 0x13180 is the middle SCALE matrix, NOT projection."
+    },
+    {
+      "id": "OWorld.HEIGHT_MAP",
+      "target_object": "OWorld",
+      "field": "HEIGHT_MAP",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "GetFineHeight",
+        "namespace": "jag::game::HeightMap",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::game::HeightMap::GetFineHeight",
+        "sig_blob": "41554589c24989fd89cf41c1fa1f4154c1ff1f41c1ea1155c1ef11534589cc448d1c39478d0c10418d80ff7f00004883ec1889d58d91ff7f00004181e1ff7f00004181e3ff7f00004585c0410f49c0660fefc0c1f80f85c94889f30f49d14129fb4529d1c1fa0f4889e64589d889c14c89ef0f290424e8e5775b0084c00f84cd0100004d8b6d088b1424",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffff00000000ffffffffffffff",
+        "feat_hash": "38c4f8b444136d0eb09afe36a8140942136c181af48231d97cd19531dbcd43cb",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "back_scan",
+            "from_call": "jag::game::HeightMap::GetFineHeight",
+            "dst_reg": "@this",
+            "mem": {
+              "base": "*",
+              "disp_min": "0x10000",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "heightMap"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.HEIGHT_MAP",
+            "value": "heightMap"
+          }
+        ]
+      },
+      "old_value": "0x14058",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Callers reach the embedded HeightMap subobject as `<this> = World + HEIGHT_MAP` before CALL GetFineHeight. This uses back_scan rather than call_arg because the two compilers emit that address computation differently: the ELF build emits `LEA arg1,[World+disp]` but the PE build emits `ADD RCX,disp` on a register that already holds the World. call_arg only matches LEA, so it silently found nothing on the PE; back_scan's this-load reader handles LEA, MOV and ADD/SUB-immediate alike. dst_reg is '@this' so the register is resolved per ABI."
+    },
+    {
+      "id": "OWorld.MAPSQUARE_X_OFFSET",
+      "target_object": "OWorld",
+      "field": "MAPSQUARE_X_OFFSET",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "GetMapSquare",
+        "namespace": "jag::game::World",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::game::World::GetMapSquare",
+        "sig_blob": "2b97d83f01002bb7d43f0100786285d2785e4c8b8720400100488b8f2840010048bfabaaaaaaaaaaaaaa488d05af73fc004c29c148c1f903480fafcf39ce7d374863f64c8d0c764f8d14c84d8b1a4d8b42084d29d849c1f8034c0fafc74439c27d154863d2488d0452498d04c3c3488d056973fc00f3c3",
+        "sig_mask": "ffff00000000ffff00000000ffffffffffffffff0000000000ffff0000000000ffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffff",
+        "feat_hash": "18995eb4988fb2ded002bf634fc06d3e5d649e3b850a61f0117fc657135bed1a"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "SUB"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x13000",
+              "disp_max": "0x15000"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "s1"
+            }
+          },
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "SUB"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x13000",
+              "disp_max": "0x15000"
+            },
+            "occurrence": 2,
+            "capture": {
+              "from": "mem.disp",
+              "as": "s2"
+            }
+          },
+          {
+            "op": "find_after",
+            "match": {
+              "mnemonic": "MOV",
+              "operand_size": 64
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x13000",
+              "disp_max": "0x15000"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "vec"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.MAPSQUARE_X_OFFSET",
+            "value": "min(s1, s2)"
+          },
+          {
+            "id": "OWorld.MAPSQUARE_Y_OFFSET",
+            "value": "max(s1, s2)"
+          },
+          {
+            "id": "OWorld.MAPSQUARE_X_MAX",
+            "value": "min(s1, s2) + 8"
+          },
+          {
+            "id": "OWorld.MAPSQUARE_Y_MAX",
+            "value": "min(s1, s2) + 0xc"
+          },
+          {
+            "id": "OWorld.MAPSQUARES_VECTOR",
+            "value": "vec"
+          }
+        ]
+      },
+      "old_value": "0x13fd4",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "jag::game::World::GetMapSquare is the world->mapsquare index accessor. Both builds subtract the two origin fields from the arguments and then load the mapsquares vector (outer stride 0x18), but they do it in OPPOSITE order: the ELF build subtracts Y first, the PE build subtracts X first. The old occurrence-indexed recipe therefore assigned X and Y the wrong way round on the PE. X_OFFSET is always the lower of the two displacements on both builds, so the pair is disambiguated with min()/max() instead of by order. X_MAX and Y_MAX are derived: the four build-area bounds are contiguous dwords in the order X_OFFSET, Y_OFFSET, X_MAX, Y_MAX on both builds (verified independently against the World constructor's argument stores and against the double-loop scene walker on each). MAPSQUARES_VECTOR is captured independently as the first 64-bit load after the two subtractions. The disp window is deliberately wide enough to span both layouts, which is safe because the recipe runs inside GetMapSquare, whose only struct accesses are these."
+    },
+    {
+      "id": "OWorld.MAPSQUARE_Y_OFFSET",
+      "target_object": "OWorld",
+      "field": "MAPSQUARE_Y_OFFSET",
+      "value_kind": "struct_field",
+      "shared_anchor": "OWorld.MAPSQUARE_X_OFFSET",
+      "old_value": "0x13fd8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the World::GetMapSquare anchor (see OWorld.MAPSQUARE_X_OFFSET)."
+    },
+    {
+      "id": "OWorld.MAPSQUARES_VECTOR",
+      "target_object": "OWorld",
+      "field": "MAPSQUARES_VECTOR",
+      "value_kind": "struct_field",
+      "shared_anchor": "OWorld.MAPSQUARE_X_OFFSET",
+      "old_value": "0x14020",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the World::GetMapSquare anchor (see OWorld.MAPSQUARE_X_OFFSET). Outer 2D vector triple, stride 0x18 outer / 0x8 inner."
+    },
+    {
+      "id": "OWorld.ROOT_GRAPH_NODE",
+      "target_object": "OWorld",
+      "field": "ROOT_GRAPH_NODE",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "World",
+        "namespace": "jag::game::World",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::game::World::World",
+        "sig_blob": "41574156488d051da4f500415541544989ff55534889d3488d2daaa2f500660f76c04881ecb800000048894f3048897720488b9424f8000000488b8c24f0000000488d3588a3f5004889074883e8804c8947384c894f484c8ba4242801000048c747080000000048c74710000000004889471848895f2848894f4048c747500000000048c74758000000004889776048c747680000000048c747700000000048c747780000000048c787800000000000000048c787880000000000000048c787900000000000000048c787980000000000000048c787a00000000000000048c787a80000000000000048c787b000000000000000",
+        "sig_mask": "ffffffffffff0000000000ffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "0e1270c3e51e6032389145b86052e41ca531c0aa74f7bc4c5b9399044c8781cd"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x10169",
+              "disp_max": "0x1017f"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "root"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.ROOT_GRAPH_NODE",
+            "value": "root"
+          }
+        ]
+      },
+      "old_value": "0x10170",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "The World ctor jag::game::World::World (949-1 @0x4c4620) constructs a graphics::GraphNode and stores it at World+ROOT_GRAPH_NODE (`MOV [World+0x10170], graphNodePtr`, param_1[0x202e]). The window 0x10169-0x1017f isolates the root ptr from the AABB float area just below it (0x10130-0x10168; the old 948-5 root offset 0x10150 now lives inside that AABB) and the SSE zero-init at 0x10180 above it. occ1 MOV-mem in that window = 0x10170. Window is tight by necessity (root is 0x8 above the AABB); a larger future drift reports UNRESOLVED, which is still a drift signal."
+    },
+    {
+      "id": "OMapSquare.CHUNK_SIZE_FLAG",
+      "target_object": "OMapSquare",
+      "field": "CHUNK_SIZE_FLAG",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "GetLocationContainerAt",
+        "namespace": "jag::game::MapSquare",
+        "identify_by": [
+          "sig",
+          "func_name"
+        ],
+        "official_name": "jag::game::MapSquare::GetLocationContainerAt",
+        "sig_blob": "4c8b8780eb0000488b8f88eb00004189d24c8d0d409dfb004939c8744e48837f700189f019ff994c29c183e70848c1f90383c708f7ff4469d9abaaaaaa4863f04139f37e264489d04c8d1476994f8d04d0f7ff498b08498b78084829cf48c1ff0339f87d0648984c8d0cc14c89c8c3",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "429c3aed9d4f049123c355bad69f989de905d3336a7cc8b8703ca4cb872e87df"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "CMP"
+            },
+            "mem": {
+              "base": "*"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "chunkFlag"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OMapSquare.CHUNK_SIZE_FLAG",
+            "value": "chunkFlag"
+          }
+        ]
+      },
+      "old_value": "0x70",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "GetLocationContainerAt reads `CMP qword [ms+0x70],0` to select chunkSize 16 vs 8. First such compare in the function. LINUX-CONFIRMED (949-4): GetLocationContainerAt@0x4991a0 computes chunkSize = (*(long*)(this+0x70)==0) ? 16 : 8 via the `(-(uint)(x==0) & 8) + 8` idiom, so CHUNK_SIZE_FLAG and COMPOSITE_DATA are the SAME field at +0x70."
+    },
+    {
+      "id": "OMapSquare.LOCATION_CONTAINERS",
+      "target_object": "OMapSquare",
+      "field": "LOCATION_CONTAINERS",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "GetLocationContainerAt",
+        "namespace": "jag::game::MapSquare",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::game::MapSquare::GetLocationContainerAt",
+        "sig_blob": "4c8b8780eb0000488b8f88eb00004189d24c8d0d409dfb004939c8744e48837f700189f019ff994c29c183e70848c1f90383c708f7ff4469d9abaaaaaa4863f04139f37e264489d04c8d1476994f8d04d0f7ff498b08498b78084829cf48c1ff0339f87d0648984c8d0cc14c89c8c3",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "429c3aed9d4f049123c355bad69f989de905d3336a7cc8b8703ca4cb872e87df"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0xe800",
+              "disp_max": "0xf000"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "lc"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OMapSquare.LOCATION_CONTAINERS",
+            "value": "lc"
+          }
+        ]
+      },
+      "old_value": "0xeb80",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Same accessor as OMapSquare.CHUNK_SIZE_FLAG. GetLocationContainerAt (949-1 @0x4991a0) reads the location-container 2D vector base as its FIRST instruction `MOV R8,[MapSquare+0xeb80]` (then +0xeb88 = vector end). occ1 MOV-mem in window 0xe800-0xf000 = 0xeb80. +0x18 vs 948-5 (0xeb68). Outer stride 0x18 / inner 0x8 (raw LC ptrs)."
+    },
+    {
+      "id": "OEntity.ANIMATION_ID",
+      "target_object": "OEntity",
+      "field": "ANIMATION_ID",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "ProcessNpcInfo",
+        "namespace": "jag::NPCList",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::NPCList::ProcessNpcInfo",
+        "sig_blob": "415741564155415455534881ec28010000488b078b1248897424504889b424b00000004c8ba0b89401008954244c41838424e4c0000001498b8c24a8b00000488b7618498b9c24f0c0000049898c24b0b000004889742408be080000008b7c240849899c24f8c00000c1e70389bc24b8000000488dbc24b000000048897c2408e87b28f6ff458b9424a0b000004189c64439d0735c498dac24a8b000004d8dbc24a0a000004189c50f1f8400000000004d8b8c24b0b000004d3b8c24b8b000004589e80f83c7110000438b8484a0a00000",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffff",
+        "feat_hash": "2b1f7aa69bb764413bf76e6391d210ed1f8ef931e176f5866d1a9e1e28f78401"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "CMP"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0xa00",
+              "disp_max": "0xb00"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "animId"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OEntity.ANIMATION_ID",
+            "value": "animId"
+          }
+        ]
+      },
+      "old_value": "0xa88",
+      "confidence": "MEDIUM",
+      "validated": true,
+      "notes": "VALIDATED (windowed): animationId is a plain int32 at entity+0xa88 (-1 = none), accessed polymorphically across the binary (NOT set in the small base Entity::Entity @0x13f310). jag::NPCList::ProcessNpcInfo has a single `CMP reg,dword[npc+0xa88]` (the per-tick animation check). The disp window 0xa00-0xb00 isolates it from other field reads. This anchor CONFIRMS the value and DETECTS drift within the window; if animationId moves outside 0xa00-0xb00 the recipe reports UNRESOLVED (still a drift signal). The -1 writer is FUN_00464850 `MOV dword[entity+0xa88],0xffffffff`."
+    },
+    {
+      "id": "OPathingEntity.HITMARKS_AND_HEADBARS",
+      "target_object": "OPathingEntity",
+      "field": "HITMARKS_AND_HEADBARS",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "AddHeadbar",
+        "namespace": "jag::HitmarksAndHeadbars",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::HitmarksAndHeadbars::AddHeadbar",
+        "sig_blob": "415741564989f6415541544c8d252e731e01555389d34881ec48020000837e3c0448897c2408448944242044894c24240f847a050000498b7c24084885ff48897c24180f84fb02000085c90f880f03000041837e3c04488d05e3721e010f84bd0a000048837808000f84d6020000498b4c240848894c24184d8b1c244d85db4c895c24307406f041834308014c8b384c8b70084d85ff4c897c24284c897424587406f04183470801",
+        "sig_mask": "ffffffffffffffffffffffffff0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffff00000000ffffffff00000000ffffffffffffff0000000000ffff00000000ffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "86775c9c9309b55a005fee3e41630e7ccda9e301c3d84be20bdf746b952f20b0",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "back_scan",
+            "from_call": "jag::HitmarksAndHeadbars::AddHeadbar",
+            "dst_reg": "@this",
+            "mem": {
+              "base": "*",
+              "disp_min": "0x100",
+              "disp_max": "0x8000"
+            },
+            "capture": {
+              "as": "hmh"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OPathingEntity.HITMARKS_AND_HEADBARS",
+            "value": "hmh"
+          }
+        ]
+      },
+      "old_value": "0xef8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "HitmarksAndHeadbars is a POINTER field on PathingEntity; the caller does `MOV <this>,[entity+HMH]` immediately before CALL AddHeadbar. dst_reg is '@this' rather than a literal register - the previous literal \"RDI\" matched an unrelated RDI write on the PE and produced the nonsense value 0xffffffffffffff98, which shipped in the Windows offset table. The disp window rejects stack spills so the scan walks past them. (The call is deep inside the large ProcessExtendedInfo functions - needs RECIPE_MAX_INSNS >= ~4000.)"
+    },
+    {
+      "id": "OClient.NPC_MANAGER",
+      "target_object": "OClient",
+      "field": "NPC_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::NPCList",
+      "min_sites": 5,
+      "old_value": "0x194b8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — consensus over every callsite of a jag::NPCList method: each loads `MOV/LEA RDI,[client+0x194b8]` (the this-arg) before the CALL. 17/17 sites agree. This is the most reliable manager-offset anchor available."
+    },
+    {
+      "id": "OClient.CONNECTION_MANAGER",
+      "target_object": "OClient",
+      "field": "CONNECTION_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::ConnectionManager",
+      "min_sites": 2,
+      "old_value": "0x19440",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — callsites of jag::ConnectionManager methods load `RDI,[client+0x19440]`. min_sites lowered 10->2 for 949-1: only ~6-7 CM methods are named in this build (vs many in 948-5), and most intra-CM calls pass `this` in a register, so the agreeing this-load count is small (~2-3 clean sites at 0x19440). One outlier at 0x194a8 comes from LoginProtocolHandler (operates on MainLogicManager, client+0x194a8); 0x19440 still wins by count. Naming more CM methods in future builds will raise the margin."
+    },
+    {
+      "id": "OClient.SCENE_MANAGER",
+      "target_object": "OClient",
+      "field": "SCENE_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::SceneManager",
+      "min_sites": 10,
+      "old_value": "0x19558",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — 37/37 callsites of jag::game::SceneManager methods load `RDI,[client+0x19558]`."
+    },
+    {
+      "id": "OClient.INTERFACE_LIST",
+      "target_object": "OClient",
+      "field": "INTERFACE_LIST",
+      "value_kind": "client_field",
+      "manager_class": "jag::InterfaceManager",
+      "min_sites": 3,
+      "old_value": "0x19488",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — 18/26 callsites of jag::InterfaceManager methods load `RDI,[client+0x19488]`. (Field is named INTERFACE_LIST in Offsets.kt; the C++ class is InterfaceManager.) min_sites lowered 5->3: the PE build has far fewer InterfaceManager methods named, and requiring 5 distinct callsites made the consensus abstain on a class whose offset every callsite agrees on."
+    },
+    {
+      "id": "OClient.CAMERA",
+      "target_object": "OClient",
+      "field": "CAMERA",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::Camera",
+      "min_sites": 3,
+      "old_value": "0x19420",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — 5-7 callsites of jag::game::Camera methods load `RDI,[client+0x19420]`. Renamed from the old mislabeled OBJECT_MANAGER → CAMERA in Offsets.kt (2026-06-05) after the consensus proved it holds a jag::game::Camera pointer. There is NO separate object-manager field; world objects/locs are managed via SceneManager (0x19558)."
+    },
+    {
+      "id": "OClient.BUILD_AREA_VECTOR",
+      "target_object": "OClient",
+      "field": "BUILD_AREA_VECTOR",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::WorldList",
+      "min_sites": 2,
+      "old_value": "0x193d8",
+      "confidence": "MEDIUM",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — the two TelemetryGrid callsites of jag::game::WorldList::InsertOrReplace (949-1 @0x6c1f30) load `RDI,[client+0x193d8]` (zero disagreement). Depends on WorldList::InsertOrReplace being named in the build; if the manager class has no named methods the consensus fails (as it did before this re-baseline). Low site count (2) — MEDIUM confidence."
+    },
+    {
+      "id": "OMainLogicManager.STAT_TABLE",
+      "target_object": "OMainLogicManager",
+      "field": "STAT_TABLE",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "LoginProtocolHandler",
+        "namespace": "jag::ConnectionManager",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::ConnectionManager::LoginProtocolHandler",
+        "sig_blob": "415741564155415455534889fb4881ecd8000000897424288954242c894c2420e8fbec9900488da8a80000004989c74889efe8096e0a00498b87e8000000493b8708010000747a4c8b60084c8b284c8b70104d85e40f8425070000f04183442408014d8b87e8000000498b78084983c0184d3b87f80000000f84620700004885ff4d8987e80000007405e811920a0049c7461800000000498b4d004c89f64c89efff51304d85e4",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffff000000ffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "9cceb26830128a798d10163b6188ef26794dadd19698298e4b22c7a0533ec606"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "LEA"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x73a4",
+              "disp_max": "0x7480"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "cvd"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OMainLogicManager.CLIENT_VAR_DOMAIN",
+            "value": "cvd"
+          },
+          {
+            "id": "OMainLogicManager.STAT_TABLE",
+            "value": "cvd - 8"
+          }
+        ]
+      },
+      "old_value": "0x73a0",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED (windowed): StatTable (0x73a0) and ClientVarDomain (0x73a8) are ADJACENT member pointers in MainLogicManager. StatTable::UpdateStat and ClientVarDomain::SetVarValue have NO direct xrefs (vtable/inlined) so caller back_scan fails. Instead anchor the ClientVarDomain via jag::ConnectionManager::LoginProtocolHandler `LEA RDI,[mlm+0x73a8]` (single 0x73xx access; window 0x7300-0x7500 isolates it), then derive STAT_TABLE = CLIENT_VAR_DOMAIN - 8. One anchor emits both."
+    },
+    {
+      "id": "OMainLogicManager.CLIENT_VAR_DOMAIN",
+      "target_object": "OMainLogicManager",
+      "field": "CLIENT_VAR_DOMAIN",
+      "value_kind": "struct_field",
+      "shared_anchor": "OMainLogicManager.STAT_TABLE",
+      "old_value": "0x73a8",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "Emitted by the LoginProtocolHandler anchor (see OMainLogicManager.STAT_TABLE). ClientVarDomain = StatTable + 8."
+    },
+    {
+      "id": "OClient.INVENTORY_MANAGER",
+      "target_object": "OClient",
+      "field": "INVENTORY_MANAGER",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::InventoryManager",
+      "min_sites": 5,
+      "old_value": "0x19550",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — 14/14 callsites of jag::game::InventoryManager methods load `RDI,[client+0x19550]`."
+    },
+    {
+      "id": "OClient.PLAYER_VAR_DOMAIN",
+      "target_object": "OClient",
+      "field": "PLAYER_VAR_DOMAIN",
+      "value_kind": "client_field",
+      "manager_class": "jag::game::PlayerVarDomain",
+      "min_sites": 3,
+      "old_value": "0x19b40",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "MANAGER_CLASS anchor — 5/5 callsites of jag::game::PlayerVarDomain methods load `RDI,[client+0x19b40]` (PlayerVarDomain is embedded; callers MOV RDI,[client] then ADD RDI,0x19b40)."
+    },
+    {
+      "id": "OClient.MAIN_STATE",
+      "target_object": "OClient",
+      "field": "MAIN_STATE",
+      "value_kind": "client_field",
+      "anchor": {
+        "name": "SetMainState",
+        "namespace": "jag::Client",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::Client::SetMainState",
+        "sig_blob": "415541544189f455534883ec088bb7289b01004439e67451488b9fe8930100483b9fe09301004889fd74374883eb08eb158bb5289b0100488b3b4989dd4489e24883eb08488b07ff50104c39ade093010075de4489a5289b01004883c4085b5d415c415dc3",
+        "sig_mask": "ffffffffffffffffffffffffffffff00000000ffffffffffffff0000000000ffff0000000000ffffffffffffffffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffff0000000000ffffffff0000000000ffffffffffffffffffffff",
+        "feat_hash": "db72f29d0633617781d33097c7fe624d5766be968eb7fe1a04a08a3f64d1b182"
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "RDI"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "st"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OClient.MAIN_STATE",
+            "value": "st"
+          }
+        ]
+      },
+      "old_value": "0x19b28",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "VALIDATED: SetMainState(this=client,newState) first reads `MOV ESI,[RDI+0x19b28]` (current mainState) then stores newState there. First [RDI+disp] in the function."
+    },
+    {
+      "id": "OClient.PROJECTILE_LIST",
+      "target_object": "OClient",
+      "field": "PROJECTILE_LIST",
+      "value_kind": "client_field",
+      "anchor": {
+        "name": "Add",
+        "namespace": "jag::ProjectileList",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::ProjectileList::Add",
+        "sig_blob": "415741564155415455534889fb4881ec8800000048837f50648b8424c000000089342489542404894c2408448944240c44894c2410894424140f84010600004c8b4b08498bb958950100e8a18998ff48837808004889c50f84d0050000488b3594e596004c8d6c24604c89efe8df531b004c8b7c246831f64c89ffe8703ec9ff4c8b5508498bba700101004885ff0f84990500004c89fe4c8d3512929600e8bd46c8ff4c8b63084c8d5b10",
+        "sig_mask": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000ffffffffffff0000000000ffff000000ffffffffffffffffffff00000000ffff0000000000ffffffffffffffffffff000000ffffffffffffffffffffffff000000ffffffffffff0000000000ffffffffff00000000ffffffffff0000000000ffff000000ffffffffffffffff",
+        "feat_hash": "8d6fea38128d3c7431b7f97b4e39262bc3d650dfdd0533b33a5d12971e31202a",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "back_scan",
+            "from_call": "jag::ProjectileList::Add",
+            "dst_reg": "@this",
+            "mem": {
+              "base": "*",
+              "disp_min": "0x400",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "pl"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OClient.PROJECTILE_LIST",
+            "value": "pl"
+          }
+        ]
+      },
+      "old_value": "0x194e8",
+      "confidence": "HIGH",
+      "validated": false,
+      "notes": "Every caller of jag::ProjectileList::Add loads the list as `MOV <this>,[client+PROJECTILE_LIST]` before the call. jag::ProjectileList::Add is in the OFunctions set so it is guaranteed to be named on both builds, which makes this a portable substitute for a manager_class consensus (there is only one named ProjectileList method, so consensus would abstain). The disp window keeps the scan from latching onto a nested-object this-load or a stack spill."
+    },
+    {
+      "id": "OWorld.LINK_MAP",
+      "target_object": "OWorld",
+      "field": "LINK_MAP",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "ReadTileFlags",
+        "namespace": "jag::game::LinkMap",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::game::LinkMap::ReadTileFlags",
+        "sig_blob": "488b47084885c00f84d30000004c8b084c3b48080f84c6000000448b571089d0c1f8064139c20f8fb40000003947140f8cab000000448b5f184189c841c1f8064539c30f8f970000004439471c0f8c8d0000004429d04155415448985553488d3c404529d84883ec084963d84d8b24f9488d2c5b4d8d2cec498b5d084885db744f488bbb9000000083e13f83e23f4189cc",
+        "sig_mask": "ffffffffffffffffff00000000ffffffffffffffffff00000000ffffffffffffffffffffffffffff00000000ffffffffff00000000ffffffffffffffffffffffffffffffff00000000ffffffffffff00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "feat_hash": "325403ceafea7f65d59c5ec8565d8624c4687d484db1e05a101e83d25b640674",
+        "via_caller": true
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "back_scan",
+            "from_call": "jag::game::LinkMap::ReadTileFlags",
+            "dst_reg": "@this",
+            "mem": {
+              "base": "*",
+              "disp_min": "0x10000",
+              "disp_max": "0x20000"
+            },
+            "capture": {
+              "as": "linkMap"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OWorld.LINK_MAP",
+            "value": "linkMap"
+          }
+        ]
+      },
+      "old_value": "0x14068",
+      "confidence": "HIGH",
+      "validated": false,
+      "notes": "Anchored on ReadTileFlags rather than on the HasBridgeFlag wrapper: HasBridgeFlag exists as a real function on both builds, but MSVC ALSO inlines it at ~20 sites, so anchoring there samples an unrepresentative subset of callers. ReadTileFlags is the common leaf both wrappers funnel into. back_scan (not call_arg) for the same reason as OWorld.HEIGHT_MAP: the PE computes the subobject address with `ADD RCX,disp`, which call_arg's LEA-only scan misses. Cross-check: LINK_MAP sits exactly 0x10 above HEIGHT_MAP on both builds."
+    }
+  ],
+  "verified_fields": {
+    "_doc": "Struct fields established by hand against a specific build, for values no anchor recipe can derive. Emitted BEFORE anchors and OFunctions so anything the tooling can re-derive from the binary wins. Each row records the build it was verified against; on a later build the value is still emitted (dropping it would silently disable engine features) but is downgraded to STALE_CARRY and flagged needs_reverification, so it surfaces as work to redo rather than as a trusted number. ONLY put a field here if a specific instruction in the target binary proves it - predictions and unresolved fields are deliberately left OUT so the engine throws OffsetUnavailableException instead of reading garbage.",
+    "windows-x86_64": [
+      {
+        "id": "ORegionHeightContainer.PRIMARY",
+        "value": "0x90",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "SampleRegionFineHeight@0x39a8bc MOV RCX,[RCX+0x90]"
+      },
+      {
+        "id": "ORegionHeightContainer.FALLBACK",
+        "value": "0xeba0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "SampleRegionFineHeight@0x39a8e7 MOV RCX,[RDX+0xeba0]"
+      },
+      {
+        "id": "ORegionHeightContainer.READY_LO",
+        "value": "0x11",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39a8c8 MOVZX EAX,byte[RCX+0x11]; ctor 0x39976e seeds both ready bytes"
+      },
+      {
+        "id": "ORegionHeightContainer.READY_HI",
+        "value": "0x12",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39a8cc CMP byte[RCX+0x12],AL - usable iff equal to READY_LO"
+      },
+      {
+        "id": "ORegionHeightContainer.NOT_LOADED_FLAG",
+        "value": "0x159",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c498f CMP byte[RCX+0x159],0"
+      },
+      {
+        "id": "ORegionHeightContainer.PLANE_VEC_BEGIN",
+        "value": "0x160",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c49d3 SUB RAX,[R10+0x160]"
+      },
+      {
+        "id": "ORegionHeightContainer.PLANE_VEC_END",
+        "value": "0x168",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c49cc MOV RAX,[R10+0x168]"
+      },
+      {
+        "id": "ORegionHeightContainer.PLANE_STRIDE",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c49da SAR RAX,4 = (end-begin)>>4"
+      },
+      {
+        "id": "ORegionHeightContainer.PLANE_ELEM",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c4a48 MOV RAX,[RAX+RCX*8+0x8]"
+      },
+      {
+        "id": "ORegionHeightContainer.PLANE0_BRIDGE_GRID",
+        "value": "0x1e8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c4a35 MOV RAX,[R10+0x1e8] on the plane==0 bridge branch"
+      },
+      {
+        "id": "ORegionHeightContainer.VERTEX_COL_STRIDE",
+        "value": "0x18",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c4a75/0x3c4a7d col*3 then @0x3c4a9a scale 8 +0x18"
+      },
+      {
+        "id": "ORegionHeightContainer.VERTEX_ROW_STRIDE",
+        "value": "0x4",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c4a9f MOV EDI,[R13+R15*4+0x4]"
+      },
+      {
+        "id": "ORegionHeightContainer.LINK_HEIGHT_PLANE_COUNT",
+        "value": "0x1d0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "SampleTileLinkHeightOffset@0x3c48ef CMP R11,[RCX+0x1d0]"
+      },
+      {
+        "id": "ORegionHeightContainer.LINK_HEIGHT_GRID",
+        "value": "0x1d8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c4935 MOV RAX,[RBX+0x1d8]"
+      },
+      {
+        "id": "ORegionHeightContainer.LINK_PLANE_STRIDE",
+        "value": "0x4000",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c491a/0x3c4924 SHL 6 twice then @0x3c493c scale 4 = plane*64*64*4"
+      },
+      {
+        "id": "ORegionHeightContainer.LINK_COL_STRIDE",
+        "value": "0x100",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "col folded in before @0x3c4924 SHL 6, then scale 4"
+      },
+      {
+        "id": "ORegionHeightContainer.LINK_ROW_STRIDE",
+        "value": "0x4",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c493c LEA RDX,[RAX+RCX*4]; cell is two i16"
+      },
+      {
+        "id": "OHeightMap.GRID",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "GetFineHeight@0x367925 MOV R9,[RDI+0x8] -> the World carrying the mapsquare band"
+      },
+      {
+        "id": "OHeightMap.CELL_STRIDE",
+        "value": "0x18",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x36797b/0x367986 LEA r,[RAX+RAX*2] then scale 8"
+      },
+      {
+        "id": "OHeightMap.CELL_CONTAINER",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3679ea MOV RDX,[R8+0x8] then @0x3679f7 MOV RCX,[RDX+0x90]"
+      },
+      {
+        "id": "OHeightMap.CELL_SENTINEL",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x367999 CMP qword[R8+0x10],RDX"
+      },
+      {
+        "id": "OHeightMap.EMPTY_CELL_SENTINEL_REL",
+        "value": "0x00c72068",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x367992 LEA RDX,[0xc72068]; first entry of the {0,1,2,3} status table. DIVERGENT from Linux 0x1692a70"
+      },
+      {
+        "id": "OInterfaceComponent.PARENT_SHAREDPTR",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "SendComponentToFrontOrBack@0x1f6cf3/0x1f6cf7 shared_ptr{ctrl 0x10, obj 0x18}, ctrl refcounted at +8/+0xc"
+      },
+      {
+        "id": "OInterfaceComponent.FLAGS",
+        "value": "0x31",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00155190 MOVZX EAX,byte[RCX+0x31] then TEST AL,1 / AL,0x20; ctor 0xb8fa7 ORs 0x4; decoder 0x27014a writes it"
+      },
+      {
+        "id": "OInterfaceComponent.X_ORIGIN_MODE",
+        "value": "0x32",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ComputeOriginOffset@0x269854 MOVZX EAX,byte[RCX+0x32]"
+      },
+      {
+        "id": "OInterfaceComponent.Y_ORIGIN_MODE",
+        "value": "0x33",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ComputeOriginOffset@0x2698e1"
+      },
+      {
+        "id": "OInterfaceComponent.X_ANCHOR_MODE",
+        "value": "0x34",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_0027c1c0@0x27c22f MOVZX R11D,byte[R9+0x34]"
+      },
+      {
+        "id": "OInterfaceComponent.Y_ANCHOR_MODE",
+        "value": "0x35",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_0027c1c0@0x27c26d"
+      },
+      {
+        "id": "OInterfaceComponent.X_ORIGIN_OFFSET",
+        "value": "0x38",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ComputeOriginOffset@0x26985c MOV EAX,[RCX+0x38]"
+      },
+      {
+        "id": "OInterfaceComponent.Y_ORIGIN_OFFSET",
+        "value": "0x3c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ComputeOriginOffset@0x2698e9"
+      },
+      {
+        "id": "OInterfaceComponent.RAW_X",
+        "value": "0x40",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_0027c1c0@0x27c243 MOV ECX,[R9+0x40]"
+      },
+      {
+        "id": "OInterfaceComponent.RAW_Y",
+        "value": "0x44",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_0027c1c0@0x27c277"
+      },
+      {
+        "id": "OInterfaceComponent.ITEM_ID",
+        "value": "0x180",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "getter 0xb93f0, setter 0xb9410 with the +0x191 dirty byte"
+      },
+      {
+        "id": "OInterfaceComponent.STACK_SIZE",
+        "value": "0x188",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "getter 0xb9400, setter 0xb9430. NOTE 64-bit field, engine reads it as int"
+      },
+      {
+        "id": "OInterfaceComponent.MODEL_ID",
+        "value": "0x190",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "getter 0xb9ab0, setter 0xb9a90"
+      },
+      {
+        "id": "OInterfaceComponent.MODEL_OBJECT",
+        "value": "0x198",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "getter 0xb9ac0, setter 0xb9aa0; dtor 0xb9475 releases it first; class size 0x1a0"
+      },
+      {
+        "id": "OInterfaceComponent.SLOT_CHILDREN",
+        "value": "0x1a8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "0x276630/0x276640 pair with the /0x68 magic and the +0x369 page byte"
+      },
+      {
+        "id": "OInterfaceList.START_PTR",
+        "value": "0x58",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "GetInterface@0x349882 LEA RSI,[RCX+0x58]"
+      },
+      {
+        "id": "OInterfaceList.END_PTR",
+        "value": "0x60",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "GetInterface@0x34987e; (end-begin)>>4 = count"
+      },
+      {
+        "id": "OInterfaceList.CAPACITY_PTR",
+        "value": "0x68",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "grow helper 0x17d8f0 checks param[2]-param[1]>>4"
+      },
+      {
+        "id": "OInterfaceList.ENTRY_STRIDE",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "GetInterface@0x34989a SHL RAX,4"
+      },
+      {
+        "id": "OInterfaceList.PARENT_OFFSET",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "GetInterface@0x3498a1 live-entry test; write-back @0x349996"
+      },
+      {
+        "id": "OInterfaceParent.CHILD_ARRAY_BEGIN",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00170040@0x17006b; GetStaticComponent@0x349a5a"
+      },
+      {
+        "id": "OInterfaceParent.CHILD_ARRAY_END",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00170040@0x170067 with ADD RBX,0x18 loop; child count = (end-begin)/0x18"
+      },
+      {
+        "id": "OInterfaceManager.INTERFACE_LIST_PTR",
+        "value": "0x30",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_001f6650@0x1f66aa passes manager+0x30 to InterfaceList::GetInterface. EMBEDDED, not a pointer"
+      },
+      {
+        "id": "OMiniMenu.MENU_OPEN",
+        "value": "0x68",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "SendOpObjStack@0xe4a73 folds byte[minimenu+0x68] in as bit1 of writeByteSubtract"
+      },
+      {
+        "id": "OVarInfo.TYPE_PTR",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "PlayerVarDomain::SetVarValue MOV RAX,[RDX+0x8] -> VarType"
+      },
+      {
+        "id": "OVarInfo.VAR_ID",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "then MOV EAX,[RAX+0x8] -> int var id, the FindOrCreateEntry hash key"
+      },
+      {
+        "id": "OPlayerVarDomain.HASH_TABLE",
+        "value": "0x1c0d0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "live value-map base this+0x1c0c8, buckets at mapBase+0x8 (FindOrCreateEntry@0xfda85)"
+      },
+      {
+        "id": "OPlayerVarDomain.VAR_ID",
+        "value": "0x0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FindOrCreateEntry@0xfdadc MOV dword[RAX],ECX"
+      },
+      {
+        "id": "OPlayerVarDomain.VAR_VALUE",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FindOrCreateEntry@0xfdb18 LEA RAX,[RDI+0x8]"
+      },
+      {
+        "id": "OClientVarDomain.VAR_ID",
+        "value": "0x0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same VarDomain node shape via FUN_00117e30 -> FindOrCreateEntry"
+      },
+      {
+        "id": "OClientVarDomain.VAR_VALUE",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same VarDomain node shape"
+      },
+      {
+        "id": "OClientVarDomain.HASH_TABLE",
+        "value": "0x18",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0x98). The value map sits at owner+0x98 and buckets at mapBase+0x8, but the engine measures HASH_TABLE from the ClientVarDomain base, which is owner+0x88 -> 0x10+0x8 = 0x18. The recorded 0x98 was measured from the setter's arg-2 owner instead, so it only became resolvable once OMainLogicManager.CLIENT_VAR_DOMAIN was established. Matches Linux 0x18"
+      },
+      {
+        "id": "OObjVarDomain.ELEMENT_SIZE",
+        "value": "0x30",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FindOrCreateEntry@0xfdac4/0xfdac9 allocates 0x30-byte nodes"
+      },
+      {
+        "id": "OLocationContainer.ENTRY_STRIDE",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_0039f850@0x39f8ed ADD RSI,0x10 in all four scan loops"
+      },
+      {
+        "id": "OLocationContainer.ENTRY_LOCATION_PTR_OFFSET",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f890 MOV RBX,[RSI+0x8] -> Location*"
+      },
+      {
+        "id": "OLocationContainer.PRIMARY_LOCATIONS_BEGIN",
+        "value": "0xc8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f8f6 MOV RSI,[R13+0xc8]"
+      },
+      {
+        "id": "OLocationContainer.PRIMARY_LOCATIONS_END",
+        "value": "0xd0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f8fd MOV RBP,[R13+0xd0]"
+      },
+      {
+        "id": "OLocationContainer.MULTI_LOCATIONS_BEGIN",
+        "value": "0xb0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f86b MOV RSI,[RCX+0xb0]"
+      },
+      {
+        "id": "OLocationContainer.MULTI_LOCATIONS_END",
+        "value": "0xb8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f875 MOV RBP,[RCX+0xb8]"
+      },
+      {
+        "id": "OLocationContainer.TERTIARY_LOCATIONS_BEGIN",
+        "value": "0xe0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f976 MOV RSI,[R13+0xe0]"
+      },
+      {
+        "id": "OLocationContainer.TERTIARY_LOCATIONS_END",
+        "value": "0xe8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f97d MOV RBP,[R13+0xe8]"
+      },
+      {
+        "id": "OLocationContainer.DISPATCH_SLOT_TABLE_START",
+        "value": "0xf8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c0a55 MOV RDX,[RBX+RCX*8+0xF8]"
+      },
+      {
+        "id": "OLocationContainer.DISPATCH_SLOT_STRIDE",
+        "value": "0x48",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c0a58 LEA RCX,[RAX+RAX*8] with scale 8; ctor steps slots by 9 qwords"
+      },
+      {
+        "id": "OLocationContainer.DISPATCH_SLOT_COUNT",
+        "value": "0x5",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3c0a39 MOV R9D,4 with SUB/JNS; priority table at 0xc7d4a4 is 5 bytes"
+      },
+      {
+        "id": "OLocation.RENDER_NODE_CTRL",
+        "value": "0x268",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0x58). vftable+0x178 render-node getter @0x3b8990 returns shared_ptr{ctrl 0x268, obj 0x270}; ctor 0x3ba980 stores the arg there and refcounts it. Location+0x58/0x60 is only ever zero-initialised. Linux is wrong the same way"
+      },
+      {
+        "id": "OLocation.RENDER_NODE",
+        "value": "0x270",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0x60). @0x3b8997 MOV RAX,[RCX+0x270]; consumed as an ORenderModel by FUN_003bfb00 (+0x30 transform)"
+      },
+      {
+        "id": "OLocation.VISIBLE_TYPE",
+        "value": "0xc8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3bbc93 MOV RAX,[RCX+0xC8] then LocType +0x37C/+0x380 (vftable+0x160 GetSizeX)"
+      },
+      {
+        "id": "OLocation.ORIGINAL_TYPE",
+        "value": "0xd8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_003bcfc0 hands this+0xD0 to the morph resolver, which copies the base type shared_ptr from this+0xB0 and reads *(this+0xD8) as a LocType"
+      },
+      {
+        "id": "OLocation.SHAPE",
+        "value": "0x120",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3b8930 MOVZX EAX,byte[RCX+0x120] (vftable+0x148); ctor 0x3bafa1 stores the descriptor there"
+      },
+      {
+        "id": "OLocation.ROTATION",
+        "value": "0x121",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3b8940 MOVZX EAX,byte[RCX+0x121] (vftable+0x150)"
+      },
+      {
+        "id": "OLocation.POS_X",
+        "value": "0x16c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f8aa CMP dword[RBX+0x16c],EAX; ctor 0x3bb011"
+      },
+      {
+        "id": "OLocation.POS_Y",
+        "value": "0x170",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f8b5 CMP dword[RBX+0x170],EAX; ctor 0x3bb01e"
+      },
+      {
+        "id": "OLocation.IS_DELETED",
+        "value": "0x18d",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39f894 CMP byte[RBX+0x18d],0; set by the delete path in FUN_003985d0"
+      },
+      {
+        "id": "OLocation.TYPE_ID",
+        "value": "0x1a8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x3bb095 MOV [RCX+0x1a8],R8D from the loc type id argument"
+      },
+      {
+        "id": "OLocation.HIGHLIGHT_INTENSITY",
+        "value": "0x31c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_003c0180 passes this+0x31C to the highlight fade helpers; ctor 0x3bb1ce zero-inits it"
+      },
+      {
+        "id": "OLocation.HIGHLIGHT_CATEGORY",
+        "value": "0x324",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3b89f0 MOV [RCX+0x324],EDX (vftable+0x100)"
+      },
+      {
+        "id": "OLocation.SHOW_AS_IMPORTANT",
+        "value": "0x32c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "highlight_set_loc_show_as_important@0x1c1447 MOV byte[RAX+0x32C],CL, gated on entityType LOCATION"
+      },
+      {
+        "id": "OCombinedLocation.LOCATION_DATA_VECTOR",
+        "value": "0xa0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x39fa34/0x39fa3b begin/end, element advance 0xC0; ctor sizes by (end-begin)/0xC0"
+      },
+      {
+        "id": "OCombinedLocation.VECTOR_ELEMENT_LOC_SHAREDPTR",
+        "value": "0xa0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x300550 writes the section shared_ptr at elem+0xA0/+0xA8"
+      },
+      {
+        "id": "OCombinedLocation.RENDER_MODEL",
+        "value": "0x968",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "DIVERGENT (lin 0x958). FUN_003c0180 *(*(loc+0x330)+0x968) at the control-flow-identical site to Linux *(param_1[0x66]+0x958). Owning class is really AnimatedModel, whose slots are uniformly +0x8/+0x10 vs Linux"
+      },
+      {
+        "id": "OCombinedLocationSection.TYPE_SHAREDPTR",
+        "value": "0xa8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x309242/0x30924d {ctrl 0xa8, obj 0xb0}; obj read as a LocType at 0x309323"
+      },
+      {
+        "id": "OCombinedLocationSection.HIDDEN",
+        "value": "0xf2",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x3092d5 zero-inits; gated on in FUN_00301810"
+      },
+      {
+        "id": "OCombinedLocationSection.SHAPE",
+        "value": "0xb8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x309268 from element+0x58"
+      },
+      {
+        "id": "OCombinedLocationSection.ROTATION",
+        "value": "0xb9",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x309272 from element+0x59"
+      },
+      {
+        "id": "OCombinedLocationSection.POS_X",
+        "value": "0x9c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x309232 from element+0x14"
+      },
+      {
+        "id": "OCombinedLocationSection.POS_Y",
+        "value": "0xa0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x309239 from element+0x18"
+      },
+      {
+        "id": "OLocationType.ID",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_003bcfc0 copies *(int*)(morphedLocType+8) into Location.TYPE_ID"
+      },
+      {
+        "id": "OLocationType.SIZE_X",
+        "value": "0x37c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3bbca1 MOV EAX,[RAX+0x37C] (vftable+0x160 GetSizeX)"
+      },
+      {
+        "id": "OLocationType.SIZE_Y",
+        "value": "0x380",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x3bbcaa MOV EAX,[RAX+0x380]"
+      },
+      {
+        "id": "OGraphNode.DIRECTION_X",
+        "value": "0x0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "GraphNode+0x00..0x3f is the 4x4 world matrix; GetWorldTransformationMatrixAligned@0x4c3cd5 writes row 0"
+      },
+      {
+        "id": "OGraphNode.DIRECTION_Y",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same matrix, element m02"
+      },
+      {
+        "id": "OGraphNode.DIRECTION_Z",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same matrix, element m10"
+      },
+      {
+        "id": "OGraphNode.BOUNDS_MIN_X",
+        "value": "0x40",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "UpdateBounds@0x4c3e94 MOVUPS [RCX+0x40],XMM0; ctor seeds +FLT_MAX"
+      },
+      {
+        "id": "OGraphNode.BOUNDS_MIN_Z",
+        "value": "0x44",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x4c2b5f MOV [RBX+0x44],0x7f7fffff"
+      },
+      {
+        "id": "OGraphNode.BOUNDS_MIN_Y",
+        "value": "0x48",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x4c2b66"
+      },
+      {
+        "id": "OGraphNode.BOUNDS_MAX_X",
+        "value": "0x50",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "UpdateBounds@0x4c3e98 MOVUPS [RCX+0x50],XMM1; ctor seeds -FLT_MAX"
+      },
+      {
+        "id": "OGraphNode.BOUNDS_MAX_Z",
+        "value": "0x54",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x4c2b7c"
+      },
+      {
+        "id": "OGraphNode.BOUNDS_MAX_Y",
+        "value": "0x58",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x4c2b83"
+      },
+      {
+        "id": "ORenderModel.WORLD_TRANSFORM",
+        "value": "0x30",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "PickTestVtable@0x39e7c7 LEA RDX,[rm+0x30] as the model-to-world matrix"
+      },
+      {
+        "id": "ORenderModel.HL_COLOR_R",
+        "value": "0x100",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "UpdateHighlight FUN_001a6cc0 qword store of <R,G>"
+      },
+      {
+        "id": "ORenderModel.HL_COLOR_G",
+        "value": "0x104",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same store, high dword"
+      },
+      {
+        "id": "ORenderModel.HL_COLOR_B",
+        "value": "0x108",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "qword store of <B,baseAlpha>"
+      },
+      {
+        "id": "ORenderModel.HL_BASE_ALPHA",
+        "value": "0x10c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "gate: if (*(float*)(rm+0x10c) <= 0) return"
+      },
+      {
+        "id": "ORenderModel.HL_STRENGTH",
+        "value": "0x110",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x1a6e0e / 0x1a6f03"
+      },
+      {
+        "id": "ORenderModel.HL_FACTOR",
+        "value": "0x114",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "UpdateHighlight write"
+      },
+      {
+        "id": "ORenderModel.HL_MODE",
+        "value": "0x134",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x1a6dc5 *(byte*)([entity+0xc68]+0x134)"
+      },
+      {
+        "id": "OMeshData.VERTEX_SCALE",
+        "value": "0x2c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "MeshTrianglePickTest FUN_004e4630, last arg of the unskinned vertex path"
+      },
+      {
+        "id": "OMeshData.INDEX_BUFFER",
+        "value": "0xb8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same, indexed as u16 triples"
+      },
+      {
+        "id": "OMeshData.INDEX_BUFFER_END",
+        "value": "0xc0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "(([+0xc0]-[+0xb8])>>1) = index count"
+      },
+      {
+        "id": "OMeshData.VERTEX_POSITIONS",
+        "value": "0x118",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "unskinned branch passes meshData+0x118"
+      },
+      {
+        "id": "OMeshData.SKINNING_DATA",
+        "value": "0x138",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "if (*(longlong*)(meshData+0x138)==0) selects unskinned"
+      },
+      {
+        "id": "OMeshData.VERTEX_WEIGHTS",
+        "value": "0x148",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "both branches pass meshData+0x148"
+      },
+      {
+        "id": "OMeshComponent.MESH_DATA",
+        "value": "0x20",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "meshData = *(longlong*)(comp+0x20)"
+      },
+      {
+        "id": "OMeshComponent.BONE_COUNT",
+        "value": "0x2f0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "@0x4e48dd LEA RDX,[comp+0x2f0] into BuildSkinningMatrices, which reads [RDX] as the count"
+      },
+      {
+        "id": "OMeshComponent.BONE_MATRICES",
+        "value": "0x2f8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "BuildSkinningMatrices reads [RDI+8] and walks with stride 0x30"
+      },
+      {
+        "id": "OMeshComponent.BONE_ANIM_CHECK",
+        "value": "0x350",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "null-check paired with BONE_COUNT"
+      },
+      {
+        "id": "OEntity.RENDER_MODEL",
+        "value": "0xc68",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "DIVERGENT (lin 0xc58). PickTestVtable@0x39e77a MOV RDI,[RCX+0xc68]; second witness UpdateHighlight@0x1a6dbe; third FUN_0031f0b0"
+      },
+      {
+        "id": "OPathingEntity.ROUTE_WAYPOINT_MANAGER",
+        "value": "0x268",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x31d5de stores the constructed manager; FUN_003220a0@0x3220bb reads it for the ring buffer"
+      },
+      {
+        "id": "OPathingEntity.WAYPOINT_COUNT",
+        "value": "0x30",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_003220a0@0x3220c2 CMP dword[RAX+0x30],1. NOTE 32-bit field, engine reads it as long"
+      },
+      {
+        "id": "OPathingEntity.HITMARKS_AND_HEADBARS",
+        "value": "0xf08",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "DIVERGENT (lin 0xef8). AddHeadbar@0x32443a MOV RCX,[RCX+0xf08]; AddHitmark@0x3243de; ResetHitmarksAndHeadbars@0x3242f5. REPLACES the garbage 0xffffffffffffff98 produced by the old RDI-hardcoded recipe"
+      },
+      {
+        "id": "ONPC.CURRENT_HP",
+        "value": "0x114c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "DIVERGENT (lin 0x112c). jag::opcode::get_npc_stat@0x2045b6 MOV ECX,[npc+idx*4+0x1140]; stat index 3 = hitpoints so 0x1140+0xc"
+      },
+      {
+        "id": "ONPC.MAX_HP",
+        "value": "0x1168",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "DIVERGENT (lin 0x1148). same instruction pair @0x2045ae, max array base 0x115c, +0xc"
+      },
+      {
+        "id": "OProjectile.ID",
+        "value": "0x60",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ProjectileEntity ctor FUN_001a8d70@0x1a8db1"
+      },
+      {
+        "id": "OProjectile.LOCKON_SERVER_INDEX",
+        "value": "0x70",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same ctor @0x1a8dd5"
+      },
+      {
+        "id": "OSpotAnim.ID",
+        "value": "0x74",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "SpotAnim entity ctor FUN_00324d80@0x324e10 from descriptor+0x4"
+      },
+      {
+        "id": "OLoggedInPlayer.TARGET_INDEX",
+        "value": "0x98",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00195970@0x19599d MOV EBX,[loggedInPlayer+0x98], compared at 0x195a69 against the entity key. Loaded as one dword then sliced, which is why width-specific scans missed it"
+      },
+      {
+        "id": "OLoggedInPlayer.TARGET_TYPE",
+        "value": "0x9a",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "byte 2 of that same dword, compared at 0x195a5e"
+      },
+      {
+        "id": "OInputHandler.SLOT_BASE",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0xd8, which is slot 2). Slot n is at 0x8 + n*0x68; LMOUSE_DOWN dispatcher FUN_007893b0 reads handler+0x8/+0x10 with its mutex at +0x20"
+      },
+      {
+        "id": "OInputHandler.LMOUSE_DOWN",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_007893b0, called only from Input::OnLeftButtonDown (WM_LBUTTONDOWN @0x78a54c)"
+      },
+      {
+        "id": "OInputHandler.LMOUSE_UP",
+        "value": "0x70",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00789470, called only from Input::OnLeftButtonUp (WM_LBUTTONUP @0x78a587)"
+      },
+      {
+        "id": "OInputHandler.MMOUSE_UP",
+        "value": "0x140",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "0x78b940 clears MIDDLE_BUTTON_STATE then walks +0x140/+0x148 (WM_MBUTTONUP @0x78a692)"
+      },
+      {
+        "id": "OInputHandler.RMOUSE_DOWN",
+        "value": "0x1a8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "0x78ba10 sets RIGHT_BUTTON_STATE then walks +0x1a8/+0x1b0 (WM_RBUTTONDOWN @0x78a6d4)"
+      },
+      {
+        "id": "OInputHandler.RMOUSE_UP",
+        "value": "0x210",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "0x78bae0 clears RIGHT_BUTTON_STATE then walks +0x210/+0x218 (WM_RBUTTONUP @0x78a70f)"
+      },
+      {
+        "id": "OInputHandler.MOUSE_WHEEL",
+        "value": "0x2e0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_007895f0 (5-arg) reads +0x2e0/+0x2e8; called from OnScrollWheel 0x78bce0"
+      },
+      {
+        "id": "OInputHandler.KEY_DOWN",
+        "value": "0x348",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00789710, called from OnKeyDownInner 0x33dd0"
+      },
+      {
+        "id": "OInputHandler.KEY_UP",
+        "value": "0x3b0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_007897c0, called from OnKeyUpInner 0x34130"
+      },
+      {
+        "id": "OInputHandler.KEY_CHAR",
+        "value": "0x418",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00789870, called from OnKeyCharInner 0x34270"
+      },
+      {
+        "id": "OInputHandler.SIZE",
+        "value": "0x9c0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor 0x1d930 last writes +0x9b8; corroborated by placement in the Client (0x18e50 -> 0x19810) and in FUN_00259300 (0x38 -> 0x9f8)"
+      },
+      {
+        "id": "OInput.CLIENT",
+        "value": "0xc0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Client ctor 0x1d15f MOV [RDI+0x18e40],RDI, i.e. Input+0xc0; read as the Client in OnKeyDownInner"
+      },
+      {
+        "id": "OInput.CONSOLE_KEY_HELD",
+        "value": "0xc8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "OnKeyCharInner guard if (*(char*)(this+0xc8)==0). NOTE same byte as CONSOLE_OPEN_FLAG on Windows"
+      },
+      {
+        "id": "OInput.SIZE",
+        "value": "0xd0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Client ctor: Input at client+0x18d80, InputHandler at client+0x18e50"
+      },
+      {
+        "id": "OInputGlobals.LEFT_BUTTON_STATE",
+        "value": "0xe8e4f4",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "OnLeftButtonDown@0x78b731 MOV byte[0xe8e4f4],1; OnLeftButtonUp@0x78b851 clears it"
+      },
+      {
+        "id": "OInputGlobals.RIGHT_BUTTON_STATE",
+        "value": "0xe8e4f6",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "OnRightButtonDown@0x78ba1e; OnRightButtonUp@0x78baee clears it"
+      },
+      {
+        "id": "OItemStack.ITEM_VECTOR",
+        "value": "0x70",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_003a6060 push path uses +0x78 end / +0x80 cap and grows via FUN_00328180(stack+0x70,...)"
+      },
+      {
+        "id": "OItemStack.ITEM_VECTOR_ELEM_SIZE",
+        "value": "0x90",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same function advances the end pointer by 0x90 per element"
+      },
+      {
+        "id": "OItemStack.ITEM_ID",
+        "value": "0x0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "element+0x0 = the 24-bit obj id decoded by FUN_001b6260"
+      },
+      {
+        "id": "OItemStack.ITEM_AMOUNT",
+        "value": "0x4",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "element+0x4 = the 16-bit count"
+      },
+      {
+        "id": "OItemStackNode.LEFT",
+        "value": "0x0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "rbtree walk in FUN_003a6060; FUN_00798f50 zeroes it on insert"
+      },
+      {
+        "id": "OItemStackNode.RIGHT",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same walk takes node[1] as the right child"
+      },
+      {
+        "id": "OItemStackNode.PARENT",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "rebalance FUN_00798f50 reparents through [x+0x10]"
+      },
+      {
+        "id": "OItemStackNode.POS_PLANE",
+        "value": "0x20",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "compared against key[0]; written by Insert 0x3a8950"
+      },
+      {
+        "id": "OItemStackNode.POS_X",
+        "value": "0x24",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "compared against key[1]"
+      },
+      {
+        "id": "OItemStackNode.POS_Y",
+        "value": "0x28",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "compared against key[2]"
+      },
+      {
+        "id": "OItemStackNode.ITEM_STACK",
+        "value": "0x38",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "value read as node[7]; Insert writes shared_ptr{ctrl 0x30, obj 0x38}; node alloc 0x40"
+      },
+      {
+        "id": "OItemStackList.RB_TREE_BASE",
+        "value": "0x18",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_003a6060 and FUN_003a8950 both start at *(list+0x18) with the anchor at list+0x8"
+      },
+      {
+        "id": "OInventory.INVENTORY_ID",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_00315250 passes (int)this[1] to the inv-type registry lookup"
+      },
+      {
+        "id": "OInventory.INVENTORY_ITEMS",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "items vector +0x10/+0x18/+0x20 stride 8, elements seeded {id=-1,amount=0}; UpdateInvFull writes through it"
+      },
+      {
+        "id": "OInventory.OBJ_VAR_DOMAINS",
+        "value": "0x28",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "vector +0x28/+0x30/+0x38 sized by (this[6]-this[5])/0x38"
+      },
+      {
+        "id": "OInventory.OBJ_VAR_DOMAIN_STRIDE",
+        "value": "0x38",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "same division; grow path allocates n*0x38"
+      },
+      {
+        "id": "OInventory.OBJ_VAR_DOMAIN_FIELD",
+        "value": "0x10",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "element init lays an EASTL hash_table rebased at element+0x10"
+      },
+      {
+        "id": "OHintArrow.TARGET_POS_VEC3",
+        "value": "0x70",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_001941a0 copies descriptor[6..9] as one 16-byte block to entity+0x70, same as the Linux builder"
+      },
+      {
+        "id": "OHintArrow.TARGET_ENTITY_SHARED_PTR",
+        "value": "0x88",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ctor zeroes +0x88/+0x90 as a null shared_ptr; entity alloc 0x98, type 0xd at +0x10"
+      },
+      {
+        "id": "OConnectionManager.GAME_CONNECTION",
+        "value": "0x18",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ProcessConnections mainState 0x1e branch reads *(cm+0x18); SendEventMouseClick reads it then +0x40 for the outgoing ISAAC"
+      },
+      {
+        "id": "OConnectionManager.LOGIN_CONNECTION",
+        "value": "0x28",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "ProcessConnections mainState 0x14/0x17 branch reads *(cm+0x28) and on failure calls SetMainState(client,10)"
+      },
+      {
+        "id": "OConnectionManager.HANDLE_STATE",
+        "value": "0x8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "TcpIn's 2nd arg is the slot handle (cm+0x10 / cm+0x20) and the live ServerConnection* sits at handle+8"
+      },
+      {
+        "id": "OClient.CAMERA",
+        "value": "0x19858",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "a large family of CS2 camera opcode handlers at 0x95820-0x96790 all load *(client+0x19858); the object carries a Client back-pointer at +8 like the Linux jag::game::Camera"
+      },
+      {
+        "id": "OClient.INTERFACE_LIST",
+        "value": "0x198c0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "MiniMenu::DoOpComponentInner@0xe0f30 loads it three times and passes it as this to InterfaceManager::IfButtonXInner"
+      },
+      {
+        "id": "OClient.ITEMSTACK_LIST",
+        "value": "0x198f8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_000b7230 ground-item tile lookup; also referenced by REBUILD_NORMAL"
+      },
+      {
+        "id": "OClient.SPOTANIM_MANAGER",
+        "value": "0x19948",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "per-tick pass FUN_0018e490 updates it in the Linux slot order players/npcs/projectiles/itemstacks/SPOTANIM/.../hints"
+      },
+      {
+        "id": "OClient.HINTTRAIL_LIST",
+        "value": "0x198b8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "hint-slot packet handler FUN_001079e0 clears *(list+0x10+slot*8); per-tick FUN_0018e490 iterates list+0x10..+0x50"
+      },
+      {
+        "id": "OMainLogicManager.CLIENT_VAR_DOMAIN",
+        "value": "0x7620",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "FUN_000ec9f0 dispatches vars to mlm+0x7620 or client+PLAYER_VAR_DOMAIN through identical virtual slots; dtor 0x10e5a0 destroys it adjacent to STAT_TABLE at 0x7618"
+      },
+      {
+        "id": "OMapSquare.MAPSQUARE_X",
+        "value": "0x5c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0x40), wrong on BOTH platforms since the 948-2 migration. Windows ctor 0x3997e7 MOV dword[RDI+0x5c],ESI (the mapsquareX argument); Linux ctor 0x4da732 MOV [RBX+0x5c],EDI is field-for-field identical. Reader: MapSquare teardown 0x39a419 passes [RDI+0x5c] and [RDI+0x60] together as a coordinate pair. 0x40 is an unrelated qword -1 initialiser whose -1 is never tested"
+      },
+      {
+        "id": "OMapSquare.MAPSQUARE_Y",
+        "value": "0x60",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0x9c). Windows ctor 0x3997ea MOV dword[RDI+0x60],EBX; 0x9c has no MapSquare-relative use anywhere in the PE"
+      },
+      {
+        "id": "OMapSquare.COMPOSITE_DATA_COUNTER",
+        "value": "0x68",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0xa8). ctor 0x3997f0 MOV [RDI+0x68],RCX with INC.LOCK [RCX+8] - the shared_ptr refcounter word. 0xa8 lies inside the embedded polymorphic subobject at MapSquare+0xa0"
+      },
+      {
+        "id": "OMapSquare.COMPOSITE_DATA",
+        "value": "0x70",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS a wrong shipped value (0xb0). ctor 0x3997f8 MOV [RDI+0x70],RAX - the ClientCompositeData object word. Self-consistent with CHUNK_SIZE_FLAG=0x70 (chunkSize = compositeData ? 8 : 16); a table with COMPOSITE_DATA at 0xb0 while CHUNK_SIZE_FLAG stayed at 0x70 was internally contradictory"
+      },
+      {
+        "id": "OGlobal.CLIENT",
+        "value": "0xe8e490",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Named .data label jag::g_client. The app entry point stores jag::Client::Client()'s return value straight into it (`plVar5 = jag::Client::Client(client); jag::g_app = plVar5; jag::g_client = plVar5;`) after allocating 0x53818 bytes - large enough for the client fields the manager anchors resolve around 0x19800-0x19f80 - and the shutdown path clears it to 0 right after destroying jag::g_app. The OGlobal.CLIENT ANCHOR CANNOT FIRE ON THE PE: it keys on jag::packethandlers::ClientState::MINIMAP_FLAG_SET, which carries no symbol in either PE build. A future portable recipe could instead take the caller of the (named) jag::Client::Client and rip_target its store, which would make this self-maintaining. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.MOUSE_X",
+        "value": "0xe8e4c4",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Named .data label jag::input::InputState::MOUSE_X. OnMouseMotion(this, x=XMM1, y=XMM2) copies XMM1->XMM7 then MOVSS [0xe8e4c4],XMM7, so this is x and NOT y; every button handler writes it as well. SUPERSEDES an UNVERIFIED-CARRIED 949-1 carry. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.MOUSE_Y",
+        "value": "0xe8e4c0",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Named .data label jag::input::InputState::MOUSE_Y. Same OnMouseMotion copies XMM2->XMM6 then MOVSS [0xe8e4c0],XMM6. The X/Y pair is stored low-address=Y, high-address=X on both platforms. SUPERSEDES an UNVERIFIED-CARRIED 949-1 carry. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.MIDDLE_BUTTON_STATE",
+        "value": "0xe8e4f5",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Written by jag::input::Input::OnMiddleButtonUp, and sits between the already-verified LEFT (0xe8e4f4) and RIGHT (0xe8e4f6). Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      }
+    ],
+    "linux-x86_64": [
+      {
+        "id": "OMapSquare.MAPSQUARE_X",
+        "value": "0x5c",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS shipped 0x40. Linux ctor jag::game::MapSquare::MapSquare@0x4da670 stores arg4->+0x5c; +0x40 is a qword -1 sentinel (param_1[8]=-1) whose -1 is never tested. X-vs-Y fixed three ways: teardown@0x4d3790 loads [+0x5c]->ESI,[+0x60]->EDX matching the (X=RSI,Y=RDX) order of World::GetMapSquare@0x48bf90 and GetLocationContainerAt@0x4991a0; the light-grid AABB at +0x70..0x7c is (minX,minY,maxX,maxY) built from (arg4,arg5); the debug string \"PointLightGrid (%i,%i)\" formats (arg4,arg5). MapSquare object stride 0x10d80. Anchor recipe OMapSquare.MAPSQUARE_X in this registry derives all four (x, x+4, x+0xc, x+0x14) but cannot fire yet: importAnchors reads updater_data_*/anchors.json, which is generated by `export` from this registry, and the 949-1 baseline export predates the recipe. Recorded here so 949-4 is correct now; anchors are emitted AFTER verified_fields, so the recipe wins automatically once an export regenerates anchors.json."
+      },
+      {
+        "id": "OMapSquare.MAPSQUARE_Y",
+        "value": "0x60",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS shipped 0x9c. Linux ctor @0x4da670 stores arg5->+0x60. Nothing writes +0x9c at all; X/Y are replicated only at +0x5c/+0x60, +0x1e8/+0x1ec and +0xece0/+0xece4. Anchor recipe OMapSquare.MAPSQUARE_X in this registry derives all four (x, x+4, x+0xc, x+0x14) but cannot fire yet: importAnchors reads updater_data_*/anchors.json, which is generated by `export` from this registry, and the 949-1 baseline export predates the recipe. Recorded here so 949-4 is correct now; anchors are emitted AFTER verified_fields, so the recipe wins automatically once an export regenerates anchors.json."
+      },
+      {
+        "id": "OMapSquare.COMPOSITE_DATA_COUNTER",
+        "value": "0x68",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS shipped 0xa8. Linux ctor @0x4da670: param_1[0xd]=arg6[0] with LOCK INC [ctrl+8] - the shared_ptr control block. +0xa8 is a BYTE store, so it cannot be a control word. Anchor recipe OMapSquare.MAPSQUARE_X in this registry derives all four (x, x+4, x+0xc, x+0x14) but cannot fire yet: importAnchors reads updater_data_*/anchors.json, which is generated by `export` from this registry, and the 949-1 baseline export predates the recipe. Recorded here so 949-4 is correct now; anchors are emitted AFTER verified_fields, so the recipe wins automatically once an export regenerates anchors.json."
+      },
+      {
+        "id": "OMapSquare.COMPOSITE_DATA",
+        "value": "0x70",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS shipped 0xb0. Linux ctor @0x4da670: param_1[0xe]=arg6[1], the object half. GetLocationContainerAt@0x4991a0 computes chunkSize=(*(long*)(this+0x70)==0)?16:8, so COMPOSITE_DATA and CHUNK_SIZE_FLAG(0x70) are the SAME field; a table with COMPOSITE_DATA at 0xb0 while CHUNK_SIZE_FLAG stayed 0x70 was internally contradictory. +0xb0 is a plain zeroed qword never assigned. Anchor recipe OMapSquare.MAPSQUARE_X in this registry derives all four (x, x+4, x+0xc, x+0x14) but cannot fire yet: importAnchors reads updater_data_*/anchors.json, which is generated by `export` from this registry, and the 949-1 baseline export predates the recipe. Recorded here so 949-4 is correct now; anchors are emitted AFTER verified_fields, so the recipe wins automatically once an export regenerates anchors.json."
+      },
+      {
+        "id": "OLocation.RENDER_NODE_CTRL",
+        "value": "0x268",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS shipped 0x58, wrong on both platforms. Linux: +0x58/+0x60 is enable_shared_from_this - factory @0x4c9bdc/0x4c9be0/0x4c9be7 writes Location+0x58 = its OWN control block and Location+0x60 = this, released via the WEAK helper FUN_0027f7b0 in ~Location@0x4b9680 (same code at 0x1586ee). So the shipped field reads back NON-NULL (the Location itself) - worse than a null, because the engine then reads Location+0x30 as a transform and +0x288 as mesh components, both garbage. Real render node is slot 0 of five 0x20-byte {resolved,pending} shared_ptr blocks at +0x268/+0x288/+0x2a8/+0x2c8/+0x2e8; reset helper FUN_002281d0 shows {ctrl@+0x268, obj@+0x270}. sizeof(Location)=0x3b0 (pool stride 0x3d0, object at ctrl+0x20). Origin of the bug: jag::game::Location::SetupRenderNodes@0x15efd0 is MISNAMED (its this reads +0x14a0, far past 0x3b0) and its old comment asserted renderNodeControlBlock=0x58/renderNode=0x60."
+      },
+      {
+        "id": "OLocation.RENDER_NODE",
+        "value": "0x270",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "CORRECTS shipped 0x60. Linux vftable+0xa0 mesh pick test FUN_00481e70: LEA RDI,[RDI+0x268]; CALL 0x141130 (poll/promote the async model handle); MOV RSI,[RBX+0x270]; TEST RSI,RSI; then MOV RDI,[RSI+0x268] (mesh-component vector) and ADD RSI,0x30 (world transform) into jag::ScenePicker::MeshTrianglePickTest - the ORenderModel signature. Ghidra: jag::game::Location::Location = 0x4c9660, ~Location = 0x4b9680, vftable 0x14258c0."
+      },
+      {
+        "id": "OInputGlobals.MOUSE_X",
+        "value": "0x168cbd8",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Named .bss label jag::input::InputState::mouseX. jag::input::Input::OnMouseMotion(Input*,float x,float y) stores the x argument here (decompiles to `InputState::mouseX = x`), and OnLeftButtonDown/OnLeftButtonUp/TouchLongPressToRightClick write it too. SUPERSEDES an UNVERIFIED-CARRIED 949-1 carry whose note claimed no 949-4 reference could be located - there are eleven. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.MOUSE_Y",
+        "value": "0x168cbd4",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Named .bss label jag::input::InputState::mouseY, one dword below MOUSE_X. Same OnMouseMotion stores the y argument here. SUPERSEDES an UNVERIFIED-CARRIED 949-1 carry. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.LEFT_BUTTON_STATE",
+        "value": "0x168cbdc",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Named .bss label jag::input::InputState::leftButtonDown, written by jag::input::Input::OnLeftButtonDown and cleared by OnLeftButtonUp. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.MIDDLE_BUTTON_STATE",
+        "value": "0x168cbdd",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "INFERRED, not directly proven on the ELF: the only writer is the static initialiser in jag::Client::Main, so no handler pins it. It is the byte between the two proven endpoints LEFT (0x168cbdc) and RIGHT (0x168cbde), and the PE lays the same three bytes out in the same left/middle/right order with the middle one proven by OnMiddleButtonUp. Treat as HIGH by layout correspondence, not by a direct ELF store. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      },
+      {
+        "id": "OInputGlobals.RIGHT_BUTTON_STATE",
+        "value": "0x168cbde",
+        "confidence": "HIGH",
+        "build": "949-4",
+        "evidence": "Written by jag::input::Input::TouchLongPressToRightClick, which synthesises a right-click by setting this byte. Recorded here because the offset tables are rebuilt from the previous build's table, which DROPS every absolute address as un-carryable; this value was previously present only as a hand-written entry in the generated engine JSON and was therefore destroyed by the next regeneration."
+      }
+    ]
+  },
+  "withheld_fields": {
+    "_doc": "Field ids whose shipped value has been DISPROVED against the target binary but whose correct offset has not been located. They are deliberately NOT carried into the generated tables: the engine accessor then throws OffsetUnavailableException, which fails loudly, instead of dereferencing an offset that analysis has shown points at a different field or past the end of the object. The declaration stays in Offsets.kt - this list is a to-do, not a deletion. Remove an entry the moment the correct offset is established (and record it in verified_fields or as an anchor recipe). Applies to both platforms unless placed under a platform key.",
+    "common": [
+      {
+        "id": "OInterfaceComponent.COMPONENT_TYPE",
+        "disproved_build": "949-4",
+        "evidence": "Shipped 0xe is the PARENT LAYER COMPONENT ID, not a type. jag::opcode::_if_getlayer returns (interfaceId<<16)|comp[+0xe] with 0xffff meaning no parent layer, and jag::InterfaceManager::GetParentLayer indexes the interface's static component array with it. The real type is not a struct field in this build: jag::opcode::_cc_create maps the 0..0x1c cache type through the 29-byte table at 0x01076260 only to pick a ui-category for the parent's accept-child virtual, and passes the raw type to the component factory, which switches on it to allocate one of twelve differently-sized C++ subclasses. Nothing stores the type back on the object - the class identity IS the type, readable only by calling the vtable slot that returns the per-subclass class-id constant (a search for a store of one of those constants finds none; only a constant-returning stub). A correct value would require the engine to resolve the type from the vptr rather than read a field, so no offset is emitted."
+      },
+      {
+        "id": "OLocationContainer.DYNAMIC_LOCATIONS_BEGIN",
+        "disproved_build": "949-4",
+        "evidence": "Shipped 0x60 is a scalar pointer constructor argument (jag::game::LocationContainer::LocationContainer stores an argument there and a byte constant at +0x68, so the pair cannot be a vector begin/end). The two values were taken from a different class - the loc-change manager reached from the Client, whose pending vector really is begin/end/capacity at those offsets (jag::game::ApplyLocChange). LocationContainer has exactly three category vectors plus the dispatch-slot table, all of which the engine already declares; there is no fourth 'dynamic' vector, and server-spawned locations land in the same three vectors and slots."
+      },
+      {
+        "id": "OLocationContainer.DYNAMIC_LOCATIONS_END",
+        "disproved_build": "949-4",
+        "evidence": "Second half of the same borrowed pair; see OLocationContainer.DYNAMIC_LOCATIONS_BEGIN."
+      },
+      {
+        "id": "OLocationContainer.STATIC_LOCATIONS_RBTREE_SENTINEL",
+        "disproved_build": "949-4",
+        "evidence": "Shipped 0x8 is the Entity base's GraphNode pointer, written by the constructor from a GraphNode factory and later passed to jag::graphics::GraphNode::UpdateBounds. LocationContainer contains no red-black tree; its locations live in the three category vectors and the dispatch-slot table."
+      },
+      {
+        "id": "OLocationContainer.STATIC_LOCATIONS_RBTREE_BEGIN",
+        "disproved_build": "949-4",
+        "evidence": "Shipped 0x10 is the Entity kind discriminator byte (constructor writes 9; sibling classes write 4 and 0xA and it is read back through a switch), not a tree root. Same reasoning as the sentinel entry. Note both shipped values also collide exactly with this object's ENTRY_LOCATION_PTR_OFFSET and ENTRY_STRIDE constants, which is where the numbers came from."
+      },
+      {
+        "id": "OCombinedLocationSection.RENDER_NODE",
+        "disproved_build": "949-4",
+        "evidence": "Copied from jag::game::Location, whose layout is unrelated. sizeof(CombinedLocationSection) is 0x110, so the shipped value reads past the end of the object into the pool. The complete-object destructor enumerates every refcounted member and there is no render-node shared_ptr among them. The section reaches its renderable indirectly through its GraphNode, as the class's own mesh pick test shows; recovering this properly means modelling that hop, not naming an offset."
+      },
+      {
+        "id": "OCombinedLocationSection.RENDER_NODE_CTRL",
+        "disproved_build": "949-4",
+        "evidence": "Control-block half of the same copied pair; see OCombinedLocationSection.RENDER_NODE."
+      },
+      {
+        "id": "OCombinedLocationSection.PARENT_COMBINED_LOCATION",
+        "disproved_build": "949-4",
+        "evidence": "Also past the end of the 0x110-byte object. The complete-object destructor lists every pointer member the class owns and no parent-CombinedLocation pointer is among them."
+      }
+    ]
+  },
+  "parked_anchors": [
+    {
+      "id": "OMapSquare.MAPSQUARE_X",
+      "target_object": "OMapSquare",
+      "field": "MAPSQUARE_X",
+      "value_kind": "struct_field",
+      "anchor": {
+        "name": "MapSquare",
+        "namespace": "jag::game::MapSquare",
+        "identify_by": [
+          "func_name",
+          "sig"
+        ],
+        "official_name": "jag::game::MapSquare::MapSquare",
+        "sig_blob": null,
+        "sig_mask": null,
+        "feat_hash": null
+      },
+      "extract": {
+        "steps": [
+          {
+            "op": "find",
+            "match": {
+              "mnemonic": "MOV"
+            },
+            "mem": {
+              "base": "*",
+              "disp_min": "0x58",
+              "disp_max": "0x64"
+            },
+            "occurrence": 1,
+            "capture": {
+              "from": "mem.disp",
+              "as": "x"
+            }
+          }
+        ],
+        "emit": [
+          {
+            "id": "OMapSquare.MAPSQUARE_X",
+            "value": "x"
+          },
+          {
+            "id": "OMapSquare.MAPSQUARE_Y",
+            "value": "x + 4"
+          },
+          {
+            "id": "OMapSquare.COMPOSITE_DATA_COUNTER",
+            "value": "x + 0xc"
+          },
+          {
+            "id": "OMapSquare.COMPOSITE_DATA",
+            "value": "x + 0x14"
+          }
+        ]
+      },
+      "old_value": "0x5c",
+      "confidence": "HIGH",
+      "validated": true,
+      "notes": "PARKED - deliberately NOT in the executing anchors list; the four OMapSquare values are supplied by verified_fields instead. Kept verbatim so a future session can revive it once the recipe matcher can discriminate operand width on a STORE.\nLayout is settled and identical on both 949-4 builds: the constructor writes mapsquareX and mapsquareY as two adjacent dwords, then the ClientCompositeData shared_ptr as {control block, object} in the next two qwords, with the strong count incremented through the control block - which is what makes COUNTER the lower qword and DATA the upper. The four emitted offsets are therefore x, x+4, x+0xc, x+0x14.\nWHY IT CANNOT RUN TODAY: the capture wants the first dword store to the object in a small window, but the window is bracketed by a byte store and a qword store to neighbouring offsets, and operandSizeMatches resolves width from the WRITTEN REGISTER - which is null for a store, so it abstains and the recipe captures whichever neighbour comes first. Measured on the ELF: with the window opened wide it captured the constructor's own argument spill (a stack slot, base RSP) and emitted a plausible-looking but wrong quad; narrowed past the spill it captured the byte store instead. Two attempted matcher fixes - rejecting stack-based operands, and reading the x86 size prefix off the memory operand - were both reverted rather than shipped half-working, because operandSizeMatches is shared by every other recipe in this file and a regression there is far more expensive than one parked anchor. A correct revival needs operand width taken from the instruction's memory operand (verified against a store, not just a register write), after which this recipe with a stack-excluding base resolves to the right dword on both the ELF and the PE.\nREPLACES A KNOWN-BAD SET: the shipping tables carried a different quad for these four on BOTH platforms; those values are not these fields (one is an unrelated qword sentinel whose value is never tested, one has no MapSquare-relative use at all, and two fall inside the embedded polymorphic subobject). The giveaway was that CHUNK_SIZE_FLAG and COMPOSITE_DATA are the same field yet the table gave them different offsets."
+    }
+  ],
+  "_parked_anchors_doc": "Anchor recipes whose target layout is understood but which the recipe matcher cannot currently express safely. They are NOT executed. Their values live in verified_fields, so the table stays correct while the recipe waits for the matcher capability it needs. Move an entry back into 'anchors' only after proving it resolves to the right value on BOTH platform builds."
+}

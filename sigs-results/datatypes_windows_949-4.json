@@ -1,0 +1,4851 @@
+{
+  "version": "949-4",
+  "exported_from": "rs2client.exe",
+  "export_date": "2026-08-03T15:58:10",
+  "structs": [
+    {
+      "name": "_s__RTTIBaseClassDescriptor",
+      "category": "/",
+      "size": 28,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "pTypeDescriptor",
+          "length": 4,
+          "comment": "ref to TypeDescriptor (RTTI 0) for class"
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "numContainedBases",
+          "length": 4,
+          "comment": "count of extended classes in BaseClassArray (RTTI 2)"
+        },
+        {
+          "offset": 8,
+          "type": "PMD",
+          "name": "where",
+          "length": 12,
+          "comment": "member displacement structure"
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "attributes",
+          "length": 4,
+          "comment": "bit flags"
+        },
+        {
+          "offset": 24,
+          "type": "ImageBaseOffset32",
+          "name": "pClassHierarchyDescriptor",
+          "length": 4,
+          "comment": "ref to ClassHierarchyDescriptor (RTTI 3) for class"
+        }
+      ]
+    },
+    {
+      "name": "_s_UnwindMapEntry",
+      "category": "/",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "__ehstate_t",
+          "name": "toState",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "ImageBaseOffset32",
+          "name": "action",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "CLIENT_ID",
+      "category": "/",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "void *",
+          "name": "UniqueProcess",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "void *",
+          "name": "UniqueThread",
+          "length": 8,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "_s_FuncInfo",
+      "category": "/",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "uint",
+          "name": "magicNumber_and_bbtFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "__ehstate_t",
+          "name": "maxState",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "ImageBaseOffset32",
+          "name": "dispUnwindMap",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "uint",
+          "name": "nTryBlocks",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "dispTryBlockMap",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "uint",
+          "name": "nIPMapEntries",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "ImageBaseOffset32",
+          "name": "dispIPToStateMap",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "int",
+          "name": "dispUnwindHelp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "ImageBaseOffset32",
+          "name": "dispESTypeList",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "int",
+          "name": "EHFlags",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "_s__RTTIClassHierarchyDescriptor",
+      "category": "/",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "attributes",
+          "length": 4,
+          "comment": "bit flags"
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "numBaseClasses",
+          "length": 4,
+          "comment": "number of base classes (i.e. rtti1Count)"
+        },
+        {
+          "offset": 12,
+          "type": "undefined4",
+          "name": "pBaseClassArray",
+          "length": 4,
+          "comment": "ref to BaseClassArray (RTTI 2)"
+        }
+      ]
+    },
+    {
+      "name": "_s__RTTICompleteObjectLocator",
+      "category": "/",
+      "size": 20,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "offset",
+          "length": 4,
+          "comment": "offset of vbtable within class"
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "cdOffset",
+          "length": 4,
+          "comment": "constructor displacement offset"
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "pTypeDescriptor",
+          "length": 4,
+          "comment": "ref to TypeDescriptor (RTTI 0) for class"
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "pClassDescriptor",
+          "length": 4,
+          "comment": "ref to ClassHierarchyDescriptor (RTTI 3)"
+        }
+      ]
+    },
+    {
+      "name": "_IMAGE_RUNTIME_FUNCTION_ENTRY",
+      "category": "/",
+      "size": 12,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "BeginAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "EndAddress",
+          "length": 4,
+          "comment": "Apply ImageBaseOffset32 to see reference"
+        },
+        {
+          "offset": 8,
+          "type": "ImageBaseOffset32",
+          "name": "UnwindInfoAddressOrData",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "_s_IPToStateMapEntry",
+      "category": "/",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "Ip",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "__ehstate_t",
+          "name": "state",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct",
+      "category": "/",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "offset": 3,
+          "type": "undefined1",
+          "name": "DataIsDirectory",
+          "length": 1,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "LoggedInPlayer",
+      "category": "/jag",
+      "size": 160,
+      "description": "",
+      "fields": [
+        {
+          "offset": 152,
+          "type": "SHORT",
+          "name": "targetIndex",
+          "length": 2,
+          "comment": "TARGET_INDEX = 0x98. FUN_00195970@0x19599d MOV EBX,[loggedInPlayer+0x98], compared @0x195a69 against the entity key. The whole dword is loaded once then sliced, which is why the field widths are packed"
+        },
+        {
+          "offset": 154,
+          "type": "BYTE",
+          "name": "targetType",
+          "length": 1,
+          "comment": "TARGET_TYPE = 0x9a. Byte 2 of that same dword load, compared @0x195a5e"
+        }
+      ]
+    },
+    {
+      "name": "ItemStackEntry",
+      "category": "/jag",
+      "size": 144,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "INT",
+          "name": "itemId",
+          "length": 4,
+          "comment": "OItemStack.ITEM_ID = 0x0. element+0x0 is the 24-bit obj id decoded by FUN_001b6260"
+        },
+        {
+          "offset": 4,
+          "type": "SHORT",
+          "name": "amount",
+          "length": 2,
+          "comment": "OItemStack.ITEM_AMOUNT = 0x4. element+0x4 is the 16-bit count"
+        }
+      ]
+    },
+    {
+      "name": "MainLogicManager",
+      "category": "/jag",
+      "size": 30248,
+      "description": "",
+      "fields": [
+        {
+          "offset": 30240,
+          "type": "pointer",
+          "name": "clientVarDomain",
+          "length": 8,
+          "comment": "CLIENT_VAR_DOMAIN = 0x7620. FUN_000ec9f0 dispatches vars either to mlm+0x7620 or to client+PLAYER_VAR_DOMAIN through identical virtual slots; the destructor @0x10e5a0 destroys it adjacent to the stat table"
+        }
+      ]
+    },
+    {
+      "name": "NativeMouseSample",
+      "category": "/jag",
+      "size": 48,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "INT",
+          "name": "buttonOrNone",
+          "length": 4,
+          "comment": "Move producer stores -1. Click producer leaves it untouched; no consumer on the native path reads it."
+        },
+        {
+          "offset": 4,
+          "type": "float",
+          "name": "x",
+          "length": 4,
+          "comment": "Client-area X, cvtdq2ps of the integer pixel coord from the LL hook."
+        },
+        {
+          "offset": 8,
+          "type": "float",
+          "name": "y",
+          "length": 4,
+          "comment": "Client-area Y, cvtdq2ps of the integer pixel coord from the LL hook."
+        },
+        {
+          "offset": 24,
+          "type": "LONGLONG",
+          "name": "timestamp",
+          "length": 8,
+          "comment": "Snapshot of the millisecond clock global read by the producer; senders delta-encode against it."
+        },
+        {
+          "offset": 32,
+          "type": "INT",
+          "name": "ctorInitOne",
+          "length": 4,
+          "comment": "Constructor seeds every slot with 1; no producer or consumer touches it. Purpose unknown."
+        },
+        {
+          "offset": 40,
+          "type": "NativeMouseMessage",
+          "name": "message",
+          "length": 4,
+          "comment": "Raw Windows message number as delivered to the LL hook. The click sender packs its low 7 bits into the wire header byte."
+        },
+        {
+          "offset": 44,
+          "type": "LLMouseHookFlags",
+          "name": "sourceFlags",
+          "length": 4,
+          "comment": "MSLLHOOKSTRUCT.flags verbatim. Click sender uses bit 0 only; move sender writes the whole low byte per sample."
+        }
+      ]
+    },
+    {
+      "name": "InterfaceComponent",
+      "category": "/jag",
+      "size": 432,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "SHORT",
+          "name": "interfaceId",
+          "length": 2,
+          "comment": "Parent interface id. NOTE on the withheld OInterfaceComponent.COMPONENT_TYPE: there is NO component-type field on this class. On Linux, jag::game::InterfaceComponent::CreateByType@0xc39300 dispatches a 29-entry jump table (types 0x00..0x1c) in which five slots (1,2,7,8,25) share one invalid target and create nothing, while the other 24 each construct a distinct C++ subclass - 13 inline with their own vtable and 11 through a dedicated pooled factory with its own pool global and element stride. The type is consumed to pick the subclass and never written back, so the class identity IS the type and is recoverable only from the vptr. The value previously shipped as a type (Linux +0xe) is the PARENT LAYER COMPONENT ID (jag::opcode::_if_getlayer, jag::InterfaceManager::GetParentLayer). That whole enumeration is recorded on the Linux CreateByType function and CANNOT be carried here: vtable and pool addresses are per-binary, so a PE vptr->type table must be re-derived from the PE's own factory before anything is emitted. Do not re-add a COMPONENT_TYPE offset."
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "parentSharedPtrCtrl",
+          "length": 8,
+          "comment": "PARENT_SHAREDPTR = 0x10. SendComponentToFrontOrBack@0x1f6cf3/0x1f6cf7 shared_ptr{ctrl 0x10, obj 0x18}; ctrl refcounted at +8/+0xc"
+        },
+        {
+          "offset": 24,
+          "type": "pointer",
+          "name": "parentSharedPtrObj",
+          "length": 8,
+          "comment": "Object half of the parent shared_ptr pair at +0x10"
+        },
+        {
+          "offset": 49,
+          "type": "BYTE",
+          "name": "flags",
+          "length": 1,
+          "comment": "FLAGS = 0x31. FUN_00155190 MOVZX EAX,byte[RCX+0x31] then TEST AL,1 / AL,0x20; ctor @0xb8fa7 ORs 0x4; the component decoder @0x27014a writes it. Bitfield - do NOT treat as a plain bool"
+        },
+        {
+          "offset": 50,
+          "type": "BYTE",
+          "name": "xOriginMode",
+          "length": 1,
+          "comment": "X_ORIGIN_MODE = 0x32. ComputeOriginOffset@0x269854 MOVZX EAX,byte[RCX+0x32]"
+        },
+        {
+          "offset": 51,
+          "type": "BYTE",
+          "name": "yOriginMode",
+          "length": 1,
+          "comment": "Y_ORIGIN_MODE = 0x33. ComputeOriginOffset@0x2698e1"
+        },
+        {
+          "offset": 52,
+          "type": "BYTE",
+          "name": "xAnchorMode",
+          "length": 1,
+          "comment": "X_ANCHOR_MODE = 0x34. FUN_0027c1c0@0x27c22f MOVZX R11D,byte[R9+0x34]"
+        },
+        {
+          "offset": 53,
+          "type": "BYTE",
+          "name": "yAnchorMode",
+          "length": 1,
+          "comment": "Y_ANCHOR_MODE = 0x35. FUN_0027c1c0@0x27c26d"
+        },
+        {
+          "offset": 56,
+          "type": "INT",
+          "name": "xOriginOffset",
+          "length": 4,
+          "comment": "X_ORIGIN_OFFSET = 0x38. ComputeOriginOffset@0x26985c MOV EAX,[RCX+0x38]"
+        },
+        {
+          "offset": 60,
+          "type": "INT",
+          "name": "yOriginOffset",
+          "length": 4,
+          "comment": "Y_ORIGIN_OFFSET = 0x3c. ComputeOriginOffset@0x2698e9"
+        },
+        {
+          "offset": 64,
+          "type": "INT",
+          "name": "rawX",
+          "length": 4,
+          "comment": "RAW_X = 0x40. FUN_0027c1c0@0x27c243 MOV ECX,[R9+0x40]"
+        },
+        {
+          "offset": 68,
+          "type": "INT",
+          "name": "rawY",
+          "length": 4,
+          "comment": "RAW_Y = 0x44. FUN_0027c1c0@0x27c277"
+        },
+        {
+          "offset": 384,
+          "type": "INT",
+          "name": "itemId",
+          "length": 4,
+          "comment": "ITEM_ID = 0x180. Getter @0xb93f0 MOV EAX,[RCX+0x180]; setter @0xb9410 CMP EDX,[RCX+0x180] / MOV [RCX+0x180],EDX then MOV byte[RCX+0x191],1. SUBCLASS OVERLAP: the region above 0x180 is laid out independently by different InterfaceComponent subclasses, so these offsets do not all coexist in one object. The item-bearing subclass uses {itemId 0x180 dword, stackSize 0x188 qword, dirty byte 0x191}; the model-bearing subclass uses {modelId 0x190 dword, modelObject 0x198 qword}. modelId (0x190..0x193) and the 0x191 dirty byte physically overlap, which is why the dirty byte is documented here rather than declared as a field."
+        },
+        {
+          "offset": 392,
+          "type": "LONGLONG",
+          "name": "stackSize",
+          "length": 8,
+          "comment": "STACK_SIZE = 0x188. Getter @0xb9400 MOV RAX,[RCX+0x188]; setter @0xb9430 MOV [RCX+0x188],RDX then MOV byte[RCX+0x191],1. 64-bit field; the engine reads it as an int. SUBCLASS OVERLAP: the region above 0x180 is laid out independently by different InterfaceComponent subclasses, so these offsets do not all coexist in one object. The item-bearing subclass uses {itemId 0x180 dword, stackSize 0x188 qword, dirty byte 0x191}; the model-bearing subclass uses {modelId 0x190 dword, modelObject 0x198 qword}. modelId (0x190..0x193) and the 0x191 dirty byte physically overlap, which is why the dirty byte is documented here rather than declared as a field."
+        },
+        {
+          "offset": 400,
+          "type": "INT",
+          "name": "modelId",
+          "length": 4,
+          "comment": "MODEL_ID = 0x190. Getter @0xb9ab0 is MOV EAX,[RCX+0x190]; setter @0xb9a90 is MOV [RCX+0x190],EDX - a full dword. SUBCLASS OVERLAP: the region above 0x180 is laid out independently by different InterfaceComponent subclasses, so these offsets do not all coexist in one object. The item-bearing subclass uses {itemId 0x180 dword, stackSize 0x188 qword, dirty byte 0x191}; the model-bearing subclass uses {modelId 0x190 dword, modelObject 0x198 qword}. modelId (0x190..0x193) and the 0x191 dirty byte physically overlap, which is why the dirty byte is documented here rather than declared as a field."
+        },
+        {
+          "offset": 408,
+          "type": "pointer",
+          "name": "modelObject",
+          "length": 8,
+          "comment": "MODEL_OBJECT = 0x198. getter @0xb9ac0, setter @0xb9aa0; the destructor @0xb9475 releases it first. Base class size is 0x1a0"
+        },
+        {
+          "offset": 424,
+          "type": "pointer",
+          "name": "slotChildren",
+          "length": 8,
+          "comment": "SLOT_CHILDREN = 0x1a8. 0x276630/0x276640 pair, with the /0x68 entry-stride divide and the +0x369 page byte. Lives on the slot-bearing subclass, past the 0x1a0 base size"
+        }
+      ]
+    },
+    {
+      "name": "ObjVarDomainEntry",
+      "category": "/jag",
+      "size": 48,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "INT",
+          "name": "varId",
+          "length": 4,
+          "comment": "OObjVarDomain.ELEMENT_SIZE = 0x30 is this node's allocation size: FindOrCreateEntry@0xfdac4/0xfdac9 allocates 0x30-byte nodes. Same {varId@0x0, value@0x8} node shape as VarDomainEntry."
+        },
+        {
+          "offset": 8,
+          "type": "LONGLONG",
+          "name": "varValue",
+          "length": 8,
+          "comment": "Value half of the obj-var node; see varId."
+        }
+      ]
+    },
+    {
+      "name": "VarInfo",
+      "category": "/jag",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "type",
+          "length": 8,
+          "comment": "OVarInfo.TYPE_PTR = 0x8. PlayerVarDomain::SetVarValue does MOV RAX,[RDX+0x8] to reach the VarType, then MOV EAX,[RAX+0x8] for the int var id that is the FindOrCreateEntry hash key (OVarInfo.VAR_ID, which is VarType+0x8 not VarInfo+0x8 - the two engine ids share a value by coincidence)."
+        }
+      ]
+    },
+    {
+      "name": "ConnectionManager",
+      "category": "/jag",
+      "size": 64,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "handleState",
+          "length": 8,
+          "comment": "HANDLE_STATE = 0x8. TcpIn's 2nd argument is the slot handle (cm+0x10 / cm+0x20) and the live ServerConnection* sits at handle+8"
+        },
+        {
+          "offset": 24,
+          "type": "pointer",
+          "name": "gameConnection",
+          "length": 8,
+          "comment": "GAME_CONNECTION = 0x18. ProcessConnections mainState 0x1e branch reads *(cm+0x18); SendEventMouseClick reads it and then +0x40 for the outgoing ISAAC"
+        },
+        {
+          "offset": 40,
+          "type": "pointer",
+          "name": "loginConnection",
+          "length": 8,
+          "comment": "LOGIN_CONNECTION = 0x28. ProcessConnections mainState 0x14/0x17 branch reads *(cm+0x28) and on failure calls SetMainState(client, 10)"
+        }
+      ]
+    },
+    {
+      "name": "ItemStackList",
+      "category": "/jag",
+      "size": 32,
+      "description": "",
+      "fields": [
+        {
+          "offset": 24,
+          "type": "pointer",
+          "name": "rbTreeBase",
+          "length": 8,
+          "comment": "RB_TREE_BASE = 0x18. FUN_003a6060 and FUN_003a8950 both start at *(list+0x18), with the tree anchor at list+0x8"
+        }
+      ]
+    },
+    {
+      "name": "SpotAnimNode",
+      "category": "/jag",
+      "size": 24,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "pointer",
+          "name": "next",
+          "length": 8,
+          "comment": "NEXT = 0x0. Node link word: the free-list pop reads *node into the free-list head, and the list insert writes the sentinel there"
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "value",
+          "length": 8,
+          "comment": "VALUE = 0x10. Add computes node+0x10 and passes it as the object pointer to the SpotAnim constructor, then stores it into the GraphNode's entity slot, so the payload begins here"
+        }
+      ]
+    },
+    {
+      "name": "MouseProtSenderBase",
+      "category": "/jag",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "void *",
+          "name": "vtable",
+          "length": 8,
+          "comment": "slot0 HasPending, slot1 SendClick, slot2 GetProtDescriptor, slot3 GetPacketHeadroom, slot4 PopMoveSample, slot5 WritePerSampleExtra"
+        },
+        {
+          "offset": 8,
+          "type": "void *",
+          "name": "client",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "UINT",
+          "name": "lastSentX",
+          "length": 4,
+          "comment": "Previous move-history sample X; 0xFFFFFFFF means off-window. Used for delta encoding."
+        },
+        {
+          "offset": 20,
+          "type": "UINT",
+          "name": "lastSentY",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "LONGLONG",
+          "name": "lastMoveSampleTime",
+          "length": 8,
+          "comment": "Timestamp of the last move-history sample drained. Zero = no sample yet (absolute encoding). Also the staleness reference in the HasPending predicate."
+        },
+        {
+          "offset": 32,
+          "type": "LONGLONG",
+          "name": "lastClickSampleTime",
+          "length": 8,
+          "comment": "Timestamp of the last click packet's sample; the wire time delta is measured against this and it is overwritten on every send."
+        }
+      ]
+    },
+    {
+      "name": "Client",
+      "category": "/jag",
+      "size": 342040,
+      "description": "",
+      "fields": [
+        {
+          "offset": 104536,
+          "type": "pointer",
+          "name": "camera",
+          "length": 8,
+          "comment": "OClient.CAMERA = 0x19858. A large family of CS2 camera opcode handlers at 0x95820-0x96790 all load *(client+0x19858); the object carries a Client back-pointer at +8 as on Linux. NOTE the Windows Client is 0x53818 bytes (Linux 0x53358) and the manager-slot band at 0x19830..0x19A00 is NOT in Linux order, so no offset may be carried across platforms."
+        },
+        {
+          "offset": 104632,
+          "type": "pointer",
+          "name": "hintTrailList",
+          "length": 8,
+          "comment": "OClient.HINTTRAIL_LIST = 0x198b8. The hint-slot packet handler FUN_001079e0 clears *(list+0x10+slot*8); the per-tick pass FUN_0018e490 iterates list+0x10..+0x50. NOTE the Windows Client is 0x53818 bytes (Linux 0x53358) and the manager-slot band at 0x19830..0x19A00 is NOT in Linux order, so no offset may be carried across platforms."
+        },
+        {
+          "offset": 104640,
+          "type": "pointer",
+          "name": "interfaceList",
+          "length": 8,
+          "comment": "OClient.INTERFACE_LIST = 0x198c0. MiniMenu::DoOpComponentInner@0xe0f30 loads it three times and passes it as this to InterfaceManager::IfButtonXInner. NOTE the Windows Client is 0x53818 bytes (Linux 0x53358) and the manager-slot band at 0x19830..0x19A00 is NOT in Linux order, so no offset may be carried across platforms."
+        },
+        {
+          "offset": 104696,
+          "type": "pointer",
+          "name": "itemStackList",
+          "length": 8,
+          "comment": "OClient.ITEMSTACK_LIST = 0x198f8. FUN_000b7230 ground-item tile lookup; also referenced by REBUILD_NORMAL. NOTE the Windows Client is 0x53818 bytes (Linux 0x53358) and the manager-slot band at 0x19830..0x19A00 is NOT in Linux order, so no offset may be carried across platforms."
+        },
+        {
+          "offset": 104776,
+          "type": "pointer",
+          "name": "spotAnimManager",
+          "length": 8,
+          "comment": "OClient.SPOTANIM_MANAGER = 0x19948. The per-tick pass FUN_0018e490 updates it in the Linux slot order players/npcs/projectiles/itemstacks/SPOTANIM/.../hints. NOTE the Windows Client is 0x53818 bytes (Linux 0x53358) and the manager-slot band at 0x19830..0x19A00 is NOT in Linux order, so no offset may be carried across platforms."
+        }
+      ]
+    },
+    {
+      "name": "MouseSample",
+      "category": "/jag",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "INT",
+          "name": "button",
+          "length": 4,
+          "comment": "Button identifier. 0 is the LEFT button, not \"no button\" -- see the entry-point comment on SendEventMouseClick. SendEventMouseClick puts only (button != 0) on the wire, in bit 15."
+        },
+        {
+          "offset": 4,
+          "type": "float",
+          "name": "x",
+          "length": 4,
+          "comment": "Wire coordinate pair. This is the pair SendEventMouseClick clamps and sends, and the pair the camera/interface consumer reads."
+        },
+        {
+          "offset": 8,
+          "type": "float",
+          "name": "y",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "float",
+          "name": "uiX",
+          "length": 4,
+          "comment": "Second coordinate pair, read by the minimenu / interaction consumers instead of x/y. Never sent on the wire."
+        },
+        {
+          "offset": 16,
+          "type": "float",
+          "name": "uiY",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "LONGLONG",
+          "name": "timestamp",
+          "length": 8,
+          "comment": "Monotonic clock snapshot; both senders delta-encode against the previous sent sample."
+        },
+        {
+          "offset": 32,
+          "type": "INT",
+          "name": "ctorInitOne",
+          "length": 4,
+          "comment": "Constructor seeds every slot with 1; no observed producer or consumer touches it. Same unexplained field as NativeMouseSample.ctorInitOne."
+        }
+      ]
+    },
+    {
+      "name": "ClientVarDomain",
+      "category": "/jag",
+      "size": 32,
+      "description": "",
+      "fields": [
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "valueMapBase",
+          "length": 8,
+          "comment": "Value-map base of the ClientVarDomain, at owner+0x98 when measured from the MainLogicManager that owns it."
+        },
+        {
+          "offset": 24,
+          "type": "pointer",
+          "name": "hashTableBuckets",
+          "length": 8,
+          "comment": "OClientVarDomain.HASH_TABLE = 0x18. CORRECTS a shipped 0x98. The value map sits at owner+0x98 and the buckets at mapBase+0x8, but the engine measures HASH_TABLE from the ClientVarDomain base, which is owner+0x88, giving 0x10+0x8 = 0x18. The 0x98 was measured from the setter's arg-2 owner instead, so this only became resolvable once OMainLogicManager.CLIENT_VAR_DOMAIN was established. Matches Linux 0x18."
+        }
+      ]
+    },
+    {
+      "name": "VarType",
+      "category": "/jag",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "INT",
+          "name": "varId",
+          "length": 4,
+          "comment": "OVarInfo.VAR_ID = 0x8. PlayerVarDomain::SetVarValue loads MOV RAX,[RDX+0x8] (the VarType) then MOV EAX,[RAX+0x8] - the int var id used as the FindOrCreateEntry hash key"
+        }
+      ]
+    },
+    {
+      "name": "InterfaceManager",
+      "category": "/jag",
+      "size": 160,
+      "description": "",
+      "fields": [
+        {
+          "offset": 48,
+          "type": "InterfaceList",
+          "name": "interfaceList",
+          "length": 112,
+          "comment": "INTERFACE_LIST_PTR = 0x30. FUN_001f6650@0x1f66aa passes manager+0x30 to InterfaceList::GetInterface. EMBEDDED sub-object, not a pointer"
+        }
+      ]
+    },
+    {
+      "name": "MiniMenu",
+      "category": "/jag",
+      "size": 112,
+      "description": "",
+      "fields": [
+        {
+          "offset": 104,
+          "type": "BYTE",
+          "name": "menuOpen",
+          "length": 1,
+          "comment": "MENU_OPEN = 0x68. SendOpObjStack@0xe4a73 folds byte[minimenu+0x68] in as bit 1 of a writeByteSubtract field"
+        }
+      ]
+    },
+    {
+      "name": "ItemStack",
+      "category": "/jag",
+      "size": 136,
+      "description": "",
+      "fields": [
+        {
+          "offset": 112,
+          "type": "pointer",
+          "name": "itemVectorBegin",
+          "length": 8,
+          "comment": "ITEM_VECTOR = 0x70. FUN_003a6060 push path uses +0x78 as end and +0x80 as capacity, and grows via FUN_00328180(stack+0x70,...). Element stride is 0x90"
+        },
+        {
+          "offset": 120,
+          "type": "pointer",
+          "name": "itemVectorEnd",
+          "length": 8,
+          "comment": "End pointer of the item vector at +0x70"
+        },
+        {
+          "offset": 128,
+          "type": "pointer",
+          "name": "itemVectorCap",
+          "length": 8,
+          "comment": "Capacity pointer of the item vector at +0x70"
+        }
+      ]
+    },
+    {
+      "name": "RegionHeightContainer",
+      "category": "/jag",
+      "size": 496,
+      "description": "",
+      "fields": [
+        {
+          "offset": 17,
+          "type": "BYTE",
+          "name": "readyLo",
+          "length": 1,
+          "comment": "READY_LO = 0x11. SampleRegionFineHeight@0x39a8c8 MOVZX EAX,byte[RCX+0x11]; ctor @0x39976e seeds both ready bytes"
+        },
+        {
+          "offset": 18,
+          "type": "BYTE",
+          "name": "readyHi",
+          "length": 1,
+          "comment": "READY_HI = 0x12. @0x39a8cc CMP byte[RCX+0x12],AL - the region is usable iff readyHi == readyLo"
+        },
+        {
+          "offset": 144,
+          "type": "pointer",
+          "name": "primary",
+          "length": 8,
+          "comment": "PRIMARY = 0x90. SampleRegionFineHeight@0x39a8bc MOV RCX,[RCX+0x90]"
+        },
+        {
+          "offset": 345,
+          "type": "BYTE",
+          "name": "notLoadedFlag",
+          "length": 1,
+          "comment": "NOT_LOADED_FLAG = 0x159. @0x3c498f CMP byte[RCX+0x159],0"
+        },
+        {
+          "offset": 352,
+          "type": "pointer",
+          "name": "planeVecBegin",
+          "length": 8,
+          "comment": "PLANE_VEC_BEGIN = 0x160. @0x3c49d3 SUB RAX,[R10+0x160]; plane count = (end-begin)>>4 (PLANE_STRIDE 0x10)"
+        },
+        {
+          "offset": 360,
+          "type": "pointer",
+          "name": "planeVecEnd",
+          "length": 8,
+          "comment": "PLANE_VEC_END = 0x168. @0x3c49cc MOV RAX,[R10+0x168]"
+        },
+        {
+          "offset": 464,
+          "type": "LONGLONG",
+          "name": "linkHeightPlaneCount",
+          "length": 8,
+          "comment": "LINK_HEIGHT_PLANE_COUNT = 0x1d0. SampleTileLinkHeightOffset@0x3c48ef CMP R11,[RCX+0x1d0]"
+        },
+        {
+          "offset": 472,
+          "type": "pointer",
+          "name": "linkHeightGrid",
+          "length": 8,
+          "comment": "LINK_HEIGHT_GRID = 0x1d8. @0x3c4935 MOV RAX,[RBX+0x1d8]. Indexing: plane*0x4000 + col*0x100 + row*4, cell is two i16"
+        },
+        {
+          "offset": 488,
+          "type": "pointer",
+          "name": "plane0BridgeGrid",
+          "length": 8,
+          "comment": "PLANE0_BRIDGE_GRID = 0x1e8. @0x3c4a35 MOV RAX,[R10+0x1e8] on the plane==0 bridge branch"
+        }
+      ]
+    },
+    {
+      "name": "NativeMouseProt",
+      "category": "/jag",
+      "size": 10264,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "MouseProtSenderBase",
+          "name": "base",
+          "length": 40,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "byte[64]",
+          "name": "moveListener",
+          "length": 64,
+          "comment": "eastl::function bound to this; registered into the InputHandler native-mouse-move listener vector. Invoker pushes the move ring."
+        },
+        {
+          "offset": 104,
+          "type": "byte[64]",
+          "name": "clickListener",
+          "length": 64,
+          "comment": "eastl::function bound to this; registered into the InputHandler native-mouse-button listener vector. Invoker pushes the click ring."
+        },
+        {
+          "offset": 168,
+          "type": "NativeMouseClickRing",
+          "name": "clickRing",
+          "length": 480,
+          "comment": "Source ring drained by SendNativeMouseClick, exactly one entry per send."
+        },
+        {
+          "offset": 648,
+          "type": "UINT",
+          "name": "clickRingWrite",
+          "length": 4,
+          "comment": "Producer cursor. Post-increment wraps at the slot count; on collision with clickRingRead the producer advances the read cursor, dropping the oldest sample."
+        },
+        {
+          "offset": 652,
+          "type": "UINT",
+          "name": "clickRingRead",
+          "length": 4,
+          "comment": "Consumer cursor. Empty test is clickRingRead == clickRingWrite; SendNativeMouseClick advances it itself after emitting."
+        },
+        {
+          "offset": 656,
+          "type": "BYTE",
+          "name": "moveRing",
+          "length": 1,
+          "comment": "200 NativeMouseSample slots, same 0x30 layout as clickRing. Drained in a loop into one variable-length movement-history packet per flush."
+        },
+        {
+          "offset": 10256,
+          "type": "UINT",
+          "name": "moveRingWrite",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 10260,
+          "type": "UINT",
+          "name": "moveRingRead",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "SpotAnimManager",
+      "category": "/jag",
+      "size": 88,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "pointer",
+          "name": "vtable",
+          "length": 8,
+          "comment": "VTABLE = 0x0. The manager is dispatched virtually as (**(code**)(*mgr + 8))(mgr,...) from the per-cycle update @0x00027520, so offset 0 holds the vtable pointer"
+        },
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "client",
+          "length": 8,
+          "comment": "CLIENT_REF = 0x8. Add reads *(mgr+8) and indexes it with Client-sized displacements (+0x19990, +0x18d28, +0x19978, +0x18d40); its caller obtained the manager from the Client"
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "firstNode",
+          "length": 8,
+          "comment": "FIRST_NODE = 0x10. Intrusive list head. On insert, Add writes node[0] = mgr+0x10 (the sentinel) and threads the new node through the tail pointer at mgr+0x18"
+        },
+        {
+          "offset": 24,
+          "type": "pointer",
+          "name": "lastNode",
+          "length": 8,
+          "comment": "Tail pointer of the intrusive list whose head sentinel is mgr+0x10"
+        },
+        {
+          "offset": 32,
+          "type": "pointer",
+          "name": "poolFreeListHead",
+          "length": 8,
+          "comment": "SpotAnimManager node pool, base at manager+0x20. The allocate-or-recycle helper (ELF 0x129780, called from Add via LEA RDI,[RBX+0x20]) reads exactly four words: [pool+0x00] free-list head (popped first, *node becomes the new head), [pool+0x08] bump-allocation cursor, [pool+0x10] bump-allocation limit (cursor == limit -> fall back to the heap), [pool+0x18] element stride (added to the cursor). Manager-relative that is +0x20/+0x28/+0x30/+0x38, and the PE carries the identical quadruple at the identical offsets. WITHHELD: the engine's OSpotAnimManager.POOL_START / POOL_END have NO correct mapping onto this structure - it is a free-list plus a bump allocator, not a start/end pair. The shipped ELF values (POOL_START 0x30, POOL_END 0x48) are provably wrong: 0x30 is the bump LIMIT, and 0x48 is past the end of the pool object entirely (the pool occupies 0x20..0x3f; 0x50 is LIST_SIZE). Both keys stay withheld on both platforms until the engine defines which two words it wants. Do not re-add 0x30/0x48."
+        },
+        {
+          "offset": 40,
+          "type": "pointer",
+          "name": "poolBumpCursor",
+          "length": 8,
+          "comment": "Bump-allocation cursor of the node pool based at manager+0x20; see poolFreeListHead."
+        },
+        {
+          "offset": 48,
+          "type": "pointer",
+          "name": "poolBumpLimit",
+          "length": 8,
+          "comment": "Bump-allocation limit of the node pool. The engine's OSpotAnimManager.POOL_START was shipped as this offset on the ELF, which is a misnaming - see poolFreeListHead."
+        },
+        {
+          "offset": 56,
+          "type": "LONGLONG",
+          "name": "poolElementStride",
+          "length": 8,
+          "comment": "Element stride added to the bump cursor; last word of the pool quadruple. The pool object ends at 0x40, so the shipped POOL_END 0x48 lies past it."
+        },
+        {
+          "offset": 80,
+          "type": "LONGLONG",
+          "name": "listSize",
+          "length": 8,
+          "comment": "LIST_SIZE = 0x50. Add increments *(mgr+0x50) by exactly one per node linked in. Independently lands on the offset the ELF table also carries"
+        }
+      ]
+    },
+    {
+      "name": "NativeMouseClickRing",
+      "category": "/jag",
+      "size": 480,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "NativeMouseSample",
+          "name": "slot0",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "NativeMouseSample",
+          "name": "slot1",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 96,
+          "type": "NativeMouseSample",
+          "name": "slot2",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 144,
+          "type": "NativeMouseSample",
+          "name": "slot3",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 192,
+          "type": "NativeMouseSample",
+          "name": "slot4",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 240,
+          "type": "NativeMouseSample",
+          "name": "slot5",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 288,
+          "type": "NativeMouseSample",
+          "name": "slot6",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 336,
+          "type": "NativeMouseSample",
+          "name": "slot7",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 384,
+          "type": "NativeMouseSample",
+          "name": "slot8",
+          "length": 48,
+          "comment": ""
+        },
+        {
+          "offset": 432,
+          "type": "NativeMouseSample",
+          "name": "slot9",
+          "length": 48,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "VarDomainEntry",
+      "category": "/jag",
+      "size": 48,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "INT",
+          "name": "varId",
+          "length": 4,
+          "comment": "OPlayerVarDomain.VAR_ID / OClientVarDomain.VAR_ID = 0x0. FindOrCreateEntry@0xfdadc MOV dword[RAX],ECX. Shared node shape for both var domains"
+        },
+        {
+          "offset": 8,
+          "type": "LONGLONG",
+          "name": "varValue",
+          "length": 8,
+          "comment": "OPlayerVarDomain.VAR_VALUE / OClientVarDomain.VAR_VALUE = 0x8. FindOrCreateEntry@0xfdb18 LEA RAX,[RDI+0x8]"
+        }
+      ]
+    },
+    {
+      "name": "InterfaceParent",
+      "category": "/jag",
+      "size": 24,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "childArrayBegin",
+          "length": 8,
+          "comment": "CHILD_ARRAY_BEGIN = 0x8. FUN_00170040@0x17006b; GetStaticComponent@0x349a5a"
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "childArrayEnd",
+          "length": 8,
+          "comment": "CHILD_ARRAY_END = 0x10. FUN_00170040@0x170067 with an ADD RBX,0x18 loop, so child count = (end-begin)/0x18"
+        }
+      ]
+    },
+    {
+      "name": "ItemStackNode",
+      "category": "/jag",
+      "size": 64,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "pointer",
+          "name": "left",
+          "length": 8,
+          "comment": "LEFT = 0x0. Red-black tree walk in FUN_003a6060; FUN_00798f50 zeroes it on insert"
+        },
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "right",
+          "length": 8,
+          "comment": "RIGHT = 0x8. The same walk takes node[1] as the right child"
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "parent",
+          "length": 8,
+          "comment": "PARENT = 0x10. Rebalance FUN_00798f50 reparents through [x+0x10]"
+        },
+        {
+          "offset": 32,
+          "type": "INT",
+          "name": "posPlane",
+          "length": 4,
+          "comment": "POS_PLANE = 0x20. Compared against key[0]; written by Insert @0x3a8950"
+        },
+        {
+          "offset": 36,
+          "type": "INT",
+          "name": "posX",
+          "length": 4,
+          "comment": "POS_X = 0x24. Compared against key[1]"
+        },
+        {
+          "offset": 40,
+          "type": "INT",
+          "name": "posY",
+          "length": 4,
+          "comment": "POS_Y = 0x28. Compared against key[2]"
+        },
+        {
+          "offset": 48,
+          "type": "pointer",
+          "name": "itemStackCtrl",
+          "length": 8,
+          "comment": "Control-block half of the value shared_ptr written by Insert"
+        },
+        {
+          "offset": 56,
+          "type": "pointer",
+          "name": "itemStack",
+          "length": 8,
+          "comment": "ITEM_STACK = 0x38. Value read as node[7]; Insert writes shared_ptr{ctrl 0x30, obj 0x38}. Node allocation is 0x40 bytes"
+        }
+      ]
+    },
+    {
+      "name": "InputHandler",
+      "category": "/jag/input",
+      "size": 2496,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "lmouseDownBegin",
+          "length": 8,
+          "comment": "LMOUSE_DOWN = 0x8. Slot 0. FUN_007893b0, called only from Input::OnLeftButtonDown (WM_LBUTTONDOWN @0x78a54c), reads handler+0x8/+0x10. Slot n is at 0x8 + n*0x68 - this is SLOT_BASE, and CORRECTS a shipped 0xd8 which is slot 2"
+        },
+        {
+          "offset": 112,
+          "type": "pointer",
+          "name": "lmouseUpBegin",
+          "length": 8,
+          "comment": "LMOUSE_UP = 0x70. Slot 1. FUN_00789470, called only from Input::OnLeftButtonUp (WM_LBUTTONUP @0x78a587)"
+        },
+        {
+          "offset": 320,
+          "type": "pointer",
+          "name": "mmouseUpBegin",
+          "length": 8,
+          "comment": "MMOUSE_UP = 0x140. Slot 3. 0x78b940 clears the middle-button state then walks +0x140/+0x148 (WM_MBUTTONUP @0x78a692)"
+        },
+        {
+          "offset": 424,
+          "type": "pointer",
+          "name": "rmouseDownBegin",
+          "length": 8,
+          "comment": "RMOUSE_DOWN = 0x1a8. Slot 4. 0x78ba10 sets the right-button state then walks +0x1a8/+0x1b0 (WM_RBUTTONDOWN @0x78a6d4)"
+        },
+        {
+          "offset": 528,
+          "type": "pointer",
+          "name": "rmouseUpBegin",
+          "length": 8,
+          "comment": "RMOUSE_UP = 0x210. Slot 5. 0x78bae0 clears the right-button state then walks +0x210/+0x218 (WM_RBUTTONUP @0x78a70f)"
+        },
+        {
+          "offset": 736,
+          "type": "pointer",
+          "name": "mouseWheelBegin",
+          "length": 8,
+          "comment": "MOUSE_WHEEL = 0x2e0. Slot 7. FUN_007895f0 (5-arg) reads +0x2e0/+0x2e8; called from OnScrollWheel @0x78bce0"
+        },
+        {
+          "offset": 840,
+          "type": "pointer",
+          "name": "keyDownBegin",
+          "length": 8,
+          "comment": "KEY_DOWN = 0x348. Slot 8. FUN_00789710, called from OnKeyDownInner @0x33dd0"
+        },
+        {
+          "offset": 944,
+          "type": "pointer",
+          "name": "keyUpBegin",
+          "length": 8,
+          "comment": "KEY_UP = 0x3b0. Slot 9. FUN_007897c0, called from OnKeyUpInner @0x34130"
+        },
+        {
+          "offset": 1048,
+          "type": "pointer",
+          "name": "keyCharBegin",
+          "length": 8,
+          "comment": "KEY_CHAR = 0x418. Slot 10. FUN_00789870, called from OnKeyCharInner @0x34270"
+        }
+      ]
+    },
+    {
+      "name": "Input",
+      "category": "/jag/input",
+      "size": 208,
+      "description": "",
+      "fields": [
+        {
+          "offset": 192,
+          "type": "pointer",
+          "name": "client",
+          "length": 8,
+          "comment": "CLIENT = 0xc0. Client ctor @0x1d15f MOV [RDI+0x18e40],RDI, i.e. Input+0xc0; read back as the Client in OnKeyDownInner"
+        },
+        {
+          "offset": 200,
+          "type": "BYTE",
+          "name": "consoleKeyHeld",
+          "length": 1,
+          "comment": "CONSOLE_KEY_HELD = 0xc8. OnKeyCharInner guard: if (*(char*)(this+0xc8) == 0). On Windows this is the same byte the engine also calls CONSOLE_OPEN_FLAG"
+        }
+      ]
+    },
+    {
+      "name": "NPC",
+      "category": "/jag/game",
+      "size": 4464,
+      "description": "",
+      "fields": [
+        {
+          "offset": 4428,
+          "type": "INT",
+          "name": "currentHitpoints",
+          "length": 4,
+          "comment": "CURRENT_HP = 0x114c. DIVERGENT from Linux 0x112c. jag::opcode::get_npc_stat@0x2045b6 MOV ECX,[npc+idx*4+0x1140]; stat index 3 is hitpoints, so 0x1140+0xc"
+        },
+        {
+          "offset": 4456,
+          "type": "INT",
+          "name": "maxHitpoints",
+          "length": 4,
+          "comment": "MAX_HP = 0x1168. DIVERGENT from Linux 0x1148. Same instruction pair @0x2045ae with the max-stat array base 0x115c, +0xc"
+        }
+      ]
+    },
+    {
+      "name": "Entity",
+      "category": "/jag/game",
+      "size": 3184,
+      "description": "",
+      "fields": [
+        {
+          "offset": 3176,
+          "type": "pointer",
+          "name": "renderModel",
+          "length": 8,
+          "comment": "RENDER_MODEL = 0xc68. DIVERGENT from Linux 0xc58. PickTestVtable@0x39e77a MOV RDI,[RCX+0xc68]; second witness UpdateHighlight@0x1a6dbe; third FUN_0031f0b0"
+        }
+      ]
+    },
+    {
+      "name": "InterfaceList",
+      "category": "/jag/game",
+      "size": 112,
+      "description": "",
+      "fields": [
+        {
+          "offset": 88,
+          "type": "pointer",
+          "name": "entriesBegin",
+          "length": 8,
+          "comment": "START_PTR = 0x58. GetInterface@0x349882 LEA RSI,[RCX+0x58]"
+        },
+        {
+          "offset": 96,
+          "type": "pointer",
+          "name": "entriesEnd",
+          "length": 8,
+          "comment": "END_PTR = 0x60. GetInterface@0x34987e; entry count = (end-begin)>>4 (ENTRY_STRIDE 0x10)"
+        },
+        {
+          "offset": 104,
+          "type": "pointer",
+          "name": "entriesCap",
+          "length": 8,
+          "comment": "CAPACITY_PTR = 0x68. grow helper @0x17d8f0 checks param[2]-param[1]>>4"
+        }
+      ]
+    },
+    {
+      "name": "MapSquare",
+      "category": "/jag/game",
+      "size": 120,
+      "description": "",
+      "fields": [
+        {
+          "offset": 92,
+          "type": "INT",
+          "name": "mapSquareX",
+          "length": 4,
+          "comment": "MAPSQUARE_X = 0x5c. CORRECTS a shipped 0x40 that was wrong on BOTH platforms since the 948-2 migration. Windows ctor @0x3997e7 MOV dword[RDI+0x5c],ESI"
+        },
+        {
+          "offset": 96,
+          "type": "INT",
+          "name": "mapSquareY",
+          "length": 4,
+          "comment": "MAPSQUARE_Y = 0x60. CORRECTS a shipped 0x9c, which has no MapSquare-relative use anywhere in the PE. Windows ctor @0x3997ea MOV dword[RDI+0x60],EBX"
+        },
+        {
+          "offset": 104,
+          "type": "pointer",
+          "name": "compositeDataControlBlock",
+          "length": 8,
+          "comment": "COMPOSITE_DATA_COUNTER = 0x68. CORRECTS a shipped 0xa8. ctor @0x3997f0 MOV [RDI+0x68],RCX with INC.LOCK [RCX+8] - the shared_ptr refcount word"
+        },
+        {
+          "offset": 112,
+          "type": "pointer",
+          "name": "compositeData",
+          "length": 8,
+          "comment": "COMPOSITE_DATA = 0x70. CORRECTS a shipped 0xb0. ctor @0x3997f8 MOV [RDI+0x70],RAX - the ClientCompositeData object word. Self-consistent with CHUNK_SIZE_FLAG being the same field"
+        }
+      ]
+    },
+    {
+      "name": "CombinedLocation",
+      "category": "/jag/game",
+      "size": 2416,
+      "description": "",
+      "fields": [
+        {
+          "offset": 160,
+          "type": "pointer",
+          "name": "sectionVectorBegin",
+          "length": 8,
+          "comment": "LOCATION_DATA_VECTOR = 0xa0. @0x39fa34/0x39fa3b begin/end with element advance 0xC0; the ctor sizes by (end-begin)/0xC0. Element+0xA0/+0xA8 is the section shared_ptr written by ctor @0x300550"
+        },
+        {
+          "offset": 168,
+          "type": "pointer",
+          "name": "sectionVectorEnd",
+          "length": 8,
+          "comment": "End half of the section vector at +0xa0"
+        },
+        {
+          "offset": 2408,
+          "type": "pointer",
+          "name": "renderModel",
+          "length": 8,
+          "comment": "RENDER_MODEL = 0x968. DIVERGENT from Linux 0x958. FUN_003c0180 reads *(*(loc+0x330)+0x968) at the control-flow-identical site to the Linux *(param_1[0x66]+0x958)"
+        }
+      ]
+    },
+    {
+      "name": "PlayerVarDomain",
+      "category": "/jag/game",
+      "size": 114912,
+      "description": "",
+      "fields": [
+        {
+          "offset": 114888,
+          "type": "pointer",
+          "name": "valueMapBase",
+          "length": 8,
+          "comment": "Live value-map base. OPlayerVarDomain.HASH_TABLE = 0x1c0d0 is the bucket array, which is valueMapBase+0x8 (FindOrCreateEntry@0xfda85)."
+        },
+        {
+          "offset": 114896,
+          "type": "pointer",
+          "name": "hashTableBuckets",
+          "length": 8,
+          "comment": "OPlayerVarDomain.HASH_TABLE = 0x1c0d0. Bucket array of the EASTL hash_table whose base is this+0x1c0c8; FindOrCreateEntry@0xfda85 reads buckets at mapBase+0x8. Nodes are VarDomainEntry {varId@0x0, varValue@0x8}."
+        }
+      ]
+    },
+    {
+      "name": "LocationContainer",
+      "category": "/jag/game",
+      "size": 704,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "graphNode",
+          "length": 8,
+          "comment": "DISPROVED 949-4 - do not re-add. The engine's OLocationContainer.STATIC_LOCATIONS_RBTREE_SENTINEL (0x8) and STATIC_LOCATIONS_RBTREE_BEGIN (0x10) are withheld: LocationContainer has no red-black tree. +0x8 is the Entity base's GraphNode pointer and +0x10 is the Entity kind discriminator byte (confirmed on the ELF ctor @0x494f40, which writes a pointer at +0x8 and a BYTE 9 at +0x10). Both shipped values also collided exactly with this object's ENTRY_LOCATION_PTR_OFFSET (0x8) and ENTRY_STRIDE (0x10) constants, which is where the numbers came from. Locations live in the three category vectors (multi 0xb0, primary 0xc8, tertiary 0xe0) plus the dispatch-slot table at 0xf8."
+        },
+        {
+          "offset": 176,
+          "type": "pointer",
+          "name": "multiLocationsBegin",
+          "length": 8,
+          "comment": "MULTI_LOCATIONS_BEGIN = 0xb0. FUN_0039f850@0x39f86b MOV RSI,[RCX+0xb0]"
+        },
+        {
+          "offset": 184,
+          "type": "pointer",
+          "name": "multiLocationsEnd",
+          "length": 8,
+          "comment": "MULTI_LOCATIONS_END = 0xb8. @0x39f875 MOV RBP,[RCX+0xb8]"
+        },
+        {
+          "offset": 200,
+          "type": "pointer",
+          "name": "primaryLocationsBegin",
+          "length": 8,
+          "comment": "PRIMARY_LOCATIONS_BEGIN = 0xc8. @0x39f8f6 MOV RSI,[R13+0xc8]"
+        },
+        {
+          "offset": 208,
+          "type": "pointer",
+          "name": "primaryLocationsEnd",
+          "length": 8,
+          "comment": "PRIMARY_LOCATIONS_END = 0xd0. @0x39f8fd MOV RBP,[R13+0xd0]"
+        },
+        {
+          "offset": 224,
+          "type": "pointer",
+          "name": "tertiaryLocationsBegin",
+          "length": 8,
+          "comment": "TERTIARY_LOCATIONS_BEGIN = 0xe0. @0x39f976 MOV RSI,[R13+0xe0]"
+        },
+        {
+          "offset": 232,
+          "type": "pointer",
+          "name": "tertiaryLocationsEnd",
+          "length": 8,
+          "comment": "TERTIARY_LOCATIONS_END = 0xe8. @0x39f97d MOV RBP,[R13+0xe8]"
+        },
+        {
+          "offset": 248,
+          "type": "pointer",
+          "name": "dispatchSlotTable",
+          "length": 8,
+          "comment": "DISPATCH_SLOT_TABLE_START = 0xf8. @0x3c0a55 MOV RDX,[RBX+RCX*8+0xF8]. 5 slots of 0x48 bytes (@0x3c0a58 LEA RCX,[RAX+RAX*8] scale 8; the ctor steps slots by 9 qwords). Slot count 5 is fixed by @0x3c0a39 MOV R9D,4 with SUB/JNS and by the 5-byte priority table at 0xc7d4a4"
+        }
+      ]
+    },
+    {
+      "name": "CombinedLocationSectionEntry",
+      "category": "/jag/game",
+      "size": 192,
+      "description": "",
+      "fields": [
+        {
+          "offset": 20,
+          "type": "INT",
+          "name": "posX",
+          "length": 4,
+          "comment": "Source of CombinedLocationSection.posX: section ctor @0x309232 copies element+0x14."
+        },
+        {
+          "offset": 24,
+          "type": "INT",
+          "name": "posY",
+          "length": 4,
+          "comment": "Source of CombinedLocationSection.posY: section ctor @0x309239 copies element+0x18."
+        },
+        {
+          "offset": 88,
+          "type": "BYTE",
+          "name": "shape",
+          "length": 1,
+          "comment": "Source of CombinedLocationSection.shape: section ctor @0x309268 copies element+0x58."
+        },
+        {
+          "offset": 89,
+          "type": "BYTE",
+          "name": "rotation",
+          "length": 1,
+          "comment": "Source of CombinedLocationSection.rotation: section ctor @0x309272 copies element+0x59."
+        },
+        {
+          "offset": 160,
+          "type": "pointer",
+          "name": "sectionSharedPtrCtrl",
+          "length": 8,
+          "comment": "OCombinedLocation.VECTOR_ELEMENT_LOC_SHAREDPTR = 0xa0. Element of the CombinedLocation section vector (stride 0xC0). The ctor @0x300550 writes the section shared_ptr at elem+0xA0 (control block) / elem+0xA8 (object)."
+        },
+        {
+          "offset": 168,
+          "type": "pointer",
+          "name": "sectionSharedPtrObj",
+          "length": 8,
+          "comment": "Object half of the section shared_ptr at elem+0xA0; see sectionSharedPtrCtrl."
+        }
+      ]
+    },
+    {
+      "name": "HintArrow",
+      "category": "/jag/game",
+      "size": 152,
+      "description": "",
+      "fields": [
+        {
+          "offset": 16,
+          "type": "INT",
+          "name": "entityType",
+          "length": 4,
+          "comment": "Entity kind 0xd, written by the ctor. Object allocation is 0x98 bytes"
+        },
+        {
+          "offset": 112,
+          "type": "float",
+          "name": "targetPosVec3",
+          "length": 4,
+          "comment": "TARGET_POS_VEC3 = 0x70. FUN_001941a0 copies descriptor[6..9] as one 16-byte block to entity+0x70, the same shape as the Linux builder"
+        },
+        {
+          "offset": 136,
+          "type": "pointer",
+          "name": "targetEntitySharedPtr",
+          "length": 8,
+          "comment": "TARGET_ENTITY_SHARED_PTR = 0x88. The ctor zeroes +0x88/+0x90 as a null shared_ptr"
+        }
+      ]
+    },
+    {
+      "name": "HeightMap",
+      "category": "/jag/game",
+      "size": 24,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "pointer",
+          "name": "grid",
+          "length": 8,
+          "comment": "GRID = 0x8. GetFineHeight@0x367925 MOV R9,[RDI+0x8] - the World carrying the mapsquare band"
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "sentinel",
+          "length": 8,
+          "comment": "CELL_SENTINEL = 0x10. @0x367999 CMP qword[R8+0x10],RDX - end sentinel of the cell band"
+        }
+      ]
+    },
+    {
+      "name": "LocType",
+      "category": "/jag/game",
+      "size": 900,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "INT",
+          "name": "id",
+          "length": 4,
+          "comment": "OLocationType.ID = 0x8. FUN_003bcfc0 copies *(int*)(morphedLocType+8) into Location.typeId"
+        },
+        {
+          "offset": 892,
+          "type": "INT",
+          "name": "sizeX",
+          "length": 4,
+          "comment": "OLocationType.SIZE_X = 0x37c. @0x3bbca1 MOV EAX,[RAX+0x37C] (vftable+0x160 GetSizeX)"
+        },
+        {
+          "offset": 896,
+          "type": "INT",
+          "name": "sizeY",
+          "length": 4,
+          "comment": "OLocationType.SIZE_Y = 0x380. @0x3bbcaa MOV EAX,[RAX+0x380]"
+        }
+      ]
+    },
+    {
+      "name": "RouteWaypointManager",
+      "category": "/jag/game",
+      "size": 56,
+      "description": "",
+      "fields": [
+        {
+          "offset": 48,
+          "type": "INT",
+          "name": "waypointCount",
+          "length": 4,
+          "comment": "OPathingEntity.WAYPOINT_COUNT = 0x30. FUN_003220a0@0x3220c2 CMP dword[RAX+0x30],1, where RAX is PathingEntity.routeWaypointManager. 32-bit field; the engine reads it as a long"
+        }
+      ]
+    },
+    {
+      "name": "Projectile",
+      "category": "/jag/game",
+      "size": 120,
+      "description": "",
+      "fields": [
+        {
+          "offset": 96,
+          "type": "INT",
+          "name": "id",
+          "length": 4,
+          "comment": "ID = 0x60. ProjectileEntity ctor FUN_001a8d70@0x1a8db1"
+        },
+        {
+          "offset": 112,
+          "type": "INT",
+          "name": "lockonServerIndex",
+          "length": 4,
+          "comment": "LOCKON_SERVER_INDEX = 0x70. Same ctor @0x1a8dd5"
+        }
+      ]
+    },
+    {
+      "name": "CombinedLocationSection",
+      "category": "/jag/game",
+      "size": 248,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "pointer",
+          "name": "vtable",
+          "length": 8,
+          "comment": "DISPROVED 949-4 - do not re-add. The engine's OCombinedLocationSection.RENDER_NODE (0x270), RENDER_NODE_CTRL (0x268) and PARENT_COMBINED_LOCATION (0x330) are withheld: all three were copied verbatim from jag::game::Location and land past the end of this object. sizeof is 0x110 on the ELF (deleting dtor @0x4b9560: MOV ESI,0x110 before JMP operator delete) and the complete-object destructor enumerates every refcounted member without a render-node shared_ptr among them. The section reaches its renderable indirectly through its GraphNode. Recovering it means modelling that hop, not naming an offset."
+        },
+        {
+          "offset": 156,
+          "type": "INT",
+          "name": "posX",
+          "length": 4,
+          "comment": "POS_X = 0x9c. ctor @0x309232 from element+0x14"
+        },
+        {
+          "offset": 160,
+          "type": "INT",
+          "name": "posY",
+          "length": 4,
+          "comment": "POS_Y = 0xa0. ctor @0x309239 from element+0x18"
+        },
+        {
+          "offset": 168,
+          "type": "pointer",
+          "name": "typeSharedPtrCtrl",
+          "length": 8,
+          "comment": "TYPE_SHAREDPTR = 0xa8. ctor @0x309242/0x30924d writes shared_ptr{ctrl 0xa8, obj 0xb0}; the object is read as a LocType at 0x309323"
+        },
+        {
+          "offset": 176,
+          "type": "pointer",
+          "name": "typeSharedPtrObj",
+          "length": 8,
+          "comment": "Object half of the type shared_ptr at +0xa8"
+        },
+        {
+          "offset": 184,
+          "type": "BYTE",
+          "name": "shape",
+          "length": 1,
+          "comment": "SHAPE = 0xb8. ctor @0x309268 from element+0x58"
+        },
+        {
+          "offset": 185,
+          "type": "BYTE",
+          "name": "rotation",
+          "length": 1,
+          "comment": "ROTATION = 0xb9. ctor @0x309272 from element+0x59"
+        },
+        {
+          "offset": 242,
+          "type": "BYTE",
+          "name": "hidden",
+          "length": 1,
+          "comment": "HIDDEN = 0xf2. ctor @0x3092d5 zero-inits it; gated on in FUN_00301810"
+        }
+      ]
+    },
+    {
+      "name": "PathingEntity",
+      "category": "/jag/game",
+      "size": 3856,
+      "description": "",
+      "fields": [
+        {
+          "offset": 616,
+          "type": "pointer",
+          "name": "routeWaypointManager",
+          "length": 8,
+          "comment": "ROUTE_WAYPOINT_MANAGER = 0x268. ctor @0x31d5de stores the constructed manager; FUN_003220a0@0x3220bb reads it for the waypoint ring buffer"
+        },
+        {
+          "offset": 3848,
+          "type": "pointer",
+          "name": "hitmarksAndHeadbars",
+          "length": 8,
+          "comment": "HITMARKS_AND_HEADBARS = 0xf08. DIVERGENT from Linux 0xef8. AddHeadbar@0x32443a MOV RCX,[RCX+0xf08]; AddHitmark@0x3243de; ResetHitmarksAndHeadbars@0x3242f5"
+        }
+      ]
+    },
+    {
+      "name": "SpotAnim",
+      "category": "/jag/game",
+      "size": 120,
+      "description": "",
+      "fields": [
+        {
+          "offset": 116,
+          "type": "INT",
+          "name": "id",
+          "length": 4,
+          "comment": "ID = 0x74. SpotAnim entity ctor FUN_00324d80@0x324e10, taken from descriptor+0x4"
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "category": "/jag/game",
+      "size": 64,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "INT",
+          "name": "inventoryId",
+          "length": 4,
+          "comment": "INVENTORY_ID = 0x8. FUN_00315250 passes (int)this[1] to the inventory-type registry lookup"
+        },
+        {
+          "offset": 16,
+          "type": "pointer",
+          "name": "itemsBegin",
+          "length": 8,
+          "comment": "INVENTORY_ITEMS = 0x10. Items vector +0x10/+0x18/+0x20 with stride 8; elements are seeded {id=-1, amount=0} and UpdateInvFull writes through it"
+        },
+        {
+          "offset": 24,
+          "type": "pointer",
+          "name": "itemsEnd",
+          "length": 8,
+          "comment": "End pointer of the items vector at +0x10"
+        },
+        {
+          "offset": 32,
+          "type": "pointer",
+          "name": "itemsCap",
+          "length": 8,
+          "comment": "Capacity pointer of the items vector at +0x10"
+        },
+        {
+          "offset": 40,
+          "type": "pointer",
+          "name": "objVarDomainsBegin",
+          "length": 8,
+          "comment": "OBJ_VAR_DOMAINS = 0x28. Vector +0x28/+0x30/+0x38 sized by (this[6]-this[5])/0x38, so the element stride is 0x38 and the grow path allocates n*0x38. Each element lays an EASTL hash_table rebased at element+0x10"
+        },
+        {
+          "offset": 48,
+          "type": "pointer",
+          "name": "objVarDomainsEnd",
+          "length": 8,
+          "comment": "End pointer of the obj-var-domain vector at +0x28"
+        },
+        {
+          "offset": 56,
+          "type": "pointer",
+          "name": "objVarDomainsCap",
+          "length": 8,
+          "comment": "Capacity pointer of the obj-var-domain vector at +0x28"
+        }
+      ]
+    },
+    {
+      "name": "Location",
+      "category": "/jag/game",
+      "size": 944,
+      "description": "",
+      "fields": [
+        {
+          "offset": 200,
+          "type": "pointer",
+          "name": "visibleType",
+          "length": 8,
+          "comment": "VISIBLE_TYPE = 0xc8. @0x3bbc93 MOV RAX,[RCX+0xC8], then LocType +0x37C/+0x380 via vftable+0x160 GetSizeX"
+        },
+        {
+          "offset": 216,
+          "type": "pointer",
+          "name": "originalType",
+          "length": 8,
+          "comment": "ORIGINAL_TYPE = 0xd8. FUN_003bcfc0 hands this+0xD0 to the morph resolver, which copies the base-type shared_ptr from this+0xB0 and reads *(this+0xD8) as a LocType"
+        },
+        {
+          "offset": 288,
+          "type": "BYTE",
+          "name": "shape",
+          "length": 1,
+          "comment": "SHAPE = 0x120. @0x3b8930 MOVZX EAX,byte[RCX+0x120] (vftable+0x148); ctor @0x3bafa1 stores the descriptor there"
+        },
+        {
+          "offset": 289,
+          "type": "BYTE",
+          "name": "rotation",
+          "length": 1,
+          "comment": "ROTATION = 0x121. @0x3b8940 MOVZX EAX,byte[RCX+0x121] (vftable+0x150)"
+        },
+        {
+          "offset": 364,
+          "type": "INT",
+          "name": "posX",
+          "length": 4,
+          "comment": "POS_X = 0x16c. @0x39f8aa CMP dword[RBX+0x16c],EAX; ctor @0x3bb011"
+        },
+        {
+          "offset": 368,
+          "type": "INT",
+          "name": "posY",
+          "length": 4,
+          "comment": "POS_Y = 0x170. @0x39f8b5 CMP dword[RBX+0x170],EAX; ctor @0x3bb01e"
+        },
+        {
+          "offset": 397,
+          "type": "BYTE",
+          "name": "isDeleted",
+          "length": 1,
+          "comment": "IS_DELETED = 0x18d. @0x39f894 CMP byte[RBX+0x18d],0; set by the delete path in FUN_003985d0"
+        },
+        {
+          "offset": 399,
+          "type": "BYTE",
+          "name": "isHidden",
+          "length": 1,
+          "comment": "OLocation.IS_HIDDEN = 0x18f. CORRECTS the shipped 0x18e, which was an unverified 949-1 carry on BOTH platforms. Nothing in the ELF reads Location+0x18e at all (a scan for CMP byte[reg+0x18e],0 returns zero matches), while +0x18f is read 20 times; on the PE the only +0x18e read is in FUN_00723f30, an unrelated class, against five +0x18f reads that all sit in Location methods. Semantics: +0x18f is the early-out 'skip this location' gate at the top of the render and pick paths. ELF pick test FUN_00481e70 opens with CMP byte[RDI+0x18f],0 / JNZ -> return 0; the PE analogue FUN_003bfb00 opens with CMP byte[RCX+0x18f],0 / JNZ -> bail, followed by the verified MOV RDI,[RCX+0x330] (parentCombinedLocation) and CMP qword[RDI+0x968],0 (CombinedLocation.renderModel) - instruction-for-instruction the same shape as the ELF site. IS_DELETED is the separate byte at 0x18d."
+        },
+        {
+          "offset": 424,
+          "type": "INT",
+          "name": "typeId",
+          "length": 4,
+          "comment": "TYPE_ID = 0x1a8. ctor @0x3bb095 MOV [RCX+0x1a8],R8D from the loc type id argument"
+        },
+        {
+          "offset": 616,
+          "type": "pointer",
+          "name": "renderNodeControlBlock",
+          "length": 8,
+          "comment": "RENDER_NODE_CTRL = 0x268. CORRECTS a shipped 0x58. vftable+0x178 render-node getter @0x3b8990 returns shared_ptr{ctrl 0x268, obj 0x270}; the ctor @0x3ba980 stores the pair"
+        },
+        {
+          "offset": 624,
+          "type": "pointer",
+          "name": "renderNode",
+          "length": 8,
+          "comment": "RENDER_NODE = 0x270. CORRECTS a shipped 0x60. @0x3b8997 MOV RAX,[RCX+0x270]; consumed as a RenderModel by FUN_003bfb00 (+0x30 world transform)"
+        },
+        {
+          "offset": 796,
+          "type": "float",
+          "name": "highlightIntensity",
+          "length": 4,
+          "comment": "HIGHLIGHT_INTENSITY = 0x31c. FUN_003c0180 passes this+0x31C to the highlight fade helpers; ctor @0x3bb1ce zero-inits it"
+        },
+        {
+          "offset": 804,
+          "type": "INT",
+          "name": "highlightCategory",
+          "length": 4,
+          "comment": "HIGHLIGHT_CATEGORY = 0x324. @0x3b89f0 MOV [RCX+0x324],EDX (vftable+0x100)"
+        },
+        {
+          "offset": 812,
+          "type": "BYTE",
+          "name": "showAsImportant",
+          "length": 1,
+          "comment": "SHOW_AS_IMPORTANT = 0x32c. highlight_set_loc_show_as_important@0x1c1447 MOV byte[RAX+0x32C],CL, gated on entityType LOCATION"
+        }
+      ]
+    },
+    {
+      "name": "MeshData",
+      "category": "/jag/graphics",
+      "size": 336,
+      "description": "",
+      "fields": [
+        {
+          "offset": 44,
+          "type": "float",
+          "name": "vertexScale",
+          "length": 4,
+          "comment": "VERTEX_SCALE = 0x2c. MeshTrianglePickTest FUN_004e4630, last argument of the unskinned vertex path"
+        },
+        {
+          "offset": 184,
+          "type": "pointer",
+          "name": "indexBuffer",
+          "length": 8,
+          "comment": "INDEX_BUFFER = 0xb8. Same function; indexed as u16 triples"
+        },
+        {
+          "offset": 192,
+          "type": "pointer",
+          "name": "indexBufferEnd",
+          "length": 8,
+          "comment": "INDEX_BUFFER_END = 0xc0. Index count = ((*(rm+0xc0) - *(rm+0xb8)) >> 1)"
+        },
+        {
+          "offset": 280,
+          "type": "pointer",
+          "name": "vertexPositions",
+          "length": 8,
+          "comment": "VERTEX_POSITIONS = 0x118. The unskinned branch passes meshData+0x118"
+        },
+        {
+          "offset": 312,
+          "type": "pointer",
+          "name": "skinningData",
+          "length": 8,
+          "comment": "SKINNING_DATA = 0x138. if (*(longlong*)(meshData+0x138) == 0) the unskinned path is selected"
+        },
+        {
+          "offset": 328,
+          "type": "pointer",
+          "name": "vertexWeights",
+          "length": 8,
+          "comment": "VERTEX_WEIGHTS = 0x148. Both the skinned and unskinned branches pass meshData+0x148"
+        }
+      ]
+    },
+    {
+      "name": "MeshComponent",
+      "category": "/jag/graphics",
+      "size": 856,
+      "description": "",
+      "fields": [
+        {
+          "offset": 32,
+          "type": "pointer",
+          "name": "meshData",
+          "length": 8,
+          "comment": "MESH_DATA = 0x20. meshData = *(longlong*)(comp+0x20)"
+        },
+        {
+          "offset": 752,
+          "type": "LONGLONG",
+          "name": "boneCount",
+          "length": 8,
+          "comment": "BONE_COUNT = 0x2f0. @0x4e48dd LEA RDX,[comp+0x2f0] into BuildSkinningMatrices, which reads [RDX] as the count"
+        },
+        {
+          "offset": 760,
+          "type": "pointer",
+          "name": "boneMatrices",
+          "length": 8,
+          "comment": "BONE_MATRICES = 0x2f8. BuildSkinningMatrices reads [RDI+8] and walks with stride 0x30"
+        },
+        {
+          "offset": 848,
+          "type": "pointer",
+          "name": "boneAnimCheck",
+          "length": 8,
+          "comment": "BONE_ANIM_CHECK = 0x350. Null-checked in the pair with boneCount"
+        }
+      ]
+    },
+    {
+      "name": "RenderModel",
+      "category": "/jag/graphics",
+      "size": 624,
+      "description": "",
+      "fields": [
+        {
+          "offset": 48,
+          "type": "float",
+          "name": "worldTransform",
+          "length": 4,
+          "comment": "WORLD_TRANSFORM = 0x30. PickTestVtable@0x39e7c7 LEA RDX,[rm+0x30] as the model-to-world matrix"
+        },
+        {
+          "offset": 256,
+          "type": "float",
+          "name": "highlightColorR",
+          "length": 4,
+          "comment": "HL_COLOR_R = 0x100. UpdateHighlight FUN_001a6cc0 stores <R,G> as one qword"
+        },
+        {
+          "offset": 260,
+          "type": "float",
+          "name": "highlightColorG",
+          "length": 4,
+          "comment": "HL_COLOR_G = 0x104. High dword of the same qword store"
+        },
+        {
+          "offset": 264,
+          "type": "float",
+          "name": "highlightColorB",
+          "length": 4,
+          "comment": "HL_COLOR_B = 0x108. UpdateHighlight stores <B,baseAlpha> as one qword"
+        },
+        {
+          "offset": 268,
+          "type": "float",
+          "name": "highlightBaseAlpha",
+          "length": 4,
+          "comment": "HL_BASE_ALPHA = 0x10c. Gate: if (*(float*)(rm+0x10c) <= 0) the highlight update returns early"
+        },
+        {
+          "offset": 272,
+          "type": "float",
+          "name": "highlightStrength",
+          "length": 4,
+          "comment": "HL_STRENGTH = 0x110. @0x1a6e0e / 0x1a6f03"
+        },
+        {
+          "offset": 276,
+          "type": "float",
+          "name": "highlightFactor",
+          "length": 4,
+          "comment": "HL_FACTOR = 0x114. UpdateHighlight write"
+        },
+        {
+          "offset": 308,
+          "type": "BYTE",
+          "name": "highlightMode",
+          "length": 1,
+          "comment": "HL_MODE = 0x134. @0x1a6dc5 *(byte*)([entity+0xc68]+0x134)"
+        },
+        {
+          "offset": 616,
+          "type": "pointer",
+          "name": "meshComponents",
+          "length": 8,
+          "comment": "ORenderModel.MESH_COMPONENTS = 0x268 (NEWLY DERIVED on the PE 949-4; the Windows table had no value). Entity pick-test vtable thunk @0x39e770: MOV RDI,[RCX+0xc68] (the verified Entity.renderModel), then @0x39e7c0 MOV RCX,[RDI+0x268], @0x39e7c7 LEA RDX,[RDI+0x30] (the verified WORLD_TRANSFORM), @0x39e7db MOV R8,[RCX], @0x39e7e1 ADD R8,0x8, CALL 0x4e4630 = MeshTrianglePickTest - the same function whose arguments established the MeshComponent and MeshData offsets. The engine's own consumer performs exactly this chain (read slot, deref once, +8, then {begin,end}), so this slot is what MESH_COMPONENTS denotes. Control-flow identical to the ELF site FUN_00481e70@0x481f70."
+        }
+      ]
+    },
+    {
+      "name": "GraphNode",
+      "category": "/jag/graphics",
+      "size": 96,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "float",
+          "name": "directionX",
+          "length": 4,
+          "comment": "DIRECTION_X = 0x0. GraphNode+0x00..0x3f is the 4x4 world matrix; GetWorldTransformationMatrixAligned@0x4c3cd5 writes row 0"
+        },
+        {
+          "offset": 8,
+          "type": "float",
+          "name": "directionY",
+          "length": 4,
+          "comment": "DIRECTION_Y = 0x8. Same matrix, element m02"
+        },
+        {
+          "offset": 16,
+          "type": "float",
+          "name": "directionZ",
+          "length": 4,
+          "comment": "DIRECTION_Z = 0x10. Same matrix, element m10"
+        },
+        {
+          "offset": 64,
+          "type": "float",
+          "name": "boundsMinX",
+          "length": 4,
+          "comment": "BOUNDS_MIN_X = 0x40. UpdateBounds@0x4c3e94 MOVUPS [RCX+0x40],XMM0; the ctor seeds +FLT_MAX"
+        },
+        {
+          "offset": 68,
+          "type": "float",
+          "name": "boundsMinZ",
+          "length": 4,
+          "comment": "BOUNDS_MIN_Z = 0x44. ctor @0x4c2b5f MOV [RBX+0x44],0x7f7fffff"
+        },
+        {
+          "offset": 72,
+          "type": "float",
+          "name": "boundsMinY",
+          "length": 4,
+          "comment": "BOUNDS_MIN_Y = 0x48. ctor @0x4c2b66"
+        },
+        {
+          "offset": 80,
+          "type": "float",
+          "name": "boundsMaxX",
+          "length": 4,
+          "comment": "BOUNDS_MAX_X = 0x50. UpdateBounds@0x4c3e98 MOVUPS [RCX+0x50],XMM1; the ctor seeds -FLT_MAX"
+        },
+        {
+          "offset": 84,
+          "type": "float",
+          "name": "boundsMaxZ",
+          "length": 4,
+          "comment": "BOUNDS_MAX_Z = 0x54. ctor @0x4c2b7c"
+        },
+        {
+          "offset": 88,
+          "type": "float",
+          "name": "boundsMaxY",
+          "length": 4,
+          "comment": "BOUNDS_MAX_Y = 0x58. ctor @0x4c2b83"
+        }
+      ]
+    },
+    {
+      "name": "TcpConnectionMessage",
+      "category": "/jag/net",
+      "size": 64,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "uint",
+          "name": "protOpcode",
+          "length": 4,
+          "comment": "Init @0x8c120 writes prot->opcode; low byte becomes the first payload byte"
+        },
+        {
+          "offset": 4,
+          "type": "int",
+          "name": "protSize",
+          "length": 4,
+          "comment": "-1 = g1 var, -2 = g2 var, else fixed; read back by FUN_000e9540 as the handler size arg"
+        },
+        {
+          "offset": 16,
+          "type": "void *",
+          "name": "bufAllocBase",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "byte *",
+          "name": "bufData",
+          "length": 8,
+          "comment": "src arg of ClientStream::Write in FlushClientMessages @0x2edb30"
+        },
+        {
+          "offset": 32,
+          "type": "ulonglong",
+          "name": "bufWritePos",
+          "length": 8,
+          "comment": "incremented per byte written; copied into payloadLength at enqueue time then zeroed"
+        },
+        {
+          "offset": 40,
+          "type": "int",
+          "name": "payloadLength",
+          "length": 4,
+          "comment": "len arg of ClientStream::Write"
+        },
+        {
+          "offset": 56,
+          "type": "void *",
+          "name": "prot",
+          "length": 8,
+          "comment": "ProtEntry back-ptr; prot+0x48 is the eastl::function storage the dispatcher invokes"
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DOS_HEADER",
+      "category": "/DOS",
+      "size": 128,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "char[2]",
+          "name": "e_magic",
+          "length": 2,
+          "comment": "Magic number"
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "e_cblp",
+          "length": 2,
+          "comment": "Bytes of last page"
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "e_cp",
+          "length": 2,
+          "comment": "Pages in file"
+        },
+        {
+          "offset": 6,
+          "type": "word",
+          "name": "e_crlc",
+          "length": 2,
+          "comment": "Relocations"
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "e_cparhdr",
+          "length": 2,
+          "comment": "Size of header in paragraphs"
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "e_minalloc",
+          "length": 2,
+          "comment": "Minimum extra paragraphs needed"
+        },
+        {
+          "offset": 12,
+          "type": "word",
+          "name": "e_maxalloc",
+          "length": 2,
+          "comment": "Maximum extra paragraphs needed"
+        },
+        {
+          "offset": 14,
+          "type": "word",
+          "name": "e_ss",
+          "length": 2,
+          "comment": "Initial (relative) SS value"
+        },
+        {
+          "offset": 16,
+          "type": "word",
+          "name": "e_sp",
+          "length": 2,
+          "comment": "Initial SP value"
+        },
+        {
+          "offset": 18,
+          "type": "word",
+          "name": "e_csum",
+          "length": 2,
+          "comment": "Checksum"
+        },
+        {
+          "offset": 20,
+          "type": "word",
+          "name": "e_ip",
+          "length": 2,
+          "comment": "Initial IP value"
+        },
+        {
+          "offset": 22,
+          "type": "word",
+          "name": "e_cs",
+          "length": 2,
+          "comment": "Initial (relative) CS value"
+        },
+        {
+          "offset": 24,
+          "type": "word",
+          "name": "e_lfarlc",
+          "length": 2,
+          "comment": "File address of relocation table"
+        },
+        {
+          "offset": 26,
+          "type": "word",
+          "name": "e_ovno",
+          "length": 2,
+          "comment": "Overlay number"
+        },
+        {
+          "offset": 28,
+          "type": "word[4]",
+          "name": "e_res[4]",
+          "length": 8,
+          "comment": "Reserved words"
+        },
+        {
+          "offset": 36,
+          "type": "word",
+          "name": "e_oemid",
+          "length": 2,
+          "comment": "OEM identifier (for e_oeminfo)"
+        },
+        {
+          "offset": 38,
+          "type": "word",
+          "name": "e_oeminfo",
+          "length": 2,
+          "comment": "OEM information; e_oemid specific"
+        },
+        {
+          "offset": 40,
+          "type": "word[10]",
+          "name": "e_res2[10]",
+          "length": 20,
+          "comment": "Reserved words"
+        },
+        {
+          "offset": 60,
+          "type": "dword",
+          "name": "e_lfanew",
+          "length": 4,
+          "comment": "File address of new exe header"
+        },
+        {
+          "offset": 64,
+          "type": "byte[64]",
+          "name": "e_program",
+          "length": 64,
+          "comment": "Actual DOS program"
+        }
+      ]
+    },
+    {
+      "name": "<lambda_3e16ef9562a7dcce91392c22ab16ea36>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_stat64",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "EHExceptionRecord",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "xtime",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__acrt_stdio_stream_mode",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_ffc046909424fd52df0ac47e64813305>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_7f2adfce497ff2baa965cd4f576ecfd1>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_TryBlockMapEntry",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_410d79af7f07d98d83a3f525b3859a53>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_locale_data",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_CatchableType",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_deferred_errno_cache",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_HandlerType",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_lc_time_data",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_8dff2cf36a5417162780cd64fa2883ef>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_s_ESTypeList",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_1d892b297fdedeee07ed8124eeb2f2fa>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Mtx_internal_imp_t",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_seh_guarded_call<void>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_xDISPATCHER_CONTEXT",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Cnd_internal_imp_t",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Init_atexit",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_LocaleUpdate",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "MRECmpImpl",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_2a444430fde8c29194d880d93eed5e8f>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_01a7098693036236037e7cdb9bca3d73>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_stdio_stream",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "<lambda_38119f0e861e05405d8a144b9b982f0a>",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_multibyte_data",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__acrt_ptd",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "__crt_locale_pointers",
+      "category": "/Demangler",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Yarn<char>",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "basic_stringbuf<char,struct_std::char_traits<char>,class_std::allocator<char>_>",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Fac_tidy_reg_t",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "exception_ptr",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "shared_ptr<struct__EXCEPTION_RECORD_const_>",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "ios_base",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Locinfo",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Facet_base",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Lockit",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "_Init_locks",
+      "category": "/Demangler/std",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "string_input_adapter<char>",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "input_processor<char,class___crt_stdio_input::string_input_adapter<char>_>",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "format_string_parser<char>",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "write_result",
+      "category": "/Demangler/_anon_17268360",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "string_output_adapter<char>",
+      "category": "/Demangler/__crt_stdio_output",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "TryBlockMapEntry4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "FuncInfo4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "HandlerType4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "TryBlockMap4",
+      "category": "/Demangler/FH4",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "UMSFreeThreadProxyFactory",
+      "category": "/Demangler/Concurrency/details",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "floating_point_string",
+      "category": "/Demangler/__crt_strtox",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "floating_point_value",
+      "category": "/Demangler/__crt_strtox",
+      "size": 1,
+      "description": "PlaceHolder Structure",
+      "fields": []
+    },
+    {
+      "name": "DotNetPdbInfo",
+      "category": "/PDB",
+      "size": 94,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "string",
+          "name": "signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "GUID",
+          "name": "guid",
+          "length": 16,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "age",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "string",
+          "name": "pdbpath",
+          "length": 70,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "Var",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "offset": 3,
+          "type": "undefined1",
+          "name": "NameIsString",
+          "length": 1,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_LOAD_CONFIG_CODE_INTEGRITY",
+      "category": "/PE",
+      "size": 12,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Flags",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "Catalog",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "CatalogOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "Reserved",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_14",
+      "category": "/PE",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 14,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DEBUG_DIRECTORY",
+      "category": "/PE",
+      "size": 28,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "Type",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "SizeOfData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "AddressOfRawData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "dword",
+          "name": "PointerToRawData",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_15",
+      "category": "/PE",
+      "size": 17,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 15,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_18",
+      "category": "/PE",
+      "size": 20,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 18,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "StringTable",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_SECTION_HEADER",
+      "category": "/PE",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "char[8]",
+          "name": "Name",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "-BAD-",
+          "name": "Misc",
+          "length": 4,
+          "comment": "Type 'Misc' was deleted"
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "VirtualAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "SizeOfRawData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "PointerToRawData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "dword",
+          "name": "PointerToRelocations",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "dword",
+          "name": "PointerToLinenumbers",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "word",
+          "name": "NumberOfRelocations",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 34,
+          "type": "word",
+          "name": "NumberOfLinenumbers",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "-BAD-",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": "Type 'SectionFlags' was deleted"
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_NT_HEADERS64",
+      "category": "/PE",
+      "size": 264,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "char[4]",
+          "name": "Signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "-BAD-",
+          "name": "FileHeader",
+          "length": 20,
+          "comment": "Type 'IMAGE_FILE_HEADER' was deleted"
+        },
+        {
+          "offset": 24,
+          "type": "-BAD-",
+          "name": "OptionalHeader",
+          "length": 240,
+          "comment": "Type 'IMAGE_OPTIONAL_HEADER64' was deleted"
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DATA_ENTRY",
+      "category": "/PE",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "OffsetToData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "Size",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "CodePage",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "Reserved",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DATA_DIRECTORY",
+      "category": "/PE",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "ImageBaseOffset32",
+          "name": "VirtualAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "Size",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY",
+      "category": "/PE",
+      "size": 16,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "word",
+          "name": "NumberOfNamedEntries",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 14,
+          "type": "word",
+          "name": "NumberOfIdEntries",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_23",
+      "category": "/PE",
+      "size": 25,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 23,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_DIRECTORY_ENTRY_EXPORT",
+      "category": "/PE",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "Name",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "Base",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "NumberOfFunctions",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "dword",
+          "name": "NumberOfNames",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfFunctions",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfNames",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfNameOrdinals",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_22",
+      "category": "/PE",
+      "size": 24,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 22,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_26",
+      "category": "/PE",
+      "size": 28,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 26,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_28",
+      "category": "/PE",
+      "size": 30,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 28,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_40",
+      "category": "/PE",
+      "size": 42,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 40,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_IMPORT_BY_NAME_31",
+      "category": "/PE",
+      "size": 33,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Hint",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "string",
+          "name": "Name",
+          "length": 31,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_FILE_HEADER",
+      "category": "/PE",
+      "size": 20,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Machine",
+          "length": 2,
+          "comment": "34404"
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "NumberOfSections",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "PointerToSymbolTable",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "NumberOfSymbols",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "word",
+          "name": "SizeOfOptionalHeader",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 18,
+          "type": "word",
+          "name": "Characteristics",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_LOAD_CONFIG_DIRECTORY64",
+      "category": "/PE",
+      "size": 256,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "Size",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "TimeDateStamp",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "word",
+          "name": "MajorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 10,
+          "type": "word",
+          "name": "MinorVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "GlobalFlagsClear",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "dword",
+          "name": "GlobalFlagsSet",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "dword",
+          "name": "CriticalSectionDefaultTimeout",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "qword",
+          "name": "DeCommitFreeBlockThreshold",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "qword",
+          "name": "DeCommitTotalFreeThreshold",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "pointer64",
+          "name": "LockPrefixTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "qword",
+          "name": "MaximumAllocationSize",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 56,
+          "type": "qword",
+          "name": "VirtualMemoryThreshold",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 64,
+          "type": "qword",
+          "name": "ProcessAffinityMask",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 72,
+          "type": "dword",
+          "name": "ProcessHeapFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 76,
+          "type": "word",
+          "name": "CsdVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 78,
+          "type": "word",
+          "name": "DependentLoadFlags",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 80,
+          "type": "pointer64",
+          "name": "EditList",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 88,
+          "type": "pointer64",
+          "name": "SecurityCookie",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 96,
+          "type": "pointer64",
+          "name": "SEHandlerTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 104,
+          "type": "qword",
+          "name": "SEHandlerCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 112,
+          "type": "pointer64",
+          "name": "GuardCFCCheckFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 120,
+          "type": "pointer64",
+          "name": "GuardCFDispatchFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 128,
+          "type": "pointer64",
+          "name": "GuardCFFunctionTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 136,
+          "type": "qword",
+          "name": "GuardCFFunctionCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 144,
+          "type": "-BAD-",
+          "name": "GuardFlags",
+          "length": 4,
+          "comment": "Type 'IMAGE_GUARD_FLAGS' was deleted"
+        },
+        {
+          "offset": 148,
+          "type": "IMAGE_LOAD_CONFIG_CODE_INTEGRITY",
+          "name": "CodeIntegrity",
+          "length": 12,
+          "comment": ""
+        },
+        {
+          "offset": 160,
+          "type": "pointer64",
+          "name": "GuardAddressTakenIatEntryTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 168,
+          "type": "qword",
+          "name": "GuardAddressTakenIatEntryCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 176,
+          "type": "pointer64",
+          "name": "GuardLongJumpTargetTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 184,
+          "type": "qword",
+          "name": "GuardLongJumpTargetCount",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 192,
+          "type": "pointer64",
+          "name": "DynamicValueRelocTable",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 200,
+          "type": "pointer64",
+          "name": "CHPEMetadataPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 208,
+          "type": "pointer64",
+          "name": "GuardRFFailureRoutine",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 216,
+          "type": "pointer64",
+          "name": "GuardRFFailureRoutineFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 224,
+          "type": "dword",
+          "name": "DynamicValueRelocTableOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 228,
+          "type": "word",
+          "name": "DynamicValueRelocTableSection",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 230,
+          "type": "word",
+          "name": "Reserved1",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 232,
+          "type": "pointer64",
+          "name": "GuardRFVerifyStackPointerFunctionPointer",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 240,
+          "type": "dword",
+          "name": "HotPatchTableOffset",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 244,
+          "type": "dword",
+          "name": "Reserved2",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 248,
+          "type": "qword",
+          "name": "Reserved3",
+          "length": 8,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "StringFileInfo",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY",
+      "category": "/PE",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "-BAD-",
+          "name": "NameUnion",
+          "length": 4,
+          "comment": "Type 'IMAGE_RESOURCE_DIRECTORY_ENTRY_NameUnion' was deleted"
+        },
+        {
+          "offset": 4,
+          "type": "-BAD-",
+          "name": "DirectoryUnion",
+          "length": 4,
+          "comment": "Type 'IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryUnion' was deleted"
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_OPTIONAL_HEADER64",
+      "category": "/PE",
+      "size": 240,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "Magic",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "byte",
+          "name": "MajorLinkerVersion",
+          "length": 1,
+          "comment": ""
+        },
+        {
+          "offset": 3,
+          "type": "byte",
+          "name": "MinorLinkerVersion",
+          "length": 1,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "SizeOfCode",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "dword",
+          "name": "SizeOfInitializedData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "dword",
+          "name": "SizeOfUninitializedData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "AddressOfEntryPoint",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "ImageBaseOffset32",
+          "name": "BaseOfCode",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "pointer64",
+          "name": "ImageBase",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "dword",
+          "name": "SectionAlignment",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "dword",
+          "name": "FileAlignment",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "word",
+          "name": "MajorOperatingSystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 42,
+          "type": "word",
+          "name": "MinorOperatingSystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 44,
+          "type": "word",
+          "name": "MajorImageVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 46,
+          "type": "word",
+          "name": "MinorImageVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "word",
+          "name": "MajorSubsystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 50,
+          "type": "word",
+          "name": "MinorSubsystemVersion",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 52,
+          "type": "dword",
+          "name": "Win32VersionValue",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 56,
+          "type": "dword",
+          "name": "SizeOfImage",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 60,
+          "type": "dword",
+          "name": "SizeOfHeaders",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 64,
+          "type": "dword",
+          "name": "CheckSum",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 68,
+          "type": "word",
+          "name": "Subsystem",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 70,
+          "type": "word",
+          "name": "DllCharacteristics",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 72,
+          "type": "qword",
+          "name": "SizeOfStackReserve",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 80,
+          "type": "qword",
+          "name": "SizeOfStackCommit",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 88,
+          "type": "qword",
+          "name": "SizeOfHeapReserve",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 96,
+          "type": "qword",
+          "name": "SizeOfHeapCommit",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 104,
+          "type": "dword",
+          "name": "LoaderFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 108,
+          "type": "dword",
+          "name": "NumberOfRvaAndSizes",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 112,
+          "type": "undefined1[128]",
+          "name": "DataDirectory",
+          "length": 128,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "ImgDelayDescr",
+      "category": "/PE",
+      "size": 32,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "grAttrs",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "ImageBaseOffset32",
+          "name": "szName",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "ImageBaseOffset32",
+          "name": "phmod",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 12,
+          "type": "ImageBaseOffset32",
+          "name": "pIAT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ImageBaseOffset32",
+          "name": "pINT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "ImageBaseOffset32",
+          "name": "pBoundIAT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "ImageBaseOffset32",
+          "name": "pUnloadIAT",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "dword",
+          "name": "dwTimeStamp",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "VS_VERSION_INFO",
+      "category": "/PE",
+      "size": 92,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "StructLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "ValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "StructType",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 6,
+          "type": "unicode",
+          "name": "Info",
+          "length": 32,
+          "comment": ""
+        },
+        {
+          "offset": 38,
+          "type": "byte[2]",
+          "name": "Padding",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "dword",
+          "name": "Signature",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 44,
+          "type": "word[2]",
+          "name": "StructVersion",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 48,
+          "type": "word[4]",
+          "name": "FileVersion",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 56,
+          "type": "word[4]",
+          "name": "ProductVersion",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 64,
+          "type": "dword[2]",
+          "name": "FileFlagsMask",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 72,
+          "type": "dword",
+          "name": "FileFlags",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 76,
+          "type": "dword",
+          "name": "FileOS",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 80,
+          "type": "dword",
+          "name": "FileType",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 84,
+          "type": "dword",
+          "name": "FileSubtype",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 88,
+          "type": "dword",
+          "name": "FileTimestamp",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_THUNK_DATA64",
+      "category": "/PE",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "qword",
+          "name": "StartAddressOfRawData",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "qword",
+          "name": "EndAddressOfRawData",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "qword",
+          "name": "AddressOfIndex",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "qword",
+          "name": "AddressOfCallBacks",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "dword",
+          "name": "SizeOfZeroFill",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 36,
+          "type": "dword",
+          "name": "Characteristics",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "VarFileInfo",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "StringInfo",
+      "category": "/PE",
+      "size": 6,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "word",
+          "name": "wLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 2,
+          "type": "word",
+          "name": "wValueLength",
+          "length": 2,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "word",
+          "name": "wType",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "LLMouseHookFlags",
+      "category": "/jag",
+      "size": 4,
+      "description": "",
+      "values": [
+        {
+          "name": "LLMHF_INJECTED",
+          "value": 1
+        },
+        {
+          "name": "LLMHF_LOWER_IL_INJECTED",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "NativeMouseMessage",
+      "category": "/jag",
+      "size": 4,
+      "description": "",
+      "values": [
+        {
+          "name": "WM_MOUSEMOVE",
+          "value": 512
+        },
+        {
+          "name": "WM_LBUTTONDOWN",
+          "value": 513
+        },
+        {
+          "name": "WM_LBUTTONDBLCLK",
+          "value": 515
+        },
+        {
+          "name": "WM_RBUTTONDOWN",
+          "value": 516
+        },
+        {
+          "name": "WM_RBUTTONDBLCLK",
+          "value": 518
+        },
+        {
+          "name": "WM_MBUTTONDOWN",
+          "value": 519
+        },
+        {
+          "name": "WM_MBUTTONDBLCLK",
+          "value": 521
+        }
+      ]
+    },
+    {
+      "name": "__acrt_rounding_mode",
+      "category": "/Demangler",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "SLD_STATUS",
+      "category": "/Demangler",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "error_type",
+      "category": "/Demangler/std/regex_constants",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "conversion_mode",
+      "category": "/Demangler/__crt_stdio_input",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "floating_point_parse_result",
+      "category": "/Demangler/__crt_strtox",
+      "size": 4,
+      "description": "",
+      "values": []
+    },
+    {
+      "name": "SectionFlags",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "values": [
+        {
+          "name": "IMAGE_SCN_TYPE_NO_PAD",
+          "value": 8
+        },
+        {
+          "name": "IMAGE_SCN_RESERVED_0001",
+          "value": 16
+        },
+        {
+          "name": "IMAGE_SCN_CNT_CODE",
+          "value": 32
+        },
+        {
+          "name": "IMAGE_SCN_CNT_INITIALIZED_DATA",
+          "value": 64
+        },
+        {
+          "name": "IMAGE_SCN_CNT_UNINITIALIZED_DATA",
+          "value": 128
+        },
+        {
+          "name": "IMAGE_SCN_LNK_OTHER",
+          "value": 256
+        },
+        {
+          "name": "IMAGE_SCN_LNK_INFO",
+          "value": 512
+        },
+        {
+          "name": "IMAGE_SCN_RESERVED_0040",
+          "value": 1024
+        },
+        {
+          "name": "IMAGE_SCN_LNK_REMOVE",
+          "value": 2048
+        },
+        {
+          "name": "IMAGE_SCN_LNK_COMDAT",
+          "value": 4096
+        },
+        {
+          "name": "IMAGE_SCN_GPREL",
+          "value": 32768
+        },
+        {
+          "name": "IMAGE_SCN_MEM_16BIT",
+          "value": 131072
+        },
+        {
+          "name": "IMAGE_SCN_MEM_PURGEABLE",
+          "value": 131072
+        },
+        {
+          "name": "IMAGE_SCN_MEM_LOCKED",
+          "value": 262144
+        },
+        {
+          "name": "IMAGE_SCN_MEM_PRELOAD",
+          "value": 524288
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_1BYTES",
+          "value": 1048576
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_2BYTES",
+          "value": 2097152
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_4BYTES",
+          "value": 3145728
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_8BYTES",
+          "value": 4194304
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_16BYTES",
+          "value": 5242880
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_32BYTES",
+          "value": 6291456
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_64BYTES",
+          "value": 7340032
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_128BYTES",
+          "value": 8388608
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_256BYTES",
+          "value": 9437184
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_512BYTES",
+          "value": 10485760
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_1024BYTES",
+          "value": 11534336
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_2048BYTES",
+          "value": 12582912
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_4096BYTES",
+          "value": 13631488
+        },
+        {
+          "name": "IMAGE_SCN_ALIGN_8192BYTES",
+          "value": 14680064
+        },
+        {
+          "name": "IMAGE_SCN_LNK_NRELOC_OVFL",
+          "value": 16777216
+        },
+        {
+          "name": "IMAGE_SCN_MEM_DISCARDABLE",
+          "value": 33554432
+        },
+        {
+          "name": "IMAGE_SCN_MEM_NOT_CACHED",
+          "value": 67108864
+        },
+        {
+          "name": "IMAGE_SCN_MEM_NOT_PAGED",
+          "value": 134217728
+        },
+        {
+          "name": "IMAGE_SCN_MEM_SHARED",
+          "value": 268435456
+        },
+        {
+          "name": "IMAGE_SCN_MEM_EXECUTE",
+          "value": 536870912
+        },
+        {
+          "name": "IMAGE_SCN_MEM_READ",
+          "value": 1073741824
+        },
+        {
+          "name": "IMAGE_SCN_MEM_WRITE",
+          "value": 2147483648
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_GUARD_FLAGS",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "values": [
+        {
+          "name": "IMAGE_GUARD_CF_INSTRUMENTED",
+          "value": 256
+        },
+        {
+          "name": "IMAGE_GUARD_CFW_INSTRUMENTED",
+          "value": 512
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_PRESENT",
+          "value": 1024
+        },
+        {
+          "name": "IMAGE_GUARD_SECURITY_COOKIE_UNUSED",
+          "value": 2048
+        },
+        {
+          "name": "IMAGE_GUARD_PROTECT_DELAYLOAD_IAT",
+          "value": 4096
+        },
+        {
+          "name": "IMAGE_GUARD_DELAYLOAD_IAT_IN_ITS_OWN_SECTION",
+          "value": 8192
+        },
+        {
+          "name": "IMAGE_GUARD_CF_EXPORT_SUPPRESSION_INFO_PRESENT",
+          "value": 16384
+        },
+        {
+          "name": "IMAGE_GUARD_CF_ENABLE_EXPORT_SUPPRESSION",
+          "value": 32768
+        },
+        {
+          "name": "IMAGE_GUARD_CF_LONGJUMP_TABLE_PRESENT",
+          "value": 65536
+        },
+        {
+          "name": "IMAGE_GUARD_RF_INSTRUMENTED",
+          "value": 131072
+        },
+        {
+          "name": "IMAGE_GUARD_RF_ENABLE",
+          "value": 262144
+        },
+        {
+          "name": "IMAGE_GUARD_RF_STRICT",
+          "value": 524288
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_1",
+          "value": 268435456
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_2",
+          "value": 536870912
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_4",
+          "value": 1073741824
+        },
+        {
+          "name": "IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK_8",
+          "value": 2147483648
+        }
+      ]
+    }
+  ],
+  "unions": [
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryUnion",
+      "category": "/",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "type": "dword",
+          "name": "OffsetToData",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct",
+          "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "Misc",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "type": "dword",
+          "name": "PhysicalAddress",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "dword",
+          "name": "VirtualSize",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameUnion",
+      "category": "/PE",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "type": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct",
+          "name": "IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "dword",
+          "name": "Name",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "type": "word",
+          "name": "Id",
+          "length": 2,
+          "comment": ""
+        }
+      ]
+    }
+  ]
+}

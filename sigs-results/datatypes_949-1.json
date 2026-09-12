@@ -1,0 +1,627 @@
+{
+  "version": "949-1",
+  "exported_from": "rs2client",
+  "export_date": "2026-07-27T15:24:46",
+  "structs": [
+    {
+      "name": "eh_frame_hdr",
+      "category": "/",
+      "size": 4,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "byte",
+          "name": "eh_frame_hdr_version",
+          "length": 1,
+          "comment": "Exception Handler Frame Header Version"
+        },
+        {
+          "offset": 1,
+          "type": "dwfenc",
+          "name": "eh_frame_pointer_encoding",
+          "length": 1,
+          "comment": "Exception Handler Frame Pointer Encoding"
+        },
+        {
+          "offset": 2,
+          "type": "dwfenc",
+          "name": "eh_frame_desc_entry_count_encoding",
+          "length": 1,
+          "comment": "Encoding of # of Exception Handler FDEs"
+        },
+        {
+          "offset": 3,
+          "type": "dwfenc",
+          "name": "eh_frame_table_encoding",
+          "length": 1,
+          "comment": "Exception Handler Table Encoding"
+        }
+      ]
+    },
+    {
+      "name": "fde_table_entry",
+      "category": "/",
+      "size": 8,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "dword",
+          "name": "initial_loc",
+          "length": 4,
+          "comment": "Initial Location"
+        },
+        {
+          "offset": 4,
+          "type": "dword",
+          "name": "data_loc",
+          "length": 4,
+          "comment": "Data location"
+        }
+      ]
+    },
+    {
+      "name": "Js5MasterIndexEntry",
+      "category": "/jag",
+      "size": 40,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "uint",
+          "name": "crc",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 4,
+          "type": "uint",
+          "name": "version",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "ulong",
+          "name": "digest_len",
+          "length": 8,
+          "comment": "length of whirlpool digest blob (container begins at +0x08)"
+        },
+        {
+          "offset": 24,
+          "type": "void *",
+          "name": "digest_ptr",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 32,
+          "type": "uint",
+          "name": "file_count",
+          "length": 4,
+          "comment": "HYPOTHESIS: group/file count. Used in WorkerOnMessage case 10 to size disk group-status array to (file_count+1)"
+        },
+        {
+          "offset": 36,
+          "type": "uint",
+          "name": "field_0x24",
+          "length": 4,
+          "comment": "HYPOTHESIS: second per-archive u32 (highest group id or aux version)"
+        }
+      ]
+    },
+    {
+      "name": "LinkMap",
+      "category": "/jag",
+      "size": 32,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "void *",
+          "name": "regionGridVec",
+          "length": 8,
+          "comment": "EASTL vector begin ptr; dataArray stride 0x18 per region column, inner stride 0x18; cell+8 = RegionHeightContainer*"
+        },
+        {
+          "offset": 16,
+          "type": "int",
+          "name": "minRegionX",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 20,
+          "type": "int",
+          "name": "maxRegionX",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "int",
+          "name": "minRegionY",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 28,
+          "type": "int",
+          "name": "maxRegionY",
+          "length": 4,
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "name": "RegionHeightContainer",
+      "category": "/jag",
+      "size": 512,
+      "description": "",
+      "fields": [
+        {
+          "offset": 17,
+          "type": "byte",
+          "name": "readyA",
+          "length": 1,
+          "comment": "+0x11: ready iff readyA==readyB. Outer container selects this sub via primary@+0x90 / fallback@+0xeba0; a sub is usable only when byte[+0x11]==byte[+0x12]."
+        },
+        {
+          "offset": 18,
+          "type": "byte",
+          "name": "readyB",
+          "length": 1,
+          "comment": ""
+        },
+        {
+          "offset": 345,
+          "type": "byte",
+          "name": "notLoadedFlag",
+          "length": 1,
+          "comment": "+0x159 on sub-container: !=0 => not loaded, height written as 0"
+        },
+        {
+          "offset": 352,
+          "type": "void *",
+          "name": "planeGridVecBegin",
+          "length": 8,
+          "comment": "+0x160 sub: plane vec begin; end@+0x168; planeGrid=*(begin+8+plane*0x10); count=(end-begin)>>4"
+        },
+        {
+          "offset": 360,
+          "type": "void *",
+          "name": "planeGridVecEnd",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 464,
+          "type": "ulong",
+          "name": "linkHeightPlaneCount",
+          "length": 8,
+          "comment": "+0x1d0 sub: plane count for the link-height-offset grid"
+        },
+        {
+          "offset": 472,
+          "type": "short *",
+          "name": "linkHeightGrid",
+          "length": 4,
+          "comment": "+0x1d8 sub: int16 location/bridge height-offset grid. cell = base + plane*0x4000 + col*0x100 + row*4; col=fineX>>9,row=fineY>>9 tile 0..63; 2x int16/cell. SampleTileLinkHeightOffset reads it."
+        },
+        {
+          "offset": 488,
+          "type": "void *",
+          "name": "plane0BridgeGrid",
+          "length": 8,
+          "comment": "+0x1e8 sub: plane-0 BRIDGE vertex grid; used instead of normal plane-0 grid when usePlane0Bridge!=0. Same bilinear as planeGrid."
+        }
+      ]
+    },
+    {
+      "name": "HeadbarNode",
+      "category": "/jag",
+      "size": 72,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "HeadbarNode *",
+          "name": "next",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 8,
+          "type": "HeadbarNode *",
+          "name": "prev",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "void *",
+          "name": "def1RefCtr",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "void *",
+          "name": "def1",
+          "length": 8,
+          "comment": "group-72 headbar def; def+0x8 = type id, def+0x44 fadeStart, def+0x48 lerpStep, def+0x4c removeAfter"
+        },
+        {
+          "offset": 32,
+          "type": "void *",
+          "name": "def2RefCtr",
+          "length": 8,
+          "comment": ""
+        },
+        {
+          "offset": 40,
+          "type": "void *",
+          "name": "def2",
+          "length": 8,
+          "comment": "second headbar def; NULL when type2 &lt; 0"
+        },
+        {
+          "offset": 48,
+          "type": "uint",
+          "name": "startCycle",
+          "length": 4,
+          "comment": "activation cycle = currentCycle + wireDelay; render elapsed = currentCycle - startCycle"
+        },
+        {
+          "offset": 52,
+          "type": "int",
+          "name": "bar1FromFill",
+          "length": 4,
+          "comment": "0..255, tween start for def1"
+        },
+        {
+          "offset": 56,
+          "type": "int",
+          "name": "bar2FromFill",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 60,
+          "type": "int",
+          "name": "bar1ToFill",
+          "length": 4,
+          "comment": "0..255, tween target for def1; displayed once elapsed &gt;= transitionCycles"
+        },
+        {
+          "offset": 64,
+          "type": "int",
+          "name": "bar2ToFill",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 68,
+          "type": "int",
+          "name": "transitionCycles",
+          "length": 4,
+          "comment": "tween duration; expiry = startCycle + transitionCycles + def1[0x4c] &lt; currentCycle"
+        }
+      ]
+    },
+    {
+      "name": "Js5MasterIndex",
+      "category": "/jag",
+      "size": 32,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "uint",
+          "name": "highest_archive_id",
+          "length": 4,
+          "comment": "= archiveCountByte - 1 (set from *param_1 in ctor)"
+        },
+        {
+          "offset": 16,
+          "type": "ulong",
+          "name": "archive_count",
+          "length": 8,
+          "comment": "number of archive entries = archive-count byte parsed from the 255/255 master-index blob. RequestGroupFromDisk crash: archiveId >= archive_count -> UD2 at 0xb61ad0"
+        },
+        {
+          "offset": 24,
+          "type": "void *",
+          "name": "entries",
+          "length": 8,
+          "comment": "Js5MasterIndexEntry** : array[archive_count], indexed by archiveId"
+        }
+      ]
+    },
+    {
+      "name": "InputHandler",
+      "category": "/jag/input",
+      "size": 1544,
+      "description": "",
+      "fields": [
+        {
+          "offset": 8,
+          "type": "EventListeners",
+          "name": "onLMouseDown",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 72,
+          "type": "EventListeners",
+          "name": "onLMouseUp",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 136,
+          "type": "EventListeners",
+          "name": "onMMouseDown",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 200,
+          "type": "EventListeners",
+          "name": "onMMouseUp",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 264,
+          "type": "EventListeners",
+          "name": "onRMouseDown",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 328,
+          "type": "EventListeners",
+          "name": "onRMouseUp",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 392,
+          "type": "EventListeners",
+          "name": "onMouseMove",
+          "length": 64,
+          "comment": "bool(float x, float y)"
+        },
+        {
+          "offset": 456,
+          "type": "EventListeners",
+          "name": "onMouseWheel",
+          "length": 64,
+          "comment": "bool(float x, float y, float wheelX, float wheelY) - x/y come from Input.lastMouseX/Y"
+        },
+        {
+          "offset": 520,
+          "type": "EventListeners",
+          "name": "onKeyDown",
+          "length": 64,
+          "comment": "bool(int keycode) - platform-native keycode"
+        },
+        {
+          "offset": 584,
+          "type": "EventListeners",
+          "name": "onKeyUp",
+          "length": 64,
+          "comment": "bool(int keycode)"
+        },
+        {
+          "offset": 648,
+          "type": "EventListeners",
+          "name": "onKeyChar",
+          "length": 64,
+          "comment": "bool(int unicodeCodepoint)"
+        },
+        {
+          "offset": 1032,
+          "type": "EventListeners",
+          "name": "onGamepadButton",
+          "length": 64,
+          "comment": "bool(uint joystickIndex, GamepadButton, bool pressed) - fed by SDL_JOYBUTTONDOWN/UP"
+        },
+        {
+          "offset": 1096,
+          "type": "EventListeners",
+          "name": "onGamepadAxis",
+          "length": 64,
+          "comment": "bool(uint joystickIndex, GamepadAxis, short value) - fed by SDL_JOYAXISMOTION"
+        },
+        {
+          "offset": 1160,
+          "type": "EventListeners",
+          "name": "onGamepadTrigger",
+          "length": 64,
+          "comment": "bool(uint joystickIndex, GamepadTrigger, uchar value) - axis&gt;4 folded to value&gt;&gt;7"
+        },
+        {
+          "offset": 1512,
+          "type": "byte",
+          "name": "perFrameUpdatables",
+          "length": 1,
+          "comment": "eastl::rbtree anchor at +0x5E8, iteration starts at +0x5F0; Client::Main calls vtable+0x28 on *(node+0x20) after the SDL queue drains"
+        }
+      ]
+    },
+    {
+      "name": "InputState",
+      "category": "/jag/input",
+      "size": 11,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "float",
+          "name": "mouseY",
+          "length": 4,
+          "comment": "0x0168cbd4 - note Y precedes X in memory (verified on Linux and Windows builds)"
+        },
+        {
+          "offset": 4,
+          "type": "float",
+          "name": "mouseX",
+          "length": 4,
+          "comment": "0x0168cbd8"
+        },
+        {
+          "offset": 8,
+          "type": "byte",
+          "name": "leftButtonDown",
+          "length": 1,
+          "comment": "0x0168cbdc - set 1 by OnLeftButtonDown, 0 by OnLeftButtonUp"
+        },
+        {
+          "offset": 9,
+          "type": "byte",
+          "name": "middleButtonDown",
+          "length": 1,
+          "comment": "0x0168cbdd - written only by the SDL pump (SDL_BUTTON_MIDDLE)"
+        },
+        {
+          "offset": 10,
+          "type": "byte",
+          "name": "rightButtonDown",
+          "length": 1,
+          "comment": "0x0168cbde - written by the SDL pump and by TouchLongPressToRightClick"
+        }
+      ]
+    },
+    {
+      "name": "Input",
+      "category": "/jag/input",
+      "size": 160,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "void *",
+          "name": "vptr",
+          "length": 4,
+          "comment": "vtable 0x0141b930: +0x10 OnKeyDown +0x18 OnKeyUp +0x20 OnKeyChar"
+        },
+        {
+          "offset": 8,
+          "type": "InputHandler *",
+          "name": "globalHandler",
+          "length": 4,
+          "comment": "Fallback handler; dispatched last, after every entry in namedHandlers"
+        },
+        {
+          "offset": 24,
+          "type": "byte",
+          "name": "mLock",
+          "length": 1,
+          "comment": "pthread_mutex_t, __kind=1 (RECURSIVE) set inline by the Client ctor"
+        },
+        {
+          "offset": 64,
+          "type": "byte",
+          "name": "namedHandlers",
+          "length": 1,
+          "comment": "eastl::rbtree&lt;eastl::string, InputHandler*&gt;; anchor at +0x40, iteration starts at +0x48, node value: string@+0x20 handler@+0x38"
+        },
+        {
+          "offset": 136,
+          "type": "float",
+          "name": "lastMouseX",
+          "length": 4,
+          "comment": "Written by OnMouseMotion; read by OnScrollWheel to build the wheel event position"
+        },
+        {
+          "offset": 140,
+          "type": "float",
+          "name": "lastMouseY",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 144,
+          "type": "void *",
+          "name": "client",
+          "length": 4,
+          "comment": "Owning jag::Client; this Input is embedded at Client+0x18D10"
+        },
+        {
+          "offset": 152,
+          "type": "byte",
+          "name": "consoleKeyHeld",
+          "length": 1,
+          "comment": "Set by OnKeyDown(0x1ca3), cleared by OnKeyUp(0x1ca3); while set, OnKeyChar drops every codepoint"
+        }
+      ]
+    },
+    {
+      "name": "EventListeners",
+      "category": "/jag/input",
+      "size": 64,
+      "description": "",
+      "fields": [
+        {
+          "offset": 0,
+          "type": "void * *",
+          "name": "mBegin",
+          "length": 4,
+          "comment": "eastl::vector&lt;std::function&lt;bool(Args...)&gt;*&gt; begin"
+        },
+        {
+          "offset": 8,
+          "type": "void * *",
+          "name": "mEnd",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 16,
+          "type": "void * *",
+          "name": "mCapacityEnd",
+          "length": 4,
+          "comment": ""
+        },
+        {
+          "offset": 24,
+          "type": "byte",
+          "name": "mLock",
+          "length": 1,
+          "comment": "pthread_mutex_t guarding the listener vector"
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "MapTileSettingsFlag",
+      "category": "/jag/game",
+      "size": 1,
+      "description": "",
+      "values": [
+        {
+          "name": "CLIPPED_BLOCKED",
+          "value": 1
+        },
+        {
+          "name": "BRIDGE_LINK_BELOW",
+          "value": 2
+        },
+        {
+          "name": "UNDER_ROOF",
+          "value": 4
+        },
+        {
+          "name": "FORCE_LOWEST_LEVEL",
+          "value": 8
+        }
+      ]
+    }
+  ],
+  "unions": [
+  ]
+}

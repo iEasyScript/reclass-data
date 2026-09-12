@@ -1,0 +1,110 @@
+{
+  "MAIN_STATE": {
+    "anchor": "jag::Client::SetMainState",
+    "pattern": "first [param1 + disp32] read",
+    "range": [100000, 110000],
+    "notes": "SetMainState reads client->mainState early in the function"
+  },
+  "CLIENT_CYCLE": {
+    "anchor": "jag::Client::MainLogic",
+    "pattern": "first [param1 + disp32] read",
+    "range": [1024, 1536],
+    "notes": "MainLogic reads clientCycle near the top"
+  },
+  "CLIENT_RENDER_CYCLE": {
+    "anchor": "jag::Client::MainLogic",
+    "pattern": "first [param1 + disp32] read",
+    "range": [1280, 1536],
+    "notes": "clientRenderCycle is at clientCycle + 8"
+  },
+  "NPC_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores newly created NpcManager into Client"
+  },
+  "PLAYER_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores newly created PlayerManager into Client"
+  },
+  "SCENE_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores SceneManager into Client"
+  },
+  "INVENTORY_MANAGER": {
+    "anchor": "jag::InventoryManager::GetInventory",
+    "pattern": "caller loads manager from client",
+    "range": [103000, 106000],
+    "notes": "Callers of GetInventory load InventoryManager from Client first"
+  },
+  "CONNECTION_MANAGER": {
+    "anchor": "jag::ConnectionManager::TcpIn",
+    "pattern": "caller loads manager from client",
+    "range": [103000, 106000],
+    "notes": "Callers of TcpIn load ConnectionManager from Client first"
+  },
+  "INTERFACE_LIST": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores InterfaceList into Client"
+  },
+  "MAINLOGIC_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores MainLogicManager into Client"
+  },
+  "SPOTANIM_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores SpotAnimManager into Client"
+  },
+  "PROJECTILE_LIST": {
+    "anchor": "jag::ProjectileList::Add",
+    "pattern": "caller loads list from client",
+    "range": [103000, 106000],
+    "notes": "Callers of ProjectileList::Add load the list pointer from Client"
+  },
+  "OBJECT_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores ObjectManager into Client"
+  },
+  "SDL_MANAGER": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [98000, 102000],
+    "notes": "SDL manager is in a lower offset range than other managers"
+  },
+  "ITEMSTACK_LIST": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores ItemStackList into Client"
+  },
+  "HINTTRAIL_LIST": {
+    "anchor": "jag::Client::Client",
+    "pattern": "store [base + disp]",
+    "range": [103000, 106000],
+    "notes": "Constructor stores HintTrailList into Client"
+  },
+  "LOGGED_IN_PLAYER": {
+    "anchor": "jag::Client::SetMainState",
+    "pattern": "first [param1 + disp32] read",
+    "range": [105000, 107000],
+    "notes": "LoggedInPlayer is typically at mainState + 8"
+  },
+  "PLAYER_VAR_DOMAIN": {
+    "anchor": "jag::PlayerVarDomain::set",
+    "pattern": "caller loads domain from client",
+    "range": [105000, 107000],
+    "notes": "Callers of PlayerVarDomain::set load the domain pointer from Client"
+  }
+}
