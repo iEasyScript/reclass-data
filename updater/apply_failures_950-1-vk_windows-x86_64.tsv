@@ -1,0 +1,16 @@
+category	reason	subject
+prototype	parse failed: Can't resolve datatype: MouseProtSenderBase *	jag::ClientProt::FlushMouseProtSender
+prototype	parse failed: Can't resolve return type: eastl_fixed_string_256 *	jag::WorldLobbyData::GetHTTPURL
+ofunction	unresolved by name and by signature	STATTABLE_UPDATESTAT (jag::game::StatTable::UpdateStat)
+ofunction	unresolved by name and by signature	CLIENT_MAINLOGIC (jag::Client::MainLogic)
+ofunction	unresolved by name and by signature	SERVERPROT_DECODE_UPDATE_INV_PARTIAL (jag::PacketHandlers::UpdateInvPartial)
+ofunction	unresolved by name and by signature	SERVERPROT_DECODE_UPDATE_INV_FULL (jag::PacketHandlers::UpdateInvFull)
+ofunction	unresolved by name and by signature	INTERFACEMANAGER_IFBUTTONXINNER (jag::InterfaceManager::IfButtonXInner)
+ofunction	unresolved by name and by signature	ENTITY_ENTITY (jag::game::Entity::Entity)
+ofunction	unresolved by name and by signature	SCRIPTRUNNER_EXECUTEHOOKINNER (jag::ScriptRunner::ExecuteHookInner)
+ofunction	unresolved by name and by signature	INPUTSTATE_ISKEYDOWN (jag::input::InputState::IsKeyDown)
+ofunction	unresolved by name and by signature	SENDCLIENTMESSAGE (jag::Packet::SendClientMessage)
+ofunction	unresolved by name and by signature	REBUILD_NORMAL_HANDLER (jag::PacketHandlers::RebuildNormal)
+ofunction	unresolved by name and by signature	CLIENTPROT_SENDEVENTMOUSECLICK (jag::ClientProt::SendEventMouseClick)
+ofunction	unresolved by name and by signature	CLIENTPROT_SENDNATIVEMOUSECLICK (jag::ClientProt::SendNativeMouseClick)
+ofunction	unresolved by name and by signature	CLIENTPROT_FLUSHPERTICK (jag::ClientProt::FlushPerTick)
