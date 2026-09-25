@@ -316,6 +316,25 @@ Windows shifts the float registers because `this` occupies argument slot 0.
 So the `InputHandler` slot table in §5 is **Linux/macOS only**. On Windows the slot offsets must be
 re-derived from that build's adapter.
 
+### Windows middle/right buttons — the Linux recipe crashes
+
+The §8 recipe does **not** port. MSVC stamps out one listener walker per slot with the slot and its
+mutex baked in, so Windows has **no generic `CallListeners(packedXY, slot)`**. The function a
+signature match pairs with the Linux `CallListeners_ff` is the *mouse-move* walker,
+`(InputHandler*, float x, float y)`. Called with the Linux arguments, the packed floats become the
+handler pointer and the client dies on the first mutex lock.
+
+What Windows has instead:
+
+| Action | Windows |
+|---|---|
+| right down / right up | `Input::OnRightButtonDown` / `OnRightButtonUp(input, x, y)`: each writes its button byte and `mouseX/Y` itself |
+| middle up | `Input::OnMiddleButtonUp(input, x, y)` |
+| middle down | **no function**: the WndProc open-codes it. Reproduce it: set the byte and `mouseX/Y`, `_Mtx_lock` the slot mutex, and invoke each listener's callable through its vtable as `(callable, &x, &y)` until one returns true, then `_Mtx_unlock` |
+
+`_Mtx_lock`/`_Mtx_unlock` are the client's statically linked MSVC STL copies, not `msvcp140` imports,
+so resolve them from the offset table and not from a DLL.
+
 ### `InputState` global block
 
 The `(y, x)` ordering — **y at the lower address** — was independently confirmed on both the Linux

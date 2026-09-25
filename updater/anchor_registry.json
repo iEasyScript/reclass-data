@@ -146,6 +146,26 @@
       "name": "jag::EventListeners::CallListeners_ff"
     },
     {
+      "const": "INPUT_INPUT_ONRIGHTBUTTONDOWN",
+      "name": "jag::input::Input::OnRightButtonDown"
+    },
+    {
+      "const": "INPUT_INPUT_ONRIGHTBUTTONUP",
+      "name": "jag::input::Input::OnRightButtonUp"
+    },
+    {
+      "const": "INPUT_INPUT_ONMIDDLEBUTTONUP",
+      "name": "jag::input::Input::OnMiddleButtonUp"
+    },
+    {
+      "const": "STD_MTX_LOCK",
+      "name": "_Mtx_lock"
+    },
+    {
+      "const": "STD_MTX_UNLOCK",
+      "name": "_Mtx_unlock"
+    },
+    {
       "const": "INPUTSTATE_ISKEYDOWN",
       "name": "jag::input::InputState::IsKeyDown"
     },
