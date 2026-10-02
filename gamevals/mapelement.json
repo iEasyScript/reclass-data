@@ -1,7 +1,7 @@
 {
-  "revision": 949,
+  "revision": 950,
   "source": "content.beta.runescape.com cache index 67 archive 29",
-  "date": "2026-09-08",
+  "date": "2026-10-03",
   "entries": {
     "0": "karamja_underground_fyburglars_tree",
     "1": "karamja_underground_agility_arena",
@@ -5811,6 +5811,9 @@
     "5805": "me_quest_start_construction_tutorial_legacy",
     "5806": "me_quest_progress_construction_tutorial",
     "5807": "me_quest_progress_construction_tutorial_rs3",
-    "5808": "me_quest_progress_construction_tutorial_legacy"
+    "5808": "me_quest_progress_construction_tutorial_legacy",
+    "5809": "construction_workbench_icon",
+    "5810": "construction_workbench_icon_rs3",
+    "5811": "construction_workbench_icon_legacy"
   }
 }
