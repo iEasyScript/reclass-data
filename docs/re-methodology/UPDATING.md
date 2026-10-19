@@ -192,6 +192,43 @@ What now prevents it, and what you must still do on update day:
   not the reflective wrapper's null message. If it ever prints `null` again, that is a bug in the
   tab, not in the script.
 
+## 8. Verifying what the updater carried (learned on 950-1 -> 951-1)
+
+The updater re-derives function addresses and a few anchored fields; every other struct offset in the new table is
+**carried** from the previous build and proves nothing. At 951 the `Client`, `World`, `MainLogicManager` and entity
+layouts all grew, so most carried values in those structs were wrong while every test still passed.
+
+- **Run once per renderer.** The Windows OpenGL and Vulkan clients share a version string. The updater now keys its
+  baseline folder, reports and engine table by renderer (`…-vk`, `…-vulkan`), and only carries a table from the same
+  renderer. On Windows pass a baseline chain with `+`, not `,`: `analyzeHeadless.bat` splits arguments on commas.
+- **Check the baseline is named.** A program that was only ever dry-run imported exports almost no functions. Put a
+  fully applied build's baseline in the chain as a fallback, or the run finds next to nothing.
+- **Vote every carried field.** `RS3DisplacementVotes.java` pairs every function whose instruction shape is identical
+  and unique in both builds, then records how each `[reg + disp]` operand, data reference and call target moved.
+  `updater/drift_tools/final_drift.py` judges each field on those votes. Small displacements are shared by many
+  structs, so a class that grew mid-layout needs a family seeded with moves known to be its own; the tool bootstraps
+  from there and keeps that family's votes away from everyone else's. Large offsets are effectively unique and need no
+  seed. `build_table.py` then rewrites the table from the verdicts plus hand-verified overrides, and reports any
+  verdict that contradicts a value the updater derived.
+- **Recover missing functions by their company.** Functions whose bodies changed have no twin, but their callees did
+  not move: `callee_match.py` maps a function's call targets across and asks which new function calls most of them.
+  Confirm every candidate with `decomp_compare.py` (or a read of both decompiles) and the neighbour prediction from
+  the nearest paired functions. Two independent methods agreeing is the bar.
+- **Re-check hook signatures.** A hooked function that gained a parameter makes a fixed-arity hook pass a garbage
+  register into the client when it calls through. Compare parameter counts for every hooked function, and look for
+  functions the compiler inlined away entirely (there is then nothing to hook; read the state the function wrote).
+- **One renderer can carry the other.** OpenGL and Vulkan share every struct layout, so verify one and confirm the
+  other with its own votes; map function addresses across with a pairing run between the two new programs.
+- **Decode the new cache before trusting it.** Run `:tools:decodeCheck` on a copy of the client's cache (never the live
+  files while the client runs); `--dump <Decoder>:<ids>` prints raw definitions to read a desync by eye. A cascade of
+  scattered unknown opcodes is one new field, not dozens.
+- **Gamevals now ship on live.** Since 951 the live cache carries index 67, so export from a copy of the live cache and
+  `--align` it to itself; names then match the served interfaces exactly, with no beta drift.
+- **Protocol: names must be earned.** The engine only decodes with the codec for its client's own revision. A table-only
+  codec built from `RS3ProtFinder`'s opcode/size dump is enough to label captures honestly; leave every name
+  `UNKNOWN_<op>` until it is verified for this build. Declaration-order carry is a hypothesis, and the tick-end packet
+  in particular sits among several empty packets: confirm it from a live capture (an empty packet once per 600 ms).
+
 ## Adding a new auto-detected offset
 
 Edit `re-resources/updater/anchor_registry.json`: add an anchor entry (id, target object/field, the
