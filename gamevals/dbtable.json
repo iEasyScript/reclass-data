@@ -1,7 +1,7 @@
 {
-  "revision": 950,
-  "source": "content.beta.runescape.com cache index 67 archive 15",
-  "date": "2026-10-03",
+  "revision": 951,
+  "source": "content.runescape.com cache index 67 archive 15",
+  "date": "2026-10-19",
   "entries": {
     "4": "invent_material_table",
     "5": "invent_blueprint_table",
@@ -129,6 +129,7 @@
     "183": "trh179_modifier",
     "184": "trh184_bonus",
     "186": "trh190_component_data",
+    "187": "havenhythe_hero_item_painting",
     "188": "pride_dbtable",
     "189": "audio_sequence",
     "191": "season2022_task_dbtable",
@@ -256,13 +257,15 @@
     "370": "construction_house_furniture",
     "376": "construction_house_portal_nexus_teleport_destinations",
     "378": "herblore_potion",
-    "379": "league_locality",
-    "380": "locality_ui_info",
-    "382": "objdialog_acronym",
-    "383": "marketplace_furniture_package",
-    "384": "marketplace_store_sale_data",
-    "385": "marketplace_outfit_variants",
-    "386": "construction_house_furniture_skins_list",
-    "387": "construction_house_furniture_skin"
+    "379": "marketplace_store_sale_data",
+    "380": "objdialog_acronym",
+    "381": "marketplace_furniture_package",
+    "382": "league_locality",
+    "383": "locality_ui_info",
+    "384": "construction_house_furniture_skins_list",
+    "385": "construction_house_furniture_skin",
+    "386": "marketplace_outfit_variants",
+    "388": "colossi_divination_murals",
+    "390": "marketplace_preview_custom_icon_data"
   }
 }
