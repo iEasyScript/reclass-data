@@ -127,14 +127,15 @@ public class RS3ProjectXUpdater extends GhidraScript {
         // its data dir to avoid overwriting the Linux baseline. Linux keeps the unprefixed historical name.
         dataDir = updaterRoot.resolve(profile instanceof SysVElfProfile
                 ? "updater_data_" + version
-                : "updater_data_" + profile.id() + "-" + version);
+                : "updater_data_" + profile.id() + "-" + runTag());
         // IMPORT baseline override (go-forward pointer from run_updater.py): diff the NEW binary against an
         // EXPLICIT baseline dir rather than the version-derived one. EXPORT ignores it (writes updater_data_<ver>).
         // A comma-separated chain lets a later baseline back-fill names an earlier migration dropped:
         // the first dir that carries a name wins, so recovery can never override current work.
         fallbackDataDirs.clear();
         if ("import".equals(mode) && dataDirOverride != null && !dataDirOverride.isEmpty()) {
-            String[] parts = dataDirOverride.split(",");
+            // `+` as well as `,`: Windows runs go through analyzeHeadless.bat, and cmd splits arguments on commas.
+            String[] parts = dataDirOverride.split("[,+]");
             for (int i = 0; i < parts.length; i++) {
                 String t = parts[i].trim();
                 if (t.isEmpty()) continue;
@@ -721,7 +722,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
             writeResultsJson(fnResults, lblResults, anchorResults, doAction, ofunctions);
             writeOffsetsKt(anchorResults, ofunctions);
             writeOffsetsJson(anchorResults, ofunctions, doAction);
-            writeText(offsetsDir.resolve("DoActionOpcodes_" + version + ".kt"), doAction.ktBody);
+            writeText(offsetsDir.resolve("DoActionOpcodes_" + runTag() + ".kt"), doAction.ktBody);
             writeResidualReport(fnResults, lblResults, anchorResults);
 
             ok = true;
@@ -1384,8 +1385,8 @@ public class RS3ProjectXUpdater extends GhidraScript {
     private void stampOFunctionSignatures(Map<String, Object> rootMap) throws Exception {
         Object ofs = rootMap.get("ofunctions");
         if (!(ofs instanceof List)) return;
-        Path table = engineOffsetsDir().resolve(profile.id() + "-" + version + ".json");
-        if (!Files.exists(table)) { println("no engine table for " + profile.id() + "-" + version + "; OFunctions signatures not stamped"); return; }
+        Path table = engineOffsetsDir().resolve(tableStem() + ".json");
+        if (!Files.exists(table)) { println("no engine table for " + tableStem() + "; OFunctions signatures not stamped"); return; }
         Map<String, Object> t = (Map<String, Object>) Json.parse(readText(table));
         Map<String, Object> objects = (Map<String, Object>) t.get("objects");
         if (objects == null) return;
@@ -2427,7 +2428,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
                 "\"" + String.join("\",\"", da.playerLog) + "\"").append("]\n}\n");
         // Platform-qualified: both binaries of a build share updaterRoot, and an unqualified name meant
         // the second run silently replaced the first run's results.
-        writeText(updaterRoot.resolve("results_" + version + "_" + profile.id() + ".json"), b.toString());
+        writeText(updaterRoot.resolve("results_" + runTag() + "_" + profile.id() + ".json"), b.toString());
         reportApplyFailures();
     }
 
@@ -2435,14 +2436,14 @@ public class RS3ProjectXUpdater extends GhidraScript {
         if (applyFailCounts.isEmpty()) {
             println("NOT APPLIED: none");
             // A previous run's list left on disk reads as this run's result.
-            Files.deleteIfExists(updaterRoot.resolve("apply_failures_" + version + "_" + profile.id() + ".tsv"));
+            Files.deleteIfExists(updaterRoot.resolve("apply_failures_" + runTag() + "_" + profile.id() + ".tsv"));
             return;
         }
         println("NOT APPLIED (" + applyFailDetail.size() + " total):");
         for (Map.Entry<String, Integer> e : applyFailCounts.entrySet()) println("  " + e.getKey() + " x" + e.getValue());
         // Platform-qualified: both binaries of a build share updaterRoot and would otherwise overwrite
         // each other's failure list, leaving whichever ran second as the only visible one.
-        Path fp = updaterRoot.resolve("apply_failures_" + version + "_" + profile.id() + ".tsv");
+        Path fp = updaterRoot.resolve("apply_failures_" + runTag() + "_" + profile.id() + ".tsv");
         List<String> rows = new ArrayList<>();
         rows.add("category\treason\tsubject");
         rows.addAll(applyFailDetail);
@@ -2481,7 +2482,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
             if ("SKIPPED".equals(str(m.get("confidence")))) continue;
             unresolved.add("ANCHOR\t" + str(m.get("id")) + "\told=" + str(m.get("old_value")) + "\t" + str(m.get("note")));
         }
-        Path rp = updaterRoot.resolve("residual_" + version + "_" + profile.id() + ".tsv");
+        Path rp = updaterRoot.resolve("residual_" + runTag() + "_" + profile.id() + ".tsv");
         List<String> rows = new ArrayList<>();
         rows.add("kind\tsubject\told\tnote");
         rows.addAll(unresolved);
@@ -2544,7 +2545,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
         if (unresolvedAnchors > 0 && banner.length() > 0) out.append("// (").append(unresolvedAnchors)
                 .append(" further anchor(s) unresolved — drift undetermined for those.)\n");
         out.append(body);
-        writeText(offsetsDir.resolve("offsets_" + version + ".kt"), out.toString());
+        writeText(offsetsDir.resolve("offsets_" + runTag() + ".kt"), out.toString());
     }
 
     // Struct fields that were established by hand against a specific build and that no anchor recipe can
@@ -2608,8 +2609,8 @@ public class RS3ProjectXUpdater extends GhidraScript {
         // A dry-run previews into the updater's own output dir. Writing the engine's table from a
         // preview once silently rewrote a committed build's doActions with a mis-walked one.
         Path out = apply
-                ? engineOffsetsDir().resolve(profile.id() + "-" + version + ".json")
-                : offsetsDir.resolve("preview-" + profile.id() + "-" + version + ".json");
+                ? engineOffsetsDir().resolve(tableStem() + ".json")
+                : offsetsDir.resolve("preview-" + tableStem() + ".json");
         Files.createDirectories(out.getParent());
 
         Map<String, Object> root;
@@ -2623,6 +2624,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
         }
         root.put("platform", profile.id());
         root.put("build", version);
+        if (isVulkanBuild()) root.put("renderer", "vulkan");
 
         Map<String, Object> objects = (Map<String, Object>) root.computeIfAbsent("objects", k -> new LinkedHashMap<String, Object>());
         // Also strip on the update-in-place path: a disproved value already sitting in the table would
@@ -2845,20 +2847,10 @@ public class RS3ProjectXUpdater extends GhidraScript {
         if (previousTableKeys != null) return previousTableKeys;
         previousTableKeys = new LinkedHashSet<>();
         previousDoActions = new LinkedHashSet<>();
-        Path dir = engineOffsetsDir();
-        Path best = null;
-        if (Files.isDirectory(dir)) {
-            try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, profile.id() + "-*.json")) {
-                for (Path p : ds) {
-                    String n = p.getFileName().toString();
-                    String b = n.substring((profile.id() + "-").length(), n.length() - ".json".length());
-                    if (b.equals(version)) continue;
-                    if (previousTableBuild == null || b.compareTo(previousTableBuild) > 0) { previousTableBuild = b; best = p; }
-                }
-            }
-        }
-        if (best == null) return previousTableKeys;
-        Map<String, Object> prev = (Map<String, Object>) Json.parse(readText(best));
+        PreviousTable previous = newestOtherTable();
+        if (previous == null) return previousTableKeys;
+        previousTableBuild = previous.build();
+        Map<String, Object> prev = (Map<String, Object>) Json.parse(readText(previous.path()));
         Object objs = prev.get("objects");
         if (objs instanceof Map) for (Map.Entry<String, Object> oe : ((Map<String, Object>) objs).entrySet())
             if (oe.getValue() instanceof Map)
@@ -2925,19 +2917,10 @@ public class RS3ProjectXUpdater extends GhidraScript {
      */
     @SuppressWarnings("unchecked")
     private void carryForwardPreviousTable(Map<String, Object> root) throws IOException {
-        Path dir = engineOffsetsDir();
-        if (!Files.isDirectory(dir)) return;
-        Path best = null; String bestBuild = null;
-        try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, profile.id() + "-*.json")) {
-            for (Path p : ds) {
-                String n = p.getFileName().toString();
-                String b = n.substring((profile.id() + "-").length(), n.length() - ".json".length());
-                if (b.equals(version)) continue;
-                if (bestBuild == null || b.compareTo(bestBuild) > 0) { bestBuild = b; best = p; }
-            }
-        }
-        if (best == null) return;
-        Map<String, Object> prev = (Map<String, Object>) Json.parse(readText(best));
+        PreviousTable previous = newestOtherTable();
+        if (previous == null) return;
+        String bestBuild = previous.build();
+        Map<String, Object> prev = (Map<String, Object>) Json.parse(readText(previous.path()));
         Map<String, Object> prevObjects = (Map<String, Object>) prev.get("objects");
         if (prevObjects == null) return;
 
@@ -2999,7 +2982,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
         } else if (prevActs != null) {
             root.put("doActions", prevActs);
         }
-        println("offset table seeded from " + best.getFileName() + ": " + carried
+        println("offset table seeded from " + previous.path().getFileName() + ": " + carried
                 + " struct-relative entries carried, " + dropped + " absolute addresses dropped (must be re-derived)"
                 + (notes != null ? ", objectNotes carried" : ""));
     }
@@ -3011,7 +2994,7 @@ public class RS3ProjectXUpdater extends GhidraScript {
     @SuppressWarnings("unchecked")
     private void registerInOffsetIndex() throws IOException {
         Path idx = engineOffsetsDir().resolve("index.json");
-        String entry = profile.id() + "-" + version;
+        String entry = tableStem();
         Map<String, Object> root = Files.exists(idx)
                 ? (Map<String, Object>) Json.parse(readText(idx))
                 : new LinkedHashMap<>();
@@ -3031,10 +3014,57 @@ public class RS3ProjectXUpdater extends GhidraScript {
     }
 
     /** updaterRoot is &lt;repo&gt;/re-resources/updater, so the engine module is two levels up. */
+    private Boolean vulkanBuild;
+
+    /** Jagex ships each Windows build once per renderer with a shared version string; only the Vulkan one carries this tag. */
+    private boolean isVulkanBuild() {
+        if (vulkanBuild != null) return vulkanBuild;
+        Memory mem = currentProgram.getMemory();
+        byte[] tag = "NXT-Windows-64-Vulkan".getBytes(StandardCharsets.US_ASCII);
+        vulkanBuild = mem.findBytes(mem.getMinAddress(), tag, null, true, monitor) != null;
+        return vulkanBuild;
+    }
+
+    private static final String VULKAN_SUFFIX = "-vulkan";
+
+    /** `951-1` or `951-1-vk`, so the two renderers' runs of one build never overwrite each other's reports. */
+    private String runTag() {
+        return version + (isVulkanBuild() ? "-vk" : "");
+    }
+
+    /** `windows-x86_64-951-1-vulkan`: the engine keys its tables by platform, build and renderer. */
+    private String tableStem() {
+        return profile.id() + "-" + version + (isVulkanBuild() ? VULKAN_SUFFIX : "");
+    }
+
+    private record PreviousTable(Path path, String build) {}
+
+    /** The newest table for another build of this platform and renderer: carrying across renderers mixes two binaries' offsets. */
+    private PreviousTable newestOtherTable() throws IOException {
+        Path dir = engineOffsetsDir();
+        if (!Files.isDirectory(dir)) return null;
+        String prefix = profile.id() + "-";
+        PreviousTable best = null;
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(dir, prefix + "*.json")) {
+            for (Path p : ds) {
+                String n = p.getFileName().toString();
+                String stem = n.substring(prefix.length(), n.length() - ".json".length());
+                boolean vulkan = stem.endsWith(VULKAN_SUFFIX);
+                if (vulkan != isVulkanBuild()) continue;
+                String b = vulkan ? stem.substring(0, stem.length() - VULKAN_SUFFIX.length()) : stem;
+                if (b.equals(version)) continue;
+                if (best == null || b.compareTo(best.build()) > 0) best = new PreviousTable(p, b);
+            }
+        }
+        return best;
+    }
+
+    /** The engine sits beside the RE checkout in the old layout and under `engine/` in the monorepo one. */
     private Path engineOffsetsDir() {
-        return updaterRoot.getParent().getParent()
-                .resolve("client-plugin-engine").resolve("src").resolve("main")
-                .resolve("resources").resolve("offsets");
+        Path root = updaterRoot.getParent().getParent();
+        Path tail = Paths.get("client-plugin-engine", "src", "main", "resources", "offsets");
+        Path monorepo = root.resolve("engine").resolve(tail);
+        return Files.isDirectory(monorepo) ? monorepo : root.resolve(tail);
     }
 
     private String anchorResult(String id, boolean located, String oldV, String newV, String conf, String note, String anchorAddr) {
