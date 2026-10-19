@@ -1,0 +1,133 @@
+﻿INFO  Using log config file: jar:file:/C:/Users/leigh/Desktop/Project%20X/tools/ghidra_12.1.3_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: C:\Users\leigh\AppData\Roaming\ghidra\ghidra_12.1.3_PUBLIC\application.log (LoggingInitialization)  
+INFO  Loading user preferences: C:\Users\leigh\AppData\Roaming\ghidra\ghidra_12.1.3_PUBLIC\preferences (Preferences)  
+INFO  Loading previous preferences: C:\Users\leigh\AppData\Roaming\ghidra\ghidra_12.0.4_PUBLIC\preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (704 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: SHA1PRNG (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (2614 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  
+analyzeHeadless.bat : WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+At C:\Users\leigh\ghidra-proj\binaries\export-950-1-vk.ps1:9 char:1
++ & "$Ghidra\support\analyzeHeadless.bat" $Project 'nxt' -process 'rs2c ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: A term...has been called:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.apache.felix.framework.util.SecureAction (file:/C:/U
+sers/leigh/Desktop/Project%20X/tools/ghidra_12.1.3_PUBLIC/Ghidra/Features/Base/lib/org.apache.felix.framework-7.0.5.jar
+)
+WARNING: Please consider reporting this to the maintainers of class org.apache.felix.framework.util.SecureAction
+WARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release
+INFO  HEADLESS Script Paths:
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\Atmel\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\BytePatterns\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\VersionTracking\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\SystemEmulation\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\FileFormats\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\GnuDemangler\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\PyGhidra\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\Decompiler\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\DecompilerDependent\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\MicrosoftCodeAnalyzer\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\8051\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\DATA\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\JVM\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Processors\PIC\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\Base\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\reclass-data\ghidra-scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\WildcardAssembler\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\PDB\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\BSim\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\SwiftDemangler\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Debug\Debugger-rmi-trace\ghidra_scripts
+    C:\Users\leigh\Desktop\Project X\tools\ghidra_12.1.3_PUBLIC\Ghidra\Features\FunctionID\ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Opening existing project: C:\Users\leigh\ghidra-proj\nxt (HeadlessAnalyzer)  
+INFO  Opening project: C:\Users\leigh\ghidra-proj\nxt (HeadlessProject)  
+INFO  REPORT: Processing read-only project file: /rs2client.exe.950-1-vk (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: RS3ProjectXUpdater.java 'export'  (HeadlessAnalyzer)  
+INFO  SCRIPT: C:\Users\leigh\Desktop\Project X\reclass-data\ghidra-scripts\RS3ProjectXUpdater.java (HeadlessAnalyzer)  
+INFO  RS3ProjectXUpdater.java> RS3ProjectXUpdater mode=export apply=false version=950-1 platform=windows-x86_64 imageBase=0x0 (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> WARN: namespace 'eastl' missing (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> WARN: namespace 'ref_counter_base' missing (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>   stray named function: _Mtx_lock @ 0x008a56a0 (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> exported functions: 5 (4 in target namespaces, 1 hand-named outside them) (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> function census: 19310 functions, 415 non-default names, 5 USER_DEFINED, 5 exported, 410 named-but-not-exported (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: `vector_constructor_iterator' @0x0001adc0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: _guard_check_icall @0x0001b9f0 src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: `vector_destructor_iterator' @0x00032440 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: Concurrency::details::UMSFreeThreadProxyFactory::`scalar_deleting_destructor' @0x000ba800 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: std::exception_ptr::exception_ptr @0x0030d420 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: Concurrency::details::UMSFreeThreadProxyFactory::`scalar_deleting_destructor' @0x00328560 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: Concurrency::details::UMSFreeThreadProxyFactory::`scalar_deleting_destructor' @0x0032b3e0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: Concurrency::details::UMSFreeThreadProxyFactory::`scalar_deleting_destructor' @0x0032b460 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: Concurrency::details::UMSFreeThreadProxyFactory::`scalar_deleting_destructor' @0x0037bae0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: std::basic_stringbuf<char,std::char_traits<char>,std::allocator<char>_>::`scalar_deleting_destructor' @0x003aa5e0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: MRECmpImpl::`scalar_deleting_destructor' @0x0052cee0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: adler32_z @0x00886fc0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: slide_hash @0x008872a0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: bi_flush @0x0088aed0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: init_block @0x0088b090 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: pqdownheap @0x0088b260 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: gen_bitlen @0x0088b350 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: scan_tree @0x0088b7a0 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_XInputGetState @0x008a4aad src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamInternal_ContextInit @0x008a4b32 src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamInternal_FindOrCreateUserInterface @0x008a4bb7 src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_GetHSteamUser @0x008a4bc3 src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_RegisterCallback @0x008a4bcf src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_Shutdown @0x008a4bdb src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_RestartAppIfNecessary @0x008a4be7 src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_Init @0x008a4bf3 src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_RunCallbacks @0x008a4bff src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DelayLoad_SteamAPI_UnregisterCallback @0x008a4c0b src=IMPORTED (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DloadAcquireSectionWriteAccess @0x008a4c18 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DloadMakePermanentImageCommit @0x008a4d64 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DloadProtectSection @0x008a4e98 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: DloadReleaseSectionWriteAccess @0x008a4f28 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: _Xtime_get_ticks @0x008a53a8 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: xtime_get @0x008a53d8 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: _Mtx_current_owns @0x008a561c src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: _Mtx_reset_owner @0x008a56a8 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: _Mtx_trylock @0x008a56c4 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: _Mtx_unlock @0x008a5700 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: std::exception::exception @0x008a57d8 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java>    not exported: std::regex_error::regex_error @0x008a5960 src=ANALYSIS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> exported data labels: 245 (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> exported comments: 6 (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> lookup maps: 19333 named funcs, 8555 referenced strings (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OGlobal.CLIENT (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: ONPC.CURRENT_HP (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor self-resolve ONPC.SHOW_AS_IMPORTANT = 0x1120 (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OWorld.VIEW_MATRIX.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OWorld.HEIGHT_MAP (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OWorld.MAPSQUARE_X_OFFSET (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OWorld.ROOT_GRAPH_NODE.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OMapSquare.COMPOSITE_DATA.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OMapSquare.LOCATION_CONTAINERS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OPathingEntity.HITMARKS_AND_HEADBARS (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor self-resolve FAILED OClient.NPC_MANAGER: no consensus for jag::NPCList (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor self-resolve FAILED OClient.CONNECTION_MANAGER: no consensus for jag::ConnectionManager (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.SCENE_MANAGER (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OMainLogicManager.STAT_TABLE (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor self-resolve FAILED OClient.INVENTORY_MANAGER: no consensus for jag::game::InventoryManager (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor self-resolve FAILED OClient.PLAYER_VAR_DOMAIN: no consensus for jag::game::PlayerVarDomain (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.MAIN_STATE (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.PROJECTILE_LIST (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OWorld.LINK_MAP (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.CAMERA.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.HINTTRAIL_LIST (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.HINTARROW_LIST (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OAnimation.CURRENT_FRAME.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.INTERFACE_MANAGER.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OClient.BUILD_AREA_VECTOR.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OInputState.KEY_DOWN_MAP_ROOT.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OGlobal.MONOTONIC_CLOCK_MS.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> anchor NOT located in old binary: OMainLogicManager.MOVE_BUFFER_BASE.msvc (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> OFunctions signatures stamped from the engine table: 50 (45 of them have no symbol and are recoverable ONLY by signature) (GhidraScript)  
+INFO  RS3ProjectXUpdater.java> EXPORT complete -> C:\Users\leigh\Desktop\Project X\reclass-data\updater\updater_data_windows-x86_64-950-1-vk (GhidraScript)  

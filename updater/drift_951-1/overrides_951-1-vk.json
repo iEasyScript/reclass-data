@@ -1,0 +1,408 @@
+{
+ "OFunctions.CLIENT_MAINLOGIC": {
+  "value": "0x29370",
+  "note": "Same body as 950-1-vk's (5000/200 ms timers, Steam callback pump, mutex-guarded flag, render-device check) plus a new window-focus block; callee set 6/8 and the neighbour prediction agree.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.SCRIPTRUNNER_GETCLIENTSCRIPTSTATE": {
+  "value": "0x2f4800",
+  "note": "Decompile 0.97 alike; callee set 4/4 and the neighbour prediction agree.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.CLIENTPROT_FLUSHPERTICK": {
+  "value": "0x373be0",
+  "note": "Decompile 0.89 alike; callee set 7/8 and the neighbour prediction agree.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.MINIMENU_DOACTION": {
+  "value": "0x392740",
+  "note": "Decompile 0.80 alike; callee set 2/2, call-target votes and the neighbour prediction agree.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.STATTABLE_UPDATESTAT": {
+  "value": "0x4207b0",
+  "note": "Same handler: reads the stat table through MainLogicManager+0x72e8 via Client+0x19930 and pushes the stat ring; the stat packet's fields are reordered in 951.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.CLIENTPROT_SENDNATIVEMOUSECLICK": {
+  "value": "0x375050",
+  "note": "Decompile 0.95 alike; both neighbouring pairs predict this entry.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.PLAYERVARDOMAIN_SETVARVALUE": {
+  "value": "0xc09250",
+  "note": "Same lookup and 0xffffffff reset through the var table at domain+0x1c0b8 (950: +0x1c0c8); 951 adds a fourth int parameter.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.PLAYERVARDOMAIN_SETVARVALUEFROMSERVER": {
+  "value": "0xc093e0",
+  "note": "Sibling of SetVarValue writing through domain+0x10 (950: +0x20) with the from-server flag set; also takes the new fourth int parameter.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.CHATHISTORY_ADDCHAT_HOOKABLE": {
+  "value": "0x375d20",
+  "note": "34/34 call-target votes from paired callers; decompile 0.54 alike.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.STD_MTX_LOCK": {
+  "value": "0x121ca50",
+  "note": "733/733 call-target votes; MainLogic calls it where 950 called _Mtx_lock.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.SCRIPTRUNNER_EXECUTEHOOKINNER": {
+  "value": "0x2f4110",
+  "note": "6/6 call-target votes; decompile 0.80 alike.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.SERVERPROT_DECODE_UPDATE_INV_PARTIAL": {
+  "value": "0x35c390",
+  "note": "Same field order (inventory id, flags, smart slot, amount, obj) and GetInventory/CreateInventory through Client+0x199e0; 951 also collects changed slots for a new client event and dropped the fourth parameter.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.SERVERPROT_DECODE_UPDATE_INV_FULL": {
+  "value": "0x35c870",
+  "note": "Decompile 0.83 alike; follows the partial decoder as in 950.",
+  "confidence": "HIGH"
+ },
+ "OFunctions.REBUILD_NORMAL_HANDLER": {
+  "value": "0x356090",
+  "note": "Same four parameters, the two 14-bit packed coordinates and the NPCManager+0xc0e8 write (byte + 0x80); decompile 0.71 alike.",
+  "confidence": "HIGH"
+ },
+ "OGlobal.CLIENT": {
+  "value": "0x1a6bba0",
+  "note": "52/52 data-reference votes from paired functions.",
+  "confidence": "CERTAIN"
+ },
+ "OInputGlobals.MOUSE_X": {
+  "value": "0x1a6bc40",
+  "note": "3/3 data-reference votes from paired functions; the five globals keep their 950 relative layout.",
+  "confidence": "HIGH"
+ },
+ "OInputGlobals.MOUSE_Y": {
+  "value": "0x1a6bc44",
+  "note": "3/3 data-reference votes from paired functions; the five globals keep their 950 relative layout.",
+  "confidence": "HIGH"
+ },
+ "OInputGlobals.LEFT_BUTTON_STATE": {
+  "value": "0x1a6bc48",
+  "note": "5/5 data-reference votes from paired functions; the five globals keep their 950 relative layout.",
+  "confidence": "HIGH"
+ },
+ "OInputGlobals.MIDDLE_BUTTON_STATE": {
+  "value": "0x1a6bc49",
+  "note": "2/2 data-reference votes from paired functions; the five globals keep their 950 relative layout.",
+  "confidence": "HIGH"
+ },
+ "OInputGlobals.RIGHT_BUTTON_STATE": {
+  "value": "0x1a6bc4a",
+  "note": "2/2 data-reference votes from paired functions; the five globals keep their 950 relative layout.",
+  "confidence": "HIGH"
+ },
+ "OVulkanGlobals.RENDER_DEVICE": {
+  "value": "0x185c250",
+  "note": "1029/1029 data-reference votes; MainLogic reads it at the same point as in 950.",
+  "confidence": "CERTAIN"
+ },
+ "OVulkanGlobals.QUEUE_PRESENT": {
+  "value": "0x1a6a7f0",
+  "note": "3/3 data-reference votes from paired functions.",
+  "confidence": "HIGH"
+ },
+ "OHeightMap.EMPTY_CELL_SENTINEL_REL": {
+  "value": "0x184f3f8",
+  "note": "115/124 data-reference votes; the dissent is reads of the neighbouring words at +4 and +8.",
+  "confidence": "HIGH"
+ },
+ "OInput.VTABLE": {
+  "value": "0x15fa0c0",
+  "note": "Installed by the Client constructor into Client+0x18dc8 (OClient.INPUT) with the same following initialisers as 950.",
+  "confidence": "CERTAIN"
+ },
+ "OScriptRunner.SLOT_TERMINATOR": {
+  "remove": true
+ },
+ "OServerProtTable.ENTRIES_BASE": {
+  "remove": true
+ },
+ "OClient.HINTARROW_LIST": {
+  "value": "0x198f8",
+  "note": "The hint-arrow handler and two other paired readers read it at +8, with the field below it also +8.",
+  "confidence": "HIGH"
+ },
+ "OClient.HINTTRAIL_LIST": {
+  "value": "0x19908",
+  "note": "Two paired readers moved it 0x198f8 -> 0x19908; the insertion falls between this field and HINTARROW_LIST.",
+  "confidence": "HIGH"
+ },
+ "OClient.LOCATION_REQUEST_PENDING_LIST": {
+  "value": "0x19918",
+  "note": "A paired reader moved 0x19908 -> 0x19918, matching the +0x10 region from INTERFACE_MANAGER up.",
+  "confidence": "HIGH"
+ },
+ "OClient.STOCKMARKET": {
+  "value": "0x199a8",
+  "note": "Between SPOTANIM_MANAGER and the next paired field, both +0x18.",
+  "confidence": "MEDIUM"
+ },
+ "OMainLogicManager.MOVE_BUFFER_BASE": {
+  "value": "0x4b98",
+  "note": "Every MainLogicManager field from the click buffer to the client var domain moved -0x330.",
+  "confidence": "MEDIUM"
+ },
+ "ONPC.HIDDEN_MENUOP_FLAGS": {
+  "value": "0x118c",
+  "note": "Entity layout: every field from 0x1b4 up moved +0x10 (94 witness groups, unanimous); TYPE_DEFAULTED_OVERRIDE beside it moved 0x1178 -> 0x1188.",
+  "confidence": "MEDIUM"
+ },
+ "ONPC.SIZE": {
+  "value": "0x11a0",
+  "note": "Entity layout: everything from 0x1b4 up moved +0x10.",
+  "confidence": "MEDIUM"
+ },
+ "ONPCManager.CLIENT": {
+  "value": "0xc0d8",
+  "note": "Unchanged: the REBUILD_NORMAL handler writes NPCManager+0xc0e0 and +0xc0e8 exactly as in 950.",
+  "confidence": "HIGH"
+ },
+ "ONPCManager.RESET_FLAG": {
+  "value": "0xc0e0",
+  "note": "Unchanged: the REBUILD_NORMAL handler writes NPCManager+0xc0e0 and +0xc0e8 exactly as in 950.",
+  "confidence": "HIGH"
+ },
+ "ONPCManager.COORD_BIT_WIDTH": {
+  "value": "0xc0e8",
+  "note": "Unchanged: the REBUILD_NORMAL handler writes NPCManager+0xc0e0 and +0xc0e8 exactly as in 950.",
+  "confidence": "HIGH"
+ },
+ "OWorld.LINK_MAP": {
+  "value": "0x147a8",
+  "note": "Anchor (via_caller consensus 9/10) and 15/16 votes agree; OWorld's map fields all moved +0x6e0.",
+  "confidence": "HIGH"
+ },
+ "OInputHandler.RMOUSE_UP": {
+  "value": "0x210",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInputHandler.MOUSE_WHEEL": {
+  "value": "0x2e0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInputHandler.SIZE": {
+  "value": "0x9c0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OHitmarksAndHeadbars.HEADBAR_STRIDE": {
+  "value": "0x1b0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInterfaceComponent.STATIC_CHILDREN": {
+  "value": "0x1b0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInterfaceComponent.DYNAMIC_CHILDREN_END": {
+  "value": "0x1e8",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInterfaceComponent.PAGES_CAPACITY": {
+  "value": "0x1e8",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInterfaceComponent.STATIC_PAGE_COUNT": {
+  "value": "0x3a0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OLocation.TYPE_ID": {
+  "value": "0x1b0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "ORegionHeightContainer.LINK_HEIGHT_GRID": {
+  "value": "0x1e8",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OLocationContainer.PRIMARY_LOCATIONS_BEGIN": {
+  "value": "0x308",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OGraphNode.DIRTY_LISTENERS_END": {
+  "value": "0x1e8",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OServerConnection.BYTES_SENT": {
+  "value": "0x2e4",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OServerConnection.LAST_OPCODE": {
+  "value": "0x2e0",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OClientScriptState.INT_STACK": {
+  "value": "0x10a8",
+  "note": "Unchanged: most votes keep it, the dissent matches other structs' known moves at the same displacement, and every sibling field is unanimously unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OVulkanRenderDevice.DEVICE": {
+  "value": "0x428",
+  "note": "Unchanged across the 505 paired functions that load the render device (DEVICE 60 vs 2, QUEUE 7 vs 1).",
+  "confidence": "HIGH"
+ },
+ "OVulkanRenderDevice.QUEUE": {
+  "value": "0x438",
+  "note": "Unchanged across the 505 paired functions that load the render device (DEVICE 60 vs 2, QUEUE 7 vs 1).",
+  "confidence": "HIGH"
+ },
+ "OStat.INFO_PTR": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OMiniMenuEntry.TARGET_STRING": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OMiniMenuAction.ACTION_VTABLE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInputHandler.SLOT_BEGIN": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInputState.KEY_NODE_RIGHT": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OClientVarDomain.VAR_ID": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OServerProtTable.ENTRY_OPCODE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "ONPCManager.HASH_NODE_KEY": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OMouseSample.BUTTON": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OHit.TYPE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OHitmarksAndHeadbars.HIT_CURSOR": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OGraphNode.DIRECTION_X": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInterfaceParent.CHILD_SLOT_HIDDEN_FLAG": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OInterfaceManagerHash.NODE_KEY": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OAnimation.ID": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OTcpConnectionMessage.PROT_OPCODE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OLoggedInPlayer.OWNER_CLIENT": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OPlayerVarDomain.VAR_ID": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OItemStack.ITEM_ID": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OItemStackNode.LEFT": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OSpotAnimManager.VTABLE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OSpotAnimNode.NEXT": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OMouseProtSender.VTABLE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OKeyEvent.KEY_ID": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OComponentPage.STATIC_CHILDREN": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OChildSlot.REMOVED": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OStockMarketOffer.STATUS": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ },
+ "OVulkanSwapchain.HANDLE": {
+  "value": "0x0",
+  "note": "First member; every other field of the struct with evidence is unchanged.",
+  "confidence": "MEDIUM"
+ }
+}
