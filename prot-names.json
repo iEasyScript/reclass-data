@@ -2871,6 +2871,11 @@
         "28",
         "29"
       ]
+    },
+    "951-1": {
+      "SERVER": {
+        "139": "SERVER_TICK_END"
+      }
     }
   },
   "assigned_names": [
@@ -2917,7 +2922,8 @@
     "950-1.zone_14_binder_defect": "ZONE 14 is registered with TEXT_COORD's varByte size but BindZoneHandlers copies the LOC_PREFETCH delegate into it (the copy reads the neighbouring entry); 949-5 has the identical defect. A TEXT_COORD sent inside a zone bundle runs the loc-prefetch handler on this client.",
     "950-1.behaviour_confirmations": "Names 950-1 assigned by behaviour were re-derived independently from the handler bodies: CONFIRMED LOC_ANIM (11, loc record kind 2, animation slot set, type slot -1, ApplyLocChange), IF_OPENSUB_ACTIVE_PLAYER (13, indexes the player array), IF_SETPLAYERMODEL_OTHER (37, component property sub-kind 5 with a 16-bit player id), IF_OPENSUB_ACTIVE_NPC (42, NPCList::GetNPCNode), IF_MOVESUB (45, detaches and re-registers the open sub), IF_SETANIM (47, model property kind 5, releases the built model), IF_SETPLAYERHEAD_OTHER (59, sub-kind 3 with a 16-bit id), IF_SETANGLE (68, entry kind 8 seeded by IF_SETOBJECT from the ObjType render fields), IF_OPENSUB_ACTIVE_OBJ (91, ground-obj list lookup), IF_SETOBJECT (102, entry kind 9 then ObjType seeding), LOC_CUSTOMISE (104, record kind 4 with recolour and retexture arrays), IF_SETRECOL (150, first recolour pair), IF_SETRETEX (168, second pair, releases the model), OBJ_ADD/OBJ_COUNT/OBJ_DEL/OBJ_REVEAL (51/70/109/zone 9: insert, count rewrite where id and old count match, erase, insert skipped when the owner is the local player). NOT PROVEN and therefore UNKNOWN: 39 (writes one int to a component field with no update entry; IF_SETGRAPHIC, IF_SETCLICKMASK and IF_SETTEXTFONT fit equally) and 128 (a create-account status reply placed only by elimination against 137). VARP_LONG (165) and CLIENT_SETVARC_LONG (200) are behaviour-proven 64-bit variants of packets the reference client only has in 32-bit form; they are assigned names for packets newer than the reference, not attested.",
     "950-1.set_moveaction": "SET_MOVEACTION (123, varByte): a payload of at least three bytes is a NUL-terminated CP1252 op text followed by a g2 cursor id (0xffff = none); an EMPTY payload is a first-class path that resets the text to the localised default ('Walk here') and the cursor to none. Lengths 1 and 2 still perform the two-byte read and over-run, so a server emits only 0 or >= 3.",
-    "950-1.lobby_tick_end.body": "SERVER 183's bound handler is a two-instruction no-op that reads nothing; the fixed-length framing accepts the empty payload exactly as SERVER_TICK_END (160) does. Three byte-identical no-op stubs exist on this build (88, 172, 183) separable only by binder order and size."
+    "950-1.lobby_tick_end.body": "SERVER 183's bound handler is a two-instruction no-op that reads nothing; the fixed-length framing accepts the empty payload exactly as SERVER_TICK_END (160) does. Three byte-identical no-op stubs exist on this build (88, 172, 183) separable only by binder order and size.",
+    "951-1": "SERVER_TICK_END is opcode 139: in a live 951-1 capture it was the only empty server packet arriving on the 600 ms tick (99 arrivals, median gap 600 ms, 92 of 98 gaps within 550-650 ms). Declaration-order carry from 949-5 named opcode 21, which never arrived in game. No other 951-1 name is verified yet."
   },
   "_carried_from": {
     "950-1.CLIENT": {
