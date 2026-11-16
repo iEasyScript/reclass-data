@@ -6,7 +6,9 @@ source of truth for RE types, protocol/cache/binary documentation, symbol dumps,
 cache-id dictionaries, and the live CS2 content dumps — shared by both the Project X
 server and the Project X injection engine.
 
-> It remains its **own git repository** (origin: `gitlab:iEasyScript/reclass-data`)
+> It remains its **own git repository**. It comes from
+> [project-undercut/reclass-data](https://gitlab.com/project-undercut/reclass-data) and is maintained
+> here as `iEasyScript/reclass-data`
 > and is included elsewhere as a submodule. The original ReClass type data is unchanged;
 > the documentation/symbol/gameval aggregation below was added **additively** (existing
 > files kept in place so the offset-updater's relative paths keep working).
